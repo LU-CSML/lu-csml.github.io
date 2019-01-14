@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>index on CSML Reading Group</title>
+    <link>/</link>
+    <description>Recent content in index on CSML Reading Group</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 20 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Papers</title>
+      <link>/papers/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/papers/</guid>
+      <description>2018  January 18th: Marzouk et al An introduction to sampling via measure transport [arXiv]  2017  November 16th: Goncalves et al Barker&amp;rsquo;s algorithm for Bayesian inference with intractable likelihoods [arXiv] October 26th: Polson et al Deep Learning: A Bayesian Perspective [arXiv] June 1st: Nishimura et al -Discontinuous Hamiltonian Monte Carlo for sampling discrete parameters [arXiv] May 11th: Graham and Storkey -Continuously tempered Hamiltonian Monte Carlo [arXiv] April 27th: Pakman et al.</description>
+    </item>
+    
+    <item>
+      <title>Talks</title>
+      <link>/talks/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/talks/</guid>
+      <description>2018 2017  Decmber 7th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Gareth Ridall Sequential Bayesian estimation and model selection [Abstract] November 29th, 11am-12pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Nemeth Pseudo-extended MCMC [Abstract] November 9th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Luke Kelly Lateral trait transfer in phylogenetic inference [Abstract] November 1st, 2pm-3pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yee Whye Teh On Bayesian Deep Learning and Deep Bayesian Learning [Abstract] May 18th, 2pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Sherlock Asymptotic variance and geometric convergence of MCMC: variational representations [tutorial] [Abstract] January 26th, 2pm PSC A54</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>If you would like to be added to the mailing list please contact Matthew Ludkin.</description>
+    </item>
+    
+  </channel>
+</rss>
