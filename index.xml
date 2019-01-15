@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2018  January 18th: Marzouk et al An introduction to sampling via measure transport [arXiv]  2017  November 16th: Goncalves et al Barker&amp;rsquo;s algorithm for Bayesian inference with intractable likelihoods [arXiv] October 26th: Polson et al Deep Learning: A Bayesian Perspective [arXiv] June 1st: Nishimura et al -Discontinuous Hamiltonian Monte Carlo for sampling discrete parameters [arXiv] May 11th: Graham and Storkey -Continuously tempered Hamiltonian Monte Carlo [arXiv] April 27th: Pakman et al.</description>
+      <description>2018  November 8th: Qiang Liu Stein Variational Gradient Descent as Gradient Flow [arXiv] November 1st: Oren Mangoubi et. al. Does Hamiltonian Monte Carlo mix faster than a random walk on multimodal densities? [arXiv] January 18th: Marzouk et al An introduction to sampling via measure transport [arXiv]  2017  November 16th: Goncalves et al Barker&amp;rsquo;s algorithm for Bayesian inference with intractable likelihoods [arXiv] October 26th: Polson et al Deep Learning: A Bayesian Perspective [arXiv] June 1st: Nishimura et al -Discontinuous Hamiltonian Monte Carlo for sampling discrete parameters [arXiv] May 11th: Graham and Storkey -Continuously tempered Hamiltonian Monte Carlo [arXiv] April 27th: Pakman et al.</description>
     </item>
     
     <item>
@@ -25,12 +25,12 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2018 2017  Decmber 7th, 3pm-4pm PSC A54
+      <description>2018  December 13th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Arnaud Doucet On discrete-time piecewise-deterministic MCMC schemes December 5th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Louis Aslett Privacy and Security in Bayesian Inference November 15th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Sherlock The Minimal Extended Statespace Algorithm for exact inference on Markov jump processes  2017  Decmber 7th, 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Gareth Ridall Sequential Bayesian estimation and model selection [Abstract] November 29th, 11am-12pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Nemeth Pseudo-extended MCMC [Abstract] November 9th, 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Luke Kelly Lateral trait transfer in phylogenetic inference [Abstract] November 1st, 2pm-3pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Yee Whye Teh On Bayesian Deep Learning and Deep Bayesian Learning [Abstract] May 18th, 2pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Sherlock Asymptotic variance and geometric convergence of MCMC: variational representations [tutorial] [Abstract] January 26th, 2pm PSC A54</description>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Chris Nemeth Pseudo-extended MCMC [Abstract] November 9th, 3pm-4pm PSC A54</description>
     </item>
     
     <item>
