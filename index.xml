@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2018  November 8th: Qiang Liu Stein Variational Gradient Descent as Gradient Flow [arXiv] November 1st: Oren Mangoubi et. al. Does Hamiltonian Monte Carlo mix faster than a random walk on multimodal densities? [arXiv] January 18th: Marzouk et al An introduction to sampling via measure transport [arXiv]  2017  November 16th: Goncalves et al Barker&amp;rsquo;s algorithm for Bayesian inference with intractable likelihoods [arXiv] October 26th: Polson et al Deep Learning: A Bayesian Perspective [arXiv] June 1st: Nishimura et al -Discontinuous Hamiltonian Monte Carlo for sampling discrete parameters [arXiv] May 11th: Graham and Storkey -Continuously tempered Hamiltonian Monte Carlo [arXiv] April 27th: Pakman et al.</description>
+      <description>2019  January 24th: Ma et. al. Sampling Can Be Faster Than Optimization [arXiv] January 17th: Bubeck et. al. A geometric alternative to Nesterov&amp;rsquo;s accelerated gradient descent [arXiv]  2018  November 8th: Qiang Liu Stein Variational Gradient Descent as Gradient Flow [arXiv] November 1st: Oren Mangoubi et. al. Does Hamiltonian Monte Carlo mix faster than a random walk on multimodal densities? [arXiv] January 18th: Marzouk et al An introduction to sampling via measure transport [arXiv]  2017  November 16th: Goncalves et al Barker&amp;rsquo;s algorithm for Bayesian inference with intractable likelihoods [arXiv] October 26th: Polson et al Deep Learning: A Bayesian Perspective [arXiv] June 1st: Nishimura et al -Discontinuous Hamiltonian Monte Carlo for sampling discrete parameters [arXiv] May 11th: Graham and Storkey -Continuously tempered Hamiltonian Monte Carlo [arXiv] April 27th: Pakman et al.</description>
     </item>
     
     <item>
@@ -39,7 +39,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/contact/</guid>
-      <description>If you would like to be added to the mailing list please contact Matthew Ludkin.</description>
+      <description>If you would like to be added to the mailing list please visit here.</description>
     </item>
     
   </channel>
