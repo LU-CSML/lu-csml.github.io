@@ -22,5 +22,51 @@ I would like to:
  Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
     </item>
     
+    <item>
+      <title>Pseudo extended MCMC</title>
+      <link>/post/nemeth2017/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/nemeth2017/</guid>
+      <description>MCMC algorithms are a class of exact methods used for sampling from target distributions. If the target is multimodal, MCMC algorithms often struggle to explore all of the modes of the target within a reasonable number of iterations. This issue can become even more pronounced when using efficient gradient-based samplers, such as HMC, which tend to tend to become trapped local modes.
+In this talk, I&amp;rsquo;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
+    </item>
+    
+    <item>
+      <title>Lateral trait transfer in phylogenetic inference</title>
+      <link>/post/kelly2017/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kelly2017/</guid>
+      <description>We are interested in inferring the phylogeny, or shared ancestry, of a set of species descended from a common ancestor. When traits pass vertically through ancestral relationships, the phylogeny is a tree and one can often compute the likelihood efficiently through recursions. Lateral transfer, whereby evolving species exchange traits outside of ancestral relationships, is a frequent source of model misspecification in phylogenetic inference. We propose a novel model of species diversification which explicitly controls for the effect of lateral transfer.</description>
+    </item>
+    
+    <item>
+      <title>On Bayesian Deep Learning and Deep Bayesian Learning</title>
+      <link>/post/teh2017/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/teh2017/</guid>
+      <description>Probabilistic and Bayesian reasoning is one of the principle theoretical pillars to our understanding of machine learning. Over the last two decades, it has inspired a whole range of successful machine learning methods and influenced the thinking of many researchers in the community. On the other hand, in the last few years the rise of deep learning has completely transformed the field and led to a string of phenomenal, era-defining, successes.</description>
+    </item>
+    
+    <item>
+      <title>Asymptotic variance and geometric convergence of MCMC: variational representations</title>
+      <link>/post/sherlock2017b/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock2017b/</guid>
+      <description>An MCMC algorithm is geometrically ergodic if it converges to the intended posterior geometrically in the number of iterations. A number of useful properties follow from geometric ergodicity, including that the practical efficiency measure of &amp;ldquo;effective sample size&amp;rdquo; is meaningful for any sensible function of interest. The standard method for proving geometric ergodicity for a particular algorithm involves a &amp;ldquo;drift condition&amp;rdquo; and a &amp;ldquo;small set&amp;rdquo;, and can be time consuming, both in the proof itself and in understanding why the drift condition and small set are helpful.</description>
+    </item>
+    
+    <item>
+      <title>Delayed-acceptance MCMC with examples: advantages and pitfalls and how to avoid the latter</title>
+      <link>/post/sherlock2017a/</link>
+      <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock2017a/</guid>
+      <description>When conducting MCMC using the Metropolis-Hastings algorithm the posterior distribution must be evaluated at the proposed point at every iteration; in many situations, however, the posterior is computationally expensive to evaluate. When a computationally cheap approximation to the posterior is also available, the delayed acceptance algorithm (aka surrogate transition method) can be used to increase the efficiency of the MCMC whilst still targeting the correct posterior. In the first part of this talk I will explain and justify the algorithm itself and overview a number of examples of its (successful) application.</description>
+    </item>
+    
   </channel>
 </rss>
