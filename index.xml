@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019 Big Data  March 21st: Zhang et. al. Determinantal Point Processes for Mini-Batch Diversification [arXiv] March 13th: Hensman et. al. Fast Nonparametric Clustering of Structured Time-Series [arXiv]  Gaussian Processes  March 7th: Durrande et. al. Banded Matrix Operators for Gaussian Markov Models in the Automatic Differentiation Era [arXiv] February 7th: Finley et. al. Efficient algorithms for Bayesian Nearest Neighbor Gaussian Processes [arXiv]  Optimisation  January 24th: Ma et.</description>
+      <description>2019 Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et. al. Magnetic Hamiltonian Monte Carlo [arXiv]  Big Data  March 21st: Zhang et. al. Determinantal Point Processes for Mini-Batch Diversification [arXiv] March 13th: Hensman et. al. Fast Nonparametric Clustering of Structured Time-Series [arXiv]  Gaussian Processes  March 7th: Durrande et. al. Banded Matrix Operators for Gaussian Markov Models in the Automatic Differentiation Era [arXiv] February 7th: Finley et.</description>
     </item>
     
     <item>
@@ -40,6 +40,18 @@
       
       <guid>/contact/</guid>
       <description>If you would like to be added to the mailing list please visit here.</description>
+    </item>
+    
+    <item>
+      <title>Sequential Bayesian estimation and model selection</title>
+      <link>/post/ridall2017/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ridall2017/</guid>
+      <description>Work done in collaboration with Tony Pettitt from QUT Brisbane.
+I would like to:
+ Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms.
+ Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
     </item>
     
   </channel>
