@@ -25,12 +25,11 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  March 28th, 3pm-4pm STOR-i Hub
+      <description>2019  May 9th 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Nick Tawn The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.[Abstract] March 28th, 3pm-4pm STOR-i Hub
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Callum Vyner An Introduction to Divide-and-Conquer MCMC. February 28th, 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Matthew Ludkin Hug &amp;lsquo;N&amp;rsquo; Hop: Explicit, non-reversible, contour-hugging MCMC. February 14th, 3pm-4pm STOR-i Boardroom
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Henry Moss An Intro to Information-Driven Bayesian Optimisation  2018  December 13th, 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Arnaud Doucet On discrete-time piecewise-deterministic MCMC schemes December 5th, 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Louis Aslett Privacy and Security in Bayesian Inference November 15th, 3pm-4pm PSC A54</description>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Henry Moss An Intro to Information-Driven Bayesian Optimisation  2018  December 13th, 3pm-4pm PSC A54</description>
     </item>
     
     <item>
@@ -40,6 +39,16 @@
       
       <guid>/contact/</guid>
       <description>If you would like to be added to the mailing list please visit here.</description>
+    </item>
+    
+    <item>
+      <title>The Annealed Leap Point Sampler (ALPS) for multimodal target distributions</title>
+      <link>/post/tawn2019/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tawn2019/</guid>
+      <description>Sampling from multimodal target distributions is a classical challenging problem. Markov Chain Monte Carlo methods typically rely on localised or gradient based proposal mechanisms and so target distributions exhibiting multimodality mean the chain becomes trapped in a local mode and this results in a bias sample output.
+This talk introduces a novel algorithm, ALPS, that is designed to provide a scalable approach to sampling from multimodal target distributions. The ALPS algorithm concatenates a number of the strengths of the current gold standard approaches for multimodality.</description>
     </item>
     
     <item>

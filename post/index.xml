@@ -5,10 +5,20 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 20 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Annealed Leap Point Sampler (ALPS) for multimodal target distributions</title>
+      <link>/post/tawn2019/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tawn2019/</guid>
+      <description>Sampling from multimodal target distributions is a classical challenging problem. Markov Chain Monte Carlo methods typically rely on localised or gradient based proposal mechanisms and so target distributions exhibiting multimodality mean the chain becomes trapped in a local mode and this results in a bias sample output.
+This talk introduces a novel algorithm, ALPS, that is designed to provide a scalable approach to sampling from multimodal target distributions. The ALPS algorithm concatenates a number of the strengths of the current gold standard approaches for multimodality.</description>
+    </item>
     
     <item>
       <title>Sequential Bayesian estimation and model selection</title>
