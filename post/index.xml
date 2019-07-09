@@ -5,10 +5,19 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 13 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Clustering approach and MCMC practicalities of stochastic block models</title>
+      <link>/post/lee2019/</link>
+      <pubDate>Thu, 13 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/lee2019/</guid>
+      <description>Stochastic block model (SBM) is a popular choice for clustering nodes in a network. In this talk, a few versions of SBM will be reviewed, with the focus on the clustering approach (hard vs soft), and its relation with the subsequent MCMC algorithm. Model selection and some practical issues will also be discussed.</description>
+    </item>
     
     <item>
       <title>The Annealed Leap Point Sampler (ALPS) for multimodal target distributions</title>

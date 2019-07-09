@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019 Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et. al. Magnetic Hamiltonian Monte Carlo [arXiv]  Big Data  March 21st: Zhang et. al. Determinantal Point Processes for Mini-Batch Diversification [arXiv] March 13th: Hensman et. al. Fast Nonparametric Clustering of Structured Time-Series [arXiv]  Gaussian Processes  March 7th: Durrande et. al. Banded Matrix Operators for Gaussian Markov Models in the Automatic Differentiation Era [arXiv] February 7th: Finley et.</description>
+      <description>2019  July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et. al. Magnetic Hamiltonian Monte Carlo [arXiv]  Big Data  March 21st: Zhang et. al. Determinantal Point Processes for Mini-Batch Diversification [arXiv] March 13th: Hensman et. al. Fast Nonparametric Clustering of Structured Time-Series [arXiv]  Gaussian Processes  March 7th: Durrande et.</description>
     </item>
     
     <item>
@@ -25,11 +25,11 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  May 9th 3pm-4pm PSC A54
+      <description>2019  June 13th 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Clement Lee Clustering approach and MCMC practicalities of stochastic block models.[Abstract] May 9th 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Nick Tawn The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.[Abstract] March 28th, 3pm-4pm STOR-i Hub
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Callum Vyner An Introduction to Divide-and-Conquer MCMC. February 28th, 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Matthew Ludkin Hug &amp;lsquo;N&amp;rsquo; Hop: Explicit, non-reversible, contour-hugging MCMC. February 14th, 3pm-4pm STOR-i Boardroom
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Henry Moss An Intro to Information-Driven Bayesian Optimisation  2018  December 13th, 3pm-4pm PSC A54</description>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Matthew Ludkin Hug &amp;lsquo;N&amp;rsquo; Hop: Explicit, non-reversible, contour-hugging MCMC. February 14th, 3pm-4pm STOR-i Boardroom</description>
     </item>
     
     <item>
@@ -39,6 +39,15 @@
       
       <guid>/contact/</guid>
       <description>If you would like to be added to the mailing list please visit here.</description>
+    </item>
+    
+    <item>
+      <title>Clustering approach and MCMC practicalities of stochastic block models</title>
+      <link>/post/lee2019/</link>
+      <pubDate>Thu, 13 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/lee2019/</guid>
+      <description>Stochastic block model (SBM) is a popular choice for clustering nodes in a network. In this talk, a few versions of SBM will be reviewed, with the focus on the clustering approach (hard vs soft), and its relation with the subsequent MCMC algorithm. Model selection and some practical issues will also be discussed.</description>
     </item>
     
     <item>
