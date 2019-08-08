@@ -5,10 +5,20 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 13 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Wasserstein Distace Resources</title>
+      <link>/post/sherlock_resources/</link>
+      <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock_resources/</guid>
+      <description> An introduction to the Wasserstein distance and its connection to total variation distance.
+Resources  [Wasserstein Notes 1] [Wasserstein Notes 2] [Probability Metric Connections]  </description>
+    </item>
     
     <item>
       <title>Clustering approach and MCMC practicalities of stochastic block models</title>
