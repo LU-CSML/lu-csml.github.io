@@ -16,7 +16,9 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019  July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et. al. Magnetic Hamiltonian Monte Carlo [arXiv]  Big Data  March 21st: Zhang et. al. Determinantal Point Processes for Mini-Batch Diversification [arXiv] March 13th: Hensman et. al. Fast Nonparametric Clustering of Structured Time-Series [arXiv]  Gaussian Processes  March 7th: Durrande et.</description>
+      <description>2019 Optimal Transport  August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources]
+ July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]
+  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et.</description>
     </item>
     
     <item>
@@ -25,12 +27,12 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  August 8th 3pm-4pm STOR-i Hub
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Chris Sherlock Introduction to the Wasserstein distance.[Resources] August 1st 3pm-4pm STOR-i Hub
+      <description>2019  August 1st 3pm-4pm STOR-i Hub
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Leah South Variance reduction in MCMC. June 13th 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Clement Lee Clustering approach and MCMC practicalities of stochastic block models.[Abstract] May 9th 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Nick Tawn The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.[Abstract] March 28th, 3pm-4pm STOR-i Hub
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Callum Vyner An Introduction to Divide-and-Conquer MCMC.</description>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Callum Vyner An Introduction to Divide-and-Conquer MCMC. February 28th, 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Matthew Ludkin Hug &amp;lsquo;N&amp;rsquo; Hop: Explicit, non-reversible, contour-hugging MCMC.</description>
     </item>
     
     <item>
