@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Asymptotic variance and geometric convergence of MCMC: variational representations - CSML Reading Group</title>
+    <title>Posts - CSML Reading Group</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <style type="text/css">body {
@@ -171,16 +171,16 @@ pre {
 }
     </style>
 
-    <meta property="og:title" content="Asymptotic variance and geometric convergence of MCMC: variational representations" />
-<meta property="og:description" content="An MCMC algorithm is geometrically ergodic if it converges to the intended posterior geometrically in the number of iterations. A number of useful properties follow from geometric ergodicity, including that the practical efficiency measure of &ldquo;effective sample size&rdquo; is meaningful for any sensible function of interest. The standard method for proving geometric ergodicity for a particular algorithm involves a &ldquo;drift condition&rdquo; and a &ldquo;small set&rdquo;, and can be time consuming, both in the proof itself and in understanding why the drift condition and small set are helpful." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/post/sherlock2017b/" />
-<meta property="article:published_time" content="2017-05-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2017-05-18T00:00:00+00:00" />
+    <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/post/" />
+
+<meta property="og:updated_time" content="2019-09-19T00:00:00+00:00" />
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Asymptotic variance and geometric convergence of MCMC: variational representations"/>
-<meta name="twitter:description" content="An MCMC algorithm is geometrically ergodic if it converges to the intended posterior geometrically in the number of iterations. A number of useful properties follow from geometric ergodicity, including that the practical efficiency measure of &ldquo;effective sample size&rdquo; is meaningful for any sensible function of interest. The standard method for proving geometric ergodicity for a particular algorithm involves a &ldquo;drift condition&rdquo; and a &ldquo;small set&rdquo;, and can be time consuming, both in the proof itself and in understanding why the drift condition and small set are helpful."/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
 
 </head>
 
@@ -230,26 +230,83 @@ pre {
 </nav><main id="content" class="container mt-3">
 
 
-<h3 class="display-3 text-primary">Asymptotic variance and geometric convergence of MCMC: variational representations</h3>
-<h5 class="display-5 text-primary">Chris Sherlock</h5>
+<div class="list"> 
+    <a href="/post/sherlock2017a/"><h3>Delayed-acceptance MCMC with examples: advantages and pitfalls and how to avoid the latter</h3></a>
+    <p>Chris Sherlock on  January 26, 2017</p>
+</div>
 
-<p>An MCMC algorithm is geometrically ergodic if it converges to the intended posterior geometrically in the number of iterations. A number of useful properties follow from geometric ergodicity, including that the practical efficiency measure of &ldquo;effective sample size&rdquo; is meaningful for any sensible function of interest. The standard method for proving geometric ergodicity for a particular algorithm involves a &ldquo;drift condition&rdquo; and a &ldquo;small set&rdquo;, and can be time consuming, both in the proof itself and in understanding why the drift condition and small set are helpful.</p>
+<div class="justify-content-center">
+    
 
-<p>A variational representation can provide a direct insight into a quantity of interest and a potentially powerful tool. As a simple (and relevant) example, each eigenvalue, lambda, of a symmetric matrix, M, has a corresponding eigenvector, x, such that x&rsquo; M = lambda x&rsquo;. To find the largest eigenvalue one may feel it necessary to find all of the solutions to the above equation and then find the largest. Alternatively, the largest eigenvalue is also \sup x&rsquo; M x, where the supremum is over all x with \norm{x}=1.</p>
+<ul class="pagination">
+    
+    <li class="page-item">
+        <a href="/post/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+    <a href="/post/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/">1</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/2/">2</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/post/page/4/">4</a></li>
+    
+    
+    <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+    
+    <li class="page-item">
+        <a href="/post/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    </li>
+    
+</ul>
 
-<p>I would like to:</p>
 
-<ol>
-<li>Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms.<br /></li>
-<li>Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this. Amongst other results this leads to a trivial proof of the Peskun ordering.</li>
-<li>Introduce the conductance of a Markov kernel; if this is strictly positive then all sensible asymptotic variances are finite.</li>
-</ol>
+</div>
 
-<p>I have found these  variational representations particularly useful when comparing two kernels. It is especially helpful to represent the reversible MCMC kernel as a self-adjoint operator on the Hilbert space of functions that are square integrable with respect to \pi. However, I understand that, like me a few years ago, most of the audience may be unfamiliar with this, so I will take care to introduce the key ideas by analogy with finite matrices.</p>
-
-
-
-<small>Page created on Thursday, May 18, 2017</small>
 
         </div>
     </main>

@@ -16,9 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019 Optimal Transport  August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources]
- July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]
-  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et.</description>
+      <description>2019 Optimal Transport  September 13th: Peyre &amp;amp; Cuturi Computational Optimal Transport: Chapter 5 [arXiv] August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources] July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et.</description>
     </item>
     
     <item>
@@ -27,12 +25,11 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  August 1st 3pm-4pm STOR-i Hub
+      <description>2019  September 20th 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Sam Livingstone On the robustness of gradient-based MCMC algorithms.[Abstract]  August 1st 3pm-4pm STOR-i Hub
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Leah South Variance reduction in MCMC. June 13th 3pm-4pm PSC A54
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Clement Lee Clustering approach and MCMC practicalities of stochastic block models.[Abstract] May 9th 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Nick Tawn The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.[Abstract] March 28th, 3pm-4pm STOR-i Hub
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Callum Vyner An Introduction to Divide-and-Conquer MCMC. February 28th, 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Matthew Ludkin Hug &amp;lsquo;N&amp;rsquo; Hop: Explicit, non-reversible, contour-hugging MCMC.</description>
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Nick Tawn The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.[Abstract] March 28th, 3pm-4pm STOR-i Hub</description>
     </item>
     
     <item>
@@ -42,6 +39,15 @@
       
       <guid>/contact/</guid>
       <description>If you would like to be added to the mailing list please visit here.</description>
+    </item>
+    
+    <item>
+      <title>On the robustness of gradient-based MCMC algorithms</title>
+      <link>/post/livingstone2019/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/livingstone2019/</guid>
+      <description>We analyse the tension between robustness and efficiency for Markov chain Monte Carlo (MCMC) sampling algorithms. In particular, we focus on robustness of MCMC algorithms with respect to heterogeneity in the target and their sensitivity to tuning, an issue of great practical relevance but still understudied theoretically. We show that the spectral gap of the Markov chains induced by classical gradient-based MCMC schemes (e.g. Langevin and Hamiltonian Monte Carlo) decays exponentially fast in the degree of mismatch between the scales of the proposal and target distributions, while for the random walk Metropolis (RWM) the decay is linear.</description>
     </item>
     
     <item>

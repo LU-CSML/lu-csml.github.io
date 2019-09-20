@@ -5,10 +5,19 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>On the robustness of gradient-based MCMC algorithms</title>
+      <link>/post/livingstone2019/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/livingstone2019/</guid>
+      <description>We analyse the tension between robustness and efficiency for Markov chain Monte Carlo (MCMC) sampling algorithms. In particular, we focus on robustness of MCMC algorithms with respect to heterogeneity in the target and their sensitivity to tuning, an issue of great practical relevance but still understudied theoretically. We show that the spectral gap of the Markov chains induced by classical gradient-based MCMC schemes (e.g. Langevin and Hamiltonian Monte Carlo) decays exponentially fast in the degree of mismatch between the scales of the proposal and target distributions, while for the random walk Metropolis (RWM) the decay is linear.</description>
+    </item>
     
     <item>
       <title>Wasserstein Distace Resources</title>
