@@ -5,10 +5,19 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 19 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Gaussian processes to infer pseudotime and branching from single-cell data</title>
+      <link>/post/rattray2019/</link>
+      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rattray2019/</guid>
+      <description>I will describe some applications of Gaussian process models to single-cell data. We have developed a scalable implementation of the Gaussian process latent variable model (GPLVM) that can be used for pseudotime estimation when there is prior knowledge about pseudotime, e.g. from capture times available in single-cell time course data [1]. Other dimensions of the GPLVM latent space can then be used to model additional sources of variation, e.g. from branching of cells into different lineages.</description>
+    </item>
     
     <item>
       <title>On the robustness of gradient-based MCMC algorithms</title>
