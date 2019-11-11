@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>index on CSML Reading Group</title>
@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019 Optimal Transport  October 3rd Srivastava et. al. Scalable Bayes via Barycenter in Wasserstein Space [JMLR Paper] September 13th: Peyre &amp;amp; Cuturi Computational Optimal Transport: Chapter 5 [arXiv] August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources] July 4th: Jacob et. al.: Unbiased Markov chain Monte Carlo with couplings [Link]  Recommender Systems  May 2nd: Salakhutdinov and Mnih: Bayesian Probabilistic Matrix Factorizationusing Markov Chain Monte Carlo [Link] April 11th: Nilesh et.</description>
+      <description>2019 Reparameterisation  October 31st Maddison et. al. The Concrete Distribution [arXiv] October 17th Kingma &amp;amp; Welling Auto-Encoding Variational Bayes [arXiv]  Optimal Transport  October 3rd Srivastava et. al. Scalable Bayes via Barycenter in Wasserstein Space [JMLR Paper] September 13th: Peyre &amp;amp; Cuturi Computational Optimal Transport: Chapter 5 [arXiv] August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources] July 4th: Jacob et.</description>
     </item>
     
     <item>
@@ -25,11 +25,11 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  October 9th 1.30pm-2.30pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Magnus Rattray Using Gaussian processes to infer pseudotime and branching from single-cell data.[Abstract] September 20th 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Sam Livingstone On the robustness of gradient-based MCMC algorithms.[Abstract]  August 1st 3pm-4pm STOR-i Hub
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Leah South Variance reduction in MCMC. June 13th 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Clement Lee Clustering approach and MCMC practicalities of stochastic block models.[Abstract] May 9th 3pm-4pm PSC A54</description>
+      <description>2019  November 7th 3-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Jeremias Knoblauch Generalized variational inference [Abstract] | [Slides] November 24th 3-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Francois-Xavier Briol Statistical Inference for Generative Models with Maximum Mean Discrepancy [Abstract] October 9th 1.30pm-2.30pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Magnus Rattray Using Gaussian processes to infer pseudotime and branching from single-cell data. [Abstract] September 20th 3pm-4pm PSC A54
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Sam Livingstone On the robustness of gradient-based MCMC algorithms. [Abstract]  August 1st 3pm-4pm STOR-i Hub</description>
     </item>
     
     <item>
@@ -39,6 +39,24 @@
       
       <guid>/contact/</guid>
       <description>If you would like to be added to the mailing list please visit here.</description>
+    </item>
+    
+    <item>
+      <title>Generalized Variational Inference</title>
+      <link>/post/knoblauch2019/</link>
+      <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/knoblauch2019/</guid>
+      <description>In this talk, I introduce a generalized representation of Bayesian inference. It is derived axiomatically, recovering existing Bayesian methods as special cases. It is then used to prove that variational inference (VI) based on the Kullback-Leibler Divergence with a variational family Q produces the optimal Q-constrained approximation to the exact Bayesian inference problem. Surprisingly, this implies that standard VI dominates any other Q-constrained approximation to the exact Bayesian inference problem. This means that alternative Q-constrained approximations such as VI minimizing other divergences and Expectation Propagation can produce better posteriors than VI only by implicitly targeting more appropriate Bayesian inference problems.</description>
+    </item>
+    
+    <item>
+      <title>Statistical Inference for Generative Models with Maximum Mean Discrepancy</title>
+      <link>/post/briol2019/</link>
+      <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/briol2019/</guid>
+      <description>While likelihood-based inference and its variants provide a statistically efficient and widely applicable approach to parametric inference, their application to models involving intractable likelihoods poses challenges. In this work, we study a class of minimum distance estimators for intractable generative models, that is, statistical models for which the likelihood is intractable, but simulation is cheap. The distance considered, maximum mean discrepancy (MMD), is defined through the embedding of probability measures into a reproducing kernel Hilbert space.</description>
     </item>
     
     <item>
