@@ -16,7 +16,7 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/papers/</guid>
-      <description>2019 Reparameterisation  October 31st Maddison et. al. The Concrete Distribution [arXiv] October 17th Kingma &amp;amp; Welling Auto-Encoding Variational Bayes [arXiv]  Optimal Transport  October 3rd Srivastava et. al. Scalable Bayes via Barycenter in Wasserstein Space [JMLR Paper] September 13th: Peyre &amp;amp; Cuturi Computational Optimal Transport: Chapter 5 [arXiv] August 29th: Bernton et. al. On parameter estimation with the Wasserstein distance [arXiv] August 22nd: Parno et. al. Transport map accelerated Markov chain Monte Carlo [arXiv] August 8th: Introduction to the Wasserstein distance [Resources] July 4th: Jacob et.</description>
+      <description>2019  Continuous Time MCMC  December 19th: Wang et. al. Regeneration-enriched Markov processes with application to Monte Carlo [arXiv] December 12th: Extending the Zig Zag Sampler to general velocity distributions November 28th: Introduction to Piece-wise Deterministic Markov Processes November 14th: Bierkens Non-reversible Metropolis-Hastings [Paper]  Reparameterisation  October 31st: Maddison et. al. The Concrete Distribution [arXiv] October 17th: Kingma &amp;amp; Welling Auto-Encoding Variational Bayes [arXiv]  Optimal Transport  October 3rd Srivastava et.</description>
     </item>
     
     <item>
@@ -25,11 +25,12 @@
       <pubDate>Thu, 20 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>2019  November 7th 3-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Jeremias Knoblauch Generalized variational inference [Abstract] | [Slides] November 24th 3-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Francois-Xavier Briol Statistical Inference for Generative Models with Maximum Mean Discrepancy [Abstract] October 9th 1.30pm-2.30pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Magnus Rattray Using Gaussian processes to infer pseudotime and branching from single-cell data. [Abstract] September 20th 3pm-4pm PSC A54
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Sam Livingstone On the robustness of gradient-based MCMC algorithms. [Abstract]  August 1st 3pm-4pm STOR-i Hub</description>
+      <description>2019  December 5th 3-4pm PSC A54
+Paul Fearnhead Zig Zag Sampler November 7th 3-4pm PSC A54
+Jeremias Knoblauch Generalized variational inference [Abstract] | [Slides] November 24th 3-4pm PSC A54
+Francois-Xavier Briol Statistical Inference for Generative Models with Maximum Mean Discrepancy [Abstract] October 9th 1.30pm-2.30pm PSC A54
+Magnus Rattray Using Gaussian processes to infer pseudotime and branching from single-cell data. [Abstract] September 20th 3pm-4pm PSC A54
+Sam Livingstone On the robustness of gradient-based MCMC algorithms.</description>
     </item>
     
     <item>
@@ -83,7 +84,7 @@
       <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/sherlock_resources/</guid>
-      <description> An introduction to the Wasserstein distance and its connection to total variation distance.
+      <description>An introduction to the Wasserstein distance and its connection to total variation distance.
 Resources  [Wasserstein Notes 1] [Wasserstein Notes 2] [Probability Metric Connections]  </description>
     </item>
     
@@ -114,8 +115,7 @@ This talk introduces a novel algorithm, ALPS, that is designed to provide a scal
       <guid>/post/ridall2017/</guid>
       <description>Work done in collaboration with Tony Pettitt from QUT Brisbane.
 I would like to:
- Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms.
- Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
+ Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms. Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@ I would like to:
       
       <guid>/post/nemeth2017/</guid>
       <description>MCMC algorithms are a class of exact methods used for sampling from target distributions. If the target is multimodal, MCMC algorithms often struggle to explore all of the modes of the target within a reasonable number of iterations. This issue can become even more pronounced when using efficient gradient-based samplers, such as HMC, which tend to tend to become trapped local modes.
-In this talk, I&amp;rsquo;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
+In this talk, I&#39;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
     </item>
     
     <item>

@@ -52,7 +52,7 @@
       <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/sherlock_resources/</guid>
-      <description> An introduction to the Wasserstein distance and its connection to total variation distance.
+      <description>An introduction to the Wasserstein distance and its connection to total variation distance.
 Resources  [Wasserstein Notes 1] [Wasserstein Notes 2] [Probability Metric Connections]  </description>
     </item>
     
@@ -83,8 +83,7 @@ This talk introduces a novel algorithm, ALPS, that is designed to provide a scal
       <guid>/post/ridall2017/</guid>
       <description>Work done in collaboration with Tony Pettitt from QUT Brisbane.
 I would like to:
- Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms.
- Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
+ Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms. Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
     </item>
     
     <item>
@@ -94,7 +93,7 @@ I would like to:
       
       <guid>/post/nemeth2017/</guid>
       <description>MCMC algorithms are a class of exact methods used for sampling from target distributions. If the target is multimodal, MCMC algorithms often struggle to explore all of the modes of the target within a reasonable number of iterations. This issue can become even more pronounced when using efficient gradient-based samplers, such as HMC, which tend to tend to become trapped local modes.
-In this talk, I&amp;rsquo;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
+In this talk, I&#39;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
     </item>
     
     <item>

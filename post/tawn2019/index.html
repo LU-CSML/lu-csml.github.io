@@ -236,12 +236,9 @@ This talk introduces a novel algorithm, ALPS, that is designed to provide a scal
 <h5 class="display-5 text-primary">Nick Tawn</h5>
 
 <p>Sampling from multimodal target distributions is a classical challenging problem. Markov Chain Monte Carlo methods typically rely on localised or gradient based proposal mechanisms and so target distributions exhibiting multimodality mean the chain becomes trapped in a local mode and this results in a bias sample output.</p>
-
 <p>This talk introduces a novel algorithm, ALPS, that is designed to provide a scalable approach to sampling from multimodal target distributions. The ALPS algorithm concatenates a number of the strengths of the current gold standard approaches for multimodality. It is strongly based around the well known parallel tempering procedure but rather than using “hot state” tempering levels the ALPS
 algorithm instead appeals to annealing. In annealed temperature levels the modes become even more isolated with the effects of modal skew less pronounced. Indeed the more annealed the temperature the more accurately the local mode is approximated by a Laplace approximation. The idea is to exploit this by utilising a powerful Gaussian mixture independence sampler at the annealed temperature levels allowing rapid mixing between modes. This mixing information is then filtered back to the target of interest using a parallel tempering-like procedure with carefully designed marginal distributions.</p>
-
 <p>A number of recent advancements in accelerating the performance of the parallel tempering algorithm are embedded into the ALPS algorithm. These will be presented and it will be explained how they improve both the robustness and efficiency of the algorithm.</p>
-
 <p>The methodological aspects of ALPS will be accompanied by some theoretical optimal scaling results that give promising insight into the scalability of the algorithm as the dimensionality of the problem grows. It will also be highlighted that these results can be used to give a practitioner a gauge on optimal setup and tuning of the algorithm.</p>
 
 
