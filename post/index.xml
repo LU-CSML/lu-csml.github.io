@@ -5,11 +5,7 @@
     <link>/post/</link>
     <description>Recent content in Posts on CSML Reading Group</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 07 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 07 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Generalized Variational Inference</title>
       <link>/post/knoblauch2019/</link>
@@ -93,7 +89,7 @@ I would like to:
       
       <guid>/post/nemeth2017/</guid>
       <description>MCMC algorithms are a class of exact methods used for sampling from target distributions. If the target is multimodal, MCMC algorithms often struggle to explore all of the modes of the target within a reasonable number of iterations. This issue can become even more pronounced when using efficient gradient-based samplers, such as HMC, which tend to tend to become trapped local modes.
-In this talk, I&#39;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
+In this talk, I&amp;rsquo;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
     </item>
     
     <item>
