@@ -22,13 +22,10 @@
       
       <guid>/talks/</guid>
       <description>2022  November 24th: Lecture theatre PSC A54
-Sam Power (University of Bristol)
-Explicit convergence bounds for Metropolis Markov chains: isoperimetry, spectral gaps and profiles November 17th: Lecture theatre PSC A54
-Mauro Camara Escudero (University of Bristol)
-Approximate Manifold Sampling November 3rd: Lecture theatre PSC A54
-Alexandros Beskos (UCL)
-Manifold Markov chain Monte Carlo methods for Bayesian inference in diffusion models October 27th: Lecture theatre PSC A54
-Jure Vogrinc (Warwick university)</description>
+Sam Power (University of Bristol) Explicit convergence bounds for Metropolis Markov chains: isoperimetry, spectral gaps and profiles November 17th: Lecture theatre PSC A54
+Mauro Camara Escudero (University of Bristol) Approximate Manifold Sampling November 3rd: Lecture theatre PSC A54
+Alexandros Beskos (UCL) Manifold Markov chain Monte Carlo methods for Bayesian inference in diffusion models October 27th: Lecture theatre PSC A54
+Jure Vogrinc (Warwick university) The Barker proposal: Combining robustness and efficiency in gradient-based MCMC October 20th: STOR-i Hub</description>
     </item>
     
     <item>
