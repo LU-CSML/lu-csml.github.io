@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on CSML Reading Group</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on CSML Reading Group</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 07 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generalized Variational Inference</title>
+      <link>/post/knoblauch2019/</link>
+      <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/knoblauch2019/</guid>
+      <description>In this talk, I introduce a generalized representation of Bayesian inference. It is derived axiomatically, recovering existing Bayesian methods as special cases. It is then used to prove that variational inference (VI) based on the Kullback-Leibler Divergence with a variational family Q produces the optimal Q-constrained approximation to the exact Bayesian inference problem. Surprisingly, this implies that standard VI dominates any other Q-constrained approximation to the exact Bayesian inference problem. This means that alternative Q-constrained approximations such as VI minimizing other divergences and Expectation Propagation can produce better posteriors than VI only by implicitly targeting more appropriate Bayesian inference problems.</description>
+    </item>
+    
+    <item>
+      <title>Statistical Inference for Generative Models with Maximum Mean Discrepancy</title>
+      <link>/post/briol2019/</link>
+      <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/briol2019/</guid>
+      <description>While likelihood-based inference and its variants provide a statistically efficient and widely applicable approach to parametric inference, their application to models involving intractable likelihoods poses challenges. In this work, we study a class of minimum distance estimators for intractable generative models, that is, statistical models for which the likelihood is intractable, but simulation is cheap. The distance considered, maximum mean discrepancy (MMD), is defined through the embedding of probability measures into a reproducing kernel Hilbert space.</description>
+    </item>
+    
+    <item>
+      <title>Using Gaussian processes to infer pseudotime and branching from single-cell data</title>
+      <link>/post/rattray2019/</link>
+      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rattray2019/</guid>
+      <description>I will describe some applications of Gaussian process models to single-cell data. We have developed a scalable implementation of the Gaussian process latent variable model (GPLVM) that can be used for pseudotime estimation when there is prior knowledge about pseudotime, e.g. from capture times available in single-cell time course data [1]. Other dimensions of the GPLVM latent space can then be used to model additional sources of variation, e.g. from branching of cells into different lineages.</description>
+    </item>
+    
+    <item>
+      <title>On the robustness of gradient-based MCMC algorithms</title>
+      <link>/post/livingstone2019/</link>
+      <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/livingstone2019/</guid>
+      <description>We analyse the tension between robustness and efficiency for Markov chain Monte Carlo (MCMC) sampling algorithms. In particular, we focus on robustness of MCMC algorithms with respect to heterogeneity in the target and their sensitivity to tuning, an issue of great practical relevance but still understudied theoretically. We show that the spectral gap of the Markov chains induced by classical gradient-based MCMC schemes (e.g. Langevin and Hamiltonian Monte Carlo) decays exponentially fast in the degree of mismatch between the scales of the proposal and target distributions, while for the random walk Metropolis (RWM) the decay is linear.</description>
+    </item>
+    
+    <item>
+      <title>Wasserstein Distace Resources</title>
+      <link>/post/sherlock_resources/</link>
+      <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock_resources/</guid>
+      <description>An introduction to the Wasserstein distance and its connection to total variation distance.
+Resources  [Wasserstein Notes 1] [Wasserstein Notes 2] [Probability Metric Connections]  </description>
+    </item>
+    
+    <item>
+      <title>Clustering approach and MCMC practicalities of stochastic block models</title>
+      <link>/post/lee2019/</link>
+      <pubDate>Thu, 13 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/lee2019/</guid>
+      <description>Stochastic block model (SBM) is a popular choice for clustering nodes in a network. In this talk, a few versions of SBM will be reviewed, with the focus on the clustering approach (hard vs soft), and its relation with the subsequent MCMC algorithm. Model selection and some practical issues will also be discussed.</description>
+    </item>
+    
+    <item>
+      <title>The Annealed Leap Point Sampler (ALPS) for multimodal target distributions</title>
+      <link>/post/tawn2019/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tawn2019/</guid>
+      <description>Sampling from multimodal target distributions is a classical challenging problem. Markov Chain Monte Carlo methods typically rely on localised or gradient based proposal mechanisms and so target distributions exhibiting multimodality mean the chain becomes trapped in a local mode and this results in a bias sample output.
+This talk introduces a novel algorithm, ALPS, that is designed to provide a scalable approach to sampling from multimodal target distributions. The ALPS algorithm concatenates a number of the strengths of the current gold standard approaches for multimodality.</description>
+    </item>
+    
+    <item>
+      <title>Sequential Bayesian estimation and model selection</title>
+      <link>/post/ridall2017/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ridall2017/</guid>
+      <description>Work done in collaboration with Tony Pettitt from QUT Brisbane.
+I would like to:
+ Introduce the Dirichlet form, which can be thought of as a generalisation of expected squared jumping distance, and show that the spectral gap has a variational representation over Dirichlet forms. Introduce the asymptotic variance of a Markov chain, which is the theoretical equivalent of the practical measure of 1/effective sample size, and provide a variational representation of this.</description>
+    </item>
+    
+    <item>
+      <title>Pseudo extended MCMC</title>
+      <link>/post/nemeth2017/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/nemeth2017/</guid>
+      <description>MCMC algorithms are a class of exact methods used for sampling from target distributions. If the target is multimodal, MCMC algorithms often struggle to explore all of the modes of the target within a reasonable number of iterations. This issue can become even more pronounced when using efficient gradient-based samplers, such as HMC, which tend to tend to become trapped local modes.
+In this talk, I&amp;rsquo;ll outline how the pseudo-extended target, based on pseudo-marginal MCMC, can be used to improve the mixing of the HMC sampler by tempering the target distribution.</description>
+    </item>
+    
+    <item>
+      <title>Lateral trait transfer in phylogenetic inference</title>
+      <link>/post/kelly2017/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/kelly2017/</guid>
+      <description>We are interested in inferring the phylogeny, or shared ancestry, of a set of species descended from a common ancestor. When traits pass vertically through ancestral relationships, the phylogeny is a tree and one can often compute the likelihood efficiently through recursions. Lateral transfer, whereby evolving species exchange traits outside of ancestral relationships, is a frequent source of model misspecification in phylogenetic inference. We propose a novel model of species diversification which explicitly controls for the effect of lateral transfer.</description>
+    </item>
+    
+    <item>
+      <title>On Bayesian Deep Learning and Deep Bayesian Learning</title>
+      <link>/post/teh2017/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/teh2017/</guid>
+      <description>Probabilistic and Bayesian reasoning is one of the principle theoretical pillars to our understanding of machine learning. Over the last two decades, it has inspired a whole range of successful machine learning methods and influenced the thinking of many researchers in the community. On the other hand, in the last few years the rise of deep learning has completely transformed the field and led to a string of phenomenal, era-defining, successes.</description>
+    </item>
+    
+    <item>
+      <title>Asymptotic variance and geometric convergence of MCMC: variational representations</title>
+      <link>/post/sherlock2017b/</link>
+      <pubDate>Thu, 18 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock2017b/</guid>
+      <description>An MCMC algorithm is geometrically ergodic if it converges to the intended posterior geometrically in the number of iterations. A number of useful properties follow from geometric ergodicity, including that the practical efficiency measure of &amp;ldquo;effective sample size&amp;rdquo; is meaningful for any sensible function of interest. The standard method for proving geometric ergodicity for a particular algorithm involves a &amp;ldquo;drift condition&amp;rdquo; and a &amp;ldquo;small set&amp;rdquo;, and can be time consuming, both in the proof itself and in understanding why the drift condition and small set are helpful.</description>
+    </item>
+    
+    <item>
+      <title>Delayed-acceptance MCMC with examples: advantages and pitfalls and how to avoid the latter</title>
+      <link>/post/sherlock2017a/</link>
+      <pubDate>Thu, 26 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sherlock2017a/</guid>
+      <description>When conducting MCMC using the Metropolis-Hastings algorithm the posterior distribution must be evaluated at the proposed point at every iteration; in many situations, however, the posterior is computationally expensive to evaluate. When a computationally cheap approximation to the posterior is also available, the delayed acceptance algorithm (aka surrogate transition method) can be used to increase the efficiency of the MCMC whilst still targeting the correct posterior. In the first part of this talk I will explain and justify the algorithm itself and overview a number of examples of its (successful) application.</description>
+    </item>
+    
+  </channel>
+</rss>
