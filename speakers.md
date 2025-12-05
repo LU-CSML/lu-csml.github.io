@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Speakers
+description: Explore our speaker leaderboard featuring researchers who have presented at Lancaster University CSML seminars. Search by name to find all talks.
 ---
 
 <h1>Past Speakers</h1>
@@ -127,6 +128,18 @@ title: Speakers
           item.style.display = "none";
         }
       });
+
+      // Show/hide "no results" message
+      var existingMsg = document.getElementById('no-speaker-results');
+      if (countVisible === 0 && filter.length > 0 && !existingMsg) {
+        var noResultsMsg = document.createElement('div');
+        noResultsMsg.id = 'no-speaker-results';
+        noResultsMsg.className = 'alert alert-warning mt-3';
+        noResultsMsg.innerHTML = '<strong>No speakers found.</strong> Try a different search term.';
+        list.insertBefore(noResultsMsg, list.firstChild);
+      } else if ((countVisible > 0 || filter.length === 0) && existingMsg) {
+        existingMsg.remove();
+      }
     });
 
     // Abstract Toggle Functionality

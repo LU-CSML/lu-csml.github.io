@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Schedule 2025/26 - CSML
+description: View the upcoming schedule for Lancaster University CSML seminar series. See upcoming talks and recent presentations from the 2025/26 academic year.
 ---
 
 # Schedule 2025/26

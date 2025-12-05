@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Past Talks - CSML
+description: Browse our archive of past CSML seminar talks from 2007 to present. Search by speaker, title, or abstract to find research presentations.
 ---
 
 # Past Talks
@@ -34,6 +35,8 @@ title: Past Talks - CSML
       if (!query) {
         // Show all
         rows.forEach(r => r.style.display = '');
+        yearHeaders.forEach(h => h.style.display = '');
+        document.getElementById('no-results-message')?.remove();
         return;
       }
       
@@ -42,6 +45,7 @@ title: Past Talks - CSML
       
       // Simple case-insensitive matching (includes partial matches)
       var lowerQuery = query.toLowerCase();
+      var visibleCount = 0;
 
       rows.forEach(function(row) {
         if (row.classList.contains('year-header')) return;
@@ -50,6 +54,7 @@ title: Past Talks - CSML
         
         if (text.includes(lowerQuery)) {
           row.style.display = '';
+          visibleCount++;
           // Show the year header for this visible row
           var prev = row.previousElementSibling;
           while (prev) {
@@ -63,6 +68,18 @@ title: Past Talks - CSML
           row.style.display = 'none';
         }
       });
+      
+      // Show "no results" message if needed
+      var existingMsg = document.getElementById('no-results-message');
+      if (visibleCount === 0 && !existingMsg) {
+        var noResultsMsg = document.createElement('div');
+        noResultsMsg.id = 'no-results-message';
+        noResultsMsg.className = 'alert alert-warning mt-3';
+        noResultsMsg.innerHTML = '<strong>No results found.</strong> Try a different search term.';
+        document.querySelector('.talk-table').parentNode.insertBefore(noResultsMsg, document.querySelector('.talk-table'));
+      } else if (visibleCount > 0 && existingMsg) {
+        existingMsg.remove();
+      }
     }
 
     // 1. Check URL Params
@@ -101,7 +118,7 @@ title: Past Talks - CSML
 
 <div class="row">
   <!-- Desktop Sidebar Navigation -->
-  <div class="col-md-1 d-none d-md-block" style="max-width: 70px;">
+  <div class="col-md-1 d-none d-md-block" style="max-width: 70px;" role="navigation" aria-label="Year navigation">
     <div class="sticky-top pt-3" style="top: 80px; max-height: 90vh; overflow-y: auto;">
       <h6 class="text-secondary mb-2" style="font-size: 0.75rem; font-weight: 600;">YEARS</h6>
       <ul class="nav flex-column">

@@ -7,6 +7,22 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>{{ page.title | default: site.title }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML is a weekly seminar series on Computational Statistics, Machine Learning, and related fields.{% endif %}">
+    <meta name="keywords" content="computational statistics, machine learning, Bayesian inference, MCMC, Lancaster University, statistics seminar">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML weekly seminar series on Computational Statistics and Machine Learning{% endif %}">
+    <meta property="og:site_name" content="Lancaster University CSML">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML weekly seminar series{% endif %}">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
     <!-- Google Fonts -->

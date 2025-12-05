@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CSML
+description: Lancaster University CSML weekly seminar series. Explore our schedule, past talks, speakers, and interactive visualizations of research topics.
 ---
 
 # Lancaster University CSML
