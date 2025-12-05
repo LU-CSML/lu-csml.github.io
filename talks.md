@@ -38,11 +38,11 @@ title: All Talks - CSML
           <td class="talk-title-col">
             <em>{{ talk.title }}</em>
             {% if talk.abstract %}
-              <details style="display: inline;">
-                <summary style="display: inline; cursor: pointer; color: #b5121b; font-size: 0.85em; margin-left: 0.5em;">
-                  <span style="font-size: 0.8em;">&#9660;</span> Abstract
+              <details class="abstract-toggle">
+                <summary>
+                  <span class="arrow">&#9654;</span> Abstract
                 </summary>
-                <div style="display: block; margin-top: 0.5em; font-size: 0.95em; color: #444; line-height: 1.5; background: #f9f9f9; padding: 0.8em; border-radius: 4px; border-left: 3px solid #b5121b;">
+                <div class="abstract-content">
                   {{ talk.abstract }}
                 </div>
               </details>
