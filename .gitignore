@@ -13,8 +13,12 @@ vendor/
 # OS files
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 Old_files/
 
 # Python Virtual Environment
 .venv/
 __pycache__/
+=======
+Old_files/
+>>>>>>> 8719b8f (chore: Add .gitignore to exclude common build artifacts, dependencies, and OS files.)
