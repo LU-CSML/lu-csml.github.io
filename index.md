@@ -12,14 +12,20 @@ We host talks by invited external speakers, as well as discussion meetings by co
 **We meet at 15:00 - 16:00 GMT on Thursdays.** The location is the [Postgraduate Statistics Centre (PSC), Lecture Theatre](https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354).
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.2.2/wordcloud2.min.js"></script>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
+<!-- Word Cloud Container -->
 <div id="canvas-container" class="mb-4" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px; position: relative;">
   <canvas id="word_cloud" style="width: 100%; height: 100%;"></canvas>
 </div>
 
+<!-- Network Graph Container -->
+<h3 class="mt-5 mb-3">Topic Connections</h3>
+<p class="text-muted">Explore how different research topics are connected. Lines indicate that two topics appeared in the same talk.</p>
+<div id="network-container" class="mb-5" style="width: 100%; height: 500px; border: 1px solid #eee; border-radius: 8px; background: #f9f9f9;"></div>
+
 <script>
-  // 1. Get talk data as a JSON array of strings (one string per talk)
-  // We use proper JSON formatting to handle quotes safely
+  // 1. Get talk data
   var talks = [
   {% for talk in site.data.talks %}
     "{{ talk.title | escape }} {{ talk.abstract | escape }}",
@@ -35,40 +41,41 @@ We host talks by invited external speakers, as well as discussion meetings by co
   ]);
 
   var frequencyMap = {};
+  var talkWords = []; // Array of Sets, one per talk
 
-  // 3. Process each talk individually (Document Frequency)
+  // 3. Process each talk (Document Frequency)
   talks.forEach(function(talkText) {
-    // Decode HTML entities
     var txt = document.createElement("textarea");
     txt.innerHTML = talkText;
     var decodedText = txt.value;
-
     var words = decodedText.toLowerCase().split(/[\s.,;:\(\)\[\]"!?\\/]+/);
     
-    // Create a set of unique words for THIS talk
     var uniqueWords = new Set();
-    
     words.forEach(function(w) {
       if (!stopWords.has(w) && w.length > 3 && !/^\d+$/.test(w)) {
         uniqueWords.add(w);
       }
     });
 
-    // Add +1 to global count for each unique word found in this talk
+    talkWords.push(uniqueWords); // Store for Network Graph
+
     uniqueWords.forEach(function(w) {
       frequencyMap[w] = (frequencyMap[w] || 0) + 1;
     });
   });
 
-  // 6. Convert to array for WordCloud
+  // 4. Prepare List for WordCloud (Top words)
   var list = [];
   for (var w in frequencyMap) {
-    if (frequencyMap[w] > 2) { 
-      list.push([w, frequencyMap[w]]);
-    }
+    if (frequencyMap[w] > 2) list.push([w, frequencyMap[w]]);
   }
+  
+  // Sort by frequency
+  list.sort(function(a, b) { return b[1] - a[1]; });
 
-  // 7. Render
+  // -----------------------------------------------------
+  // RENDER WORD CLOUD
+  // -----------------------------------------------------
   var canvas = document.getElementById('word_cloud');
   canvas.width = document.getElementById('canvas-container').offsetWidth;
   canvas.height = 400;
@@ -76,21 +83,94 @@ We host talks by invited external speakers, as well as discussion meetings by co
   WordCloud(canvas, {
     list: list,
     gridSize: 10,
-    weightFactor: function (size) {
-      return Math.pow(size, 0.8) * 12; 
-    },
+    weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
     fontFamily: 'Outfit, sans-serif',
-    // CSML Brand Colors: Red (#b5121b), Dark Grey (#333), Light Grey (#777)
     color: function (word, weight) {
       var colors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
       return colors[Math.floor(Math.random() * colors.length)];
     },
-    rotateRatio: 0, // Force horizontal text for cleanliness
+    rotateRatio: 0,
     backgroundColor: '#ffffff',
     drawOutOfBound: false,
     click: function(item) {
-      // Redirect to talks page with search query
       window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(item[0]);
+    }
+  });
+
+  // -----------------------------------------------------
+  // RENDER NETWORK GRAPH (Vis.js)
+  // -----------------------------------------------------
+  // Take top N words for the graph to avoid clutter
+  var topN = 25; // Reduced from 30
+  var topWords = list.slice(0, topN).map(function(item) { return item[0]; });
+  
+  // Create Nodes
+  var nodes = topWords.map(function(word, index) {
+    return { 
+      id: index, 
+      label: word, 
+      value: frequencyMap[word], // Size based on freq
+      color: '#b5121b' // Default RED
+    };
+  });
+
+  // Create Edges (Co-occurrence)
+  var edges = [];
+  // Compare every pair of top words (N^2 complexity, but N=30 is tiny)
+  for (var i = 0; i < topN; i++) {
+    for (var j = i + 1; j < topN; j++) {
+      var wordA = topWords[i];
+      var wordB = topWords[j];
+      var sharedCount = 0;
+
+      // Count how many talks contain both words
+      talkWords.forEach(function(uniqueWords) {
+        if (uniqueWords.has(wordA) && uniqueWords.has(wordB)) {
+          sharedCount++;
+        }
+      });
+
+      // Filter: Only show connection if they share GREATER THAN 1 talk
+      // This removes the "hairball" of one-off connections
+      if (sharedCount > 1) {
+        edges.push({ 
+          from: i, 
+          to: j, 
+          value: sharedCount, // Thickness
+          color: { color: '#cccccc', highlight: '#333333' }
+        });
+      }
+    }
+  }
+
+  var container = document.getElementById('network-container');
+  var data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+  var options = {
+    nodes: {
+      shape: 'dot',
+      font: { face: 'Outfit' },
+      scaling: { min: 15, max: 40 } // Slightly larger nodes
+    },
+    edges: {
+      scaling: { min: 1, max: 8 }, // Thicker strong lines
+      smooth: { type: 'continuous' } // Nicer curves
+    },
+    physics: {
+      stabilization: false,
+      // Stronger repulsion to spread them out
+      barnesHut: { gravitationalConstant: -8000, springConstant: 0.01, springLength: 150 }
+    },
+    interaction: { hover: true }
+  };
+
+  var network = new vis.Network(container, data, options);
+
+  // Click handler for Graph
+  network.on("click", function(params) {
+    if (params.nodes.length > 0) {
+      var nodeId = params.nodes[0];
+      var word = nodes[nodeId].label;
+      window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(word);
     }
   });
 </script>
