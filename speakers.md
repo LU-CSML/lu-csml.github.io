@@ -17,31 +17,34 @@ title: Speakers
       <ul class="list-group list-group-flush">
         {% for talk in speaker.items %}
           <li class="list-group-item">
-            <strong>{{ talk.date | date: "%Y-%m-%d" }}:</strong> {{ talk.title }}
-            
-            <div class="mt-1">
-              {% if talk.slides %}
-                <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
-              {% endif %}
-              
-              {% comment %} Handle single link vs multiple links {% endcomment %}
-              {% if talk.links %}
-                {% for link in talk.links %}
-                  {% assign link_text_down = link.text | downcase %}
-                  {% if link_text_down contains 'arxiv' %}
-                     <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
-                  {% else %}
-                     <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
-                  {% endif %}
-                {% endfor %}
-              {% elsif talk.link %}
-                  {% assign link_text_down = talk.link_text | downcase %}
-                  {% if link_text_down contains 'arxiv' %}
-                     <a href="{{ talk.link }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
-                  {% else %}
-                     <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
-                  {% endif %}
-              {% endif %}
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-3">
+                <strong>{{ talk.date | date: "%Y-%m-%d" }}:</strong> {{ talk.title }}
+              </div>
+              <div class="text-nowrap">
+                {% if talk.slides %}
+                  <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
+                {% endif %}
+                
+                {% comment %} Handle single link vs multiple links {% endcomment %}
+                {% if talk.links %}
+                  {% for link in talk.links %}
+                    {% assign link_text_down = link.text | downcase %}
+                    {% if link_text_down contains 'arxiv' %}
+                       <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                    {% else %}
+                       <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
+                    {% endif %}
+                  {% endfor %}
+                {% elsif talk.link %}
+                    {% assign link_text_down = talk.link_text | downcase %}
+                    {% if link_text_down contains 'arxiv' %}
+                       <a href="{{ talk.link }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                    {% else %}
+                       <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
+                    {% endif %}
+                {% endif %}
+              </div>
             </div>
 
             {% if talk.abstract %}

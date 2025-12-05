@@ -17,4 +17,4 @@ We host talks by invited external speakers, as well as discussion meetings by co
 
 ---
 
-We regularly host lunches with external speakers. This is an excellent opportunity for informal discussion in a relaxed setting. If you would like to join the group for lunch or schedule a brief meeting with a visiting speaker, please contact the organizer [Liam Llamazares](https://liamllamazareselias.com) (l.llamazareselias[at]lancaster.ac.uk). All are welcome! Suggestions for external speakers or offers to give a talk are also appreciated.
+We regularly host lunches with external speakers. This is an excellent opportunity for informal discussion in a relaxed setting. If you would like to join the group for lunch or schedule a brief meeting with a visiting speaker, please contact the organizer [Liam Llamazares](https://liamllamazareselias.com) (l.llamazareselias[at]lancaster.ac.uk). All are welcome! Suggestions for external speakers and offers to give a talk are also appreciated.

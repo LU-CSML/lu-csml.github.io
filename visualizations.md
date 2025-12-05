@@ -3,7 +3,7 @@ layout: default
 title: Data Visualization
 ---
 
-# Research Topic Visualizations
+# Research Topic Interactive Visualizations
 
 Explore the research landscape of the Computational Statistics and Machine Learning (CSML) group.
 
@@ -30,15 +30,52 @@ Visualizes how topics appear together in the same talks.
 - **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often.
 - **Click a node** to filter the talk archive.
 
+<div class="row mb-3">
+  <div class="col-md-6">
+    <label for="nodeRange">Top Topics: <span id="nodeVal">30</span></label>
+    <input type="range" class="custom-range" id="nodeRange" min="10" max="100" value="30">
+  </div>
+  <div class="col-md-6">
+    <label for="edgeRange">Min Connections: <span id="edgeVal">3</span></label>
+    <input type="range" class="custom-range" id="edgeRange" min="1" max="10" value="3">
+  </div>
+</div>
+
 <div id="network-container" class="mb-5" style="width: 100%; height: 600px; border: 1px solid #eee; border-radius: 8px; background: #fafafa;"></div>
+
+<!-- Modal for Shared Talks -->
+<div class="modal fade" id="edgeModal" tabindex="-1" role="dialog" aria-labelledby="edgeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edgeModalLabel">Shared Talks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="edgeModalBody">
+        <!-- Content injected via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
   // ============================================
   // 1. DATA PREPARATION (Liquid -> JS)
   // ============================================
-  var talks = [
+  // Store raw talk objects for modal lookup
+  var rawTalks = [
   {% for talk in site.data.talks %}
-    "{{ talk.title | escape }} {{ talk.abstract | escape }}",
+    {
+      title: "{{ talk.title | strip_newlines | escape }}",
+      date: "{{ talk.date | date: '%Y-%m-%d' }}",
+      speaker: "{{ talk.speaker | strip_newlines | escape }}",
+      words: new Set("{{ talk.title | strip_newlines | escape }} {{ talk.abstract | strip_newlines | escape }}".toLowerCase().split(/[\s.,;:\(\)\[\]"!?\\/]+/))
+    },
   {% endfor %}
   ];
 
@@ -50,26 +87,18 @@ Visualizes how topics appear together in the same talks.
   ]);
 
   var frequencyMap = {};
-  var talkWords = []; 
-
-  talks.forEach(function(talkText) {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = talkText;
-    var decodedText = txt.value;
-    var words = decodedText.toLowerCase().split(/[\s.,;:\(\)\[\]"!?\\/]+/);
-    
-    var uniqueWords = new Set();
-    words.forEach(function(w) {
+  
+  // Clean rawTalks words once
+  rawTalks.forEach(function(talk) {
+    var rawWordSet = talk.words;
+    var cleanWords = new Set();
+    rawWordSet.forEach(function(w) {
       if (!stopWords.has(w) && w.length > 3 && !/^\d+$/.test(w)) {
-        uniqueWords.add(w);
+          cleanWords.add(w);
+          frequencyMap[w] = (frequencyMap[w] || 0) + 1;
       }
     });
-
-    talkWords.push(uniqueWords); 
-
-    uniqueWords.forEach(function(w) {
-      frequencyMap[w] = (frequencyMap[w] || 0) + 1;
-    });
+    talk.cleanWords = cleanWords; // Store back for fast lookup
   });
 
   var list = [];
@@ -77,15 +106,6 @@ Visualizes how topics appear together in the same talks.
     if (frequencyMap[w] > 2) list.push([w, frequencyMap[w]]);
   }
   list.sort(function(a, b) { return b[1] - a[1]; });
-
-  // Get top N words
-  var topN = 30;
-  var topList = list.slice(0, topN);
-  var topWords = topList.map(function(item) { return item[0]; });
-  
-  // Find min/max for scaling
-  var maxFreq = topList[0][1];
-  var minFreq = topList[topList.length - 1][1];
 
   // ============================================
   // 2. WORD CLOUD RENDER
@@ -112,131 +132,179 @@ Visualizes how topics appear together in the same talks.
   });
 
   // ============================================
-  // 3. NETWORK GRAPH RENDER
+  // 3. NETWORK GRAPH RENDER (Dynamic)
   // ============================================
-  
-  // Heatmap Color Generator: Orange (#e67e22) to Dark Red (#922b21)
+  var container = document.getElementById('network-container');
+  var network = null;
+
   function getHeatmapColor(value, min, max) {
     var diff = max - min;
-    if (diff === 0) diff = 1; // avoid division by zero
-    var ratio = (value - min) / diff; // 0 to 1
-    
-    // Start RGB (Orange: 230, 126, 34)
-    var r1 = 230, g1 = 126, b1 = 34;
-    // End RGB (Dark Red: 146, 43, 33)
-    var r2 = 146, g2 = 43, b2 = 33;
-    
+    if (diff <= 0) diff = 1; 
+    var ratio = (value - min) / diff; 
+    var r1 = 230, g1 = 126, b1 = 34; // Orange
+    var r2 = 146, g2 = 43, b2 = 33;  // Dark Red
     var r = Math.round(r1 + ratio * (r2 - r1));
     var g = Math.round(g1 + ratio * (g2 - g1));
     var b = Math.round(b1 + ratio * (b2 - b1));
-    
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
-  // 1. Generate Edges & Track Connected Nodes
-  var edges = [];
-  var connectedIndices = new Set();
+  function renderGraph() {
+    // 1. Get Slider Values
+    var topN = parseInt(document.getElementById('nodeRange').value);
+    var minConn = parseInt(document.getElementById('edgeRange').value);
+    
+    // Update labels
+    document.getElementById('nodeVal').innerText = topN;
+    document.getElementById('edgeVal').innerText = minConn;
 
-  for (var i = 0; i < topN; i++) {
-    for (var j = i + 1; j < topN; j++) {
-      var wordA = topWords[i];
-      var wordB = topWords[j];
-      var sharedCount = 0;
+    // 2. Filter Data
+    var topList = list.slice(0, topN);
+    var topWords = topList.map(item => item[0]);
+    var maxFreq = topList.length > 0 ? topList[0][1] : 1;
+    var minFreq = topList.length > 0 ? topList[topList.length - 1][1] : 1;
 
-      talkWords.forEach(function(uniqueWords) {
-        if (uniqueWords.has(wordA) && uniqueWords.has(wordB)) sharedCount++;
-      });
+    // 3. Generate Edges & Track Connected Nodes
+    var edges = [];
+    var connectedIndices = new Set();
+    
+    // Store word pairs to look up later
+    var edgeMetaData = {}; // Key: "fromId-toId", Value: { wordA, wordB, sharedCount }
 
-      // Filter: STRICTER threshold (>2) to reduce clutter as requested
-      if (sharedCount > 2) {
-        edges.push({ 
-          from: i, 
-          to: j, 
-          value: sharedCount,
-          color: { inherit: 'both', opacity: 0.5 } // More transparent edges
-        });
-        connectedIndices.add(i);
-        connectedIndices.add(j);
-      }
+    for (var i = 0; i < topN; i++) {
+        for (var j = i + 1; j < topN; j++) {
+            var wordA = topWords[i];
+            var wordB = topWords[j];
+            var sharedCount = 0;
+
+            rawTalks.forEach(function(talk) {
+                if (talk.cleanWords.has(wordA) && talk.cleanWords.has(wordB)) sharedCount++;
+            });
+
+            if (sharedCount >= minConn) {
+                var edgeId = i + '-' + j; // Unique ID for edge lookups
+                edges.push({ 
+                    id: edgeId,
+                    from: i, 
+                    to: j, 
+                    value: sharedCount,
+                    color: { inherit: 'both', opacity: 0.5 }
+                });
+                connectedIndices.add(i);
+                connectedIndices.add(j);
+                
+                edgeMetaData[edgeId] = { wordA: wordA, wordB: wordB, count: sharedCount };
+            }
+        }
     }
+
+    // 4. Generate Nodes
+    var nodes = [];
+    topWords.forEach(function(word, index) {
+        if (connectedIndices.has(index)) {
+            var val = frequencyMap[word];
+            nodes.push({ 
+                id: index, 
+                label: word, 
+                value: val, 
+                color: getHeatmapColor(val, minFreq, maxFreq)
+            });
+        }
+    });
+
+    // 5. Build Graph
+    var data = { 
+        nodes: new vis.DataSet(nodes), 
+        edges: new vis.DataSet(edges) 
+    };
+    
+    var options = {
+        nodes: {
+            shape: 'dot',
+            font: { face: 'Outfit', color: '#333', size: 16 },
+            scaling: { min: 15, max: 50, label: { enabled: true, min: 14, max: 24 } }
+        },
+        edges: {
+            scaling: { min: 1, max: 6 },
+            smooth: { type: 'continuous', roundness: 0.5 }
+        },
+        physics: {
+            stabilization: {
+                enabled: true,
+                iterations: 1000,
+                updateInterval: 50,
+                fit: true
+            },
+            barnesHut: { 
+                gravitationalConstant: -3000, 
+                centralGravity: 0.3, 
+                springLength: 100, 
+                springConstant: 0.05
+            },
+            solver: 'barnesHut'
+        },
+        interaction: { hover: true, zoomView: true, selectConnectedEdges: false }
+    };
+
+    if (network !== null) {
+        network.destroy();
+        network = null;
+    }
+    
+    network = new vis.Network(container, data, options);
+
+    // 6. Interaction Handlers
+    network.on("click", function(params) {
+        // Handle Edge Click -> Modal
+        if (params.edges.length > 0 && params.nodes.length === 0) {
+             var edgeId = params.edges[0];
+             var meta = edgeMetaData[edgeId];
+             if (meta) {
+                 showEdgeModal(meta.wordA, meta.wordB);
+             }
+        }
+        // Handle Node Click -> Nav
+        else if (params.nodes.length > 0) {
+            var clickedId = params.nodes[0];
+            var clickedNode = nodes.find(n => n.id === clickedId);
+            if (clickedNode) {
+                window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(clickedNode.label);
+            }
+        }
+    });
+    
+    network.once("stabilizationIterationsDone", function() {
+       network.fit();
+    });
   }
 
-  // 2. Generate Only Connected Nodes
-  var nodes = [];
-  topWords.forEach(function(word, index) {
-      if (connectedIndices.has(index)) {
-        var val = frequencyMap[word];
-        nodes.push({ 
-          id: index, // Use original index as ID so edges match
-          label: word, 
-          value: val, 
-          color: getHeatmapColor(val, minFreq, maxFreq)
-        });
-      }
-  });
+  function showEdgeModal(wordA, wordB) {
+      var modalTitle = document.getElementById('edgeModalLabel');
+      var modalBody = document.getElementById('edgeModalBody');
+      
+      modalTitle.innerText = 'Talks featuring "' + wordA + '" + "' + wordB + '"';
+      modalBody.innerHTML = ''; // Clear previous
 
-  var container = document.getElementById('network-container');
-  var data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
-  var options = {
-    nodes: {
-      shape: 'dot',
-      font: { 
-        face: 'Outfit', 
-        color: '#333',
-        size: 16
-      },
-      scaling: { 
-        min: 15, 
-        max: 50,
-        label: { enabled: true, min: 14, max: 24 } // Scale labels with nodes
-      }
-    },
-    edges: {
-      scaling: { min: 1, max: 6 },
-      smooth: { type: 'continuous', roundness: 0.5 }
-    },
-    physics: {
-      stabilization: {
-        enabled: true,
-        iterations: 1500,
-        updateInterval: 50,
-        onlyDynamicEdges: false,
-        fit: true // Ensure it fits after stabilization
-      },
-      barnesHut: { 
-        gravitationalConstant: -2000, // Reduced repulsion to keep it tighter
-        centralGravity: 0.5, // Stronger pull to center to avoid spread
-        springLength: 80, // Shorter springs to reduce edge length
-        springConstant: 0.04
-      },
-      maxVelocity: 40,
-      minVelocity: 0.5,
-      solver: 'barnesHut'
-    },
-    interaction: { 
-      hover: true,
-      zoomView: true 
-    },
-    layout: {
-      randomSeed: 2 // Deterministic layout
-    }
-  };
+      // Use div instead of ul for clickable links
+      var listGroup = document.createElement('div');
+      listGroup.className = 'list-group';
 
-  var network = new vis.Network(container, data, options);
+      rawTalks.forEach(function(talk) {
+          if (talk.cleanWords.has(wordA) && talk.cleanWords.has(wordB)) {
+              var a = document.createElement('a');
+              a.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(talk.title);
+              a.className = 'list-group-item list-group-item-action';
+              a.innerHTML = '<strong>' + talk.date + '</strong> (' + talk.speaker + ')<br/>' + talk.title;
+              listGroup.appendChild(a);
+          }
+      });
+      
+      modalBody.appendChild(listGroup);
+      $('#edgeModal').modal('show');
+  }
 
-  network.on("click", function(params) {
-    if (params.nodes.length > 0) {
-      // Find the node object to get the correct label, as params.nodes[0] is the ID
-      var clickedId = params.nodes[0];
-      var clickedNode = nodes.find(n => n.id === clickedId);
-      if (clickedNode) {
-          window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(clickedNode.label);
-      }
-    }
-  });
-  
-  // Extra fit after load just in case
-  network.once("stabilizationIterationsDone", function() {
-      network.fit();
-  });
+  // Initial Render & Bind Listeners
+  renderGraph();
+  document.getElementById('nodeRange').addEventListener('input', renderGraph);
+  document.getElementById('edgeRange').addEventListener('input', renderGraph);
 </script>
