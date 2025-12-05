@@ -13,6 +13,7 @@
   speaker: Zheyang Shen
   affiliation: Newcastle
   title: A Computable Measure of Suboptimality for Entropy-Regularised Variational Objectives
+  abstract: "Entropy-regularised objectives are widely used in variational inference and reinforcement learning. In this talk, we propose a new computable measure of suboptimality for these objectives. We show that this measure can be estimated efficiently and provides a useful diagnostic for convergence. We demonstrate its utility on a range of synthetic and real-world problems."
 
 - date: 2025-12-04
   speaker: Giorgos Vasdekis
@@ -27,7 +28,8 @@
   speaker: Rui Zhang
   affiliation: Lancaster
   title: A Dynamic Perspective of Matern Gaussian Processes
-  arxiv: https://arxiv.org/pdf/2509.26005
+  link: https://arxiv.org/pdf/2509.26005
+  link_text: arXiv
 
 - date: 2025-10-16
   speaker: Henry Moss
