@@ -8,6 +8,14 @@ title: All Talks - CSML
 {% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
 {% assign current_year = "" %}
 
+<div class="year-index mb-4 p-3 bg-light rounded">
+  <span class="font-weight-bold mr-2">Jump to year:</span>
+  {% assign years = site.data.talks | map: "date" | date: "%Y" | uniq | sort | reverse %}
+  {% for year in years %}
+    <a href="#{{ year }}" class="badge badge-light border text-danger mr-1 p-2" style="font-size: 0.9em;">{{ year }}</a>
+  {% endfor %}
+</div>
+
 <div class="table-responsive">
   <table class="talk-table">
     <thead>
@@ -52,7 +60,11 @@ title: All Talks - CSML
             {% if talk.slides %}
                [<a href="{{ talk.slides }}">Slides</a>]
             {% endif %}
-            {% if talk.link %}
+            {% if talk.links %}
+              {% for link in talk.links %}
+                [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
+              {% endfor %}
+            {% elsif talk.link %}
                [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
             {% endif %}
           </td>

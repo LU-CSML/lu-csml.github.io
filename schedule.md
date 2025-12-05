@@ -71,7 +71,11 @@ Here is the schedule for the 2025/26 academic year.
               {% if talk.slides %}
                  [<a href="{{ talk.slides }}">Slides</a>]
               {% endif %}
-              {% if talk.link %}
+              {% if talk.links %}
+                {% for link in talk.links %}
+                  [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
+                {% endfor %}
+              {% elsif talk.link %}
                  [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
               {% endif %}
             </td>
@@ -125,7 +129,11 @@ Here is the schedule for the 2025/26 academic year.
               {% if talk.slides %}
                  [<a href="{{ talk.slides }}">Slides</a>]
               {% endif %}
-              {% if talk.link %}
+              {% if talk.links %}
+                {% for link in talk.links %}
+                  [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
+                {% endfor %}
+              {% elsif talk.link %}
                  [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
               {% endif %}
             </td>

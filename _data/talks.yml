@@ -1,11 +1,10 @@
 # CSML Talks Data
-# Auto-generated from HTML files
 # Format:
 #   - date: YYYY-MM-DD
 #     speaker: Name
 #     affiliation: University (optional)
 #     title: Talk Title
-#     link: URL (optional)
+#     links: URL (optional)
 #     link_text: arXiv/NeurIPS/etc (optional)
 
 # 2025
