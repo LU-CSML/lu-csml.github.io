@@ -10,9 +10,9 @@ title: All Talks - CSML
 
 <div class="year-index mb-4 p-3 bg-light rounded">
   <span class="font-weight-bold mr-2">Jump to year:</span>
-  {% assign years = site.data.talks | map: "date" | date: "%Y" | uniq | sort | reverse %}
-  {% for year in years %}
-    <a href="#{{ year }}" class="badge badge-light border text-danger mr-1 p-2" style="font-size: 0.9em;">{{ year }}</a>
+  {% assign talks_by_year = site.data.talks | group_by_exp: "item", "item.date | date: '%Y'" | sort: "name" | reverse %}
+  {% for year_group in talks_by_year %}
+    <a href="#{{ year_group.name }}" class="badge badge-light border text-danger mr-1 p-2" style="font-size: 0.9em;">{{ year_group.name }}</a>
   {% endfor %}
 </div>
 
