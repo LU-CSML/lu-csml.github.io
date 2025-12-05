@@ -14,6 +14,7 @@ Explore the research landscape of the Computational Statistics and Machine Learn
 Most frequent terms from all past and future talk abstracts. **Click a word** to see all related talks.
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.2.2/wordcloud2.min.js"></script>
+
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
 <div id="canvas-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px; position: relative;">
@@ -27,7 +28,8 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 Visualizes how topics appear together in the same talks.
 
 - **Node Size/Color**: Frequency of the topic. Warmer colors (Red) = more frequent.
-- **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often. **Click a line** to see the talks where both topics appear.
+- **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often.
+- **Click a line** to see the talks where both topics appear.
 - **Click a node** to filter the talk archive.
 
 <div class="row mb-3">
@@ -44,13 +46,14 @@ Visualizes how topics appear together in the same talks.
 <div id="network-container" class="mb-5" style="width: 100%; height: 600px; border: 1px solid #eee; border-radius: 8px; background: #fafafa;"></div>
 
 <!-- Modal for Shared Talks -->
+
 <div class="modal fade" id="edgeModal" tabindex="-1" role="dialog" aria-labelledby="edgeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="edgeModalLabel">Shared Talks</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body" id="edgeModalBody">
@@ -153,7 +156,7 @@ Visualizes how topics appear together in the same talks.
     // 1. Get Slider Values
     var topN = parseInt(document.getElementById('nodeRange').value);
     var minConn = parseInt(document.getElementById('edgeRange').value);
-    
+  
     // Update labels
     document.getElementById('nodeVal').innerText = topN;
     document.getElementById('edgeVal').innerText = minConn;
@@ -167,7 +170,7 @@ Visualizes how topics appear together in the same talks.
     // 3. Generate Edges & Track Connected Nodes
     var edges = [];
     var connectedIndices = new Set();
-    
+  
     // Store word pairs to look up later
     var edgeMetaData = {}; // Key: "fromId-toId", Value: { wordA, wordB, sharedCount }
 
@@ -192,7 +195,7 @@ Visualizes how topics appear together in the same talks.
                 });
                 connectedIndices.add(i);
                 connectedIndices.add(j);
-                
+              
                 edgeMetaData[edgeId] = { wordA: wordA, wordB: wordB, count: sharedCount };
             }
         }
@@ -217,7 +220,7 @@ Visualizes how topics appear together in the same talks.
         nodes: new vis.DataSet(nodes), 
         edges: new vis.DataSet(edges) 
     };
-    
+  
     var options = {
         nodes: {
             shape: 'dot',
@@ -250,7 +253,7 @@ Visualizes how topics appear together in the same talks.
         network.destroy();
         network = null;
     }
-    
+  
     network = new vis.Network(container, data, options);
 
     // 6. Interaction Handlers
@@ -272,7 +275,7 @@ Visualizes how topics appear together in the same talks.
             }
         }
     });
-    
+  
     network.once("stabilizationIterationsDone", function() {
        network.fit();
     });
@@ -281,7 +284,7 @@ Visualizes how topics appear together in the same talks.
   function showEdgeModal(wordA, wordB) {
       var modalTitle = document.getElementById('edgeModalLabel');
       var modalBody = document.getElementById('edgeModalBody');
-      
+    
       modalTitle.innerText = 'Talks featuring "' + wordA + '" + "' + wordB + '"';
       modalBody.innerHTML = ''; // Clear previous
 
@@ -298,7 +301,7 @@ Visualizes how topics appear together in the same talks.
               listGroup.appendChild(a);
           }
       });
-      
+    
       modalBody.appendChild(listGroup);
       $('#edgeModal').modal('show');
   }

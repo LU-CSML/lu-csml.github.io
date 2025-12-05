@@ -7,13 +7,10 @@ title: Past Talks - CSML
 
 <div class="row mb-4 align-items-center">
   <div class="col-md-6">
-    <div id="search-banner" class="alert alert-info mb-0" style="display: none;">
-      Showing results for: <strong id="search-term"></strong>
-      <button class="btn btn-sm btn-outline-info ml-3" onclick="clearSearch()">Clear Search</button>
-    </div>
+    <p class="mb-0">There are {{ site.data.talks | size }} talks recorded in our database.</p>
   </div>
   <div class="col-md-6">
-    <input type="text" id="talk-search" class="form-control" placeholder="Search talks by title, speaker, or year...">
+    <input type="text" id="talk-search" class="form-control" placeholder="Search by title, speaker, or abstract...">
   </div>
 </div>
 
@@ -104,13 +101,13 @@ title: Past Talks - CSML
 
 <div class="row">
   <!-- Desktop Sidebar Navigation -->
-  <div class="col-md-2 d-none d-md-block">
+  <div class="col-md-1 d-none d-md-block" style="max-width: 70px;">
     <div class="sticky-top pt-3" style="top: 80px; max-height: 90vh; overflow-y: auto;">
-      <h5 class="text-secondary mb-3">Years</h5>
+      <h6 class="text-secondary mb-2" style="font-size: 0.75rem; font-weight: 600;">YEARS</h6>
       <ul class="nav flex-column">
         {% for year_group in talks_by_year %}
           <li class="nav-item">
-            <a class="nav-link pl-0 py-1 text-muted" href="#{{ year_group.name }}">{{ year_group.name }}</a>
+            <a class="nav-link pl-0 py-1 text-muted" style="font-size: 0.85rem; padding: 0.25rem 0 !important;" href="#{{ year_group.name }}">{{ year_group.name }}</a>
           </li>
         {% endfor %}
       </ul>
@@ -118,7 +115,7 @@ title: Past Talks - CSML
   </div>
 
   <!-- Main Content -->
-  <div class="col-md-10">
+  <div class="col-md-11">
     <!-- Mobile Top Navigation (Visible only on small screens) -->
     <div class="year-index mb-4 p-3 bg-light rounded d-md-none">
       <span class="font-weight-bold mr-2">Jump to year:</span>

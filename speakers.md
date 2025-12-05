@@ -6,7 +6,7 @@ title: Speakers
 <h1>Past Speakers</h1>
 <div class="row mb-4 align-items-center">
   <div class="col-md-6">
-    <p class="mb-0">There have been {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
+    <p class="mb-0">There are {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
   </div>
   <div class="col-md-6">
     <input type="text" id="speaker-search" class="form-control" placeholder="Search speakers...">
