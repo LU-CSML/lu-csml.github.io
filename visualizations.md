@@ -3,7 +3,7 @@ layout: default
 title: Data Visualization
 ---
 
-# Research Topic Interactive Visualizations
+# Research Topic Our Research
 
 Explore the research landscape of the Computational Statistics and Machine Learning (CSML) group.
 
@@ -27,7 +27,7 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 Visualizes how topics appear together in the same talks.
 
 - **Node Size/Color**: Frequency of the topic. Warmer colors (Red) = more frequent.
-- **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often.
+- **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often. **Click a line** to see the talks where both topics appear.
 - **Click a node** to filter the talk archive.
 
 <div class="row mb-3">
