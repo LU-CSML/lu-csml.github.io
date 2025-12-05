@@ -15,6 +15,7 @@ title: All Talks - CSML
         <th class="talk-date-col">Date</th>
         <th class="talk-speaker-col">Speaker</th>
         <th class="talk-title-col">Title</th>
+        <th class="talk-links-col">Links</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +24,7 @@ title: All Talks - CSML
         {% if talk_year != current_year %}
           {% assign current_year = talk_year %}
           <tr class="table-secondary">
-            <td colspan="3" style="font-weight: bold; background-color: #f8f9fa; color: #b5121b;">{{ current_year }}</td>
+            <td colspan="4" style="font-weight: bold; background-color: #f8f9fa; color: #b5121b;">{{ current_year }}</td>
           </tr>
         {% endif %}
         <tr>
@@ -36,6 +37,8 @@ title: All Talks - CSML
           </td>
           <td class="talk-title-col">
             <em>{{ talk.title }}</em>
+          </td>
+          <td class="talk-links-col">
             {% if talk.slides %}
                [<a href="{{ talk.slides }}">Slides</a>]
             {% endif %}

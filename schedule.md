@@ -9,7 +9,7 @@ Here is the schedule for the 2025/26 academic year.
 
 {% assign current_date = "now" | date: "%Y-%m-%d" %}
 {% assign academic_year_start = "2025-08-01" %}
-{% assign sorted_talks = site.data.talks | sort: "date" %}
+{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
 
 <div class="table-responsive">
   <table class="talk-table">
@@ -18,6 +18,7 @@ Here is the schedule for the 2025/26 academic year.
         <th class="talk-date-col">Date</th>
         <th class="talk-speaker-col">Speaker</th>
         <th class="talk-title-col">Title</th>
+        <th class="talk-links-col">Links</th>
       </tr>
     </thead>
     <tbody>
@@ -33,17 +34,14 @@ Here is the schedule for the 2025/26 academic year.
               {% endif %}
             </td>
             <td class="talk-title-col">
+              <em>{{ talk.title }}</em>
+            </td>
+            <td class="talk-links-col">
               {% if talk.slides %}
-                <a href="{{ talk.slides }}">{{ talk.title }}</a>
-              {% elsif talk.link %}
-                <a href="{{ talk.link }}">{{ talk.title }}</a>
-              {% else %}
-                {{ talk.title }}
+                 [<a href="{{ talk.slides }}">Slides</a>]
               {% endif %}
               
-              {% if talk.slides and talk.link %}
-                 [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
-              {% elsif talk.link and talk.slides == nil %}
+              {% if talk.link %}
                  [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
               {% endif %}
             </td>

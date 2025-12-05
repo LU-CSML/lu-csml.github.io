@@ -11,20 +11,12 @@ We host talks by invited external speakers, as well as discussion meetings by co
 
 **We usually meet at 15:00 GMT on Thursdays.**
 
+The 2025/2026 academic year schedule is now available.
+
+### [View 2025/26 Schedule](/schedule)
+
 A full list of past talks [can be found here](/talks).
-
-## Recent & Upcoming Talks
-
-{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
-{% for talk in sorted_talks limit:10 %}
-
-<div class="talk">
-  <span class="talk-date">{{ talk.date | date: "%-d %B %Y" }}</span><br>
-  <span class="talk-speaker">{{ talk.speaker }}</span>{% if talk.affiliation %} <span class="talk-affiliation">({{ talk.affiliation }})</span>{% endif %}<br>
-  <em>{{ talk.title }}</em>{% if talk.link %} [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]{% endif %}
-</div>
-{% endfor %}
 
 ---
 
-The main organizer for the 2025-2026 academic year is **Liam Llamazares** (l[dot]llamazares[at]lancaster).
+The main organizer for the 2025-2026 academic year is [Liam Llamazares](https://liamllamazareselias.com) (l.llamazareselias[at]lancaster.ac.uk). Please contact me if you want to give a talk or have any suggestions for speakers.
