@@ -9,7 +9,7 @@ title: Speakers
     <p class="mb-0">There are {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
   </div>
   <div class="col-md-6">
-    <input type="text" id="speaker-search" class="form-control" placeholder="Search speakers...">
+    <input type="text" id="speaker-search" class="form-control" placeholder="Search speakers..." aria-label="Search speakers by name">
   </div>
 </div>
 

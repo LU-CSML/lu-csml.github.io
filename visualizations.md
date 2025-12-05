@@ -35,11 +35,11 @@ Visualizes how topics appear together in the same talks.
 <div class="row mb-3">
   <div class="col-md-6">
     <label for="nodeRange">Top Topics: <span id="nodeVal">30</span></label>
-    <input type="range" class="custom-range" id="nodeRange" min="10" max="100" value="30">
+    <input type="range" class="custom-range" id="nodeRange" min="10" max="100" value="30" aria-label="Select number of top topics to display">
   </div>
   <div class="col-md-6">
     <label for="edgeRange">Min Connections: <span id="edgeVal">3</span></label>
-    <input type="range" class="custom-range" id="edgeRange" min="1" max="10" value="3">
+    <input type="range" class="custom-range" id="edgeRange" min="1" max="10" value="3" aria-label="Select minimum connection strength between topics">
   </div>
 </div>
 

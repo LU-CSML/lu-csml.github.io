@@ -10,7 +10,7 @@ title: Past Talks - CSML
     <p class="mb-0">There are {{ site.data.talks | size }} talks recorded in our database.</p>
   </div>
   <div class="col-md-6">
-    <input type="text" id="talk-search" class="form-control" placeholder="Search by title, speaker, or abstract...">
+    <input type="text" id="talk-search" class="form-control" placeholder="Search by title, speaker, or abstract..." aria-label="Search talks by title, speaker, or abstract">
   </div>
 </div>
 
