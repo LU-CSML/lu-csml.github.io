@@ -88,7 +88,7 @@ Here is the schedule for the 2025/26 academic year.
 {% endif %}
 
 <!-- PAST TALKS SECTION -->
-<h2>Past Talks</h2>
+<h2>Recent Talks</h2>
 <div class="table-responsive">
   <table class="talk-table">
     <thead>

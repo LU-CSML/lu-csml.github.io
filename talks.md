@@ -1,6 +1,6 @@
 ---
 layout: default
-title: All Talks - CSML
+title: Past Talks - CSML
 ---
 
 # Past Talks

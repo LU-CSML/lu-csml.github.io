@@ -6,6 +6,8 @@ The site is built with [Jekyll](https://jekyllrb.com/) and hosted on GitHub Page
 
 ## Adding a New Talk
 
+## Adding a New Talk
+
 All talks are stored in `_data/talks.yml`. To add a new talk, add an entry at the top of the file:
 
 ```yaml
@@ -17,29 +19,36 @@ All talks are stored in `_data/talks.yml`. To add a new talk, add an entry at th
 
 ### Optional Fields
 
-You can also include:
+You can include an abstract directly. **Note**: If your abstract contains colons (`:`), wrap the entire abstract in double quotes `"` to avoid errors.
 
 ```yaml
 - date: 2025-12-15
   speaker: Jane Doe
-  affiliation: Cambridge
   title: My Talk Title
-  abstract: doe2025 # Links to post/doe2025/
-  slides: /pdf/doe_slides.pdf # Links to pdf/doe_slides.pdf
-  link: https://arxiv.org/... # External link (e.g., arXiv)
-  link_text: arXiv # Text for the external link
+  # Single link
+  link: https://arxiv.org/abs/2025...
+  link_text: arXiv
+  # OR Multiple links
+  links:
+    - url: https://arxiv.org/abs/2025...
+      text: Paper 1
+    - url: https://github.com/janedoe/code
+      text: Code
+  abstract: "This is the abstract. If it has a colon: like this, wrap it in quotes."
+  slides: https://example.com/slides.pdf
 ```
 
-## Adding an Abstract
+## Site Sections
 
-1. Create a folder in `post/` with a short identifier, e.g., `post/doe2025/`
-2. Add an `index.html` file with the abstract content
-3. Reference it in `talks.yml` using `abstract: doe2025`
+- **Schedule** (`/schedule`): Shows upcoming talks and "Recent Past Talks" (from the current academic year only).
+- **Past Talks** (`/talks`): The full archive of all past talks from previous years. Future talks do not appear here.
 
 ## Adding Slides
 
-1. Upload the PDF to the `pdf/` folder
-2. Reference it in `talks.yml` using `slides: /pdf/your_slides.pdf`
+You can upload a PDF to the `pdf/` folder and link it:
+`slides: /pdf/your_slides.pdf`
+
+Or simply paste an external URL if hosted elsewhere.
 
 ## Local Development
 
@@ -79,7 +88,7 @@ Just push to the `main` branch - GitHub Pages will automatically rebuild the sit
 ├── _layouts/
 │   └── default.html       # Base HTML template
 ├── index.md               # Homepage (shows recent 10 talks)
-├── talks.md               # Full archive (all talks by year)
+├── talks.md               # Full archive (past talks by year)
 ├── post/                  # Abstract pages
 ├── pdf/                   # Slides PDFs
 └── css/                   # Stylesheets
