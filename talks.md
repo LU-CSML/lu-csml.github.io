@@ -23,8 +23,8 @@ title: All Talks - CSML
         {% assign talk_year = talk.date | date: "%Y" %}
         {% if talk_year != current_year %}
           {% assign current_year = talk_year %}
-          <tr class="table-secondary">
-            <td colspan="4" style="font-weight: bold; background-color: #f8f9fa; color: #b5121b;">{{ current_year }}</td>
+          <tr class="year-header" id="{{ current_year }}">
+            <td colspan="4"><a href="#{{ current_year }}">{{ current_year }}</a></td>
           </tr>
         {% endif %}
         <tr>
