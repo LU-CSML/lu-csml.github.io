@@ -5,6 +5,53 @@ title: Past Talks - CSML
 
 # Past Talks
 
+<div id="search-banner" class="alert alert-info mb-4" style="display: none;">
+  Showing results for: <strong id="search-term"></strong>
+  <button class="btn btn-sm btn-outline-info ml-3" onclick="window.location.href='{{ '/talks' | relative_url }}'">Clear Search</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Parse Query Param
+    var urlParams = new URLSearchParams(window.location.search);
+    var query = urlParams.get('q');
+
+    if (query) {
+      query = query.toLowerCase();
+      document.getElementById('search-banner').style.display = 'block';
+      document.getElementById('search-term').innerText = query;
+
+      // 2. Filter Table Rows
+      var rows = document.querySelectorAll('.talk-table tbody tr');
+      var yearHeaders = document.querySelectorAll('.year-header');
+      
+      // Hide all year headers initially
+      yearHeaders.forEach(el => el.style.display = 'none');
+
+      rows.forEach(function(row) {
+        // Skip year headers in this loop, handled separately
+        if (row.classList.contains('year-header')) return;
+
+        var text = row.innerText.toLowerCase();
+        if (text.includes(query)) {
+          row.style.display = '';
+          // Show the year header for this visible row
+          var prev = row.previousElementSibling;
+          while (prev) {
+            if (prev.classList.contains('year-header')) {
+              prev.style.display = '';
+              break;
+            }
+            prev = prev.previousElementSibling;
+          }
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
+
 {% assign now_unix = 'now' | date: '%s' %}
 {% assign past_talks = '' | split: '' %}
 {% for talk in site.data.talks %}
