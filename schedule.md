@@ -9,8 +9,29 @@ Here is the schedule for the 2025/26 academic year.
 
 {% assign current_date = "now" | date: "%Y-%m-%d" %}
 {% assign academic_year_start = "2025-08-01" %}
-{% assign sorted_talks = site.data.talks | sort: "date" | reverse %}
 
+<!-- Sort ascending for Upcoming (Next talk first) -->
+
+{% assign talks_asc = site.data.talks | sort: "date" %}
+
+<!-- Sort descending for Past (Recent talk first) -->
+
+{% assign talks_desc = site.data.talks | sort: "date" | reverse %}
+
+<!-- UPCOMING TALKS SECTION -->
+
+{% assign has_upcoming = false %}
+{% for talk in talks_asc %}
+{% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+{% if talk_date >= current_date %}
+{% assign has_upcoming = true %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% if has_upcoming %}
+
+<h2>Upcoming Talks</h2>
 <div class="table-responsive">
   <table class="talk-table">
     <thead>
@@ -22,9 +43,9 @@ Here is the schedule for the 2025/26 academic year.
       </tr>
     </thead>
     <tbody>
-      {% for talk in sorted_talks %}
+      {% for talk in talks_asc %}
         {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
-        {% if talk_date >= academic_year_start %}
+        {% if talk_date >= current_date %}
           <tr>
             <td class="talk-date-col">{{ talk.date | date: "%-d %b %Y" }}</td>
             <td class="talk-speaker-col">
@@ -40,7 +61,50 @@ Here is the schedule for the 2025/26 academic year.
               {% if talk.slides %}
                  [<a href="{{ talk.slides }}">Slides</a>]
               {% endif %}
-              
+              {% if talk.link %}
+                 [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
+              {% endif %}
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+<!-- PAST TALKS SECTION -->
+<h2>Past Talks</h2>
+<div class="table-responsive">
+  <table class="talk-table">
+    <thead>
+      <tr>
+        <th class="talk-date-col">Date</th>
+        <th class="talk-speaker-col">Speaker</th>
+        <th class="talk-title-col">Title</th>
+        <th class="talk-links-col">Links</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for talk in talks_desc %}
+        {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+        <!-- Logic: Must be after Aug 2025 BUT before Today -->
+        {% if talk_date >= academic_year_start and talk_date < current_date %}
+          <tr>
+            <td class="talk-date-col">{{ talk.date | date: "%-d %b %Y" }}</td>
+            <td class="talk-speaker-col">
+              {{ talk.speaker }}
+              {% if talk.affiliation %}
+                <span class="talk-affiliation">{{ talk.affiliation }}</span>
+              {% endif %}
+            </td>
+            <td class="talk-title-col">
+              <em>{{ talk.title }}</em>
+            </td>
+            <td class="talk-links-col">
+              {% if talk.slides %}
+                 [<a href="{{ talk.slides }}">Slides</a>]
+              {% endif %}
               {% if talk.link %}
                  [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
               {% endif %}
