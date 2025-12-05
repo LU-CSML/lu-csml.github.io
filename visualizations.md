@@ -167,7 +167,17 @@ Visualizes how topics appear together in the same talks.
     var maxFreq = topList.length > 0 ? topList[0][1] : 1;
     var minFreq = topList.length > 0 ? topList[topList.length - 1][1] : 1;
 
-    // 3. Generate Edges & Track Connected Nodes
+    // 3. Build Inverted Index for fast lookups (O(M × W_avg))
+    // Maps each word to array of talk indices where it appears
+    var invertedIndex = {};
+    rawTalks.forEach(function(talk, talkIndex) {
+      talk.cleanWords.forEach(function(word) {
+        if (!invertedIndex[word]) invertedIndex[word] = [];
+        invertedIndex[word].push(talkIndex);
+      });
+    });
+
+    // 4. Generate Edges using Set Intersection (O(N² × small_intersection))
     var edges = [];
     var connectedIndices = new Set();
   
@@ -178,11 +188,16 @@ Visualizes how topics appear together in the same talks.
         for (var j = i + 1; j < topN; j++) {
             var wordA = topWords[i];
             var wordB = topWords[j];
-            var sharedCount = 0;
-
-            rawTalks.forEach(function(talk) {
-                if (talk.cleanWords.has(wordA) && talk.cleanWords.has(wordB)) sharedCount++;
+            
+            // Retrieve talk indices from inverted index
+            var talksWithA = invertedIndex[wordA] || [];
+            var talksWithB = invertedIndex[wordB] || [];
+            
+            // Find intersection (talks containing both words)
+            var sharedTalkIndices = talksWithA.filter(function(id) {
+                return talksWithB.includes(id);
             });
+            var sharedCount = sharedTalkIndices.length;
 
             if (sharedCount >= minConn) {
                 var edgeId = i + '-' + j; // Unique ID for edge lookups
@@ -196,12 +211,18 @@ Visualizes how topics appear together in the same talks.
                 connectedIndices.add(i);
                 connectedIndices.add(j);
               
-                edgeMetaData[edgeId] = { wordA: wordA, wordB: wordB, count: sharedCount };
+                // Store shared talk indices for modal display
+                edgeMetaData[edgeId] = { 
+                    wordA: wordA, 
+                    wordB: wordB, 
+                    count: sharedCount,
+                    talkIndices: sharedTalkIndices
+                };
             }
         }
     }
 
-    // 4. Generate Nodes
+    // 5. Generate Nodes
     var nodes = [];
     topWords.forEach(function(word, index) {
         if (connectedIndices.has(index)) {
