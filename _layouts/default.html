@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{{ page.title | default: site.title }}</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #444444;
+        background-color: #fdfdfd;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #b5121b;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      h1 {
+        font-size: 2.75rem;
+        padding-top: 0.4em;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 1.75rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.3em;
+        margin-top: 1.5em;
+        color: #333;
+      }
+      em {
+        color: #9d1018;
+      }
+      a {
+        color: #b5121b;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+      a:hover {
+        color: #255c99;
+        text-decoration: none;
+      }
+      .navbar {
+        background-color: #ffffff;
+      }
+      .navbar a {
+        color: #444444;
+        font-weight: 500;
+      }
+      .navbar a:hover {
+        color: #b5121b;
+      }
+      
+      /* Table Styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+      th {
+        text-align: left;
+        font-weight: 600;
+        color: #666;
+        border-bottom: 2px solid #ddd;
+        padding: 0.75rem 0.5rem;
+      }
+      td {
+        padding: 0.75rem 0.5rem;
+        border-bottom: 1px solid #f0f0f0;
+        vertical-align: top;
+      }
+      tr:hover td {
+        background-color: #f9f9f9;
+      }
+      .talk-date-col {
+        width: 15%;
+        white-space: nowrap;
+        color: #666;
+        font-variant-numeric: tabular-nums;
+      }
+      .talk-speaker-col {
+        width: 25%;
+        font-weight: 600;
+      }
+      .talk-title-col {
+        width: 60%;
+      }
+      .talk-affiliation {
+        display: block;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: #777;
+      }
+
+      .zhadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg zhadow sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ '/' | relative_url }}" style="font-weight: 700; color: #b5121b;">Reading Group</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+              <a class="nav-link" href="{{ '/schedule' | relative_url }}">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/talks' | relative_url }}"
+                >All Talks</a
+              >
+            </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container mt-4">{{ content }}</main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

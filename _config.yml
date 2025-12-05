@@ -1,0 +1,7 @@
+title: CSML
+description: Lancaster University Computational Statistics and Machine Learning Seminar
+baseurl: ""
+url: "https://lu-csml.github.io"
+
+# Build settings
+markdown: kramdown

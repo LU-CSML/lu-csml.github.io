@@ -1,0 +1,866 @@
+# CSML Talks Data
+# Auto-generated from HTML files
+# Format:
+#   - date: YYYY-MM-DD
+#     speaker: Name
+#     affiliation: University (optional)
+#     title: Talk Title
+#     link: URL (optional)
+#     link_text: arXiv/NeurIPS/etc (optional)
+
+# 2025
+- date: 2025-12-11
+  speaker: Zheyang Shen
+  affiliation: Newcastle
+  title: A Computable Measure of Suboptimality for Entropy-Regularised Variational Objectives
+
+- date: 2025-12-04
+  speaker: Giorgos Vasdekis
+  title: Sampling with time-changed Markov processes
+
+- date: 2025-11-20
+  speaker: Lanya Yang
+  affiliation: Lancaster
+  title: Exchangeable Particle Gibbs for Markov Jump Processes
+
+- date: 2025-10-30
+  speaker: Rui Zhang
+  affiliation: Lancaster
+  title: A Dynamic Perspective of Matern Gaussian Processes
+  slides: https://arxiv.org/pdf/2509.26005
+
+- date: 2025-10-16
+  speaker: Henry Moss
+  affiliation: Lancaster
+  title: "GPGreen: Linear Operator Learning with Gaussian Processes"
+
+- date: 2025-09-04
+  speaker: Rafael Izbicki
+  affiliation: Federal University of São Carlos, Brazil
+  title: Simulation‑Based Calibration of Confidence Sets for Statistical Models
+  link: https://arxiv.org/abs/2508.17077
+  link_text: arXiv
+
+- date: 2025-08-07
+  speaker: Jixiang Qing
+  affiliation: Imperial College London
+  title: Bayesian Optimization Over Graphs With Shortest-Path Encodings
+  link: https://arxiv.org/abs/2503.05642
+  link_text: arXiv
+
+- date: 2025-07-17
+  speaker: Maciej Buze
+  title: Barycenters in Unbalanced Optimal Transport
+  link: https://arxiv.org/abs/2305.02410
+  link_text: arXiv
+
+- date: 2025-07-03
+  speaker: Henry Moss
+  title: Fusing Neural and Statistical Models
+
+- date: 2025-06-19
+  speaker: Takuo Matsubara
+  affiliation: University of Edinburgh
+  title: "Wasserstein Gradient Boosting: A Framework for Distribution-Valued Supervised Learning"
+  link: https://openreview.net/forum?id=cuO0DenqMl
+  link_text: NeurIPS
+
+- date: 2025-06-12
+  speaker: Augustin Chevallier
+  affiliation: University of Strasbourg
+  title: "Towards Practical PDMP Sampling: Metropolis Adjustments, Locally Adaptive Step-Sizes, and NUTS-Based Time Lengths"
+  link: https://arxiv.org/abs/2503.11479
+  link_text: arXiv
+
+- date: 2025-05-29
+  speaker: Dennis Prangle
+  affiliation: University of Bristol
+  title: Distilling Importance Sampling for Likelihood Free Inference
+  link: https://www.tandfonline.com/doi/full/10.1080/10618600.2023.2175688
+  link_text: JCGS
+
+- date: 2025-05-15
+  speaker: Yuga Iguchi
+  title: A Closed-Form Transition Density Expansion for Elliptic and Hypo-Elliptic SDEs
+  link: https://www.arxiv.org/abs/2502.07047
+  link_text: arXiv
+
+- date: 2025-05-07
+  speaker: Liam Llamazares Elias
+  title: A Parameterization of Anisotropic Gaussian Fields With Penalized Complexity Priors
+  link: https://arxiv.org/abs/2409.02331
+  link_text: arXiv
+
+- date: 2025-03-20
+  speaker: Chris Nemeth
+  title: Can ODEs Make Monte Carlo Methods Great Again?
+
+- date: 2025-03-06
+  speaker: Richard Everitt
+  affiliation: University of Warwick
+  title: ABC-SMC^2 and Ensemble Kalman Inversion ABC
+  link: https://arxiv.org/abs/2407.18721
+  link_text: arXiv
+
+- date: 2025-02-20
+  speaker: Paul Fearnhead
+  title: Optimised Annealed Sequential Monte Carlo Samplers
+  link: https://arxiv.org/abs/2408.12057
+  link_text: arXiv
+
+- date: 2025-02-06
+  speaker: Adrien Corenflos
+  affiliation: University of Warwick
+  title: High-Dimensional Inference in State-Space Models via an Auxiliary Variable Trick
+  link: https://arxiv.org/abs/2401.14868
+  link_text: arXiv
+
+- date: 2025-01-30
+  speaker: Tim Rogers
+  affiliation: University of Sheffield
+  title: Learning About Dynamical Systems with Gaussian Processes
+
+# 2024
+- date: 2024-12-10
+  speaker: Lorenzo Rimella
+  affiliation: University of Turin
+  title: Categorical Approximate Likelihood for individual-based models
+  link: https://arxiv.org/abs/2501.03950
+  link_text: arXiv
+
+- date: 2024-11-28
+  speaker: Connie Trojan
+  title: Diffusion Generative Modelling for Divide-and-Conquer MCMC
+  link: https://arxiv.org/abs/2406.11664
+  link_text: arXiv
+
+- date: 2024-11-21
+  speaker: Maximillian Steffen
+  affiliation: Karlsruhe Institute of Technology
+  title: Statistical guarantees for stochastic Metropolis-Hastings
+  link: https://arxiv.org/abs/2310.09335
+  link_text: arXiv
+
+- date: 2024-06-27
+  speaker: Chris Sherlock
+  title: "Tuning pseudo-marginal Metropolis-Hastings: a vase or two faces?"
+
+- date: 2024-06-20
+  speaker: Claire Gormley
+  affiliation: University College Dublin
+  title: Bayesian nonparametric modelling of network data
+  slides: https://arxiv.org/pdf/2211.13034
+
+- date: 2024-06-13
+  speaker: Saifuddin Syed
+  affiliation: Oxford
+  title: Scaling inference of MCMC algorithms with parallel computing
+  link: https://academic.oup.com/jrsssb/article/84/2/321/7056147
+  link_text: JRSSB
+
+- date: 2024-06-06
+  speaker: Rui Zhang
+  title: Unadjusted Barker as an SDE Numerical Scheme
+  slides: https://arxiv.org/pdf/2405.14373
+
+- date: 2024-05-16
+  speaker: Wentao Li
+  title: Optimal combination of composite likelihoods using approximate Bayesian computation with application to state-space models
+  slides: https://arxiv.org/pdf/2404.02313
+
+- date: 2024-05-09
+  speaker: Gabriel Wallin
+  title: Rotation to Sparse Loadings using Lp Losses and Related Inference Problems
+  slides: https://arxiv.org/pdf/2206.02263
+
+- date: 2024-04-11
+  speaker: François-Xavier Briol
+  title: Robust and conjugate Gaussian process regression
+  slides: https://arxiv.org/pdf/2311.00463.pdf
+
+- date: 2024-03-21
+  speaker: Leandro Marcolino
+  title: Identifying Adversaries in Ad-hoc Domains Using Q-valued Bayesian Estimations
+  link: https://yelkhatib.github.io/papers/Alves2024amongus.pdf
+  link_text: AAMAS
+
+- date: 2024-03-14
+  speaker: Theo Papamarkou
+  title: Aspects of sampling-based inference for Bayesian neural networks
+
+- date: 2024-03-07
+  speaker: Tamas Papp
+  title: Simulating the independence sampler parallel-in-time
+
+- date: 2024-02-22
+  speaker: Francesco Barile
+  title: "Flexible modeling of heterogeneous populations of networks: a Bayesian nonparametric approach"
+
+- date: 2024-02-15
+  speaker: Kamélia Daudel
+  title: "Alpha-divergence Variational Inference Meets Importance Weighted Auto-Encoders: Methodology and Asymptotics"
+  link: https://www.jmlr.org/papers/volume24/22-1160/22-1160.pdf
+  link_text: JMLR
+
+- date: 2024-02-08
+  speaker: Estevão Prado
+  title: Accounting for shared covariates in semi-parametric Bayesian additive regression trees
+  slides: https://arxiv.org/pdf/2108.07636.pdf
+
+- date: 2024-02-01
+  speaker: Lorenzo Rimella
+  title: A State-Space Perspective on Modelling and Inference for Online Skill Rating
+  slides: https://arxiv.org/pdf/2308.02414.pdf
+
+# 2023
+- date: 2023-12-14
+  speaker: Chris Jewell
+  title: Data Augmentation MCMC on epidemic models
+
+- date: 2023-12-07
+  speaker: Marina Riabiz
+  title: Optimal Thinning of MCMC Output
+  link: https://academic.oup.com/jrsssb/article/84/4/1059/7073269
+  link_text: JRSSB
+
+- date: 2023-11-30
+  speaker: Lorenzo Rimella
+  title: Simulation Based Composite Likelihood
+  slides: https://arxiv.org/pdf/2310.10761.pdf
+
+- date: 2023-11-23
+  speaker: Andy Wang
+  title: Comparison theorems for Hybrid Slice Sampling
+
+- date: 2023-11-16
+  speaker: Chris Sherlock
+  title: Ensemble Kalman filter
+
+- date: 2023-11-09
+  speaker: Chris Nemeth
+  title: Bayesian Flow Networks
+  slides: https://arxiv.org/pdf/2308.07037.pdf
+
+- date: 2023-11-02
+  speaker: Aretha Teckentrup
+  title: Gaussian processes, inverse problems and Markov chain Monte Carlo
+
+- date: 2023-10-26
+  speaker: Sam Holdstock
+  title: Improved inference for stochastic kinetic models with small observation error via partial Rao-Blackwellisation
+
+- date: 2023-10-19
+  speaker: Estevão Prado
+  title: Metropolis-Hastings with fast, flexible sub-sampling
+
+- date: 2023-10-12
+  speaker: Alberto Cabezas
+  title: Composable Inference in BlackJAX
+
+- date: 2023-06-29
+  speaker: Tamas Papp
+  title: Introduction to diffusion generative models
+
+- date: 2023-06-22
+  speaker: Chris Sherlock
+  title: Fast return-level estimates for flood insurance via an improved Bennett inequality for random variables with differing upper bounds
+  link: https://www.maths.lancs.ac.uk/~sherlocc/
+  link_text: Ongoing work
+
+- date: 2023-06-15
+  speaker: Alice Corbella
+  affiliation: University of Warwick
+  title: The Lifebelt Particle Filter for robust estimation from low-valued count data
+  slides: https://arxiv.org/pdf/2212.04400.pdf
+
+- date: 2023-06-08
+  speaker: Francesca Panero
+  affiliation: London School of Economics
+  title: Modelling sparse networks with Bayesian nonparametrics
+  link: https://francescapanero.github.io/
+  link_text: Ongoing work
+
+- date: 2023-05-18
+  speaker: Lorenzo Rimella
+  title: "Localised filtering algorithm: the BPF and the Graph Filter"
+  slides: https://arxiv.org/pdf/1301.6585.pdf
+  link: https://www.jmlr.org/papers/volume23/19-267/19-267.pdf
+  link_text: Graph Filter
+
+- date: 2023-05-11
+  speaker: Francesca Crucinio
+  affiliation: ENSAE
+  title: Divide-and-Conquer SMC with applications to high dimensional filtering
+  link: https://www3.stat.sinica.edu.tw/ss_newpaper/SS-2022-0243_na.pdf
+  link_text: Statistica Sinica
+
+- date: 2023-04-27
+  speaker: Paul Fearnhead
+  title: Automatic Differentiation of Programs with Discrete Randomness
+  link: https://proceedings.neurips.cc/paper_files/paper/2022/hash/43d8e5fc816c692f342493331d5e98fc-Abstract-Conference.html
+  link_text: NeurIPS
+
+- date: 2023-03-02
+  speaker: Chris Sherlock
+  title: KSD for dummies
+
+- date: 2023-02-23
+  speaker: Victor Elvira
+  affiliation: University of Edinburgh
+  title: State-Space Models as Graphs
+  slides: https://arxiv.org/pdf/2209.09969.pdf
+
+- date: 2023-02-16
+  speaker: Sam Livingstone
+  affiliation: University College London
+  title: Pre-conditioning in Markov chain Monte Carlo
+  link: https://samueljlivingstone.wixsite.com/webpage
+  link_text: Ongoing work
+
+- date: 2023-01-26
+  speaker: Estevao Batista Do Prado
+  title: Bayesian additive regression trees (BART)
+  slides: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1998.10473750
+  link: https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-1/BART-Bayesian-additive-regression-trees/10.1214/09-AOAS285.full
+  link_text: Ann. Appl. Stat.
+
+- date: 2023-01-19
+  speaker: Alberto Cabezas Gonzalez
+  title: Stereographic Markov Chain Monte Carlo
+  slides: https://arxiv.org/pdf/2205.12112.pdf
+
+- date: 2023-01-12
+  speaker: Alexander Terenin
+  affiliation: University of Cambridge
+  title: Pathwise Conditioning and Non-Euclidean Gaussian Processes
+  slides: https://arxiv.org/pdf/2202.10613.pdf
+
+# 2022
+- date: 2022-12-15
+  speaker: Tamas Papp
+  title: Coupling MCMC algorithms in high dimensions
+
+- date: 2022-12-08
+  speaker: Yu Luo
+  title: Bayesian estimation using loss functions
+
+- date: 2022-11-24
+  speaker: Sam Power
+  affiliation: University of Bristol
+  title: "Explicit convergence bounds for Metropolis Markov chains: isoperimetry, spectral gaps and profiles"
+
+- date: 2022-11-17
+  speaker: Mauro Camara Escudero
+  affiliation: University of Bristol
+  title: Approximate Manifold Sampling
+
+- date: 2022-11-03
+  speaker: Alexandros Beskos
+  affiliation: UCL
+  title: Manifold Markov chain Monte Carlo methods for Bayesian inference in diffusion models
+
+- date: 2022-10-27
+  speaker: Jure Vogrinc
+  affiliation: Warwick university
+  title: "The Barker proposal: Combining robustness and efficiency in gradient-based MCMC"
+
+- date: 2022-10-20
+  speaker: Paul Fearnhead
+  title: Martingale posterior distributions
+
+- date: 2022-10-06
+  speaker: Michael Whitehouse
+  affiliation: University of Bristol
+  title: Consistent and fast inference in compartmental models of epidemics using PAL
+
+- date: 2022-09-29
+  speaker: Chris Sherlock
+  title: Comparison of Markov chains via weak Poincaré inequalities with application to pseudo-marginal MCMC
+
+- date: 2022-09-22
+  speaker: Lorenzo Rimella
+  title: Inference in Stochastic Epidemic Models via Multinomial Approximations
+
+- date: 2022-09-15
+  speaker: Chris Nemeth
+  title: Metropolis–Hastings via Classification
+
+- date: 2022-06-23
+  speaker: Paul Fearnhead
+  title: "Non-Reversible Parallel Tempering: a Scalable Highly Parallel MCMC Scheme"
+
+- date: 2022-06-09
+  speaker: Augustin Chevallier
+  title: Continuously-Tempered PDMP samplers
+
+- date: 2022-05-26
+  speaker: Chris Sherlock
+  title: Scalable Importance Tempering and Bayesian Variable Selection
+
+- date: 2022-05-05
+  speaker: Steffen Grünewälder
+  title: Compressed Empirical Measures (in finite dimensions)
+
+- date: 2022-03-31
+  speaker: Louis Sharrock
+  affiliation: University of Bristol
+  title: Parameter Estimation for the McKean-Vlasov Stochastic Differential Equation
+
+- date: 2022-03-24
+  speaker: Alberto Cabezas Gonzalez
+  title: Elliptical slice sampling
+
+- date: 2022-03-17
+  speaker: Augustin Chevallier
+  title: Slice sampling & PDMP
+
+- date: 2022-03-03
+  speaker: Paul Fearnhead
+  title: "Boost your favorite MCMC sampler using Kac’s theorem: the Kick-Kac teleportation algorithm- Part 2"
+
+- date: 2022-02-24
+  speaker: Paul Fearnhead
+  title: "Boost your favorite MCMC sampler using Kac’s theorem: the Kick-Kac teleportation algorithm- Part 1"
+
+- date: 2022-02-17
+  speaker: Lionel Riou-Durand
+  affiliation: Warwick university
+  title: "Metropolis Adjusted Underdamped Langevin Trajectories: a robust alternative to Hamiltonian Monte-Carlo"
+
+- date: 2022-02-03
+  speaker: Chris Sherlock
+  title: Statistical scalability and approximate inference in distributed computing environments
+
+- date: 2022-01-27
+  speaker: Lorenzo Rimella
+  title: "The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables"
+
+- date: 2022-01-20
+  speaker: Augustin Chevallier
+  title: Non-reversible guided Metropolis kernel
+
+- date: 2022-01-13
+  speaker: Szymon Urbas
+  title: The Apogee to Apogee Path Sampler
+
+# 2021
+- date: 2021-12-09
+  speaker: Chris Sherlock
+  title: Metropolis-Hastings with Averaged Acceptance Ratios
+
+- date: 2021-12-02
+  speaker: Chris Nemeth
+  title: Waste-free sequential Monte Carlo
+
+- date: 2021-11-25
+  speaker: Sam Power
+  affiliation: University of Bristol
+  title: Double Control Variates for Gradient Estimation in Discrete Latent Variable Models
+
+- date: 2021-11-18
+  speaker: Chris Nemeth
+  title: How do you tune MCMC algorithms?
+
+- date: 2021-11-04
+  speaker: Augustin Chevallier
+  title: Approximations of Piecewise Deterministic Markov Processes and their convergence properties
+
+- date: 2021-10-28
+  speaker: Paul Fearnhead
+  title: Multilevel Linear Models, Gibbs Samplers and Multigrid Decompositions
+
+- date: 2021-10-14
+  speaker: Tamas Papp
+  title: Estimating Markov chain convergence with empirical Wasserstein distance bounds
+
+- date: 2021-06-22
+  speaker: Gael Martin
+  affiliation: Monash University
+  title: "landmark papers: Bayesian computation from 1763 to the 21st Century"
+
+- date: 2021-06-10
+  speaker: Phyllis Ju
+  affiliation: Harvard university
+  title: Sequential Monte Carlo algorithms for agent-based models of disease transmission
+
+- date: 2021-05-27
+  speaker: Christian P. Robert
+  affiliation: Université Paris-Dauphine
+  title: "landmark papers: Harold Jeffreys’s Theory of Probability Revisited"
+
+- date: 2021-05-13
+  speaker: Lorenzo Rimella
+  title: Dynamic Bayesian Neural Networks
+
+- date: 2021-04-29
+  speaker: Clement Lee
+  title: "landmark papers: The Gelman-Rubin statistic: old and new"
+
+- date: 2021-04-15
+  speaker: George Bolt
+  title: MCMC Sampling and Posterior Inference for a New Metric-Based Network Model
+
+- date: 2021-03-25
+  speaker: Jeremie Coullon
+  title: "landmark papers: the Metropolis sampler (1953)"
+
+- date: 2021-03-04
+  speaker: Chris Sherlock
+  title: Differentiable Particle Filtering via Entropy-Regularized Optimal Transport
+
+# 2020
+- date: 2020-11-19
+  speaker: Liam Hodgkinson
+  title: Stein kernels
+
+- date: 2020-03-03
+  speaker: Chris Nemeth
+  title: "Deep generative modelling: autoencoders, VAEs, GANs…. and all that jazz! Part 22"
+
+- date: 2020-02-27
+  speaker: Chris Nemeth
+  title: "Deep generative modelling: autoencoders, VAEs, GANs…. and all that jazz!"
+
+- date: 2020-02-13
+  speaker: Leah South
+  title: The kernel Stein discrepancy
+
+# 2019
+- date: 2019-12-05
+  speaker: Paul Fearnhead
+  title: Zig Zag Sampler
+
+- date: 2019-11-24
+  speaker: Francois-Xavier Briol
+  title: Statistical Inference for Generative Models with Maximum Mean Discrepancy
+
+- date: 2019-11-07
+  speaker: Jeremias Knoblauch
+  title: Generalized variational inference
+  slides: /pdf/gvi_slides.pdf
+
+- date: 2019-10-09
+  speaker: Magnus Rattray
+  title: Using Gaussian processes to infer pseudotime and branching from single-cell data.
+
+- date: 2019-09-20
+  speaker: Sam Livingstone
+  title: On the robustness of gradient-based MCMC algorithms.
+
+- date: 2019-08-01
+  speaker: Leah South
+  title: Variance reduction in MCMC.
+
+- date: 2019-06-13
+  speaker: Clement Lee
+  title: Clustering approach and MCMC practicalities of stochastic block models.
+
+- date: 2019-05-09
+  speaker: Nick Tawn
+  title: The Annealed Leap Point Sampler (ALPS) for multimodal target distributions.
+
+- date: 2019-03-28
+  speaker: Callum Vyner
+  title: An Introduction to Divide-and-Conquer MCMC.
+
+- date: 2019-02-28
+  speaker: Matthew Ludkin
+  title: "Hug ‘N’ Hop: Explicit, non-reversible, contour-hugging MCMC."
+
+- date: 2019-02-14
+  speaker: Henry Moss
+  title: An Intro to Information-Driven Bayesian Optimisation
+
+# 2018
+- date: 2018-12-13
+  speaker: Arnaud Doucet
+  title: On discrete-time piecewise-deterministic MCMC schemes
+
+- date: 2018-12-05
+  speaker: Louis Aslett
+  title: Privacy and Security in Bayesian Inference
+
+- date: 2018-11-15
+  speaker: Chris Sherlock
+  title: The Minimal Extended Statespace Algorithm for exact inference on Markov jump processes
+
+# 2017
+- date: 2017-12-07
+  speaker: Gareth Ridall
+  title: Sequential Bayesian estimation and model selection
+
+- date: 2017-11-29
+  speaker: Chris Nemeth
+  title: Pseudo-extended MCMC
+
+- date: 2017-11-09
+  speaker: Luke Kelly
+  title: Lateral trait transfer in phylogenetic inference
+
+- date: 2017-11-01
+  speaker: Yee Whye Teh
+  title: On Bayesian Deep Learning and Deep Bayesian Learning
+
+- date: 2017-05-18
+  speaker: Chris Sherlock
+  title: "Asymptotic variance and geometric convergence of MCMC: variational representations"
+
+- date: 2017-01-26
+  speaker: Chris Sherlock
+  title: "Delayed-acceptance MCMC with examples: advantages and pitfalls and how to avoid the latter"
+
+# 2016
+- date: 2016-12-06
+  speaker: Jack Baker
+  title: An overview of Bayesian non-parametrics
+
+- date: 2016-11-11
+  speaker: Wentao Li
+  title: Improved Convergence of Regression Adjusted Approximate Bayesian Computation
+
+- date: 2016-10-20
+  speaker: Paul Fearnhead
+  title: "The Scalable Langevin Exact Algorithm: Bayesian Inference for Big Data"
+
+- date: 2016-07-02
+  speaker: Adam Johansen
+  title: The iterated auxiliary particle filter
+
+- date: 2016-05-19
+  speaker: Chris Sherlock
+  title: Pseudo-marginal MCMC using averages of unbiased estimators
+
+- date: 2016-05-09
+  speaker: Joris Bierkens
+  affiliation: Warwick University
+  title: Super-efficient sampling using Zig Zag Monte Carlo
+
+- date: 2016-04-14
+  speaker: Paul Fearnhead
+  title: Research opportunities with MCMC and Big Data
+
+- date: 2016-03-17
+  speaker: Peter Neal
+  title: Optimal scaling of the independence sampler
+
+- date: 2016-02-25
+  speaker: Paul Fearnhead
+  title: Continuous-Time Importance Sampling (and MCMC)
+
+- date: 2016-02-18
+  speaker: Borja de Balle Pigem
+  title: Differentially Private Policy Evaluation
+
+# 2015
+- date: 2015-12-10
+  speaker: Jack Baker
+  title: STAN
+
+- date: 2015-11-26
+  speaker: Paul Fearnhead
+  title: "Discussion of “The Bouncy Particle Sampler: A Non-Reversible Rejection-Free Markov Chain Monte Carlo Method”"
+  slides: http://arxiv.org/pdf/1509.03808.pdf
+  link: http://arxiv.org/abs/1510.02451
+  link_text: arXiv
+
+- date: 2015-10-15
+  speaker: James Hensman
+  title: Variational inference in Gaussian process models
+
+- date: 2015-05-19
+  speaker: Alexandre Thiery
+  affiliation: National University of Singapore
+  title: Asymptotic Analysis of Random-Walk Metropolis on Ridged Densities
+
+- date: 2015-04-28
+  speaker: Chris Sherlock
+  title: Delayed acceptance particle marginal random walk Metropolis algorithms and their optimisation
+
+- date: 2015-03-05
+  speaker: Chris Nemeth
+  title: "Bayesian Inference for Big Data: Current and Future Directions"
+
+# 2014
+- date: 2014-12-18
+  speaker: Wentao Li
+  title: "Discussion of the RSS read paper: “Sequential Quasi Monte Carlo” by Mathieu Gerber and Nicolas Chopin."
+
+- date: 2014-11-28
+  speaker: Chris Nemeth
+  title: Particle Metropolis adjusted Langevin algorithms
+
+- date: 2014-03-11
+  speaker: Paul Fearnhead
+  title: Reparameterisations for Particle MCMC
+
+- date: 2014-02-25
+  speaker: Vasileios Maroulas
+  affiliation: University of Tennessee
+  title: Filtering, drift homotopy and target tracking
+
+# 2013
+- date: 2013-12-11
+  speaker: Dennis Prangle
+  affiliation: University of Bristol
+  title: Speeding ABC inference using early-stopping simulations
+
+- date: 2013-05-09
+  speaker: Chris Sherlock
+  title: Properties and Optimisation of the Pseudo Marginal RWM.
+
+- date: 2013-04-17
+  speaker: Anthony Lee
+  affiliation: University of Warwick
+  title: "Particle Markov chain Monte Carlo and marginal likelihood estimation: strategies for improvement."
+
+- date: 2013-03-22
+  speaker: Dennis Prangle
+  title: Likelihood-free parameter estimation for state space models
+
+- date: 2013-02-20
+  speaker: Joe Mellor
+  affiliation: University of Manchester
+  title: Thompson Sampling in Switching Environments with Bayesian Online Change Point Detection
+
+# 2012
+- date: 2012-06-21
+  speaker: Nicos Pavlidis
+  affiliation: Lancaster University
+  title: Classification in Dynamic Streaming Environments
+
+- date: 2012-06-06
+  speaker: Paul Fearnhead
+  title: "Hamiltonian Monte Carlo: Beyond Kinetic Energy"
+
+- date: 2012-05-22
+  speaker: Chris Sherlock
+  title: "Metropolis Adjusted Langevin Algorithm (MALA), simplified Manifold MALA, and Hamiltonian Monte Carlo: motivation, explanation and application"
+
+- date: 2012-02-14
+  speaker: Dennis Prangle
+  title: Summary statistics for ABC model choice
+
+# 2011
+- date: 2011-12-13
+  speaker: Paul Fearnhead
+  title: "Constructing summary statistics for approximate Bayesian computation: semi-automatic ABC"
+  link: http://arxiv.org/abs/1004.1112
+  link_text: arXiv
+
+- date: 2011-11-16
+  speaker: Haeran Cho
+  affiliation: London School of Economics
+  title: High-dimensional variable selection via tilting
+
+- date: 2011-06-17
+  speaker: Gareth Ridall
+  title: Online inference and model selection using sequential Monte Carlo
+
+- date: 2011-05-24
+  speaker: Chris Sherlock
+  title: Simulation of mixed speed biochemical reactions using the linear noise approximation
+
+- date: 2011-03-15
+  speaker: Paul Fearnhead
+  title: "Reading group on “An explicit link between Gaussian fields and Gaussian Markov random fields: The SPDE approach”"
+  link: http://www.math.ntnu.no/inla/r-inla.org/papers/spde-jrssb.pdf
+  link_text: Preprint
+
+- date: 2011-02-15
+  speaker: Neil Drummond
+  affiliation: Lancaster University
+  title: Quantum Monte Carlo
+
+- date: 2011-01-18
+  speaker: Rebecca Killick
+  title: Optimal detection of changepoints with a linear computational cost
+
+# 2010
+- date: 2010-12-07
+  speaker: Dennis Prangle
+  title: Using ABC for sequential Bayesian analysis
+
+- date: 2010-11-10
+  speaker: Krzysztof Latuszynski
+  affiliation: University of Warwick
+  title: Exact Inference for a Markov switching diffusion model with discretely observed data
+
+- date: 2010-11-03
+  speaker: Anastasia Lykou
+  title: Bayesian variable selection using Lasso
+
+- date: 2010-10-10
+  speaker: Paul Fearnhead
+  title: Reading group on “Riemann manifold Langevin and Hamiltonian Monte Carlo methods”
+  link: http://arxiv.org/abs/0907.1100
+  link_text: arXiv
+
+- date: 2010-09-03
+  speaker: Paul Fearnhead
+  title: Particle Filters for models with fixed parameters
+
+- date: 2010-02-16
+  speaker: Gareth Ridall
+  title: Reading group on Particle MCMC and the pseudo marginal algorithm
+
+# 2009
+- date: 2009-12-01
+  speaker: Chris Sherlock
+  title: "The random walk Metropolis: general criteria for the 0.234 acceptance rate rule"
+
+- date: 2009-11-03
+  speaker: Giorgos Sermaidis
+  title: Likelihood based inference for discretely observed diffusions
+
+- date: 2009-10-20
+  speaker: Paul Fearnhead
+  title: Sequential Importance Sampling for General Diffusion Models
+
+- date: 2009-04-28
+  speaker: Chris Sherlock
+  affiliation: Reading Group
+  title: The Integrated Nested Laplace Approximation of Rue et al. (2009)
+  link: http://www3.interscience.wiley.com/journal/118490742/home?CRETRY=1&SRETRY=0
+  link_text: Link to Rue Martino and Chopin (2009)
+
+# 2008
+- date: 2008-12-02
+  speaker: Paul Fearnhead
+  title: change point models and fault detection
+
+- date: 2008-10-28
+  speaker: Chris Sherlock
+  title: Optimal scaling of the random walk Metropolis - Part 1
+
+- date: 2008-06-02
+  speaker: Ben Taylor
+  title: Adaptive Sequential Monte Carlo Methods For Static Inference in Bayesian Mixture Analysis
+
+- date: 2008-05-13
+  speaker: Joe Whittaker
+  title: The linear least squares prediction view of conjugate gradients
+
+- date: 2008-03-18
+  speaker: Hongsheng Dai
+  title: Perfect sampling for Random Trees
+
+- date: 2008-03-04
+  speaker: Dennis Prangle
+  title: An MCMC method for Approximate Bayesian Computation
+
+- date: 2008-02-05
+  speaker: Paul Smith
+  title: Bayesian Analysis of ARMA and Transfer Function Time Series Models
+
+# 2007
+- date: 2007-11-28
+  speaker: Chris Sherlock
+  title: Power sums of lognormals
+
+- date: 2007-11-21
+  speaker: Thomas Jaki
+  title: Asymptotic simultaneous bootstrap confidence bounds for simple linear regression lines
+
+- date: 2007-10-31
+  speaker: Paul Fearnhead
+  title: Using particle filters within MCMC
