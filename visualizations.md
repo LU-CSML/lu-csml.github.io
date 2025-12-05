@@ -108,27 +108,37 @@ Visualizes how topics appear together in the same talks.
   var topN = 30; // Increased back slightly for dedicated page
   var topWords = list.slice(0, topN).map(function(item) { return item[0]; });
   
-  // Helper: Color Gradient Function (3-Stop Heat Map)
-  // Low: Grey (#888), Med: Orange (#d35400), High: Brand Red (#b5121b)
-  function getColor(value, min, max) {
-    if (min === max) return '#b5121b';
-    var ratio = (value - min) / (max - min);
-    
-    if (ratio < 0.33) return '#888888';       // Low freq
-    if (ratio < 0.66) return '#d35400';       // Medium (Orange)
-    return '#b5121b';                         // High (Red)
+  // Helper: Categorical Colors (Blue, Purple, Orange, etc.)
+  // Decoupled from frequency (size represents frequency). 
+  // Color represents IDENTITY for visual variety.
+  function getHashColor(word) {
+    // Simple hash function to map a string to an index
+    var hash = 0;
+    for (var i = 0; i < word.length; i++) {
+        hash = word.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    // High-contrast, professional palette
+    var palette = [
+      '#b5121b', // CSML Red
+      '#2980b9', // Strong Blue
+      '#8e44ad', // Purple
+      '#d35400', // Pumpkin Orange
+      '#16a085', // Teal
+      '#2c3e50', // Navy
+      '#c0392b', // Dark Red
+      '#e67e22'  // Carrot
+    ];
+    // Use abs hash to pick a color
+    var index = Math.abs(hash) % palette.length;
+    return palette[index];
   }
 
-  var maxFreq = list[0][1];
-  var minFreq = list[topN-1][1];
-
   var nodes = topWords.map(function(word, index) {
-    var val = frequencyMap[word];
     return { 
       id: index, 
       label: word, 
-      value: val, 
-      color: getColor(val, minFreq, maxFreq)
+      value: frequencyMap[word], // Size = Frequency
+      color: getHashColor(word)  // Color = Identity/Hash
     };
   });
 
@@ -143,15 +153,15 @@ Visualizes how topics appear together in the same talks.
         if (uniqueWords.has(wordA) && uniqueWords.has(wordB)) sharedCount++;
       });
 
-      // Filter: Only show connection if they share MORE THAN 1 talk
-      // Back to strict filtering as requested to reduce density
+      // Filter logic: Only show meaningful connections via thickness
+      // Keeping strict filtering (>1) as per previous success
       if (sharedCount > 1) {
         edges.push({ 
           from: i, 
           to: j, 
           value: sharedCount,
           color: { 
-            inherit: 'both', 
+            inherit: 'both', // Gradient edge between two colors
             opacity: 0.8 
           }
         });
@@ -165,7 +175,7 @@ Visualizes how topics appear together in the same talks.
     nodes: {
       shape: 'dot',
       font: { face: 'Outfit', color: '#333' },
-      scaling: { min: 10, max: 40 }
+      scaling: { min: 15, max: 45 }
     },
     edges: {
       scaling: { min: 1, max: 8 },

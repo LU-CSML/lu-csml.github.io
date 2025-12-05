@@ -17,9 +17,17 @@ title: Past Talks - CSML
     var query = urlParams.get('q');
 
     if (query) {
-      query = query.toLowerCase();
+      // Decode the query to handle spaces/special chars correctly
+      query = decodeURIComponent(query).trim();
       document.getElementById('search-banner').style.display = 'block';
       document.getElementById('search-term').innerText = query;
+
+      // Create a Regex for whole-word matching (case-insensitive)
+      // escapes regex special characters in the query just in case
+      function escapeRegExp(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+      var regex = new RegExp('\\b' + escapeRegExp(query) + '\\b', 'i');
 
       // 2. Filter Table Rows
       var rows = document.querySelectorAll('.talk-table tbody tr');
@@ -32,8 +40,10 @@ title: Past Talks - CSML
         // Skip year headers in this loop, handled separately
         if (row.classList.contains('year-header')) return;
 
-        var text = row.innerText.toLowerCase();
-        if (text.includes(query)) {
+        // Use textContent to include hidden abstract text
+        var text = row.textContent; 
+        
+        if (regex.test(text)) {
           row.style.display = '';
           // Show the year header for this visible row
           var prev = row.previousElementSibling;
