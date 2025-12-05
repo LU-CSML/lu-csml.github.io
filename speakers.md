@@ -4,11 +4,19 @@ title: Speakers
 ---
 
 <h1>Past Speakers</h1>
-<p>There have been {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
+<div class="row mb-4 align-items-center">
+  <div class="col-md-6">
+    <p class="mb-0">There have been {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
+  </div>
+  <div class="col-md-6">
+    <input type="text" id="speaker-search" class="form-control" placeholder="Search speakers...">
+  </div>
+</div>
 
 <div id="speakers-list">
   {% assign speakers = site.data.talks | group_by: "speaker" %}
   {% for speaker in speakers %}
+    {% assign parent_loop_index = forloop.index %}
     <div class="speaker-item card mb-4 zhadow" data-count="{{ speaker.items | size }}">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="m-0" style="font-size: 1.5rem;">{{ speaker.name }}</h3>
@@ -44,16 +52,21 @@ title: Speakers
                        <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
                     {% endif %}
                 {% endif %}
+
+                {% if talk.abstract %}
+                  <button class="badge badge-secondary border-0 toggle-abstract" type="button" data-target="#abstract-{{ forloop.index }}-{{ parent_loop_index }}">
+                    Abstract
+                  </button>
+                {% endif %}
               </div>
             </div>
 
             {% if talk.abstract %}
-              <details class="abstract-toggle mt-2">
-                <summary>Abstract <span class="arrow">▶</span></summary>
-                <div class="abstract-content">
+              <div id="abstract-{{ forloop.index }}-{{ parent_loop_index }}" class="abstract-content collapse mt-2">
+                <div class="card card-body bg-light">
                   {{ talk.abstract | markdownify }}
                 </div>
-              </details>
+              </div>
             {% endif %}
           </li>
         {% endfor %}
@@ -98,5 +111,40 @@ title: Speakers
         badge.title = "3rd Most Talks (Bronze)";
       }
     });
+
+    // Search Functionality
+    var searchInput = document.getElementById('speaker-search');
+    searchInput.addEventListener('keyup', function() {
+      var filter = searchInput.value.toLowerCase();
+      var countVisible = 0;
+      
+      items.forEach(function(item) {
+        var name = item.querySelector('h3').innerText.toLowerCase();
+        if (name.indexOf(filter) > -1) {
+          item.style.display = "";
+          countVisible++;
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+
+    // Abstract Toggle Functionality
+    // Using event delegation for efficiency
+    list.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('toggle-abstract')) {
+        var targetId = e.target.getAttribute('data-target');
+        var content = document.querySelector(targetId);
+        if (content) {
+             // Simple toggle class logic if not using bootstrap.js collapse
+             if (content.classList.contains('show')) {
+                 content.classList.remove('show');
+             } else {
+                 content.classList.add('show');
+             }
+        }
+      }
+    });
+
   });
 </script>

@@ -5,45 +5,53 @@ title: Past Talks - CSML
 
 # Past Talks
 
-<div id="search-banner" class="alert alert-info mb-4" style="display: none;">
-  Showing results for: <strong id="search-term"></strong>
-  <button class="btn btn-sm btn-outline-info ml-3" onclick="window.location.href='{{ '/talks' | relative_url }}'">Clear Search</button>
+<div class="row mb-4 align-items-center">
+  <div class="col-md-6">
+    <div id="search-banner" class="alert alert-info mb-0" style="display: none;">
+      Showing results for: <strong id="search-term"></strong>
+      <button class="btn btn-sm btn-outline-info ml-3" onclick="clearSearch()">Clear Search</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <input type="text" id="talk-search" class="form-control" placeholder="Search talks by title, speaker, or year...">
+  </div>
 </div>
 
 <script>
+  function clearSearch() {
+    window.location.href = "{{ '/talks' | relative_url }}";
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
-    // 1. Parse Query Param
-    var urlParams = new URLSearchParams(window.location.search);
-    var query = urlParams.get('q');
+    var searchInput = document.getElementById('talk-search');
+    var banner = document.getElementById('search-banner');
+    var bannerTerm = document.getElementById('search-term');
+    
+    // Rows and Headers
+    var rows = document.querySelectorAll('.talk-table tbody tr');
+    var yearHeaders = document.querySelectorAll('.year-header');
 
-    if (query) {
-      // Decode the query to handle spaces/special chars correctly
-      query = decodeURIComponent(query).trim();
-      document.getElementById('search-banner').style.display = 'block';
-      document.getElementById('search-term').innerText = query;
-
-      // Create a Regex for whole-word matching (case-insensitive)
-      // escapes regex special characters in the query just in case
-      function escapeRegExp(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    function filterTalks(query) {
+      query = query.trim();
+      
+      if (!query) {
+        // Show all
+        rows.forEach(r => r.style.display = '');
+        return;
       }
-      var regex = new RegExp('\\b' + escapeRegExp(query) + '\\b', 'i');
-
-      // 2. Filter Table Rows
-      var rows = document.querySelectorAll('.talk-table tbody tr');
-      var yearHeaders = document.querySelectorAll('.year-header');
       
       // Hide all year headers initially
       yearHeaders.forEach(el => el.style.display = 'none');
+      
+      // Simple case-insensitive matching (includes partial matches)
+      var lowerQuery = query.toLowerCase();
 
       rows.forEach(function(row) {
-        // Skip year headers in this loop, handled separately
         if (row.classList.contains('year-header')) return;
 
-        // Use textContent to include hidden abstract text
-        var text = row.textContent; 
+        var text = row.textContent.toLowerCase();
         
-        if (regex.test(text)) {
+        if (text.includes(lowerQuery)) {
           row.style.display = '';
           // Show the year header for this visible row
           var prev = row.previousElementSibling;
@@ -59,6 +67,25 @@ title: Past Talks - CSML
         }
       });
     }
+
+    // 1. Check URL Params
+    var urlParams = new URLSearchParams(window.location.search);
+    var qParam = urlParams.get('q');
+
+    if (qParam) {
+      var decoded = decodeURIComponent(qParam).trim();
+      searchInput.value = decoded;
+      banner.style.display = 'block';
+      bannerTerm.innerText = decoded;
+      filterTalks(decoded);
+    }
+
+    // 2. Listen for Input
+    searchInput.addEventListener('keyup', function() {
+      // If user types, hide the "Showing results for: ..." banner from URL param
+      banner.style.display = 'none';
+      filterTalks(searchInput.value);
+    });
   });
 </script>
 
