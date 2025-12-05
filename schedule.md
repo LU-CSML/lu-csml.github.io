@@ -69,14 +69,25 @@ Here is the schedule for the 2025/26 academic year.
             </td>
             <td class="talk-links-col">
               {% if talk.slides %}
-                 [<a href="{{ talk.slides }}">Slides</a>]
+                <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
               {% endif %}
+              
               {% if talk.links %}
                 {% for link in talk.links %}
-                  [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
+                  {% assign link_text_down = link.text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                  {% else %}
+                     <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
+                  {% endif %}
                 {% endfor %}
               {% elsif talk.link %}
-                 [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
+                  {% assign link_text_down = talk.link_text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ talk.link }}" class="badge badge-light text-dark border" target="_blank">{% include icon-arxiv.svg %} arXiv</a>
+                  {% else %}
+                     <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
+                  {% endif %}
               {% endif %}
             </td>
           </tr>
@@ -127,14 +138,25 @@ Here is the schedule for the 2025/26 academic year.
             </td>
             <td class="talk-links-col">
               {% if talk.slides %}
-                 [<a href="{{ talk.slides }}">Slides</a>]
+                <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
               {% endif %}
+              
               {% if talk.links %}
                 {% for link in talk.links %}
-                  [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
+                  {% assign link_text_down = link.text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                  {% else %}
+                     <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
+                  {% endif %}
                 {% endfor %}
               {% elsif talk.link %}
-                 [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
+                  {% assign link_text_down = talk.link_text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ talk.link }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                  {% else %}
+                     <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
+                  {% endif %}
               {% endif %}
             </td>
           </tr>

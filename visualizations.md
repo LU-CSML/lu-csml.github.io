@@ -26,8 +26,8 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 
 Visualizes how topics appear together in the same talks.
 
-- **Node Size/Color**: Frequency of the topic. Darker red = more frequent.
-- **Connections**: Two topics are connected if they appear in the same talk.
+- **Node Size/Color**: Frequency of the topic. Warmer colors (Red) = more frequent.
+- **Connections**: Two topics are connected if they appear in the same talk. **Thicker lines** mean they appear together more often.
 - **Click a node** to filter the talk archive.
 
 <div id="network-container" class="mb-5" style="width: 100%; height: 600px; border: 1px solid #eee; border-radius: 8px; background: #fafafa;"></div>
@@ -78,6 +78,15 @@ Visualizes how topics appear together in the same talks.
   }
   list.sort(function(a, b) { return b[1] - a[1]; });
 
+  // Get top N words
+  var topN = 30;
+  var topList = list.slice(0, topN);
+  var topWords = topList.map(function(item) { return item[0]; });
+  
+  // Find min/max for scaling
+  var maxFreq = topList[0][1];
+  var minFreq = topList[topList.length - 1][1];
+
   // ============================================
   // 2. WORD CLOUD RENDER
   // ============================================
@@ -105,44 +114,29 @@ Visualizes how topics appear together in the same talks.
   // ============================================
   // 3. NETWORK GRAPH RENDER
   // ============================================
-  var topN = 30; // Increased back slightly for dedicated page
-  var topWords = list.slice(0, topN).map(function(item) { return item[0]; });
   
-  // Helper: Categorical Colors (Blue, Purple, Orange, etc.)
-  // Decoupled from frequency (size represents frequency). 
-  // Color represents IDENTITY for visual variety.
-  function getHashColor(word) {
-    // Simple hash function to map a string to an index
-    var hash = 0;
-    for (var i = 0; i < word.length; i++) {
-        hash = word.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    // High-contrast, professional palette
-    var palette = [
-      '#b5121b', // CSML Red
-      '#2980b9', // Strong Blue
-      '#8e44ad', // Purple
-      '#d35400', // Pumpkin Orange
-      '#16a085', // Teal
-      '#2c3e50', // Navy
-      '#c0392b', // Dark Red
-      '#e67e22'  // Carrot
-    ];
-    // Use abs hash to pick a color
-    var index = Math.abs(hash) % palette.length;
-    return palette[index];
+  // Heatmap Color Generator: Orange (#e67e22) to Dark Red (#922b21)
+  function getHeatmapColor(value, min, max) {
+    var diff = max - min;
+    if (diff === 0) diff = 1; // avoid division by zero
+    var ratio = (value - min) / diff; // 0 to 1
+    
+    // Start RGB (Orange: 230, 126, 34)
+    var r1 = 230, g1 = 126, b1 = 34;
+    // End RGB (Dark Red: 146, 43, 33)
+    var r2 = 146, g2 = 43, b2 = 33;
+    
+    var r = Math.round(r1 + ratio * (r2 - r1));
+    var g = Math.round(g1 + ratio * (g2 - g1));
+    var b = Math.round(b1 + ratio * (b2 - b1));
+    
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
-  var nodes = topWords.map(function(word, index) {
-    return { 
-      id: index, 
-      label: word, 
-      value: frequencyMap[word], // Size = Frequency
-      color: getHashColor(word)  // Color = Identity/Hash
-    };
-  });
-
+  // 1. Generate Edges & Track Connected Nodes
   var edges = [];
+  var connectedIndices = new Set();
+
   for (var i = 0; i < topN; i++) {
     for (var j = i + 1; j < topN; j++) {
       var wordA = topWords[i];
@@ -153,46 +147,96 @@ Visualizes how topics appear together in the same talks.
         if (uniqueWords.has(wordA) && uniqueWords.has(wordB)) sharedCount++;
       });
 
-      // Filter logic: Only show meaningful connections via thickness
-      // Keeping strict filtering (>1) as per previous success
-      if (sharedCount > 1) {
+      // Filter: STRICTER threshold (>2) to reduce clutter as requested
+      if (sharedCount > 2) {
         edges.push({ 
           from: i, 
           to: j, 
           value: sharedCount,
-          color: { 
-            inherit: 'both', // Gradient edge between two colors
-            opacity: 0.8 
-          }
+          color: { inherit: 'both', opacity: 0.5 } // More transparent edges
         });
+        connectedIndices.add(i);
+        connectedIndices.add(j);
       }
     }
   }
+
+  // 2. Generate Only Connected Nodes
+  var nodes = [];
+  topWords.forEach(function(word, index) {
+      if (connectedIndices.has(index)) {
+        var val = frequencyMap[word];
+        nodes.push({ 
+          id: index, // Use original index as ID so edges match
+          label: word, 
+          value: val, 
+          color: getHeatmapColor(val, minFreq, maxFreq)
+        });
+      }
+  });
 
   var container = document.getElementById('network-container');
   var data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
   var options = {
     nodes: {
       shape: 'dot',
-      font: { face: 'Outfit', color: '#333' },
-      scaling: { min: 15, max: 45 }
+      font: { 
+        face: 'Outfit', 
+        color: '#333',
+        size: 16
+      },
+      scaling: { 
+        min: 15, 
+        max: 50,
+        label: { enabled: true, min: 14, max: 24 } // Scale labels with nodes
+      }
     },
     edges: {
-      scaling: { min: 1, max: 8 },
-      smooth: { type: 'continuous' }
+      scaling: { min: 1, max: 6 },
+      smooth: { type: 'continuous', roundness: 0.5 }
     },
     physics: {
-      stabilization: false,
-      barnesHut: { gravitationalConstant: -8000, springConstant: 0.01, springLength: 150 }
+      stabilization: {
+        enabled: true,
+        iterations: 1500,
+        updateInterval: 50,
+        onlyDynamicEdges: false,
+        fit: true // Ensure it fits after stabilization
+      },
+      barnesHut: { 
+        gravitationalConstant: -2000, // Reduced repulsion to keep it tighter
+        centralGravity: 0.5, // Stronger pull to center to avoid spread
+        springLength: 80, // Shorter springs to reduce edge length
+        springConstant: 0.04
+      },
+      maxVelocity: 40,
+      minVelocity: 0.5,
+      solver: 'barnesHut'
     },
-    interaction: { hover: true }
+    interaction: { 
+      hover: true,
+      zoomView: true 
+    },
+    layout: {
+      randomSeed: 2 // Deterministic layout
+    }
   };
 
   var network = new vis.Network(container, data, options);
 
   network.on("click", function(params) {
     if (params.nodes.length > 0) {
-      window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(nodes[params.nodes[0]].label);
+      // Find the node object to get the correct label, as params.nodes[0] is the ID
+      var clickedId = params.nodes[0];
+      var clickedNode = nodes.find(n => n.id === clickedId);
+      if (clickedNode) {
+          window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(clickedNode.label);
+      }
     }
+  });
+  
+  // Extra fit after load just in case
+  network.once("stabilizationIterationsDone", function() {
+      network.fit();
   });
 </script>

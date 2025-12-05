@@ -141,17 +141,28 @@ title: Past Talks - CSML
                 {% endif %}
               </td>
               <td class="talk-links-col">
-                {% if talk.slides %}
-                   [<a href="{{ talk.slides }}">Slides</a>]
-                {% endif %}
-                {% if talk.links %}
-                  {% for link in talk.links %}
-                    [<a href="{{ link.url }}">{{ link.text | default: "Link" }}</a>]
-                  {% endfor %}
-                {% elsif talk.link %}
-                   [<a href="{{ talk.link }}">{{ talk.link_text | default: "Link" }}</a>]
-                {% endif %}
-              </td>
+              {% if talk.slides %}
+                <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
+              {% endif %}
+
+              {% if talk.links %}
+                {% for link in talk.links %}
+                  {% assign link_text_down = link.text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                  {% else %}
+                     <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
+                  {% endif %}
+                {% endfor %}
+              {% elsif talk.link %}
+                  {% assign link_text_down = talk.link_text | downcase %}
+                  {% if link_text_down contains 'arxiv' %}
+                     <a href="{{ talk.link }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
+                  {% else %}
+                     <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
+                  {% endif %}
+              {% endif %}
+            </td>
             </tr>
           {% endfor %}
         </tbody>
