@@ -1,0 +1,16 @@
+# Jekyll build output - auto-generated, don't commit
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby/Bundler
+.bundle/
+vendor/
+
+# Backup files
+*.old
+
+# OS files
+.DS_Store
+Thumbs.db
+Old_files/
