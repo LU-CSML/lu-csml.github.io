@@ -15,7 +15,12 @@ Lancaster University CSML is a weekly seminar organized by the Lancaster [Comput
 
 **We meet at 15:00 - 16:00 GMT on Thursdays.** at the [Postgraduate Statistics Centre (PSC), Lecture Theatre](https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354).
 
-### [View 2025/26 Schedule](/schedule)
+{% assign current_year = "now" | date: "%Y" | plus: 0 %}
+{% assign current_month = "now" | date: "%m" | plus: 0 %}
+{% if current_month >= 8 %}{% assign academic_year = current_year %}{% else %}{% assign academic_year = current_year | minus: 1 %}{% endif %}
+{% assign next_year = academic_year | plus: 1 %}
+
+### [View {{ academic_year }}/{{ next_year | slice: 2, 2 }} Schedule](/schedule)
 
 ---
 

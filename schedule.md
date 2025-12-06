@@ -4,39 +4,18 @@ title: Schedule - CSML
 description: View the upcoming schedule for Lancaster University CSML seminar series. See upcoming talks and recent presentations.
 ---
 
-{% comment %}
-Auto-calculate Academic Year:
-
-- If current month >= 8 (August onwards), academic year = current year
-- Otherwise, academic year = previous year
-  This ensures the schedule transitions automatically each August.
-  {% endcomment %}
-
 {% assign current_year = "now" | date: "%Y" | plus: 0 %}
 {% assign current_month = "now" | date: "%m" | plus: 0 %}
-{% if current_month >= 8 %}
-{% assign academic_year = current_year %}
-{% else %}
-{% assign academic_year = current_year | minus: 1 %}
-{% endif %}
+{% if current_month >= 8 %}{% assign academic_year = current_year %}{% else %}{% assign academic_year = current_year | minus: 1 %}{% endif %}
 {% assign next_year = academic_year | plus: 1 %}
 {% assign academic_year_start = academic_year | append: "-08-01" %}
+{% assign current_date = "now" | date: "%Y-%m-%d" %}
 
 # Schedule {{ academic_year }}/{{ next_year | slice: 2, 2 }}
 
 Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} academic year.
 
-{% comment %}
-Date Comparison Note:
-We use string comparison for ISO 8601 dates (YYYY-MM-DD).
-This works correctly because ISO 8601 is lexicographically sortable:
-"2025-01-15" > "2024-12-31" evaluates to true.
-No need for Unix timestamp conversion.
-{% endcomment %}
-
-{% assign current_date = "now" | date: "%Y-%m-%d" %}
-
-<!-- Sort ascending for Upcoming (Next talk first) -->
+<!-- Sort talks -->
 
 {% assign talks_asc = site.data.talks | sort: "date" %}
 
