@@ -601,82 +601,62 @@ Visualizes how topics appear together in the same talks.
         const labelColor = isDarkMode ? '#fff' : '#333';
         const shadowColor = isDarkMode ? '0 0 4px #000, 0 0 4px #000' : '0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff';
         
-        // Labels - positioned with staggering to avoid overlap
-        // Calculate label positions first to check for overlaps
+        // Labels - "Thickest Point" strategy
+        // Find where each stream is actually thickest and place labels there
         const labelPositions = [];
-        const rightBound = width - margin.right - 80; // Leave more space for text
-        
-        series.forEach(function(d, seriesIndex) {
-            // Use staggered x-position based on series index
-            // This spreads labels across the right portion of the chart
-            const targetPercent = 0.4 + (seriesIndex / (series.length - 1)) * 0.35; // 40% to 75% of chart
-            const targetIdx = Math.min(Math.floor(d.length * targetPercent), d.length - 1);
-            
-            // Find the widest point near the target index (within a window)
-            const windowStart = Math.max(0, targetIdx - 2);
-            const windowEnd = Math.min(d.length - 1, targetIdx + 2);
-            
+        const rightBound = width - margin.right; 
+        const leftBound = margin.left;
+
+        series.forEach(function(d) {
+            // 1. Find the absolute widest point for this specific stream
+            // We ignore the very edges (first/last 2 points) to avoid cut-off labels
             let maxDiff = 0;
             let bestPoint = null;
-            
-            for (let i = windowStart; i <= windowEnd; i++) {
+            let bestIdx = -1;
+
+            for (let i = 2; i < d.length - 2; i++) {
                 const diff = d[i][1] - d[i][0];
                 if (diff > maxDiff) {
                     maxDiff = diff;
                     bestPoint = d[i];
+                    bestIdx = i;
                 }
             }
-            
-            // Calculate stream height in pixels
+
+            // 2. Determine Font Size based on the stream thickness
             const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
             
-            // Dynamic font sizing: scale down as more topics are added
-            const topicScaleFactor = Math.max(0.6, 1 - (series.length - 8) * 0.04);
-            let fontSize;
-            if (isCumulative) {
-                fontSize = Math.max(8, Math.min(13, streamHeight * 0.4 * topicScaleFactor));
-            } else {
-                // In standard view, use topic rank (earlier in list = bigger)
-                fontSize = (14 - seriesIndex * 0.5) * topicScaleFactor;
-                fontSize = Math.max(8, Math.min(13, fontSize));
-            }
-            
-            // Only show label if stream is thick enough
-            // Lower threshold for more topics since streams get thinner
-            const baseMinHeight = isCumulative ? 14 : 16;
-            const minHeight = Math.max(8, baseMinHeight - (series.length - 8) * 0.5);
-            
-            if (bestPoint && streamHeight > minHeight) {
-                let px = x(bestPoint.data.year);
-                const py = y((bestPoint[0] + bestPoint[1]) / 2);
-                
-                // Ensure label doesn't go past right bound
-                if (px > rightBound) {
-                    px = rightBound;
-                }
-                
-                // Calculate angle based on stream slope (only for cumulative view)
+            // Scale font size: larger streams get larger text, clamped between 10px and 16px
+            // This helps "Bayesian" pop out more than smaller streams
+            const fontSize = Math.min(16, Math.max(10, streamHeight * 0.3));
+
+            // 3. Visibility Threshold
+            // Only show if the stream is thick enough at its peak
+            if (bestPoint && streamHeight > 12) {
+                const px = x(bestPoint.data.year);
+                const py = y((bestPoint[0] + bestPoint[1]) / 2); // Vertical center
+
+                // 4. Calculate Angle
+                // We look at points slightly further apart (window of +/- 2) 
+                // to get a smoother angle that ignores local jaggedness
                 let angle = 0;
-                if (isCumulative) {
-                    // Find the index of bestPoint in the data
-                    const bestIdx = d.findIndex(p => p === bestPoint);
-                    if (bestIdx >= 0 && bestIdx < d.length - 1) {
-                        // Get current and next point centers
-                        const currentCenter = (d[bestIdx][0] + d[bestIdx][1]) / 2;
-                        const nextCenter = (d[bestIdx + 1][0] + d[bestIdx + 1][1]) / 2;
-                        
-                        // Calculate slope in pixels
-                        const dx = x(d[bestIdx + 1].data.year) - x(d[bestIdx].data.year);
-                        const dy = y(nextCenter) - y(currentCenter);
-                        
-                        // Convert to degrees (dy is negative when going up visually)
-                        angle = Math.atan2(dy, dx) * (180 / Math.PI);
-                        
-                        // Clamp angle to reasonable range (-30 to 30 degrees)
-                        angle = Math.max(-30, Math.min(30, angle));
-                    }
+                if (bestIdx >= 2 && bestIdx < d.length - 2) {
+                    const prev = d[bestIdx - 2];
+                    const next = d[bestIdx + 2];
+                    
+                    const p1 = { x: x(prev.data.year), y: y((prev[0] + prev[1]) / 2) };
+                    const p2 = { x: x(next.data.year), y: y((next[0] + next[1]) / 2) };
+                    
+                    // Calculate angle in degrees
+                    const dy = p2.y - p1.y;
+                    const dx = p2.x - p1.x;
+                    angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                    
+                    // Limit extreme angles so text is always readable
+                    if (angle > 30) angle = 30;
+                    if (angle < -30) angle = -30;
                 }
-                
+
                 labelPositions.push({
                     key: d.key,
                     x: px,
@@ -686,34 +666,32 @@ Visualizes how topics appear together in the same talks.
                     visible: true
                 });
             } else {
-                labelPositions.push({
-                    key: d.key,
-                    x: -9999,
-                    y: -9999,
-                    fontSize: fontSize,
-                    angle: 0,
-                    visible: false
-                });
+                labelPositions.push({ visible: false });
             }
         });
-        
+
         // Draw labels
         svg.selectAll(".stream-label")
             .data(series)
-            .enter().append("text")
+            .join("text") // Use .join() for cleaner D3 updates
             .attr("class", "stream-label")
-            .attr("text-anchor", "start")
+            .attr("text-anchor", "middle") // CHANGED: Center text on the point
             .attr("fill", labelColor)
             .style("pointer-events", "none")
             .style("text-shadow", shadowColor)
             .style("font-weight", "600")
+            .style("font-family", "sans-serif")
             .each(function(d, i) {
                 const pos = labelPositions[i];
-                
-                d3.select(this)
-                    .attr("transform", "translate(" + pos.x + "," + pos.y + ") rotate(" + pos.angle + ")")
-                    .style("font-size", pos.fontSize + "px")
-                    .text(pos.visible ? d.key : "");
+                if (pos && pos.visible) {
+                    d3.select(this)
+                        .attr("transform", `translate(${pos.x},${pos.y}) rotate(${pos.angle})`)
+                        .style("font-size", pos.fontSize + "px")
+                        .text(d.key)
+                        .attr("opacity", 1);
+                } else {
+                    d3.select(this).text("").attr("opacity", 0);
+                }
             });
 
     } catch (e) {
