@@ -405,42 +405,6 @@ Visualizes how topics appear together in the same talks.
     $('#edgeModal').modal('show');
   }
 
-  // Initial Render & Bind Listeners
-  try {
-      renderGraph();
-  } catch(e) { console.error("Network Graph Error:", e); }
-
-  try {
-      renderStreamgraph(); // Render Streamgraph
-  } catch(e) { console.error("Streamgraph Error:", e); }
-  
-  try {
-      if(document.getElementById('nodeRange')) document.getElementById('nodeRange').addEventListener('input', renderGraph);
-      if(document.getElementById('edgeRange')) document.getElementById('edgeRange').addEventListener('input', renderGraph);
-  } catch(e) {}
-  
-  window.addEventListener('resize',  function() {
-      try { renderStreamgraph(); } catch(e){}
-  });
-
-  // Bind Toggle
-  const toggle = document.getElementById('cumulativeToggle');
-  if (toggle) {
-      toggle.addEventListener('change', function(e) {
-          isCumulative = e.target.checked;
-          renderStreamgraph();
-      });
-  }
-
-  // Bind Topic Count Slider
-  const topicCountSlider = document.getElementById('topicCountRange');
-  if (topicCountSlider) {
-      topicCountSlider.addEventListener('input', function(e) {
-          document.getElementById('topicCountVal').innerText = e.target.value;
-          renderStreamgraph();
-      });
-  }
-
   // ============================================
   // 4. STREAMGRAPH LOGIC
   // ============================================
@@ -723,5 +687,10 @@ Visualizes how topics appear together in the same talks.
   document.getElementById('cumulativeToggle').addEventListener('change', function() {
       isCumulative = this.checked;
       renderStreamgraph();
+  });
+
+  // Re-render streamgraph on window resize for responsive behavior
+  window.addEventListener('resize', function() {
+      try { renderStreamgraph(); } catch(e) {}
   });
 </script>
