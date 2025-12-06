@@ -629,18 +629,21 @@ Visualizes how topics appear together in the same talks.
             // Calculate stream height in pixels
             const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
             
-            // Dynamic font sizing: use stream height for cumulative, use topic rank for standard
+            // Dynamic font sizing: scale down as more topics are added
+            const topicScaleFactor = Math.max(0.6, 1 - (series.length - 8) * 0.04);
             let fontSize;
             if (isCumulative) {
-                fontSize = Math.max(9, Math.min(14, streamHeight * 0.4));
+                fontSize = Math.max(8, Math.min(13, streamHeight * 0.4 * topicScaleFactor));
             } else {
                 // In standard view, use topic rank (earlier in list = bigger)
-                fontSize = 14 - seriesIndex * 0.6; // Ranges from ~14 to ~9
-                fontSize = Math.max(9, Math.min(14, fontSize));
+                fontSize = (14 - seriesIndex * 0.5) * topicScaleFactor;
+                fontSize = Math.max(8, Math.min(13, fontSize));
             }
             
             // Only show label if stream is thick enough
-            const minHeight = isCumulative ? 18 : 20;
+            // Lower threshold for more topics since streams get thinner
+            const baseMinHeight = isCumulative ? 14 : 16;
+            const minHeight = Math.max(8, baseMinHeight - (series.length - 8) * 0.5);
             
             if (bestPoint && streamHeight > minHeight) {
                 let px = x(bestPoint.data.year);

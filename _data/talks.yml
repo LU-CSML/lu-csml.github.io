@@ -836,8 +836,8 @@
 - date: 2011-03-15
   speaker: Paul Fearnhead
   title: "Reading group on “An explicit link between Gaussian fields and Gaussian Markov random fields: The SPDE approach”"
-  link: http://www.math.ntnu.no/inla/r-inla.org/papers/spde-jrssb.pdf
-  link_text: Preprint
+  link: https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1467-9868.2011.00777.x
+  link_text: RSS
 
 - date: 2011-02-15
   speaker: Neil Drummond
@@ -893,8 +893,8 @@
   speaker: Chris Sherlock
   affiliation: Reading Group
   title: The Integrated Nested Laplace Approximation of Rue et al. (2009)
-  link: http://www3.interscience.wiley.com/journal/118490742/home?CRETRY=1&SRETRY=0
-  link_text: Link to Rue Martino and Chopin (2009)
+  link: https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1467-9868.2008.00700.x
+  link_text: RSS
 
 # 2008
 - date: 2008-12-02
