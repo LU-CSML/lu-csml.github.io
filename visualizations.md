@@ -26,7 +26,14 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
 
 <!-- Streamgraph Container -->
-<div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px; background: #f9f9f9;"></div>
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <span class="text-muted">Interactive Streamgraph</span>
+  <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="cumulativeToggle">
+    <label class="custom-control-label" for="cumulativeToggle">Cumulative View</label>
+  </div>
+</div>
+<div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px;"></div>
 
 ---
 
@@ -77,7 +84,6 @@ Visualizes how topics appear together in the same talks.
 <script src="https://d3js.org/d3.v6.min.js"></script>
 
 <script>
-  console.log("DEBUG: Main script starting...");
   // ============================================
   // 1. DATA PREPARATION (Liquid -> JS)
   // ============================================
@@ -167,6 +173,7 @@ Visualizes how topics appear together in the same talks.
   // ============================================
   var container = document.getElementById('network-container');
   var network = null;
+  let isCumulative = false;
 
   function getHeatmapColor(value, min, max) {
     var diff = max - min;
@@ -405,9 +412,20 @@ Visualizes how topics appear together in the same talks.
       try { renderStreamgraph(); } catch(e){}
   });
 
+  // Bind Toggle
+  const toggle = document.getElementById('cumulativeToggle');
+  if (toggle) {
+      toggle.addEventListener('change', function(e) {
+          isCumulative = e.target.checked;
+          renderStreamgraph();
+      });
+  }
+
   // ============================================
   // 4. STREAMGRAPH LOGIC
   // ============================================
+
+
   function renderStreamgraph() {
     // Check D3
     if (typeof d3 === 'undefined') {
@@ -476,10 +494,19 @@ Visualizes how topics appear together in the same talks.
         }
 
         // 3. Prepare Data for D3 Stack
+        let runningTotals = {};
+        topTopicList.forEach(t => runningTotals[t] = 0);
+
         const data = years.map(function(y) {
            const obj = { year: new Date(y, 0, 1) };
            topTopicList.forEach(function(topic) {
-               obj[topic] = yearMap[y][topic] || 0;
+               let val = yearMap[y][topic] || 0;
+               if (isCumulative) {
+                   runningTotals[topic] += val;
+                   obj[topic] = runningTotals[topic];
+               } else {
+                   obj[topic] = val;
+               }
            });
            return obj;
         });
@@ -487,7 +514,7 @@ Visualizes how topics appear together in the same talks.
         // 4. D3 Stack
         const stack = d3.stack()
             .keys(topTopicList)
-            .offset(d3.stackOffsetSilhouette)
+            .offset(isCumulative ? d3.stackOffsetNone : d3.stackOffsetSilhouette)
             .order(d3.stackOrderNone);
 
         const series = stack(data);
@@ -545,6 +572,7 @@ Visualizes how topics appear together in the same talks.
             .style("pointer-events", "none")
             .text(function(d) { return d.key; })
             .attr("transform", function(d) {
+                // Determine label position based on largest area width
                 let maxDiff = 0;
                 let bestPoint = null;
                 d.forEach(function(p) {
@@ -554,13 +582,16 @@ Visualizes how topics appear together in the same talks.
                         bestPoint = p;
                     }
                 });
-                if (bestPoint) {
+                
+                // Only show label if the area is thick enough
+                if (bestPoint && maxDiff > (isCumulative ? (d3.max(data, d => d[d.key] || 0) * 0.05) : 3)) { 
                     const px = x(bestPoint.data.year);
                     const py = y((bestPoint[0] + bestPoint[1]) / 2);
                     return "translate(" + px + "," + py + ")";
                 }
-                return "translate(0,0)";
+                return "translate(-9999, -9999)"; // Hide if too small
             });
+
     } catch (e) {
         console.error(e);
         container.innerHTML = '<p class="text-danger p-3">Error rendering streamgraph: ' + e.message + '</p>';
