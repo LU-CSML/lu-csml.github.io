@@ -58,7 +58,7 @@ description: Explore our speaker leaderboard featuring researchers who have pres
     {% if speaker.items.size >= 3 %}
       {% assign should_collapse = true %}
     {% endif %}
-    <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ speaker.items | size }}">
+    <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ speaker.items | size }}" data-speaker-name="{{ speaker.name }}">
       <div class="card-header d-flex justify-content-between align-items-center speaker-header">
         <h3 class="m-0" style="font-size: 1.5rem;">
           {{ speaker.name }}
@@ -238,7 +238,8 @@ description: Explore our speaker leaderboard featuring researchers who have pres
       var countVisible = 0;
       
       items.forEach(function(item) {
-        var name = item.querySelector('h3').innerText.toLowerCase();
+        // Use data attribute for robust search (not affected by HTML structure changes)
+        var name = (item.getAttribute('data-speaker-name') || '').toLowerCase();
         if (name.indexOf(filter) > -1) {
           item.style.display = "";
           countVisible++;
