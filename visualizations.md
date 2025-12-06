@@ -3,8 +3,6 @@ layout: default
 title: Data Visualization
 ---
 
-# Research Topic Our Research
-
 Explore the research landscape of the Computational Statistics and Machine Learning (CSML) group.
 
 ---
@@ -121,8 +119,8 @@ Visualizes how topics appear together in the same talks.
   var wordCloudColors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
   var talksUrl = "{{ '/talks' | relative_url }}";
   
-  // Limit to 50 words - matches what actually fits on canvas
-  var wordCloudList = list.slice(0, 50);
+  // Limit to 100 words for rich visual appearance
+  var wordCloudList = list.slice(0, 100);
 
   WordCloud(canvas, {
     list: wordCloudList,
@@ -194,12 +192,12 @@ Visualizes how topics appear together in the same talks.
         for (var j = i + 1; j < topN; j++) {
             var wordA = topWords[i];
             var wordB = topWords[j];
-            
-            // Retrieve talk indices from inverted index
+          
+          // Retrieve talk indices from inverted index
             var talksWithA = invertedIndex[wordA] || [];
             var talksWithB = invertedIndex[wordB] || [];
-            
-            // Find intersection (talks containing both words)
+          
+          // Find intersection (talks containing both words)
             var sharedTalkIndices = talksWithA.filter(function(id) {
                 return talksWithB.includes(id);
             });
@@ -216,8 +214,8 @@ Visualizes how topics appear together in the same talks.
                 });
                 connectedIndices.add(i);
                 connectedIndices.add(j);
-              
-                // Store shared talk indices for modal display
+            
+              // Store shared talk indices for modal display
                 edgeMetaData[edgeId] = { 
                     wordA: wordA, 
                     wordB: wordB, 
@@ -311,8 +309,8 @@ Visualizes how topics appear together in the same talks.
   function showEdgeModal(wordA, wordB) {
       var modalTitle = document.getElementById('edgeModalLabel');
       var modalBody = document.getElementById('edgeModalBody');
-    
-      modalTitle.innerText = 'Talks featuring "' + wordA + '" + "' + wordB + '"';
+  
+    modalTitle.innerText = 'Talks featuring "' + wordA + '" + "' + wordB + '"';
       modalBody.innerHTML = ''; // Clear previous
 
       // Use div instead of ul for clickable links
@@ -328,8 +326,8 @@ Visualizes how topics appear together in the same talks.
               listGroup.appendChild(a);
           }
       });
-    
-      modalBody.appendChild(listGroup);
+  
+    modalBody.appendChild(listGroup);
       $('#edgeModal').modal('show');
   }
 
