@@ -26,11 +26,15 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
 
 <!-- Streamgraph Container -->
-<div class="d-flex justify-content-between align-items-center mb-2">
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
   <span class="text-muted">Interactive Streamgraph</span>
-  <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="cumulativeToggle">
-    <label class="custom-control-label" for="cumulativeToggle">Cumulative View</label>
+  <div class="d-flex align-items-center">
+    <label for="topicCountRange" class="mb-0 mr-2 text-muted" style="font-size: 0.9em;">Topics: <span id="topicCountVal">8</span></label>
+    <input type="range" class="custom-range mr-3" id="topicCountRange" min="5" max="20" value="8" style="width: 80px;" aria-label="Select number of topics to display">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="cumulativeToggle">
+      <label class="custom-control-label" for="cumulativeToggle">Cumulative View</label>
+    </div>
   </div>
 </div>
 <div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px;"></div>
@@ -421,6 +425,15 @@ Visualizes how topics appear together in the same talks.
       });
   }
 
+  // Bind Topic Count Slider
+  const topicCountSlider = document.getElementById('topicCountRange');
+  if (topicCountSlider) {
+      topicCountSlider.addEventListener('input', function(e) {
+          document.getElementById('topicCountVal').innerText = e.target.value;
+          renderStreamgraph();
+      });
+  }
+
   // ============================================
   // 4. STREAMGRAPH LOGIC
   // ============================================
@@ -482,10 +495,13 @@ Visualizes how topics appear together in the same talks.
           });
         });
         
+        // Get topic count from slider
+        const topicCount = parseInt(document.getElementById('topicCountRange')?.value || 8);
+        
         const topTopicList = Object.keys(overallFreq)
            .map(function(w) { return [w, overallFreq[w]]; })
            .sort(function(a,b) { return b[1] - a[1]; })
-           .slice(0, 8)
+           .slice(0, topicCount)
            .map(function(item) { return item[0]; });
 
         if (topTopicList.length === 0) {
@@ -635,11 +651,34 @@ Visualizes how topics appear together in the same talks.
                     px = rightBound;
                 }
                 
+                // Calculate angle based on stream slope (only for cumulative view)
+                let angle = 0;
+                if (isCumulative) {
+                    // Find the index of bestPoint in the data
+                    const bestIdx = d.findIndex(p => p === bestPoint);
+                    if (bestIdx >= 0 && bestIdx < d.length - 1) {
+                        // Get current and next point centers
+                        const currentCenter = (d[bestIdx][0] + d[bestIdx][1]) / 2;
+                        const nextCenter = (d[bestIdx + 1][0] + d[bestIdx + 1][1]) / 2;
+                        
+                        // Calculate slope in pixels
+                        const dx = x(d[bestIdx + 1].data.year) - x(d[bestIdx].data.year);
+                        const dy = y(nextCenter) - y(currentCenter);
+                        
+                        // Convert to degrees (dy is negative when going up visually)
+                        angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                        
+                        // Clamp angle to reasonable range (-30 to 30 degrees)
+                        angle = Math.max(-30, Math.min(30, angle));
+                    }
+                }
+                
                 labelPositions.push({
                     key: d.key,
                     x: px,
                     y: py,
                     fontSize: fontSize,
+                    angle: angle,
                     visible: true
                 });
             } else {
@@ -648,6 +687,7 @@ Visualizes how topics appear together in the same talks.
                     x: -9999,
                     y: -9999,
                     fontSize: fontSize,
+                    angle: 0,
                     visible: false
                 });
             }
@@ -667,7 +707,7 @@ Visualizes how topics appear together in the same talks.
                 const pos = labelPositions[i];
                 
                 d3.select(this)
-                    .attr("transform", "translate(" + pos.x + "," + pos.y + ")")
+                    .attr("transform", "translate(" + pos.x + "," + pos.y + ") rotate(" + pos.angle + ")")
                     .style("font-size", pos.fontSize + "px")
                     .text(pos.visible ? d.key : "");
             });
