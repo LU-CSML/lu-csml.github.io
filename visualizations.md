@@ -106,11 +106,11 @@ Visualizes how topics appear together in the same talks.
   {% endfor %}
   ];
 
-  // Stopwords loaded from _data/stopwords.yml (single source of truth)
-  var stopWords = new Set([
-  {% for word in site.data.stopwords.english %}"{{ word }}"{% unless forloop.last %}, {% endunless %}{% endfor %},
-  {% for word in site.data.stopwords.academic %}"{{ word }}"{% unless forloop.last %}, {% endunless %}{% endfor %}
-  ]);
+  // Stopwords loaded from _data/stopwords.yml (using jsonify for safe injection)
+  var stopWords = new Set(
+    {{ site.data.stopwords.english | jsonify }}
+    .concat({{ site.data.stopwords.academic | jsonify }})
+  );
 
   var frequencyMap = {};
   
@@ -711,17 +711,17 @@ Visualizes how topics appear together in the same talks.
   // ============================================
   // Render graphs on page load
   renderGraph();
-  renderStreamGraph();
+  renderStreamgraph();
 
   // Re-render on input changes
   document.getElementById('nodeRange').addEventListener('input', renderGraph);
   document.getElementById('edgeRange').addEventListener('input', renderGraph);
   document.getElementById('topicCountRange').addEventListener('input', function() {
       document.getElementById('topicCountVal').innerText = this.value;
-      renderStreamGraph();
+      renderStreamgraph();
   });
   document.getElementById('cumulativeToggle').addEventListener('change', function() {
       isCumulative = this.checked;
-      renderStreamGraph();
+      renderStreamgraph();
   });
 </script>
