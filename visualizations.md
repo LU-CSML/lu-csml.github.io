@@ -579,51 +579,97 @@ Visualizes how topics appear together in the same talks.
           .attr("transform", "translate(0," + (height - margin.bottom) + ")")
           .call(d3.axisBottom(x).ticks(Math.min(years.length, 12)));
           
-        // Labels - positioned in the right third of the chart with dynamic sizing
+        // Detect dark mode
+        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const labelColor = isDarkMode ? '#fff' : '#333';
+        const shadowColor = isDarkMode ? '0 0 4px #000, 0 0 4px #000' : '0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff';
+        
+        // Labels - positioned with staggering to avoid overlap
+        // Calculate label positions first to check for overlaps
+        const labelPositions = [];
+        const rightBound = width - margin.right - 80; // Leave more space for text
+        
+        series.forEach(function(d, seriesIndex) {
+            // Use staggered x-position based on series index
+            // This spreads labels across the right portion of the chart
+            const targetPercent = 0.4 + (seriesIndex / (series.length - 1)) * 0.35; // 40% to 75% of chart
+            const targetIdx = Math.min(Math.floor(d.length * targetPercent), d.length - 1);
+            
+            // Find the widest point near the target index (within a window)
+            const windowStart = Math.max(0, targetIdx - 2);
+            const windowEnd = Math.min(d.length - 1, targetIdx + 2);
+            
+            let maxDiff = 0;
+            let bestPoint = null;
+            
+            for (let i = windowStart; i <= windowEnd; i++) {
+                const diff = d[i][1] - d[i][0];
+                if (diff > maxDiff) {
+                    maxDiff = diff;
+                    bestPoint = d[i];
+                }
+            }
+            
+            // Calculate stream height in pixels
+            const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
+            
+            // Dynamic font sizing: use stream height for cumulative, use topic rank for standard
+            let fontSize;
+            if (isCumulative) {
+                fontSize = Math.max(9, Math.min(14, streamHeight * 0.4));
+            } else {
+                // In standard view, use topic rank (earlier in list = bigger)
+                fontSize = 14 - seriesIndex * 0.6; // Ranges from ~14 to ~9
+                fontSize = Math.max(9, Math.min(14, fontSize));
+            }
+            
+            // Only show label if stream is thick enough
+            const minHeight = isCumulative ? 18 : 20;
+            
+            if (bestPoint && streamHeight > minHeight) {
+                let px = x(bestPoint.data.year);
+                const py = y((bestPoint[0] + bestPoint[1]) / 2);
+                
+                // Ensure label doesn't go past right bound
+                if (px > rightBound) {
+                    px = rightBound;
+                }
+                
+                labelPositions.push({
+                    key: d.key,
+                    x: px,
+                    y: py,
+                    fontSize: fontSize,
+                    visible: true
+                });
+            } else {
+                labelPositions.push({
+                    key: d.key,
+                    x: -9999,
+                    y: -9999,
+                    fontSize: fontSize,
+                    visible: false
+                });
+            }
+        });
+        
+        // Draw labels
         svg.selectAll(".stream-label")
             .data(series)
             .enter().append("text")
             .attr("class", "stream-label")
             .attr("text-anchor", "start")
-            .attr("fill", "#333")
+            .attr("fill", labelColor)
             .style("pointer-events", "none")
-            .style("text-shadow", "0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff")
+            .style("text-shadow", shadowColor)
             .style("font-weight", "600")
-            .each(function(d) {
-                // Find best position in right third of data
-                const startIdx = Math.floor(d.length * 0.65);
-                let maxDiff = 0;
-                let bestPoint = null;
+            .each(function(d, i) {
+                const pos = labelPositions[i];
                 
-                for (let i = startIdx; i < d.length; i++) {
-                    const diff = d[i][1] - d[i][0];
-                    if (diff > maxDiff) {
-                        maxDiff = diff;
-                        bestPoint = d[i];
-                    }
-                }
-                
-                // Calculate stream height in pixels
-                const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
-                
-                // Dynamic font sizing based on stream height - more aggressive scaling
-                const fontSize = Math.max(8, Math.min(16, streamHeight * 0.5));
-                
-                // Only show label if stream is thick enough
-                const minHeight = isCumulative ? 20 : 25;
-                
-                if (bestPoint && streamHeight > minHeight) {
-                    const px = x(bestPoint.data.year);
-                    const py = y((bestPoint[0] + bestPoint[1]) / 2);
-                    
-                    d3.select(this)
-                        .attr("transform", "translate(" + px + "," + py + ")")
-                        .style("font-size", fontSize + "px")
-                        .style("font-weight", fontSize > 11 ? "600" : "400")
-                        .text(d.key);
-                } else {
-                    d3.select(this).attr("transform", "translate(-9999, -9999)");
-                }
+                d3.select(this)
+                    .attr("transform", "translate(" + pos.x + "," + pos.y + ")")
+                    .style("font-size", pos.fontSize + "px")
+                    .text(pos.visible ? d.key : "");
             });
 
     } catch (e) {
