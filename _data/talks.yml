@@ -6,7 +6,59 @@
 #     title: Talk Title
 #     links: URL (optional)
 #     link_text: arXiv/NeurIPS/etc (optional)
+# 2026
 
+# External Speakers
+# Alexander Heinlein: Wrote to ask if he want sonline
+# Paula coredero
+# - date: 2026-06-04
+#   speaker: Tiffany Vlaar
+#   affiliation: University of Glasgow
+#   title:
+#   abstract:
+
+# - date: 2026-05-28
+#   speaker: Edwin Fong
+#   affiliation: University of Hong Kong
+#   title: Quantile Martingale Posteriors
+#   abstract: "In this talk, we introduce a novel Bayesian nonparametric method for quantile estimation/regression based on the martingale posterior (MP) framework. The core idea of the MP is that posterior sampling is equivalent to predictive imputation, which allows us to break free of the stringent likelihood-prior specification. We demonstrate that a recursive estimate of a smooth quantile function, subject to a martingale condition, is entirely sufficient for full nonparametric Bayesian inference. We term the resulting posterior distribution as the quantile martingale posterior (QMP), which arises from an implicit generative predictive distribution. Associated with the QMP is an expedient, MCMC-free and parallelizable posterior computation scheme, which can be further accelerated with an asymptotic approximation based on a Gaussian process. Furthermore, the well-known issue of monotonicity in quantile estimation is naturally alleviated through increasing rearrangement due to the connections to the Bayesian bootstrap, and the QMP has a particularly tractable form that allows for comprehensive theoretical study."
+#   link: https://arxiv.org/abs/2406.03358
+#   link_text: arXiv
+
+# - date: 2026-04-30
+#   speaker: Masha Naslidnyk
+#   affiliation: University College London
+#   title: Kernel Quantile Embeddings and Associated Probability Metrics
+#   abstract: Embedding probability distributions into reproducing kernel Hilbert spaces (RKHS) has enabled powerful non-parametric methods such as the maximum mean discrepancy (MMD), a statistical distance with strong theoretical and computational properties. At its core, the MMD relies on kernel mean embeddings (KMEs) to represent distributions as mean functions in RKHS . However, it remains unclear if the mean function is the only meaningful RKHS representation. Inspired by generalised quantiles, we introduce the notion of kernel quantile embeddings (KQEs), along with a consistent estimator. We then use KQEs to construct a family of distances that (i) are probability metrics under weaker kernel conditions than MMD ;(ii) recover a kernelised form of the sliced Wasserstein distance; and(iii) can be efficiently estimated with near-linear cost. Through hypothesis testing, we show that these distances offer a competitive alternative to MMD and its fast approximations. Our findings demonstrate the value of representing distributions in Hilbert space beyond simple mean functions, paving the way for new avenues of research.
+#   link: https://arxiv.org/abs/2505.20433
+#   link_text: arXiv
+
+# - date: 2026-02-26
+#   speaker: Jonas Latz
+#   affiliation: University of Manchester
+#   title: Sparse Techniques for Regression in Deep Gaussian Processes
+#   abstract: Gaussian processes (GPs) have gained popularity as flexible machine learning models for regression and function approximation with an in-built method for uncertainty quantification. GPs suffer when the amount of training data is large or when the underlying function contains multiscale features that are difficult to represent by an isotropic kernel. The training of GPs with large scale data is often performed through inducing point approximations (also known as sparse GP regression), where the size of the covariance matrices in GP regression is reduced considerably through a greedy search on the data set. Deep Gaussian processes have recently been introduced as hierarchical models that resolve multi-scale features by composing multiple Gaussian processes. Whilst GPs can be trained through a simple analytical formula, deep GPs require a sampling or, more usual, a variational approximation. Variational approximations lead to large-scale stochastic, non-convex optimisation problems and the resulting approximation tends to represent uncertainty incorrectly. In this work, we combine variational learning with MCMC to develop a particle-based expectation-maximisation method to simultaneously find inducing points within the large-scale data (variationally) and accurately train the Gaussian processes (sampling-based). The result is a highly efficient and accurate methodology for deep GP training on large scale data. We test the method on standard benchmark problems. Joint work with Aretha Teckentrup and Simon Urbainczyk.
+#   links:
+#     - url: https://iopscience.iop.org/article/10.1088/1361-6420/add9be
+#       text: Paper 1
+#     - url: https://arxiv.org/abs/2505.11355
+#       text: Paper 2
+
+# - date: 2026-01-29
+#   speaker: William Laplante
+#   affiliation: University College London
+#   title: Conjugate Generalised Bayesian Inference for Discrete Doubly Intractable Problems
+#   abstract: Doubly intractable problems occur when both the likelihood and the posterior are available only in unnormalised form, with computationally intractable normalisation constants. Bayesian inference then typically requires direct approximation of the posterior through specialised and typically expensive MCMC methods. In this paper, we provide a computationally efficient alternative in the form of a novel generalised Bayesian posterior that allows for conjugate inference within the class of exponential family models for discrete data. We derive theoretical guarantees to characterise the asymptotic behaviour of the generalised posterior, supporting its use for inference. The method is evaluated on a range of challenging intractable exponential family models, including the Conway-Maxwell-Poisson graphical model of multivariate count data, autoregressive discrete time series models, and Markov random fields such as the Ising and Potts models. The computational gains are significant; in our experiments, the method is between 10 and 6000 times faster than state-of-the-art Bayesian computational methods.
+#   link: https://arxiv.org/abs/2511.23275
+#   link_text: arXiv
+
+# - date: 2026-01-15
+#   speaker: Hefin Lambley
+#   title: Autoencoders in function space
+#   affiliation: University of Warwick
+#   abstract: We propose function-space versions of autoencoders—machine-learning methods for dimension reduction and generative modelling—in both their deterministic (FAE) and variational (FVAE) forms. Formulating autoencoder objectives in function space enables training and evaluation with data discretised at arbitrary resolutions, leading to new applications such as inpainting, superresolution, and generative modelling. We discuss the technical challenges of formulating autoencoders in infinite dimension. A key issue is that FVAE's variational inference is often ill defined, unlike in finite dimensions, limiting its applicability. We then explore specific problem classes where FVAE remains useful. We contrast this with the FAE objective, which remains well defined in many situations where FVAE fails, making it a robust and versatile alternative. We demonstrate both methods on scientific data sets, including Navier--Stokes fluid flow simulations. This is joint work with Justin Bunker and Mark Girolami (Cambridge), Andrew M. Stuart (Caltech) and T. J. Sullivan (Warwick).
+#   link: https://arxiv.org/abs/2408.01362
+#   link_text: arXiv
 # 2025
 - date: 2025-12-11
   speaker: Zheyang Shen
