@@ -134,7 +134,7 @@ Visualizes how topics appear together in the same talks.
     backgroundColor: '#ffffff',
     drawOutOfBound: false,
     click: function(item) {
-      window.location.href = talksUrl + "?q=" + encodeURIComponent(item[0]);
+      showWordModal(item[0]);
     }
   });
 
@@ -329,6 +329,37 @@ Visualizes how topics appear together in the same talks.
   
     modalBody.appendChild(listGroup);
       $('#edgeModal').modal('show');
+  }
+
+  function showWordModal(word) {
+    var modalTitle = document.getElementById('edgeModalLabel');
+    var modalBody = document.getElementById('edgeModalBody');
+    
+    modalTitle.innerText = 'Talks featuring "' + word + '"';
+    modalBody.innerHTML = '';
+
+    var listGroup = document.createElement('div');
+    listGroup.className = 'list-group';
+
+    var count = 0;
+    rawTalks.forEach(function(talk) {
+      if (talk.cleanWords.has(word)) {
+        count++;
+        var a = document.createElement('a');
+        a.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(talk.title);
+        a.className = 'list-group-item list-group-item-action';
+        a.innerHTML = '<strong>' + talk.date + '</strong> (' + talk.speaker + ')<br/>' + talk.title;
+        listGroup.appendChild(a);
+      }
+    });
+    
+    if (count === 0) {
+      modalBody.innerHTML = '<p class="text-muted">No talks found for this topic.</p>';
+    } else {
+      modalBody.appendChild(listGroup);
+    }
+    
+    $('#edgeModal').modal('show');
   }
 
   // Initial Render & Bind Listeners
