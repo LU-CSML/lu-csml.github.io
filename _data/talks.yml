@@ -153,7 +153,7 @@
   speaker: Claire Gormley
   affiliation: University College Dublin
   title: Bayesian nonparametric modelling of network data
-  slides: https://arxiv.org/pdf/2211.13034
+  arxiv: https://arxiv.org/pdf/2211.13034
 
 - date: 2024-06-13
   speaker: Saifuddin Syed
@@ -165,22 +165,22 @@
 - date: 2024-06-06
   speaker: Rui Zhang
   title: Unadjusted Barker as an SDE Numerical Scheme
-  slides: https://arxiv.org/pdf/2405.14373
+  arxiv: https://arxiv.org/pdf/2405.14373
 
 - date: 2024-05-16
   speaker: Wentao Li
   title: Optimal combination of composite likelihoods using approximate Bayesian computation with application to state-space models
-  slides: https://arxiv.org/pdf/2404.02313
+  arxiv: https://arxiv.org/pdf/2404.02313
 
 - date: 2024-05-09
   speaker: Gabriel Wallin
   title: Rotation to Sparse Loadings using Lp Losses and Related Inference Problems
-  slides: https://arxiv.org/pdf/2206.02263
+  arxiv: https://arxiv.org/pdf/2206.02263
 
 - date: 2024-04-11
   speaker: François-Xavier Briol
   title: Robust and conjugate Gaussian process regression
-  slides: https://arxiv.org/pdf/2311.00463.pdf
+  arxiv: https://arxiv.org/pdf/2311.00463.pdf
 
 - date: 2024-03-21
   speaker: Leandro Marcolino
@@ -209,12 +209,12 @@
 - date: 2024-02-08
   speaker: Estevão Prado
   title: Accounting for shared covariates in semi-parametric Bayesian additive regression trees
-  slides: https://arxiv.org/pdf/2108.07636.pdf
+  arxiv: https://arxiv.org/pdf/2108.07636.pdf
 
 - date: 2024-02-01
   speaker: Lorenzo Rimella
   title: A State-Space Perspective on Modelling and Inference for Online Skill Rating
-  slides: https://arxiv.org/pdf/2308.02414.pdf
+  arxiv: https://arxiv.org/pdf/2308.02414.pdf
 
 # 2023
 - date: 2023-12-14
@@ -230,7 +230,7 @@
 - date: 2023-11-30
   speaker: Lorenzo Rimella
   title: Simulation Based Composite Likelihood
-  slides: https://arxiv.org/pdf/2310.10761.pdf
+  arxiv: https://arxiv.org/pdf/2310.10761.pdf
 
 - date: 2023-11-23
   speaker: Andy Wang
@@ -243,7 +243,7 @@
 - date: 2023-11-09
   speaker: Chris Nemeth
   title: Bayesian Flow Networks
-  slides: https://arxiv.org/pdf/2308.07037.pdf
+  arxiv: https://arxiv.org/pdf/2308.07037.pdf
 
 - date: 2023-11-02
   speaker: Aretha Teckentrup
@@ -275,7 +275,7 @@
   speaker: Alice Corbella
   affiliation: University of Warwick
   title: The Lifebelt Particle Filter for robust estimation from low-valued count data
-  slides: https://arxiv.org/pdf/2212.04400.pdf
+  arxiv: https://arxiv.org/pdf/2212.04400.pdf
 
 - date: 2023-06-08
   speaker: Francesca Panero
@@ -287,9 +287,11 @@
 - date: 2023-05-18
   speaker: Lorenzo Rimella
   title: "Localised filtering algorithm: the BPF and the Graph Filter"
-  slides: https://arxiv.org/pdf/1301.6585.pdf
-  link: https://www.jmlr.org/papers/volume23/19-267/19-267.pdf
-  link_text: Graph Filter
+  links:
+    -url: https://arxiv.org/pdf/1301.6585.pdf
+    text: arXiv
+    -url: https://www.jmlr.org/papers/volume23/19-267/19-267.pdf
+    text: JMLR
 
 - date: 2023-05-11
   speaker: Francesca Crucinio
@@ -312,7 +314,7 @@
   speaker: Victor Elvira
   affiliation: University of Edinburgh
   title: State-Space Models as Graphs
-  slides: https://arxiv.org/pdf/2209.09969.pdf
+  arxiv: https://arxiv.org/pdf/2209.09969.pdf
 
 - date: 2023-02-16
   speaker: Sam Livingstone
@@ -324,20 +326,22 @@
 - date: 2023-01-26
   speaker: Estevao Batista Do Prado
   title: Bayesian additive regression trees (BART)
-  slides: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1998.10473750
-  link: https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-1/BART-Bayesian-additive-regression-trees/10.1214/09-AOAS285.full
-  link_text: Ann. Appl. Stat.
+  links:
+     -url: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1998.10473750
+     text: JASA
+     -url: https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-1/BART-Bayesian-additive-regression-trees/10.1214/09-AOAS285.full
+     text: Ann. Appl. Stat.
 
 - date: 2023-01-19
   speaker: Alberto Cabezas Gonzalez
   title: Stereographic Markov Chain Monte Carlo
-  slides: https://arxiv.org/pdf/2205.12112.pdf
+  arxiv: https://arxiv.org/pdf/2205.12112.pdf
 
 - date: 2023-01-12
   speaker: Alexander Terenin
   affiliation: University of Cambridge
   title: Pathwise Conditioning and Non-Euclidean Gaussian Processes
-  slides: https://arxiv.org/pdf/2202.10613.pdf
+  arxiv: https://arxiv.org/pdf/2202.10613.pdf
 
 # 2022
 - date: 2022-12-15
@@ -674,9 +678,11 @@
 - date: 2015-11-26
   speaker: Paul Fearnhead
   title: "Discussion of “The Bouncy Particle Sampler: A Non-Reversible Rejection-Free Markov Chain Monte Carlo Method”"
-  slides: http://arxiv.org/pdf/1509.03808.pdf
-  link: http://arxiv.org/abs/1510.02451
-  link_text: arXiv
+  links:
+    -url: http://arxiv.org/pdf/1509.03808.pdf
+    text: arXiv
+    -url: http://arxiv.org/abs/1510.02451
+    text: arXiv
 
 - date: 2015-10-15
   speaker: James Hensman
