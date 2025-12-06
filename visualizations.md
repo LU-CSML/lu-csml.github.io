@@ -442,7 +442,7 @@ Visualizes how topics appear together in the same talks.
         container.innerHTML = ''; // Clear
         const width = container.offsetWidth;
         const height = 400;
-        const margin = {top: 20, right: 0, bottom: 30, left: 40};
+        const margin = {top: 20, right: 60, bottom: 30, left: 40}; // Increased right margin
 
         // 1. Process Data: Group by Year
         const yearMap = {}; // year -> { word -> count }
@@ -547,49 +547,92 @@ Visualizes how topics appear together in the same talks.
           .attr("width", width)
           .attr("height", height);
 
-        svg.selectAll("path")
+        // Draw streams with hover and click interactions
+        svg.selectAll("path.stream")
           .data(series)
           .join("path")
+            .attr("class", "stream")
             .attr("fill", function(d) { return color(d.key); })
             .attr("d", area)
-            .attr("opacity", 0.9)
+            .attr("opacity", 0.85)
+            .style("cursor", "pointer")
+            .style("transition", "opacity 0.2s ease, filter 0.2s ease")
+            .on("mouseover", function(event, d) {
+                d3.select(this)
+                  .attr("opacity", 1)
+                  .style("filter", "brightness(1.15) drop-shadow(0 2px 4px rgba(0,0,0,0.2))");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this)
+                  .attr("opacity", 0.85)
+                  .style("filter", "none");
+            })
+            .on("click", function(event, d) {
+                const topic = d.key;
+                if (isCumulative) {
+                    // Cumulative view: show popup with all talks for this topic
+                    showWordModal(topic);
+                } else {
+                    // Standard view: navigate to talks page filtered by topic + year
+                    const [mouseX] = d3.pointer(event);
+                    const clickedDate = x.invert(mouseX);
+                    const year = clickedDate.getFullYear();
+                    // Navigate to talks page with topic filter and year anchor
+                    window.location.href = talksUrl + "?q=" + encodeURIComponent(topic) + "#" + year;
+                }
+            })
             .append("title")
-              .text(function(d) { return d.key; });
+              .text(function(d) { return d.key + (isCumulative ? " (click for talks)" : " (click to filter by year)"); });
 
         // Axis
         svg.append("g")
           .attr("transform", "translate(0," + (height - margin.bottom) + ")")
-          .call(d3.axisBottom(x).ticks(years.length));
+          .call(d3.axisBottom(x).ticks(Math.min(years.length, 12)));
           
-        // Labels (Centroid)
+        // Labels - positioned in the right third of the chart with dynamic sizing
         svg.selectAll(".stream-label")
             .data(series)
             .enter().append("text")
             .attr("class", "stream-label")
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "start")
             .attr("fill", "#fff")
-            .style("font-size", "12px")
             .style("pointer-events", "none")
-            .text(function(d) { return d.key; })
-            .attr("transform", function(d) {
-                // Determine label position based on largest area width
+            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.5)")
+            .each(function(d) {
+                // Find best position in right third of data
+                const startIdx = Math.floor(d.length * 0.65);
                 let maxDiff = 0;
                 let bestPoint = null;
-                d.forEach(function(p) {
-                    const diff = p[1] - p[0];
+                
+                for (let i = startIdx; i < d.length; i++) {
+                    const diff = d[i][1] - d[i][0];
                     if (diff > maxDiff) {
                         maxDiff = diff;
-                        bestPoint = p;
+                        bestPoint = d[i];
                     }
-                });
+                }
                 
-                // Only show label if the area is thick enough
-                if (bestPoint && maxDiff > (isCumulative ? (d3.max(data, d => d[d.key] || 0) * 0.05) : 3)) { 
+                // Calculate stream height in pixels
+                const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
+                
+                // Dynamic font sizing based on stream height
+                const fontSize = Math.max(9, Math.min(14, streamHeight * 0.35));
+                
+                // Only show label if stream is thick enough
+                const minHeight = isCumulative ? 20 : 25;
+                
+                if (bestPoint && streamHeight > minHeight) {
                     const px = x(bestPoint.data.year);
                     const py = y((bestPoint[0] + bestPoint[1]) / 2);
-                    return "translate(" + px + "," + py + ")";
+                    
+                    d3.select(this)
+                        .attr("transform", "translate(" + px + "," + py + ")")
+                        .style("font-size", fontSize + "px")
+                        .style("font-weight", fontSize > 11 ? "600" : "400")
+                        .text(d.key);
+                } else {
+                    d3.select(this).attr("transform", "translate(-9999, -9999)");
                 }
-                return "translate(-9999, -9999)"; // Hide if too small
             });
 
     } catch (e) {
