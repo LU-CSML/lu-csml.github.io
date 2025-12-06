@@ -4,16 +4,16 @@ title: CSML
 description: Lancaster University CSML weekly seminar series. Explore our schedule, past talks, speakers, and interactive visualizations of research topics.
 ---
 
-<div id="hero-canvas-container" style="position: relative; width: 100%; height: 350px; margin-bottom: 2rem;">
+<div id="hero-canvas-container" style="position: relative; width: 100%; height: 250px; margin-bottom: 2rem;">
   <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; width: 100%;">
     <h1 style="color: #333; text-shadow: 0 0 20px rgba(255,255,255,0.8); margin: 0;">Lancaster University CSML</h1>
   </div>
 </div>
 <script src="{{ '/assets/js/hero_animation.js' | relative_url }}"></script>
 
-Lancaster University CSML is a weekly seminar organized by the Lancaster [Computational Statistics section](https://www.lancaster.ac.uk/maths/research/statistics/bayesian-and-computational-statistics/) to discuss research from all areas of Computational Statistics, Machine Learning, and related fields. We provide a platform for our members to share their research and ideas, and we host talks by invited external speakers.
+[Lancaster University](https://www.lancaster.ac.uk) CSML is a weekly seminar organized by the Lancaster [Computational Statistics section](https://www.lancaster.ac.uk/maths/research/statistics/bayesian-and-computational-statistics/) to discuss research from all areas of Computational Statistics, Machine Learning, and related fields. We provide a platform for our members to share their research and ideas, and we host talks by invited external speakers.
 
-**We meet at 15:00 - 16:00 GMT on Thursdays.** at the [Postgraduate Statistics Centre (PSC), Lecture Theatre](https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354).
+**We meet at 15:00 - 16:00 GMT on Thursdays.** at the <a href="https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354" target="_blank">Postgraduate Statistics Centre (PSC), Lecture Theatre</a>.
 
 {% assign current_year = "now" | date: "%Y" | plus: 0 %}
 {% assign current_month = "now" | date: "%m" | plus: 0 %}

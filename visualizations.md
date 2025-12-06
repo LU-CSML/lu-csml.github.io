@@ -25,7 +25,7 @@ Visualizes how topics appear together in the same talks.
 - **Node Size/Color**: Frequency of the topic. Warmer colors (Red) = more frequent.
 - **Connections**: Two topics are connected if they appear in the same talk. Thicker edges mean they appear together more often.
 - **Click an edge** to see the talks where both topics appear.
-- **Click a node** to filter the talk archive.
+- **Click a node** to see the talks where the topic appears.
 
 <div class="row mb-3">
   <div class="col-md-6">
