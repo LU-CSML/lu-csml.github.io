@@ -44,7 +44,7 @@ Visualizes how topics appear together in the same talks.
 
 ## 3. Topic Evolution Stream
 
-How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
+How has our research focus changed over time? This streamgraph shows the evolution of our top topics.
 
 <!-- Streamgraph Container -->
 <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
