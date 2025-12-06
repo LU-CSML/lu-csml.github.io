@@ -4,7 +4,12 @@ title: CSML
 description: Lancaster University CSML weekly seminar series. Explore our schedule, past talks, speakers, and interactive visualizations of research topics.
 ---
 
-# Lancaster University CSML
+<div id="hero-canvas-container" style="position: relative; width: 100%; height: 350px; margin-bottom: 2rem;">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; width: 100%;">
+    <h1 style="color: #333; text-shadow: 0 0 20px rgba(255,255,255,0.8); margin: 0;">Lancaster University CSML</h1>
+  </div>
+</div>
+<script src="{{ '/assets/js/hero_animation.js' | relative_url }}"></script>
 
 Lancaster University CSML is a weekly seminar organized by the Lancaster [Computational Statistics section](https://www.lancaster.ac.uk/maths/research/statistics/bayesian-and-computational-statistics/) to discuss research from all areas of Computational Statistics, Machine Learning, and related fields. We provide a platform for our members to share their research and ideas, and we host talks by invited external speakers.
 
