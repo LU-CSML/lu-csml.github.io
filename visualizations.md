@@ -11,12 +11,9 @@ Explore the research landscape of the Computational Statistics and Machine Learn
 
 Most frequent terms from all past and future talk abstracts. **Click a word** to see all related talks.
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.2.2/wordcloud2.min.js"></script>
-
-<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-
-<div id="canvas-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px; position: relative;">
-  <canvas id="word_cloud" style="width: 100%; height: 100%;"></canvas>
+<!-- Smart Word Cloud: Uses pre-generated SVG if available, falls back to JS -->
+<div id="wordcloud-container" class="mb-5" style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); padding: 1rem; text-align: center;">
+  {% smart_wordcloud %}
 </div>
 
 ---
@@ -86,6 +83,8 @@ Visualizes how topics appear together in the same talks.
 
 <!-- D3.js -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
+<!-- vis.js for Network Graph -->
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
 <script>
   // ============================================
@@ -132,43 +131,45 @@ Visualizes how topics appear together in the same talks.
   list.sort(function(a, b) { return b[1] - a[1]; });
 
   // ============================================
-  // 2. WORD CLOUD RENDER (OPTIMIZED)
+  // 2. WORD CLOUD RENDER (FALLBACK - only runs if SVG is missing)
   // ============================================
-  // Pre-calculate static values for better performance
   var canvas = document.getElementById('word_cloud');
-  canvas.width = document.getElementById('canvas-container').offsetWidth;
-  canvas.height = 400;
+  if (canvas) {
+      // Pre-calculate static values for better performance
+      canvas.width = document.getElementById('canvas-container').offsetWidth;
+      canvas.height = 400;
 
-  var wordCloudColors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
-  var talksUrl = "{{ '/talks' | relative_url }}";
-  
-  // Limit to 100 words for rich visual appearance
-  var wordCloudList = list.slice(0, 100).map(function(item) {
-    return [item[0].replace(/_/g, ' '), item[1]];
-  });
+      var wordCloudColors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
+      var talksUrl = "{{ '/talks' | relative_url }}";
+      
+      // Limit to 100 words for rich visual appearance
+      var wordCloudList = list.slice(0, 100).map(function(item) {
+        return [item[0].replace(/_/g, ' '), item[1]];
+      });
 
-  if (typeof WordCloud === 'undefined') {
-      console.error("WordCloud library not loaded.");
-      document.getElementById('canvas-container').innerHTML = '<p class="text-danger">Error: WordCloud library missing.</p>';
-  } else {
-      try {
-          WordCloud(canvas, {
-            list: wordCloudList,
-            gridSize: 10, // Precise placement
-            weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
-            fontFamily: 'Outfit, sans-serif',
-            color: function (word, weight) {
-              return wordCloudColors[Math.floor(Math.random() * wordCloudColors.length)];
-            },
-            rotateRatio: 0,
-            backgroundColor: '#ffffff',
-            drawOutOfBound: false,
-            click: function(item) {
-              showWordModal(item[0]);
-            }
-          });
-      } catch (e) {
-          console.error("WordCloud Error:", e);
+      if (typeof WordCloud === 'undefined') {
+          console.error("WordCloud library not loaded.");
+          document.getElementById('canvas-container').innerHTML = '<p class="text-danger">Error: WordCloud library missing.</p>';
+      } else {
+          try {
+              WordCloud(canvas, {
+                list: wordCloudList,
+                gridSize: 10, // Precise placement
+                weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
+                fontFamily: 'Outfit, sans-serif',
+                color: function (word, weight) {
+                  return wordCloudColors[Math.floor(Math.random() * wordCloudColors.length)];
+                },
+                rotateRatio: 0,
+                backgroundColor: '#ffffff',
+                drawOutOfBound: false,
+                click: function(item) {
+                  showWordModal(item[0]);
+                }
+              });
+          } catch (e) {
+              console.error("WordCloud Error:", e);
+          }
       }
   }
 
@@ -720,4 +721,23 @@ Visualizes how topics appear together in the same talks.
         container.innerHTML = '<p class="text-danger p-3">Error rendering streamgraph: ' + e.message + '</p>';
     }
   }
+
+  // ============================================
+  // INITIALIZATION
+  // ============================================
+  // Render graphs on page load
+  renderGraph();
+  renderStreamGraph();
+
+  // Re-render on input changes
+  document.getElementById('nodeRange').addEventListener('input', renderGraph);
+  document.getElementById('edgeRange').addEventListener('input', renderGraph);
+  document.getElementById('topicCountRange').addEventListener('input', function() {
+      document.getElementById('topicCountVal').innerText = this.value;
+      renderStreamGraph();
+  });
+  document.getElementById('cumulativeToggle').addEventListener('change', function() {
+      isCumulative = this.checked;
+      renderStreamGraph();
+  });
 </script>

@@ -52,9 +52,9 @@ def generate_svg():
         color_func=color_func,
         font_path=r'C:\Windows\Fonts\arial.ttf', # Use Arial for generation to match sans-serif metrics better
         regexp=r"\w[\w']+",
-        max_words=65,       # Increased back up slightly
-        margin=30,          # Increased margin again
-        min_font_size=10,
+        max_words= 100,       # Increased for richer display
+        margin=15,          # Increased margin again
+        min_font_size=12,
         collocations=False  
     )
     wc.generate(text)
