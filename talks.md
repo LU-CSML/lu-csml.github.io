@@ -22,12 +22,55 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
 
   document.addEventListener('DOMContentLoaded', function() {
     var searchInput = document.getElementById('talk-search');
-    var banner = document.getElementById('search-banner');
-    var bannerTerm = document.getElementById('search-term');
     
     // Rows and Headers
     var rows = document.querySelectorAll('.talk-table tbody tr');
     var yearHeaders = document.querySelectorAll('.year-header');
+
+    // ============================================
+    // SCROLL SPY FOR YEAR NAVIGATION  
+    // ============================================
+    var yearLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    
+    // Create an intersection observer to detect visible year sections
+    var observerOptions = {
+      root: null,
+      rootMargin: '0px',  // Trigger when any part is visible
+      threshold: 0.01     // Trigger as soon as 1% is visible
+    };
+
+    var activeYear = null;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var yearId = entry.target.id;
+          
+          if (yearId && yearId !== activeYear) {
+            activeYear = yearId;
+            
+            // Remove active styling from all year links
+            yearLinks.forEach(function(link) {
+              link.style.color = '';
+              link.style.fontWeight = '';
+            });
+            
+            // Add active styling to current year
+            var activeLink = document.querySelector('.nav-link[href="#' + yearId + '"]');
+            
+            if (activeLink) {
+              activeLink.style.color = '#dc143c'; // Bright crimson red
+              activeLink.style.fontWeight = '800'; // Extra bold
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all year header sections
+    yearHeaders.forEach(function(header) {
+      observer.observe(header);
+    });
 
     function filterTalks(query) {
       query = query.trim();
@@ -46,6 +89,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
       // Simple case-insensitive matching (includes partial matches)
       var lowerQuery = query.toLowerCase();
       var visibleCount = 0;
+      var visibleYears = new Set(); // Track which years have visible talks
 
       rows.forEach(function(row) {
         if (row.classList.contains('year-header')) return;
@@ -55,17 +99,20 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
         if (text.includes(lowerQuery)) {
           row.style.display = '';
           visibleCount++;
-          // Show the year header for this visible row
-          var prev = row.previousElementSibling;
-          while (prev) {
-            if (prev.classList.contains('year-header')) {
-              prev.style.display = '';
-              break;
-            }
-            prev = prev.previousElementSibling;
-          }
+          
+          // Track this year as having visible talks
+          var yearAttr = row.getAttribute('data-year');
+          if (yearAttr) visibleYears.add(yearAttr);
         } else {
           row.style.display = 'none';
+        }
+      });
+      
+      // Show year headers for years with visible talks
+      yearHeaders.forEach(function(header) {
+        var headerYear = header.getAttribute('data-year-header');
+        if (headerYear && visibleYears.has(headerYear)) {
+          header.style.display = '';
         }
       });
       
@@ -89,15 +136,11 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
     if (qParam) {
       var decoded = decodeURIComponent(qParam).trim();
       searchInput.value = decoded;
-      banner.style.display = 'block';
-      bannerTerm.innerText = decoded;
       filterTalks(decoded);
     }
 
     // 2. Listen for Input
     searchInput.addEventListener('keyup', function() {
-      // If user types, hide the "Showing results for: ..." banner from URL param
-      banner.style.display = 'none';
       filterTalks(searchInput.value);
     });
   });
@@ -156,11 +199,11 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
             {% assign talk_year = talk.date | date: "%Y" %}
             {% if talk_year != current_year %}
               {% assign current_year = talk_year %}
-              <tr class="year-header" id="{{ current_year }}">
+              <tr class="year-header" id="{{ current_year }}" data-year-header="{{ current_year }}">
                 <td colspan="4"><a href="#{{ current_year }}">{{ current_year }}</a></td>
               </tr>
             {% endif %}
-            <tr>
+            <tr data-year="{{ talk_year }}">
               <td class="talk-date-col">{{ talk.date | date: "%-d %b" }}</td>
               <td class="talk-speaker-col">
                 {{ talk.speaker }}

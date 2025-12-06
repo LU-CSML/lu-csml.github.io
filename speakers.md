@@ -4,6 +4,42 @@ title: Speakers
 description: Explore our speaker leaderboard featuring researchers who have presented at Lancaster University CSML seminars. Search by name to find all talks.
 ---
 
+<style>
+  .speaker-header {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .speaker-header:hover {
+    background-color: #f8f9fa !important;
+  }
+  
+  .chevron-icon {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  
+  .speaker-item.collapsed .chevron-icon {
+    transform: rotate(-90deg);
+  }
+  
+  .speaker-item .talks-list {
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .speaker-item.collapsed .talks-list {
+    max-height: 0;
+    overflow: hidden;
+  }
+</style>
+
 <h1>Past Speakers</h1>
 <div class="row mb-4 align-items-center">
   <div class="col-md-6">
@@ -18,12 +54,21 @@ description: Explore our speaker leaderboard featuring researchers who have pres
   {% assign speakers = site.data.talks | group_by: "speaker" %}
   {% for speaker in speakers %}
     {% assign parent_loop_index = forloop.index %}
-    <div class="speaker-item card mb-4 zhadow" data-count="{{ speaker.items | size }}">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="m-0" style="font-size: 1.5rem;">{{ speaker.name }}</h3>
+    {% assign should_collapse = false %}
+    {% if speaker.items.size >= 3 %}
+      {% assign should_collapse = true %}
+    {% endif %}
+    <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ speaker.items | size }}">
+      <div class="card-header d-flex justify-content-between align-items-center speaker-header">
+        <h3 class="m-0" style="font-size: 1.5rem;">
+          {{ speaker.name }}
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </h3>
         <span class="badge badge-secondary count-badge" style="font-size: 1rem;">{{ speaker.items | size }} talk{% if speaker.items.size > 1 %}s{% endif %}</span>
       </div>
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush talks-list">
         {% for talk in speaker.items %}
           <li class="list-group-item">
             <div class="d-flex justify-content-between align-items-center">
@@ -90,26 +135,99 @@ description: Explore our speaker leaderboard featuring researchers who have pres
       return countB - countA; 
     });
     
-    // Append sorted items and apply leaderboard colors to count badges
+    // Helper function to interpolate between two colors
+    function interpolateColor(color1, color2, factor) {
+      var result = color1.slice();
+      for (var i = 0; i < 3; i++) {
+        result[i] = Math.round(result[i] + factor * (color2[i] - result[i]));
+      }
+      return result;
+    }
+    
+    function rgbToHex(r, g, b) {
+      return '#' + [r, g, b].map(function(x) {
+        var hex = x.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      }).join('');
+    }
+    
+    // Find talk count ranges for gradient calculation
+    var talkCounts = items.map(function(item) {
+      return parseInt(item.getAttribute('data-count'));
+    });
+    var maxCount = Math.max.apply(null, talkCounts);
+    var minCount = Math.min.apply(null, talkCounts);
+    
+    // Append sorted items and apply leaderboard colors with tie handling and gradient
+    var currentRank = 0;
+    var previousCount = -1;
+    
     items.forEach(function(item, index) {
       list.appendChild(item);
       
+      var count = parseInt(item.getAttribute('data-count'));
+      
+      // Handle ties: if same count as previous, keep same rank
+      if (count !== previousCount) {
+        currentRank = index + 1;
+      }
+      previousCount = count;
+      
       var badge = item.querySelector('.count-badge');
-      if (index === 0) {
-        // Gold
-        badge.style.backgroundColor = '#FFD700'; 
-        badge.style.color = '#000';
-        badge.title = "Most Talks (Gold)";
-      } else if (index === 1) {
-        // Silver
-        badge.style.backgroundColor = '#C0C0C0'; 
-        badge.style.color = '#000';
-        badge.title = "2nd Most Talks (Silver)";
-      } else if (index === 2) {
-        // Bronze
-        badge.style.backgroundColor = '#CD7F32'; 
-        badge.style.color = '#fff';
-        badge.title = "3rd Most Talks (Bronze)";
+      
+      // Define medal colors
+      var gold = [255, 215, 0];      // #FFD700
+      var silver = [192, 192, 192];  // #C0C0C0
+      var bronze = [205, 127, 50];   // #CD7F32
+      var paleGray = [235, 235, 235]; // Very light gray for 1 talk
+      
+      var bgColor, textColor, titleText;
+      
+      if (currentRank === 1) {
+        bgColor = rgbToHex.apply(null, gold);
+        textColor = '#000';
+        titleText = count === previousCount && index > 0 ? "Tied for Most Talks (Gold)" : "Most Talks (Gold)";
+      } else if (currentRank === 2) {
+        bgColor = rgbToHex.apply(null, silver);
+        textColor = '#000';
+        titleText = "2nd Most Talks (Silver)";
+      } else if (currentRank === 3) {
+        bgColor = rgbToHex.apply(null, bronze);
+        textColor = '#fff';
+        titleText = "3rd Most Talks (Bronze)";
+      } else {
+        // Gradient based on talk count, not rank
+        // Get the talk count for rank 3 (bronze threshold)
+        var bronzeCount = parseInt(items[2].getAttribute('data-count'));
+        
+        // Create gradient from bronze count down to 1 talk
+        // If count equals bronzeCount, use bronze color
+        // If count equals 1, use paleGray
+        var gradientRange = Math.max(1, bronzeCount - minCount);
+        var gradientPosition = (bronzeCount - count) / gradientRange;
+        
+        var interpolated = interpolateColor(bronze, paleGray, gradientPosition);
+        bgColor = rgbToHex.apply(null, interpolated);
+        
+        // Determine text color based on brightness
+        var brightness = (interpolated[0] * 299 + interpolated[1] * 587 + interpolated[2] * 114) / 1000;
+        textColor = brightness > 155 ? '#000' : '#fff';
+        titleText = count + " talk" + (count > 1 ? "s" : "");
+      }
+      
+      badge.style.backgroundColor = bgColor;
+      badge.style.color = textColor;
+      badge.title = titleText;
+    });
+
+    // Toggle speaker card collapse on header click
+    list.addEventListener('click', function(e) {
+      var header = e.target.closest('.speaker-header');
+      if (header) {
+        var speakerCard = header.closest('.speaker-item');
+        if (speakerCard) {
+          speakerCard.classList.toggle('collapsed');
+        }
       }
     });
 

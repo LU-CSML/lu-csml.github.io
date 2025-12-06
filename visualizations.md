@@ -111,26 +111,32 @@ Visualizes how topics appear together in the same talks.
   list.sort(function(a, b) { return b[1] - a[1]; });
 
   // ============================================
-  // 2. WORD CLOUD RENDER
+  // 2. WORD CLOUD RENDER (OPTIMIZED)
   // ============================================
+  // Pre-calculate static values for better performance
   var canvas = document.getElementById('word_cloud');
   canvas.width = document.getElementById('canvas-container').offsetWidth;
   canvas.height = 400;
 
+  var wordCloudColors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
+  var talksUrl = "{{ '/talks' | relative_url }}";
+  
+  // Limit to 50 words - matches what actually fits on canvas
+  var wordCloudList = list.slice(0, 50);
+
   WordCloud(canvas, {
-    list: list,
-    gridSize: 10,
+    list: wordCloudList,
+    gridSize: 10, // Precise placement
     weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
     fontFamily: 'Outfit, sans-serif',
     color: function (word, weight) {
-      var colors = ['#b5121b', '#333333', '#555555', '#b5121b', '#333333'];
-      return colors[Math.floor(Math.random() * colors.length)];
+      return wordCloudColors[Math.floor(Math.random() * wordCloudColors.length)];
     },
     rotateRatio: 0,
     backgroundColor: '#ffffff',
     drawOutOfBound: false,
     click: function(item) {
-      window.location.href = "{{ '/talks' | relative_url }}?q=" + encodeURIComponent(item[0]);
+      window.location.href = talksUrl + "?q=" + encodeURIComponent(item[0]);
     }
   });
 
