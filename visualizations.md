@@ -90,14 +90,18 @@ Visualizes how topics appear together in the same talks.
   // ============================================
   // 1. DATA PREPARATION (Liquid -> JS)
   // ============================================
-  // Store raw talk objects for modal lookup
+  // Using jsonify for safe Liquid->JS data transfer (handles quotes, escapes, unicode)
   var rawTalks = [
   {% for talk in site.data.talks %}
     {
-      title: "{{ talk.title | strip_newlines | escape }}",
-      date: "{{ talk.date | date: '%Y-%m-%d' }}",
-      speaker: "{{ talk.speaker | strip_newlines | escape }}",
-      words: new Set("{{ talk.title | strip_newlines | escape }} {{ talk.abstract | strip_newlines | escape }}".toLowerCase().replace(/monte\s+carlo/g, 'monte_carlo').split(/[\s.,;:\(\)\[\]"!?\\/]+/))
+      title: {{ talk.title | strip_newlines | jsonify }},
+      date: {{ talk.date | date: '%Y-%m-%d' | jsonify }},
+      speaker: {{ talk.speaker | strip_newlines | jsonify }},
+      words: new Set(({{ talk.title | jsonify }} + " " + {{ talk.abstract | default: "" | jsonify }})
+        .toLowerCase()
+        .replace(/monte\s+carlo/g, 'monte_carlo')
+        .split(/[\s.,;:\(\)\[\]"!?\\/]+/)
+      )
     },
   {% endfor %}
   ];
