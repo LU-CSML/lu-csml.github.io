@@ -125,9 +125,12 @@ def generate_svg(
     wc.generate(text)
     svg_content = wc.to_svg()
     
-    # Strip XML header for safe inline embedding
-    svg_content = re.sub(r'<\?xml.*?>', '', svg_content)
-    svg_content = re.sub(r'<!DOCTYPE.*?>', '', svg_content)
+    # Strip XML header for safe inline embedding (robust handling)
+    try:
+        svg_content = re.sub(r'<\?xml.*?>', '', svg_content)
+        svg_content = re.sub(r'<!DOCTYPE.*?>', '', svg_content)
+    except Exception as e:
+        print(f"Warning: XML header stripping failed. SVG might contain duplicate headers. Error: {e}")
     
     # CSS for theming and interactivity
     style_block = """

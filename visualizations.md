@@ -18,27 +18,7 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 
 ---
 
-## 2. Topic Evolution Stream
-
-How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
-
-<!-- Streamgraph Container -->
-<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
-  <span class="text-muted">Interactive Streamgraph</span>
-  <div class="d-flex align-items-center">
-    <label for="topicCountRange" class="mb-0 mr-2 text-muted" style="font-size: 0.9em;">Topics: <span id="topicCountVal">8</span></label>
-    <input type="range" class="custom-range mr-3" id="topicCountRange" min="5" max="20" value="8" style="width: 80px;" aria-label="Select number of topics to display">
-    <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="cumulativeToggle">
-      <label class="custom-control-label" for="cumulativeToggle">Cumulative View</label>
-    </div>
-  </div>
-</div>
-<div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px;"></div>
-
----
-
-## 3. Topic Co-occurrence Network
+## 2. Topic Co-occurrence Network
 
 Visualizes how topics appear together in the same talks.
 
@@ -59,6 +39,26 @@ Visualizes how topics appear together in the same talks.
 </div>
 
 <div id="network-container" class="mb-5" style="width: 100%; height: 600px; border: 1px solid #eee; border-radius: 8px; background: #fafafa;"></div>
+
+---
+
+## 3. Topic Evolution Stream
+
+How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
+
+<!-- Streamgraph Container -->
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
+  <span class="text-muted">Interactive Streamgraph</span>
+  <div class="d-flex align-items-center">
+    <label for="topicCountRange" class="mb-0 mr-2 text-muted" style="font-size: 0.9em;">Topics: <span id="topicCountVal">8</span></label>
+    <input type="range" class="custom-range mr-3" id="topicCountRange" min="5" max="20" value="8" style="width: 80px;" aria-label="Select number of topics to display">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="cumulativeToggle">
+      <label class="custom-control-label" for="cumulativeToggle">Cumulative View</label>
+    </div>
+  </div>
+</div>
+<div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px;"></div>
 
 <!-- Modal for Shared Talks -->
 

@@ -268,7 +268,12 @@
         if (!t.date || t.date.length < 4) return;
         const yStr = t.date.substring(0, 4);
         const yInt = parseInt(yStr);
-        if (isNaN(yInt) || yInt < 2000 || yInt > 2030) return;
+        
+        // Date validation with warning for data debugging
+        if (isNaN(yInt) || yInt < 2000 || yInt > 2030) {
+          console.warn(`Streamgraph: Skipped invalid year "${yStr}" for talk: "${t.title}"`);
+          return;
+        }
 
         allYears.add(yStr);
         if (!yearMap[yStr]) yearMap[yStr] = {};

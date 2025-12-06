@@ -9,8 +9,10 @@
     const ctx = canvas.getContext('2d');
     let width, height;
     
-    // Banana Parameters
-    const N_PARTICLES = 15000;
+    // Dynamic Particle Count: Reduce for mobile to save battery/CPU
+    const isMobile = window.innerWidth < 768;
+    const N_PARTICLES = isMobile ? 4000 : 15000;
+    
     const particles = new Float32Array(N_PARTICLES * 2); // x, y interleaved
     const speeds = new Float32Array(N_PARTICLES); // speed for breathing effect
     
