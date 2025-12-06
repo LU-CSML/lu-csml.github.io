@@ -95,11 +95,18 @@ def generate_svg(
     talks = load_talks(data_file)
     text = process_text(talks)
     
-    # Default font path for Windows (fallback to None for cross-platform)
+    # Cross-platform font fallback (Windows → Linux → macOS → None)
     if font_path is None:
-        default_font = r'C:\Windows\Fonts\arial.ttf'
-        if os.path.exists(default_font):
-            font_path = default_font
+        font_candidates = [
+            r'C:\Windows\Fonts\arial.ttf',                           # Windows
+            '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',       # Linux (Debian/Ubuntu)
+            '/usr/share/fonts/liberation-sans/LiberationSans-Regular.ttf',  # Linux (Fedora/RHEL)
+            '/System/Library/Fonts/Helvetica.ttc',                   # macOS
+        ]
+        for candidate in font_candidates:
+            if os.path.exists(candidate):
+                font_path = candidate
+                break
     
     wc = WordCloud(
         width=WIDTH, 
