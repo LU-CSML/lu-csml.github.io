@@ -25,6 +25,15 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 
 How has the research focus changed over time? This streamgraph shows the rise and fall of top topics.
 
+<!-- Streamgraph Container -->
+<div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px; background: #f9f9f9;"></div>
+
+---
+
+## 3. Topic Co-occurrence Network
+
+Visualizes how topics appear together in the same talks.
+
 - **Node Size/Color**: Frequency of the topic. Warmer colors (Red) = more frequent.
 - **Connections**: Two topics are connected if they appear in the same talk. Thicker edges mean they appear together more often.
 - **Click an edge** to see the talks where both topics appear.
@@ -64,7 +73,11 @@ How has the research focus changed over time? This streamgraph shows the rise an
   </div>
 </div>
 
+<!-- D3.js -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
 <script>
+  console.log("DEBUG: Main script starting...");
   // ============================================
   // 1. DATA PREPARATION (Liquid -> JS)
   // ============================================
@@ -124,21 +137,30 @@ How has the research focus changed over time? This streamgraph shows the rise an
     return [item[0].replace(/_/g, ' '), item[1]];
   });
 
-  WordCloud(canvas, {
-    list: wordCloudList,
-    gridSize: 10, // Precise placement
-    weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
-    fontFamily: 'Outfit, sans-serif',
-    color: function (word, weight) {
-      return wordCloudColors[Math.floor(Math.random() * wordCloudColors.length)];
-    },
-    rotateRatio: 0,
-    backgroundColor: '#ffffff',
-    drawOutOfBound: false,
-    click: function(item) {
-      showWordModal(item[0]);
-    }
-  });
+  if (typeof WordCloud === 'undefined') {
+      console.error("WordCloud library not loaded.");
+      document.getElementById('canvas-container').innerHTML = '<p class="text-danger">Error: WordCloud library missing.</p>';
+  } else {
+      try {
+          WordCloud(canvas, {
+            list: wordCloudList,
+            gridSize: 10, // Precise placement
+            weightFactor: function (size) { return Math.pow(size, 0.8) * 12; },
+            fontFamily: 'Outfit, sans-serif',
+            color: function (word, weight) {
+              return wordCloudColors[Math.floor(Math.random() * wordCloudColors.length)];
+            },
+            rotateRatio: 0,
+            backgroundColor: '#ffffff',
+            drawOutOfBound: false,
+            click: function(item) {
+              showWordModal(item[0]);
+            }
+          });
+      } catch (e) {
+          console.error("WordCloud Error:", e);
+      }
+  }
 
   // ============================================
   // 3. NETWORK GRAPH RENDER (Dynamic)
@@ -366,151 +388,182 @@ How has the research focus changed over time? This streamgraph shows the rise an
   }
 
   // Initial Render & Bind Listeners
-  renderGraph();
-  renderStreamgraph(); // Render Streamgraph
+  try {
+      renderGraph();
+  } catch(e) { console.error("Network Graph Error:", e); }
+
+  try {
+      renderStreamgraph(); // Render Streamgraph
+  } catch(e) { console.error("Streamgraph Error:", e); }
   
-  document.getElementById('nodeRange').addEventListener('input', renderGraph);
-  document.getElementById('edgeRange').addEventListener('input', renderGraph);
-  window.addEventListener('resize', renderStreamgraph);
+  try {
+      if(document.getElementById('nodeRange')) document.getElementById('nodeRange').addEventListener('input', renderGraph);
+      if(document.getElementById('edgeRange')) document.getElementById('edgeRange').addEventListener('input', renderGraph);
+  } catch(e) {}
+  
+  window.addEventListener('resize',  function() {
+      try { renderStreamgraph(); } catch(e){}
+  });
 
   // ============================================
   // 4. STREAMGRAPH LOGIC
   // ============================================
   function renderStreamgraph() {
+    // Check D3
+    if (typeof d3 === 'undefined') {
+        console.warn("D3.js not loaded yet.");
+        const c = document.getElementById('stream-container');
+        if (c) c.innerHTML = '<p class="text-center text-danger">Error: D3.js library not loaded.</p>';
+        return;
+    }
+
     const container = document.getElementById('stream-container');
     if (!container) return;
-    container.innerHTML = ''; // Clear
-    const width = container.offsetWidth;
-    const height = 400;
-    const margin = {top: 20, right: 0, bottom: 30, left: 40};
-
-    // 1. Process Data: Group by Year
-    const yearMap = {}; // year -> { word -> count }
-    const allYears = new Set();
     
-    rawTalks.forEach(function(t) {
-      if (!t.date) return;
-      const y = t.date.substring(0, 4);
-      allYears.add(y);
-      if (!yearMap[y]) yearMap[y] = {};
-      
-      t.cleanWords.forEach(function(w) {
-        // Use lookup logic for Monte Carlo
-        const displayWord = w.replace(/_/g, ' '); 
-        yearMap[y][displayWord] = (yearMap[y][displayWord] || 0) + 1;
-      });
-    });
+    try {
+        container.innerHTML = ''; // Clear
+        const width = container.offsetWidth;
+        const height = 400;
+        const margin = {top: 20, right: 0, bottom: 30, left: 40};
 
-    const years = Array.from(allYears).sort();
-    
-    // 2. Identify Top N Topics Overall
-    const overallFreq = {};
-    rawTalks.forEach(function(t) {
-      t.cleanWords.forEach(function(w) {
-         const displayWord = w.replace(/_/g, ' ');
-         overallFreq[displayWord] = (overallFreq[displayWord] || 0) + 1;
-      });
-    });
-    
-    const topTopicList = Object.keys(overallFreq)
-       .map(function(w) { return [w, overallFreq[w]]; })
-       .sort(function(a,b) { return b[1] - a[1]; })
-       .slice(0, 8)
-       .map(function(item) { return item[0]; });
-
-    // 3. Prepare Data for D3 Stack
-    const data = years.map(function(y) {
-       const obj = { year: new Date(y, 0, 1) };
-       topTopicList.forEach(function(topic) {
-           obj[topic] = yearMap[y][topic] || 0;
-       });
-       return obj;
-    });
-
-    // 4. D3 Stack
-    const stack = d3.stack()
-        .keys(topTopicList)
-        .offset(d3.stackOffsetSilhouette)
-        .order(d3.stackOrderNone);
-
-    const series = stack(data);
-
-    // 5. Scales
-    const x = d3.scaleTime()
-        .domain(d3.extent(data, function(d) { return d.year; }))
-        .range([margin.left, width - margin.right]);
-
-    const y = d3.scaleLinear()
-        .domain([
-            d3.min(series, function(layer) { return d3.min(layer, function(d) { return d[0]; }); }),
-            d3.max(series, function(layer) { return d3.max(layer, function(d) { return d[1]; }); })
-        ])
-        .range([height - margin.bottom, margin.top]);
-
-    const color = d3.scaleOrdinal()
-        .domain(topTopicList)
-        .range(d3.schemeTableau10);
-
-    const area = d3.area()
-        .curve(d3.curveBasis)
-        .x(function(d) { return x(d.data.year); })
-        .y0(function(d) { return y(d[0]); })
-        .y1(function(d) { return y(d[1]); });
-
-    // 6. Draw SVG
-    const svg = d3.select("#stream-container")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-    svg.selectAll("path")
-      .data(series)
-      .join("path")
-        .attr("fill", function(d) { return color(d.key); })
-        .attr("d", area)
-        .attr("opacity", 0.9)
-        .append("title")
-          .text(function(d) { return d.key; });
-
-    // Axis
-    svg.append("g")
-      .attr("transform", "translate(0," + (height - margin.bottom) + ")")
-      .call(d3.axisBottom(x).ticks(years.length));
-      
-    // Labels (Centroid)
-    svg.selectAll(".stream-label")
-        .data(series)
-        .enter().append("text")
-        .attr("class", "stream-label")
-        .attr("text-anchor", "middle")
-        .attr("fill", "#fff")
-        .style("font-size", "12px")
-        .style("pointer-events", "none")
-        .text(function(d) { return d.key; })
-        .attr("transform", function(d) {
-            // Find the point with keeping max height
-            // Simple heuristic: middle of x range
-            // Better: find max thickness
-            let maxDiff = 0;
-            let bestPoint = null;
-            d.forEach(function(p) {
-                const diff = p[1] - p[0];
-                if (diff > maxDiff) {
-                    maxDiff = diff;
-                    bestPoint = p;
-                }
-            });
-            if (bestPoint) {
-                const px = x(bestPoint.data.year);
-                const py = y((bestPoint[0] + bestPoint[1]) / 2);
-                return "translate(" + px + "," + py + ")";
-            }
-            return "translate(0,0)";
-        })
-        .attr("display", function(d) {
-             // Hide if too thin?
-             // Let's just show all for now
-             return "block";
+        // 1. Process Data: Group by Year
+        const yearMap = {}; // year -> { word -> count }
+        const allYears = new Set();
+        
+        rawTalks.forEach(function(t) {
+          if (!t.date || t.date.length < 4) return;
+          
+          const yStr = t.date.substring(0, 4);
+          const yInt = parseInt(yStr);
+          if (isNaN(yInt) || yInt < 2000 || yInt > 2030) return; // Basic validation check
+          
+          const y = yStr;
+          allYears.add(y);
+          if (!yearMap[y]) yearMap[y] = {};
+          
+          t.cleanWords.forEach(function(w) {
+            const displayWord = w.replace(/_/g, ' '); 
+            yearMap[y][displayWord] = (yearMap[y][displayWord] || 0) + 1;
+          });
         });
+
+        if (allYears.size === 0) {
+            container.innerHTML = '<p class="text-center text-muted p-5">Not enough data to visualize timeline (Years: 0).</p>';
+            return;
+        }
+
+        const years = Array.from(allYears).sort();
+        
+        // 2. Identify Top N Topics Overall
+        const overallFreq = {};
+        rawTalks.forEach(function(t) {
+          if (!t.cleanWords) return;
+          t.cleanWords.forEach(function(w) {
+             const displayWord = w.replace(/_/g, ' ');
+             overallFreq[displayWord] = (overallFreq[displayWord] || 0) + 1;
+          });
+        });
+        
+        const topTopicList = Object.keys(overallFreq)
+           .map(function(w) { return [w, overallFreq[w]]; })
+           .sort(function(a,b) { return b[1] - a[1]; })
+           .slice(0, 8)
+           .map(function(item) { return item[0]; });
+
+        if (topTopicList.length === 0) {
+            container.innerHTML = '<p class="text-center text-muted p-5">No topics found.</p>';
+            return;
+        }
+
+        // 3. Prepare Data for D3 Stack
+        const data = years.map(function(y) {
+           const obj = { year: new Date(y, 0, 1) };
+           topTopicList.forEach(function(topic) {
+               obj[topic] = yearMap[y][topic] || 0;
+           });
+           return obj;
+        });
+
+        // 4. D3 Stack
+        const stack = d3.stack()
+            .keys(topTopicList)
+            .offset(d3.stackOffsetSilhouette)
+            .order(d3.stackOrderNone);
+
+        const series = stack(data);
+
+        // 5. Scales
+        const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.year; }))
+            .range([margin.left, width - margin.right]);
+
+        const y = d3.scaleLinear()
+            .domain([
+                d3.min(series, function(layer) { return d3.min(layer, function(d) { return d[0]; }); }),
+                d3.max(series, function(layer) { return d3.max(layer, function(d) { return d[1]; }); })
+            ])
+            .range([height - margin.bottom, margin.top]);
+
+        const color = d3.scaleOrdinal()
+            .domain(topTopicList)
+            .range(d3.schemeTableau10);
+
+        const area = d3.area()
+            .curve(d3.curveBasis)
+            .x(function(d) { return x(d.data.year); })
+            .y0(function(d) { return y(d[0]); })
+            .y1(function(d) { return y(d[1]); });
+
+        // 6. Draw SVG
+        const svg = d3.select("#stream-container")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+        svg.selectAll("path")
+          .data(series)
+          .join("path")
+            .attr("fill", function(d) { return color(d.key); })
+            .attr("d", area)
+            .attr("opacity", 0.9)
+            .append("title")
+              .text(function(d) { return d.key; });
+
+        // Axis
+        svg.append("g")
+          .attr("transform", "translate(0," + (height - margin.bottom) + ")")
+          .call(d3.axisBottom(x).ticks(years.length));
+          
+        // Labels (Centroid)
+        svg.selectAll(".stream-label")
+            .data(series)
+            .enter().append("text")
+            .attr("class", "stream-label")
+            .attr("text-anchor", "middle")
+            .attr("fill", "#fff")
+            .style("font-size", "12px")
+            .style("pointer-events", "none")
+            .text(function(d) { return d.key; })
+            .attr("transform", function(d) {
+                let maxDiff = 0;
+                let bestPoint = null;
+                d.forEach(function(p) {
+                    const diff = p[1] - p[0];
+                    if (diff > maxDiff) {
+                        maxDiff = diff;
+                        bestPoint = p;
+                    }
+                });
+                if (bestPoint) {
+                    const px = x(bestPoint.data.year);
+                    const py = y((bestPoint[0] + bestPoint[1]) / 2);
+                    return "translate(" + px + "," + py + ")";
+                }
+                return "translate(0,0)";
+            });
+    } catch (e) {
+        console.error(e);
+        container.innerHTML = '<p class="text-danger p-3">Error rendering streamgraph: ' + e.message + '</p>';
+    }
   }
 </script>
