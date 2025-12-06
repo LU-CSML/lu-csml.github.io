@@ -568,21 +568,11 @@ Visualizes how topics appear together in the same talks.
                   .style("filter", "none");
             })
             .on("click", function(event, d) {
-                const topic = d.key;
-                if (isCumulative) {
-                    // Cumulative view: show popup with all talks for this topic
-                    showWordModal(topic);
-                } else {
-                    // Standard view: navigate to talks page filtered by topic + year
-                    const [mouseX] = d3.pointer(event);
-                    const clickedDate = x.invert(mouseX);
-                    const year = clickedDate.getFullYear();
-                    // Navigate to talks page with topic filter and year anchor
-                    window.location.href = talksUrl + "?q=" + encodeURIComponent(topic) + "#" + year;
-                }
+                // Always show popup with talks for this topic
+                showWordModal(d.key);
             })
             .append("title")
-              .text(function(d) { return d.key + (isCumulative ? " (click for talks)" : " (click to filter by year)"); });
+              .text(function(d) { return d.key + " (click for talks)"; });
 
         // Axis
         svg.append("g")
@@ -595,9 +585,10 @@ Visualizes how topics appear together in the same talks.
             .enter().append("text")
             .attr("class", "stream-label")
             .attr("text-anchor", "start")
-            .attr("fill", "#fff")
+            .attr("fill", "#333")
             .style("pointer-events", "none")
-            .style("text-shadow", "1px 1px 2px rgba(0,0,0,0.5)")
+            .style("text-shadow", "0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff")
+            .style("font-weight", "600")
             .each(function(d) {
                 // Find best position in right third of data
                 const startIdx = Math.floor(d.length * 0.65);
@@ -615,8 +606,8 @@ Visualizes how topics appear together in the same talks.
                 // Calculate stream height in pixels
                 const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
                 
-                // Dynamic font sizing based on stream height
-                const fontSize = Math.max(9, Math.min(14, streamHeight * 0.35));
+                // Dynamic font sizing based on stream height - more aggressive scaling
+                const fontSize = Math.max(8, Math.min(16, streamHeight * 0.5));
                 
                 // Only show label if stream is thick enough
                 const minHeight = isCumulative ? 20 : 25;
