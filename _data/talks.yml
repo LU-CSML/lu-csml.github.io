@@ -44,6 +44,27 @@
     - url: https://arxiv.org/abs/2505.11355
       text: Paper 2
 
+- date: 2026-02-19
+  speaker: Matthias Sachs
+  affiliation: University of Lancaster
+  title: 
+  abstract: 
+  slides:
+
+- date: 2026-02-12
+  speaker: Yuga Iguchi
+  affiliation: University of Lancaster
+  title: 
+  abstract: 
+  slides:
+
+# - date: 2026-02-05
+#   speaker: Chris Sherlock
+#   affiliation: University of Lancaster
+#   title: 
+#   abstract: 
+#   slides:
+
 - date: 2026-01-29
   speaker: William Laplante
   affiliation: University College London
@@ -51,6 +72,13 @@
   abstract: Doubly intractable problems occur when both the likelihood and the posterior are available only in unnormalised form, with computationally intractable normalisation constants. Bayesian inference then typically requires direct approximation of the posterior through specialised and typically expensive MCMC methods. In this paper, we provide a computationally efficient alternative in the form of a novel generalised Bayesian posterior that allows for conjugate inference within the class of exponential family models for discrete data. We derive theoretical guarantees to characterise the asymptotic behaviour of the generalised posterior, supporting its use for inference. The method is evaluated on a range of challenging intractable exponential family models, including the Conway-Maxwell-Poisson graphical model of multivariate count data, autoregressive discrete time series models, and Markov random fields such as the Ising and Potts models. The computational gains are significant; in our experiments, the method is between 10 and 6000 times faster than state-of-the-art Bayesian computational methods.
   link: https://arxiv.org/abs/2511.23275
   link_text: arXiv
+
+- date: 2026-01-22
+  speaker: Yuga Iguchi
+  affiliation: University of Lancaster
+  title: 
+  abstract: 
+  slides:
 
 - date: 2026-01-15
   speaker: Hefin Lambley
@@ -69,6 +97,7 @@
 - date: 2025-12-04
   speaker: Giorgos Vasdekis
   title: Sampling with time-changed Markov processes
+  slides: /pdf/2025-12-04.pdf
   abstract: "We introduce a framework of time-changed Markov processes to speed up the convergence of Markov chain Monte Carlo (MCMC) algorithms in the context of multimodal distributions and rare event simulation. The time-changed process is defined by adjusting the speed of time of a base process via a user-chosen, state-dependent function. We apply this framework to several Markov processes from the MCMC literature, such as Langevin diffusions and piecewise deterministic Markov processes, obtaining novel modifications of classical algorithms and also re-discovering known MCMC algorithms. We prove theoretical properties of the time-changed process under suitable conditions on the base process, focusing on connecting the stationary distributions and qualitative convergence properties such as geometric and uniform ergodicity, as well as a functional central limit theorem. Time permitting, we will compare our approach with the framework of space transformations, clarifying the similarities between the approaches. This is joint work with Andrea Bertazzi."
 
 - date: 2025-11-20
@@ -76,12 +105,14 @@
   affiliation: Lancaster
   title: Exchangeable Particle Gibbs for Markov Jump Processes
   abstract: "Inference in stochastic reaction-network models—such as the SEIR epidemic model or the Lotka–Volterra predator–prey system—is crucial for understanding the dynamics of interacting systems in epidemiology, ecology, and systems biology. These models are typically represented as Markov jump processes (MJPs) with intractable likelihoods. As a result, particle Markov chain Monte Carlo (particle MCMC) methods, particularly the Particle Gibbs (PG) sampler, have become standard tools for Bayesian inference. However, PG suffers from severe particle degeneracy, especially in high-dimensional state spaces, leading to poor mixing and inefficiency. In this talk, I focus on improving the efficiency of particle MCMC methods for inference in reaction networks by addressing the degeneracy problem. Building on recent work on the Exchangeable Particle Gibbs (xPG) sampler for continuous-state diffusions, this project develops a novel version of xPG tailored to discrete-state reaction networks, where randomness is driven by Poisson processes rather than Brownian motion. The proposed method retains the exchangeability framework of xPG while adapting it to the structural and computational challenges specific to reaction networks."
+  slides: pdf/2025-11-20.pdf
 
 - date: 2025-10-30
   speaker: Rui Zhang
   affiliation: Lancaster
   title: A Dynamic Perspective of Matern Gaussian Processes
   abstract: The ubiquitous Gaussian process (GP) models in statistics and machine learning (Williams and Rasmussen; 2006) are static by default, either using the weight-space or function-space views (Kanagawa et al.; 2025), where the observation and test locations have no unilateral dependency order, and this also explains the cubic scalability in computational costs for GP regressions. On the other hand, the dynamic view of Gaussian processes, while only available for a class of GP models, reformulates the dependency structure unilaterally (Whittle; 1954) to enable sequential inferences for GP regressions with computational costs that could scale linearly (Hartikainen and Sarkka;2010; Sarkka and Hartikainen; 2012) with little to no approximation. This talk explores this dynamic perspective of (Matern) Gaussian processes and some consequences of this perspective.
+  slides: pdf/2025-10-30.pdf
   link: https://arxiv.org/pdf/2509.26005
   link_text: arXiv
 
