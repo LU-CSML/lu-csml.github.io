@@ -62,6 +62,18 @@ Or simply paste an external URL if hosted elsewhere.
 
 2. **Bundler** — Install with: `gem install bundler`
 
+3. **Python Environment** (for Word Cloud generation)
+
+   The site uses a Python script to generate the word cloud. You need to set up a virtual environment:
+
+   ```bash
+   # Create virtual environment
+   python3 -m venv .venv
+
+   # Install dependencies
+   .venv/bin/pip install wordcloud pyyaml
+   ```
+
 ### Running Locally
 
 ```bash

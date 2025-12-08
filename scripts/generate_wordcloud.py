@@ -117,8 +117,8 @@ def generate_svg(
         color_func=color_func,
         font_path=font_path,
         regexp=r"\w[\w']+",
-        max_words=100,
-        margin=15,
+        max_words=150,
+        margin=12,
         min_font_size=12,
         collocations=False  
     )
