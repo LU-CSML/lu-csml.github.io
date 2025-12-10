@@ -47,48 +47,227 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
 
   <div class="tab-pane fade {% if has_upcoming %}show active{% endif %}" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
     {% if has_upcoming %}
-      {% assign previous_term = "" %}
       
+      {% assign has_michaelmas = false %}
+      {% assign has_lent = false %}
+      {% assign has_summer = false %}
+      
+      <!-- Pre-calculate terms -->
       {% for talk in talks_asc %}
         {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
         {% if talk_date >= current_date %}
-          
           {% assign m = talk.date | date: "%m" | plus: 0 %}
           {% if m >= 8 and m <= 12 %}
-            {% assign current_term = "Michaelmas Term" %}
+            {% assign has_michaelmas = true %}
           {% elsif m >= 1 and m <= 4 %}
-            {% assign current_term = "Lent Term" %}
+            {% assign has_lent = true %}
           {% else %}
-            {% assign current_term = "Summer Term" %}
+            {% assign has_summer = true %}
           {% endif %}
-
-          {% if current_term != previous_term %}
-            {% if previous_term != "" %}
-              </tbody></table></div>
-            {% endif %}
-
-            <h3 class="mt-4">{{ current_term }}</h3>
-            <div class="table-responsive">
-            <table class="talk-table">
-              <thead>
-                <tr>
-                  <th class="talk-date-col">Date</th>
-                  <th class="talk-speaker-col">Speaker</th>
-                  <th class="talk-title-col">Title</th>
-                  <th class="talk-links-col">Links</th>
-                </tr>
-              </thead>
-              <tbody>
-            {% assign previous_term = current_term %}
-          {% endif %}
-
-          {% include talk_row.html talk=talk %}
         {% endif %}
       {% endfor %}
 
-      {% if previous_term != "" %}
-        </tbody></table></div>
-      {% endif %}
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <ul class="nav nav-pills mb-0" id="termTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="all-terms-tab" data-toggle="pill" href="#all-terms" role="tab" aria-controls="all-terms" aria-selected="true">All Terms</a>
+          </li>
+
+          {% if has_michaelmas %}
+            <li class="nav-item">
+              <a class="nav-link" id="michaelmas-tab" data-toggle="pill" href="#michaelmas" role="tab" aria-controls="michaelmas" aria-selected="false">Michaelmas Term</a>
+            </li>
+          {% endif %}
+
+          {% if has_lent %}
+            <li class="nav-item">
+              <a class="nav-link" id="lent-tab" data-toggle="pill" href="#lent" role="tab" aria-controls="lent" aria-selected="false">Lent Term</a>
+            </li>
+          {% endif %}
+
+          {% if has_summer %}
+            <li class="nav-item">
+              <a class="nav-link" id="summer-tab" data-toggle="pill" href="#summer" role="tab" aria-controls="summer" aria-selected="false">Summer Term</a>
+            </li>
+          {% endif %}
+        </ul>
+
+        <div class="form-inline">
+          <input class="form-control" type="text" id="scheduleSearch" placeholder="Search talks..." aria-label="Search">
+        </div>
+      </div>
+
+      <div class="tab-content" id="termTabsContent">
+
+        <!-- All Terms Pane (Default) -->
+        <div class="tab-pane fade show active" id="all-terms" role="tabpanel" aria-labelledby="all-terms-tab">
+          {% assign previous_term = "" %}
+
+          {% for talk in talks_asc %}
+            {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+            {% if talk_date >= current_date %}
+
+              {% assign m = talk.date | date: "%m" | plus: 0 %}
+              {% if m >= 8 and m <= 12 %}
+                {% assign current_term = "Michaelmas Term" %}
+              {% elsif m >= 1 and m <= 4 %}
+                {% assign current_term = "Lent Term" %}
+              {% else %}
+                {% assign current_term = "Summer Term" %}
+              {% endif %}
+
+              {% if current_term != previous_term %}
+                {% if previous_term != "" %}
+                  </tbody></table></div>
+                {% endif %}
+
+                <h3 class="mt-4 term-header">{{ current_term }}</h3>
+                <div class="table-responsive term-table-container">
+                <table class="talk-table">
+                  <thead>
+                    <tr>
+                      <th class="talk-date-col">Date</th>
+                      <th class="talk-speaker-col">Speaker</th>
+                      <th class="talk-title-col">Title</th>
+                      <th class="talk-links-col">Links</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                {% assign previous_term = current_term %}
+              {% endif %}
+
+              {% include talk_row.html talk=talk %}
+            {% endif %}
+          {% endfor %}
+
+          {% if previous_term != "" %}
+            </tbody></table></div>
+          {% endif %}
+        </div>
+
+        {% if has_michaelmas %}
+          <div class="tab-pane fade" id="michaelmas" role="tabpanel" aria-labelledby="michaelmas-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_asc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% if m >= 8 and m <= 12 %}
+                        {% include talk_row.html talk=talk %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if has_lent %}
+          <div class="tab-pane fade" id="lent" role="tabpanel" aria-labelledby="lent-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_asc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% if m >= 1 and m <= 4 %}
+                        {% include talk_row.html talk=talk %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if has_summer %}
+          <div class="tab-pane fade" id="summer" role="tabpanel" aria-labelledby="summer-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_asc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% unless m >= 1 and m <= 4 or m >= 8 and m <= 12 %}
+                         {% include talk_row.html talk=talk %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <script>
+        document.getElementById('scheduleSearch').addEventListener('keyup', function() {
+          var searchTerm = this.value.toLowerCase();
+          var rows = document.querySelectorAll('.talk-table tbody tr');
+
+          // Filter rows
+          rows.forEach(function(row) {
+            var text = row.textContent.toLowerCase();
+            if(text.includes(searchTerm)) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+
+          // Handle Headers in 'All Terms' view
+          // We need to check each 'term-table-container' to see if it has visible rows
+          var containers = document.querySelectorAll('#all-terms .term-table-container');
+
+          containers.forEach(function(container) {
+            var visibleRows = container.querySelectorAll('tbody tr:not([style*="display: none"])').length;
+            // The header is the previous sibling element of the container
+             var header = container.previousElementSibling;
+
+            if (visibleRows > 0) {
+               if (header && header.classList.contains('term-header')) {
+                   header.style.display = '';
+               }
+               container.style.display = '';
+            } else {
+               if (header && header.classList.contains('term-header')) {
+                   header.style.display = 'none';
+               }
+               container.style.display = 'none';
+            }
+          });
+        });
+      </script>
 
     {% else %}
       <p class="mt-3 text-muted">No upcoming talks currently scheduled for this term.</p>
