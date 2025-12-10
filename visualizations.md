@@ -13,7 +13,7 @@ Most frequent terms from all past and future talk abstracts. **Click a word** to
 
 <!-- Smart Word Cloud: Uses pre-generated SVG if available, falls back to JS -->
 <div id="wordcloud-container" class="mb-5" style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); padding: 1rem; text-align: center;">
-  {% smart_wordcloud %}
+  {% include wordcloud.svg %}
 </div>
 
 ---
