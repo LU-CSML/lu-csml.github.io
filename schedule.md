@@ -68,27 +68,34 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
       {% endfor %}
 
       <div class="d-flex justify-content-between align-items-center mb-3">
+        {% assign upcoming_term_count = 0 %}
+        {% if has_michaelmas %}{% assign upcoming_term_count = upcoming_term_count | plus: 1 %}{% endif %}
+        {% if has_lent %}{% assign upcoming_term_count = upcoming_term_count | plus: 1 %}{% endif %}
+        {% if has_summer %}{% assign upcoming_term_count = upcoming_term_count | plus: 1 %}{% endif %}
+
         <ul class="nav nav-pills mb-0" id="termTabs" role="tablist">
           <li class="nav-item">
             <a class="nav-link active" id="all-terms-tab" data-toggle="pill" href="#all-terms" role="tab" aria-controls="all-terms" aria-selected="true">All Terms</a>
           </li>
 
-          {% if has_michaelmas %}
-            <li class="nav-item">
-              <a class="nav-link" id="michaelmas-tab" data-toggle="pill" href="#michaelmas" role="tab" aria-controls="michaelmas" aria-selected="false">Michaelmas Term</a>
-            </li>
-          {% endif %}
+          {% if upcoming_term_count > 1 %}
+            {% if has_michaelmas %}
+              <li class="nav-item">
+                <a class="nav-link" id="michaelmas-tab" data-toggle="pill" href="#michaelmas" role="tab" aria-controls="michaelmas" aria-selected="false">Michaelmas Term</a>
+              </li>
+            {% endif %}
 
-          {% if has_lent %}
-            <li class="nav-item">
-              <a class="nav-link" id="lent-tab" data-toggle="pill" href="#lent" role="tab" aria-controls="lent" aria-selected="false">Lent Term</a>
-            </li>
-          {% endif %}
+            {% if has_lent %}
+              <li class="nav-item">
+                <a class="nav-link" id="lent-tab" data-toggle="pill" href="#lent" role="tab" aria-controls="lent" aria-selected="false">Lent Term</a>
+              </li>
+            {% endif %}
 
-          {% if has_summer %}
-            <li class="nav-item">
-              <a class="nav-link" id="summer-tab" data-toggle="pill" href="#summer" role="tab" aria-controls="summer" aria-selected="false">Summer Term</a>
-            </li>
+            {% if has_summer %}
+              <li class="nav-item">
+                <a class="nav-link" id="summer-tab" data-toggle="pill" href="#summer" role="tab" aria-controls="summer" aria-selected="false">Summer Term</a>
+              </li>
+            {% endif %}
           {% endif %}
         </ul>
 
@@ -237,32 +244,197 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
   </div>
   
   <div class="tab-pane fade {% unless has_upcoming %}show active{% endunless %}" id="past" role="tabpanel" aria-labelledby="past-tab">
-    <div class="d-flex justify-content-end mb-3">
+    
+    {% assign has_past_michaelmas = false %}
+    {% assign has_past_lent = false %}
+    {% assign has_past_summer = false %}
+    
+    <!-- Pre-calculate terms for Past Talks -->
+    {% for talk in talks_desc %}
+      {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+      {% if talk_date >= academic_year_start and talk_date < current_date %}
+        {% assign m = talk.date | date: "%m" | plus: 0 %}
+        {% if m >= 8 and m <= 12 %}
+          {% assign has_past_michaelmas = true %}
+        {% elsif m >= 1 and m <= 4 %}
+          {% assign has_past_lent = true %}
+        {% else %}
+          {% assign has_past_summer = true %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        {% assign past_term_count = 0 %}
+        {% if has_past_michaelmas %}{% assign past_term_count = past_term_count | plus: 1 %}{% endif %}
+        {% if has_past_lent %}{% assign past_term_count = past_term_count | plus: 1 %}{% endif %}
+        {% if has_past_summer %}{% assign past_term_count = past_term_count | plus: 1 %}{% endif %}
+
+        <ul class="nav nav-pills mb-0" id="pastTermTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="past-all-terms-tab" data-toggle="pill" href="#past-all-terms" role="tab" aria-controls="past-all-terms" aria-selected="true">All Terms</a>
+          </li>
+
+          {% if past_term_count > 1 %}
+            {% if has_past_summer %}
+              <li class="nav-item">
+                <a class="nav-link" id="past-summer-tab" data-toggle="pill" href="#past-summer" role="tab" aria-controls="past-summer" aria-selected="false">Summer Term</a>
+              </li>
+            {% endif %}
+
+            {% if has_past_lent %}
+              <li class="nav-item">
+                <a class="nav-link" id="past-lent-tab" data-toggle="pill" href="#past-lent" role="tab" aria-controls="past-lent" aria-selected="false">Lent Term</a>
+              </li>
+            {% endif %}
+
+            {% if has_past_michaelmas %}
+              <li class="nav-item">
+                <a class="nav-link" id="past-michaelmas-tab" data-toggle="pill" href="#past-michaelmas" role="tab" aria-controls="past-michaelmas" aria-selected="false">Michaelmas Term</a>
+              </li>
+            {% endif %}
+          {% endif %}
+        </ul>
+
         <div class="form-inline">
             <input class="form-control" type="text" id="pastSearch" placeholder="Search past talks..." aria-label="Search">
         </div>
     </div>
-    <div class="table-responsive">
-      <table class="talk-table">
-        <thead>
-          <tr>
-            <th class="talk-date-col">Date</th>
-            <th class="talk-speaker-col">Speaker</th>
-            <th class="talk-title-col">Title</th>
-            <th class="talk-links-col">Links</th>
-          </tr>
-        </thead>
-        <tbody>
+
+    <div class="tab-content" id="pastTermTabsContent">
+
+        <!-- Past All Terms Pane (Default) -->
+        <div class="tab-pane fade show active" id="past-all-terms" role="tabpanel" aria-labelledby="past-all-terms-tab">
+          {% assign previous_term = "" %}
+
           {% for talk in talks_desc %}
             {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
-            <!-- Logic: Must be after Aug 2025 BUT before Today -->
             {% if talk_date >= academic_year_start and talk_date < current_date %}
+
+              {% assign m = talk.date | date: "%m" | plus: 0 %}
+              {% if m >= 8 and m <= 12 %}
+                {% assign current_term = "Michaelmas Term" %}
+              {% elsif m >= 1 and m <= 4 %}
+                {% assign current_term = "Lent Term" %}
+              {% else %}
+                {% assign current_term = "Summer Term" %}
+              {% endif %}
+
+              {% if current_term != previous_term %}
+                {% if previous_term != "" %}
+                  </tbody></table></div>
+                {% endif %}
+
+                <h3 class="mt-4 term-header">{{ current_term }}</h3>
+                <div class="table-responsive term-table-container">
+                <table class="talk-table">
+                  <thead>
+                    <tr>
+                      <th class="talk-date-col">Date</th>
+                      <th class="talk-speaker-col">Speaker</th>
+                      <th class="talk-title-col">Title</th>
+                      <th class="talk-links-col">Links</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                {% assign previous_term = current_term %}
+              {% endif %}
+
               {% include talk_row.html talk=talk %}
             {% endif %}
           {% endfor %}
-        </tbody>
-      </table>
+
+          {% if previous_term != "" %}
+            </tbody></table></div>
+          {% endif %}
+        </div>
+
+        {% if has_past_summer %}
+          <div class="tab-pane fade" id="past-summer" role="tabpanel" aria-labelledby="past-summer-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_desc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= academic_year_start and talk_date < current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% unless m >= 1 and m <= 4 or m >= 8 and m <= 12 %}
+                        {% include talk_row.html talk=talk %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if has_past_lent %}
+          <div class="tab-pane fade" id="past-lent" role="tabpanel" aria-labelledby="past-lent-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_desc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= academic_year_start and talk_date < current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% if m >= 1 and m <= 4 %}
+                        {% include talk_row.html talk=talk %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if has_past_michaelmas %}
+          <div class="tab-pane fade" id="past-michaelmas" role="tabpanel" aria-labelledby="past-michaelmas-tab">
+            <div class="table-responsive">
+              <table class="talk-table">
+                <thead>
+                  <tr>
+                    <th class="talk-date-col">Date</th>
+                    <th class="talk-speaker-col">Speaker</th>
+                    <th class="talk-title-col">Title</th>
+                    <th class="talk-links-col">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for talk in talks_desc %}
+                    {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+                    {% if talk_date >= academic_year_start and talk_date < current_date %}
+                      {% assign m = talk.date | date: "%m" | plus: 0 %}
+                      {% if m >= 8 and m <= 12 %}
+                        {% include talk_row.html talk=talk %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+
     </div>
+
   </div>
 </div>
 
@@ -290,7 +462,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
                 }
             });
 
-            // Optional: Handle Headers (specifically for 'All Terms' view in Upcoming)
+            // Optional: Handle Headers (specifically for 'All Terms' view in Upcoming/Past)
             if (headerSelector) {
                 var headerContainers = document.querySelectorAll(headerSelector);
                 headerContainers.forEach(function(tableContainer) {
@@ -314,10 +486,8 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
     }
 
     // Setup filtering for Upcoming Talks
-    // Note: Upcoming talks are inside #termTabsContent
     setupSearch('upcomingSearch', '#termTabsContent', '#all-terms .term-table-container');
 
     // Setup filtering for Past Talks
-    // Note: Past talks are inside #past
-    setupSearch('pastSearch', '#past');
+    setupSearch('pastSearch', '#pastTermTabsContent', '#past-all-terms .term-table-container');
 </script>
