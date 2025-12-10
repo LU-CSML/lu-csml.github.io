@@ -335,7 +335,7 @@
     try {
       container.innerHTML = '';
       const width = container.offsetWidth;
-      const height = 400;
+      const height = CHART_HEIGHT.STREAM;
       const margin = { top: 20, right: 60, bottom: 30, left: 40 };
 
       // Group by year
@@ -552,7 +552,7 @@
     try {
       container.innerHTML = '';
       const width = container.offsetWidth;
-      const height = 500;
+      const height = CHART_HEIGHT.SPEAKER;
       const margin = { top: 20, right: 150, bottom: 40, left: 50 };
 
       // 1. Process Data & Date Filter

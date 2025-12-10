@@ -111,7 +111,14 @@
         requestAnimationFrame(animate);
     }
     
-    window.addEventListener('resize', resize);
+    // Debounce resize to prevent excessive canvas resizing
+    let resizeTimeout;
+    function debouncedResize() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resize, 100);
+    }
+    
+    window.addEventListener('resize', debouncedResize);
     
     initParticles();
     resize();

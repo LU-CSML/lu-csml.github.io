@@ -228,7 +228,10 @@ description: Explore our speaker leaderboard featuring researchers who have pres
       } else {
         // Gradient based on talk count, not rank
         // Get the talk count for rank 3 (bronze threshold)
-        var bronzeCount = parseInt(items[2].getAttribute('data-count'));
+        // Guard against fewer than 3 speakers
+        var bronzeCount = items.length >= 3 
+          ? parseInt(items[2].getAttribute('data-count')) 
+          : count;
         
         // Create gradient from bronze count down to 1 talk
         // If count equals bronzeCount, use bronze color

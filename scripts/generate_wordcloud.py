@@ -135,6 +135,11 @@ def generate_svg(
         min_font_size=12,
         collocations=False  
     )
+    
+    # Validate text is not empty before generation
+    if not text or not text.strip():
+        raise ValueError("No text extracted from talks. Check that talks have titles or abstracts.")
+    
     wc.generate(text)
     svg_content = wc.to_svg()
     
