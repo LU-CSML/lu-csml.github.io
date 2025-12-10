@@ -99,6 +99,26 @@ See who has given the most talks over the years.
   </div>
 </div>
 
+<!-- Modal for Speaker Talks -->
+<div class="modal fade" id="shared-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-label">Speaker Talks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-list">
+        <!-- Content injected via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- D3.js -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <!-- vis.js for Network Graph -->
