@@ -44,31 +44,56 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
 </ul>
 
 <div class="tab-content" id="scheduleTabsContent">
+
   <div class="tab-pane fade {% if has_upcoming %}show active{% endif %}" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
     {% if has_upcoming %}
-      <div class="table-responsive">
-        <table class="talk-table">
-          <thead>
-            <tr>
-              <th class="talk-date-col">Date</th>
-              <th class="talk-speaker-col">Speaker</th>
-              <th class="talk-title-col">Title</th>
-              <th class="talk-links-col">Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for talk in talks_asc %}
-              {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
-              {% if talk_date >= current_date %}
-                {% include talk_row.html talk=talk %}
-              {% endif %}
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+      {% assign previous_term = "" %}
+      
+      {% for talk in talks_asc %}
+        {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+        {% if talk_date >= current_date %}
+          
+          {% assign m = talk.date | date: "%m" | plus: 0 %}
+          {% if m >= 8 and m <= 12 %}
+            {% assign current_term = "Michaelmas Term" %}
+          {% elsif m >= 1 and m <= 4 %}
+            {% assign current_term = "Lent Term" %}
+          {% else %}
+            {% assign current_term = "Summer Term" %}
+          {% endif %}
+
+          {% if current_term != previous_term %}
+            {% if previous_term != "" %}
+              </tbody></table></div>
+            {% endif %}
+
+            <h3 class="mt-4">{{ current_term }}</h3>
+            <div class="table-responsive">
+            <table class="talk-table">
+              <thead>
+                <tr>
+                  <th class="talk-date-col">Date</th>
+                  <th class="talk-speaker-col">Speaker</th>
+                  <th class="talk-title-col">Title</th>
+                  <th class="talk-links-col">Links</th>
+                </tr>
+              </thead>
+              <tbody>
+            {% assign previous_term = current_term %}
+          {% endif %}
+
+          {% include talk_row.html talk=talk %}
+        {% endif %}
+      {% endfor %}
+
+      {% if previous_term != "" %}
+        </tbody></table></div>
+      {% endif %}
+
     {% else %}
       <p class="mt-3 text-muted">No upcoming talks currently scheduled for this term.</p>
     {% endif %}
+
   </div>
   
   <div class="tab-pane fade {% unless has_upcoming %}show active{% endunless %}" id="past" role="tabpanel" aria-labelledby="past-tab">
