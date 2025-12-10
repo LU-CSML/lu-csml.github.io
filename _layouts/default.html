@@ -241,6 +241,74 @@
       .theme-toggle:focus {
         outline: none;
       }
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        /* Stack table columns */
+        table, thead, tbody, th, td, tr {
+          display: block;
+        }
+        
+        /* Hide table headers (but not display:none for accessibility if possible, usually safe here) */
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+        
+        tr {
+          margin-bottom: 1.5rem;
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          box-shadow: 0 2px 4px var(--shadow-color);
+          padding: 1rem;
+        }
+
+        td {
+          border: none;
+          position: relative;
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+        }
+        
+        /* Specific column adjustments */
+        .talk-date-col {
+          width: 100%;
+          font-size: 0.9rem;
+          color: var(--secondary-text);
+          font-weight: 600;
+          margin-bottom: 0.2rem;
+        }
+        
+        .talk-speaker-col {
+          width: 100%;
+          font-size: 1.2rem;
+          color: var(--link-color);
+          margin-bottom: 0.2rem;
+        }
+        
+        .talk-title-col {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+        
+        .talk-links-col {
+          width: 100%;
+          text-align: left;
+          margin-top: 0.5rem;
+        }
+        
+        .year-header td {
+            background: transparent;
+            font-size: 1.5rem;
+            padding-left: 0;
+            margin-bottom: 0.5rem;
+            border: none;
+            box-shadow: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -251,7 +319,8 @@
           Reading Group
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-color); margin-right: 5px;">MENU</span>
+          <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(0, 0, 0, 0.5)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto align-items-center">

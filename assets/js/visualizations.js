@@ -309,7 +309,7 @@
         barnesHut: { gravitationalConstant: -3000, centralGravity: 0.3, springLength: 100, springConstant: 0.05 },
         solver: 'barnesHut'
       },
-      interaction: { hover: true, zoomView: true, selectConnectedEdges: false }
+      interaction: { hover: true, zoomView: false, selectConnectedEdges: false }
     };
 
     if (network !== null) {
