@@ -46,9 +46,22 @@ def load_stopwords(stopwords_file: str) -> set[str]:
 
 
 def load_talks(data_file: str) -> list[dict[str, Any]]:
-    """Load talk data from YAML file."""
+    """Load and validate talk data from YAML file.
+    
+    Raises:
+        ValueError: If YAML content is not a list of talks
+        FileNotFoundError: If the data file doesn't exist
+    """
     with open(data_file, 'r', encoding='utf-8') as f:
-        return yaml.safe_load(f)
+        data = yaml.safe_load(f)
+    
+    # Validate structure
+    if data is None:
+        raise ValueError(f"Empty YAML file: {data_file}")
+    if not isinstance(data, list):
+        raise ValueError(f"Expected list of talks in {data_file}, got {type(data).__name__}")
+    
+    return data
 
 
 def process_text(talks: list[dict[str, Any]]) -> str:

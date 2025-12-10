@@ -11,6 +11,26 @@
   'use strict';
 
   // ============================================
+  // CONFIGURATION CONSTANTS
+  // ============================================
+  
+  /** Chart dimensions and margins */
+  const CHART_HEIGHT = {
+    STREAM: 400,
+    SPEAKER: 500,
+    NETWORK: 600
+  };
+  
+  /** Minimum word frequency to include in visualizations */
+  const MIN_WORD_FREQUENCY = 2;
+  
+  /** Date validation bounds for talks */
+  const YEAR_BOUNDS = { MIN: 2000, MAX: 2030 };
+  
+  /** Debounce delay for resize events (ms) */
+  const RESIZE_DEBOUNCE_MS = 150;
+
+  // ============================================
   // DATA INITIALIZATION
   // ============================================
   
@@ -249,6 +269,18 @@
         scaling: { min: 1, max: 6 },
         smooth: { type: 'continuous', roundness: 0.5 }
       },
+      /**
+       * BARNES-HUT FORCE-DIRECTED LAYOUT:
+       * An O(N log N) approximation of N-body simulation for graph layout.
+       * 
+       * Parameters:
+       * - gravitationalConstant: -3000 (negative = repulsion between nodes)
+       * - centralGravity: 0.3 (pulls nodes toward center, prevents drift)
+       * - springLength: 100 (natural length of edges)
+       * - springConstant: 0.05 (edge elasticity, lower = more flexible)
+       * 
+       * Reference: https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation
+       */
       physics: {
         stabilization: { enabled: true, iterations: 1000, fit: true },
         barnesHut: { gravitationalConstant: -3000, centralGravity: 0.3, springLength: 100, springConstant: 0.05 },
