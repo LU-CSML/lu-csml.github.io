@@ -27,19 +27,19 @@
 
 - date: 2026-05-21
   speaker: Gabriel Diaz-Aylwin
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title:
   abstract:
 
 - date: 2026-05-14
   speaker: Chris Nemeth
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title:
   abstract:
 
 - date: 2026-05-07
   speaker: Connie Trojan
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title:
   abstract:
 
@@ -53,13 +53,13 @@
 
 - date: 2026-04-23
   speaker: Rui Zhang
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title:
   abstract:
 
 - date: 2026-03-19
   speaker: Liam Llamazares-Elias
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title:
   abstract:
 
@@ -88,21 +88,21 @@
 
 - date: 2026-02-19
   speaker: Matthias Sachs
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title: 
   abstract: 
   slides:
 
 - date: 2026-02-12
   speaker: Abiel Talwar 
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title: 
   abstract: 
   slides:
 
 - date: 2026-02-05
   speaker: Chris Sherlock
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title: 
   abstract: 
   slides:
@@ -117,7 +117,7 @@
 
 - date: 2026-01-22
   speaker: Yuga Iguchi
-  affiliation: University of Lancaster
+  affiliation: Lancaster University
   title: 
   abstract: 
   slides:
@@ -132,7 +132,7 @@
 # 2025
 - date: 2025-12-11
   speaker: Zheyang Shen
-  affiliation: Newcastle
+  affiliation: Newcastle University
   title: A Computable Measure of Suboptimality for Entropy-Regularised Variational Objectives
   abstract: "Several emerging post-Bayesian methods target a probability distribution for which an entropy-regularised variational objective is minimised. This increased flexibility introduces a computational challenge, as one loses access to an explicit unnormalised density for the target. To mitigate this difficulty, we introduce a novel measure of suboptimality called 'gradient discrepancy', and in particular a 'kernel' gradient discrepancy (KGD) that can be explicitly computed. In the standard Bayesian context, KGD coincides with the kernel Stein discrepancy (KSD), and we obtain a novel characterisation of KSD as measuring the size of a variational gradient. Outside this familiar setting, KGD enables novel sampling algorithms to be developed and compared, even when unnormalised densities cannot be obtained. To illustrate this point several novel algorithms are proposed and studied, including a natural generalisation of Stein variational gradient descent, with applications to mean-field neural networks and predictively oriented posteriors presented. On the theoretical side, our principal contribution is to establish sufficient conditions for desirable properties of KGD, such as continuity and convergence control."
 
@@ -144,14 +144,14 @@
 
 - date: 2025-11-20
   speaker: Lanya Yang
-  affiliation: Lancaster
+  affiliation: Lancaster University
   title: Exchangeable Particle Gibbs for Markov Jump Processes
   abstract: "Inference in stochastic reaction-network models—such as the SEIR epidemic model or the Lotka–Volterra predator–prey system—is crucial for understanding the dynamics of interacting systems in epidemiology, ecology, and systems biology. These models are typically represented as Markov jump processes (MJPs) with intractable likelihoods. As a result, particle Markov chain Monte Carlo (particle MCMC) methods, particularly the Particle Gibbs (PG) sampler, have become standard tools for Bayesian inference. However, PG suffers from severe particle degeneracy, especially in high-dimensional state spaces, leading to poor mixing and inefficiency. In this talk, I focus on improving the efficiency of particle MCMC methods for inference in reaction networks by addressing the degeneracy problem. Building on recent work on the Exchangeable Particle Gibbs (xPG) sampler for continuous-state diffusions, this project develops a novel version of xPG tailored to discrete-state reaction networks, where randomness is driven by Poisson processes rather than Brownian motion. The proposed method retains the exchangeability framework of xPG while adapting it to the structural and computational challenges specific to reaction networks."
   slides: pdf/2025-11-20.pdf
 
 - date: 2025-10-30
   speaker: Rui Zhang
-  affiliation: Lancaster
+  affiliation: Lancaster University
   title: A Dynamic Perspective of Matern Gaussian Processes
   abstract: The ubiquitous Gaussian process (GP) models in statistics and machine learning (Williams and Rasmussen; 2006) are static by default, either using the weight-space or function-space views (Kanagawa et al.; 2025), where the observation and test locations have no unilateral dependency order, and this also explains the cubic scalability in computational costs for GP regressions. On the other hand, the dynamic view of Gaussian processes, while only available for a class of GP models, reformulates the dependency structure unilaterally (Whittle; 1954) to enable sequential inferences for GP regressions with computational costs that could scale linearly (Hartikainen and Sarkka;2010; Sarkka and Hartikainen; 2012) with little to no approximation. This talk explores this dynamic perspective of (Matern) Gaussian processes and some consequences of this perspective.
   slides: pdf/2025-10-30.pdf
@@ -163,7 +163,7 @@
 
 - date: 2025-10-16
   speaker: Henry Moss
-  affiliation: Lancaster
+  affiliation: Lancaster University
   title: "GPGreen: Linear Operator Learning with Gaussian Processes"
 
 - date: 2025-09-04
@@ -285,7 +285,7 @@
 
 - date: 2024-06-13
   speaker: Saifuddin Syed
-  affiliation: Oxford
+  affiliation: University of Oxford
   title: Scaling inference of MCMC algorithms with parallel computing
   link: https://academic.oup.com/jrsssb/article/84/2/321/7056147
   link_text: JRSSB
@@ -497,7 +497,7 @@
 
 - date: 2022-10-27
   speaker: Jure Vogrinc
-  affiliation: Warwick university
+  affiliation: University of Warwick
   title: "The Barker proposal: Combining robustness and efficiency in gradient-based MCMC"
 
 - date: 2022-10-20
@@ -560,7 +560,7 @@
 
 - date: 2022-02-17
   speaker: Lionel Riou-Durand
-  affiliation: Warwick university
+  affiliation: University of Warwick
   title: "Metropolis Adjusted Underdamped Langevin Trajectories: a robust alternative to Hamiltonian Monte-Carlo"
 
 - date: 2022-02-03
@@ -779,7 +779,7 @@
 
 - date: 2016-05-09
   speaker: Joris Bierkens
-  affiliation: Warwick University
+  affiliation: University of Warwick
   title: Super-efficient sampling using Zig Zag Monte Carlo
 
 - date: 2016-04-14
