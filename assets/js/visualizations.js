@@ -590,7 +590,20 @@
         .attr("transform", `translate(${margin.left},0)`)
         .call(d3.axisLeft(y));
 
-      // Draw Paths (with click handler)
+      // Create tooltip for lines
+      const lineTooltip = d3.select("body").append("div")
+        .attr("class", "d3-tooltip speaker-line-tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background", "rgba(0,0,0,0.85)")
+        .style("color", "#fff")
+        .style("padding", "8px 12px")
+        .style("border-radius", "4px")
+        .style("font-size", "13px")
+        .style("pointer-events", "none")
+        .style("z-index", 1000);
+
+      // Draw visible lines (thinner, for visual)
       svg.selectAll(".line")
         .data(seriesData)
         .join("path")
@@ -600,7 +613,36 @@
         .attr("stroke-width", 3)
         .attr("d", d => line(d.values))
         .style("opacity", 0.8)
+        .style("pointer-events", "none"); // Disable events on visible line
+
+      // Draw invisible overlay lines (thicker, for interaction)
+      svg.selectAll(".line-overlay")
+        .data(seriesData)
+        .join("path")
+        .attr("class", "line-overlay")
+        .attr("fill", "none")
+        .attr("stroke", "transparent")
+        .attr("stroke-width", 15) // Much wider for easier clicking
+        .attr("d", d => line(d.values))
         .style("cursor", "pointer")
+        .on("mouseover", function(event, d) {
+            // Highlight the actual line
+            svg.selectAll(".line")
+              .filter(ld => ld.name === d.name)
+              .attr("stroke-width", 5);
+            
+            lineTooltip.style("visibility", "visible")
+              .html(`<strong>${d.name}</strong><br>${d.talks.length} talks (${selectedStartYear}–${dataMaxYear})<br><em>Click for details</em>`);
+        })
+        .on("mousemove", (event) => {
+            lineTooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 15) + "px");
+        })
+        .on("mouseout", function(event, d) {
+            svg.selectAll(".line")
+              .filter(ld => ld.name === d.name)
+              .attr("stroke-width", 3);
+            lineTooltip.style("visibility", "hidden");
+        })
         .on("click", function(event, d) {
           // Show talks for this speaker in a modal
           const talks = d.talks;
