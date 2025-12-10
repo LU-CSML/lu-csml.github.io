@@ -93,7 +93,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
         </ul>
 
         <div class="form-inline">
-          <input class="form-control" type="text" id="scheduleSearch" placeholder="Search talks..." aria-label="Search">
+          <input class="form-control" type="text" id="upcomingSearch" placeholder="Search upcoming talks..." aria-label="Search">
         </div>
       </div>
 
@@ -230,45 +230,6 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
         {% endif %}
       </div>
 
-      <script>
-        document.getElementById('scheduleSearch').addEventListener('keyup', function() {
-          var searchTerm = this.value.toLowerCase();
-          var rows = document.querySelectorAll('.talk-table tbody tr');
-
-          // Filter rows
-          rows.forEach(function(row) {
-            var text = row.textContent.toLowerCase();
-            if(text.includes(searchTerm)) {
-              row.style.display = '';
-            } else {
-              row.style.display = 'none';
-            }
-          });
-
-          // Handle Headers in 'All Terms' view
-          // We need to check each 'term-table-container' to see if it has visible rows
-          var containers = document.querySelectorAll('#all-terms .term-table-container');
-
-          containers.forEach(function(container) {
-            var visibleRows = container.querySelectorAll('tbody tr:not([style*="display: none"])').length;
-            // The header is the previous sibling element of the container
-             var header = container.previousElementSibling;
-
-            if (visibleRows > 0) {
-               if (header && header.classList.contains('term-header')) {
-                   header.style.display = '';
-               }
-               container.style.display = '';
-            } else {
-               if (header && header.classList.contains('term-header')) {
-                   header.style.display = 'none';
-               }
-               container.style.display = 'none';
-            }
-          });
-        });
-      </script>
-
     {% else %}
       <p class="mt-3 text-muted">No upcoming talks currently scheduled for this term.</p>
     {% endif %}
@@ -276,6 +237,11 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
   </div>
   
   <div class="tab-pane fade {% unless has_upcoming %}show active{% endunless %}" id="past" role="tabpanel" aria-labelledby="past-tab">
+    <div class="d-flex justify-content-end mb-3">
+        <div class="form-inline">
+            <input class="form-control" type="text" id="pastSearch" placeholder="Search past talks..." aria-label="Search">
+        </div>
+    </div>
     <div class="table-responsive">
       <table class="talk-table">
         <thead>
@@ -299,3 +265,59 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
     </div>
   </div>
 </div>
+
+<script>
+    function setupSearch(inputId, containerSelector, headerSelector = null) {
+        var input = document.getElementById(inputId);
+        if (!input) return;
+
+        input.addEventListener('keyup', function() {
+            var searchTerm = this.value.toLowerCase();
+            
+            // Scope rows to the specific container to avoid cross-filtering
+            var container = document.querySelector(containerSelector);
+            if (!container) return;
+            
+            var rows = container.querySelectorAll('.talk-table tbody tr');
+            
+            // Filter rows
+            rows.forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                if(text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Optional: Handle Headers (specifically for 'All Terms' view in Upcoming)
+            if (headerSelector) {
+                var headerContainers = document.querySelectorAll(headerSelector);
+                headerContainers.forEach(function(tableContainer) {
+                    var visibleRows = tableContainer.querySelectorAll('tbody tr:not([style*="display: none"])').length;
+                    var header = tableContainer.previousElementSibling;
+                    
+                    if (visibleRows > 0) {
+                        if (header && header.classList.contains('term-header')) {
+                            header.style.display = '';
+                        }
+                        tableContainer.style.display = '';
+                    } else {
+                        if (header && header.classList.contains('term-header')) {
+                             header.style.display = 'none';
+                        }
+                        tableContainer.style.display = 'none';
+                    }
+                });
+            }
+        });
+    }
+
+    // Setup filtering for Upcoming Talks
+    // Note: Upcoming talks are inside #termTabsContent
+    setupSearch('upcomingSearch', '#termTabsContent', '#all-terms .term-table-container');
+
+    // Setup filtering for Past Talks
+    // Note: Past talks are inside #past
+    setupSearch('pastSearch', '#past');
+</script>
