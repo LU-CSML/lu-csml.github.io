@@ -90,11 +90,12 @@
   // ============================================
   
   /**
-   * Debounce: delays function execution until after wait ms have elapsed
-   * since the last invocation. Essential for resize/scroll handlers.
-   * @param {Function} func - Function to debounce
+   * Debounce execution of a function.
+   * Useful for resize and scroll events to prevent performance degradation.
+   * 
+   * @param {Function} func - The function to debounce
    * @param {number} wait - Delay in milliseconds
-   * @returns {Function} Debounced function
+   * @returns {Function} A new debounced function
    */
   function debounce(func, wait) {
     let timeout;
@@ -126,6 +127,12 @@
   // WORD CLOUD (Fallback only)
   // ============================================
   
+  /**
+   * Renders the Word Cloud visualization using wordcloud2.js.
+   * Serves as a fallback if the server-side SVG is unavailable.
+   * 
+   * @returns {void}
+   */
   function renderWordCloud() {
     const canvas = document.getElementById('word_cloud');
     if (!canvas) return;
@@ -166,10 +173,12 @@
   // NETWORK GRAPH
   // ============================================
   
+
   /**
-   * Renders the topic co-occurrence network graph using vis.js.
-   * Topics are connected if they appear together in the same talk.
-   * Uses Barnes-Hut simulation for force-directed layout.
+   * Renders the Topic Co-occurrence Network Graph using Vis.js.
+   * Nodes represent topics; edges represent co-occurrences in talks.
+   * Uses Barnes-Hut force-directed physics for layout.
+   * 
    * @returns {void}
    */
   function renderGraph() {
@@ -200,12 +209,12 @@
       });
     });
 
-    // Generate edges
+    // Generate edges based on co-occurrence
     const edges = [];
     const connectedIndices = new Set();
     const edgeMetaData = {};
 
-    // Pre-compute Sets for O(1) lookup (optimization: O(N²×T) → O(N²+T))
+    // Optimization: Using Sets for faster intersection checks
     const invertedSets = {};
     topWords.forEach(w => {
       invertedSets[w] = new Set(invertedIndex[w] || []);
@@ -270,16 +279,13 @@
         smooth: { type: 'continuous', roundness: 0.5 }
       },
       /**
-       * BARNES-HUT FORCE-DIRECTED LAYOUT:
-       * An O(N log N) approximation of N-body simulation for graph layout.
+       * Barnes-Hut Simulation Configuration.
        * 
-       * Parameters:
-       * - gravitationalConstant: -3000 (negative = repulsion between nodes)
-       * - centralGravity: 0.3 (pulls nodes toward center, prevents drift)
-       * - springLength: 100 (natural length of edges)
-       * - springConstant: 0.05 (edge elasticity, lower = more flexible)
-       * 
-       * Reference: https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation
+       * Settings:
+       * - gravitationalConstant: -3000 (Repulsion strength)
+       * - centralGravity: 0.3 (Centering force)
+       * - springLength: 100 (Equilibrium length)
+       * - springConstant: 0.05 (Stiffness)
        */
       physics: {
         stabilization: { enabled: true, iterations: 1000, fit: true },
@@ -317,10 +323,14 @@
   // ============================================
   
   /**
-   * Renders the topic evolution streamgraph using D3.js.
-   * Shows how research topics have evolved over time.
-   * Uses d3.stackOffsetSilhouette (wiggle minimization) for standard view,
-   * or d3.stackOffsetNone for cumulative view.
+   * Renders the Topic Evolution Streamgraph using D3.js.
+   * Visualizes the changing frequency of top topics over the dataset's timespan.
+   * 
+   * Features:
+   * - Interactive tooltips
+   * - Click-to-filter functionality
+   * - Responsive resizing
+   * 
    * @returns {void}
    */
   function renderStreamgraph() {
@@ -537,10 +547,16 @@
   // SPEAKER LEADERBOARD (Evolution Chart)
   // ============================================
 
+
   /**
-   * Renders the speaker talk evolution chart using D3.js.
-   * Shows cumulative talk counts per speaker over time.
-   * Includes collision detection for label placement.
+   * Renders the Speaker Leaderboard (Evolution Chart) using D3.js.
+   * Displays cumulative talk counts per speaker over time with collision-detected labels.
+   * 
+   * Features:
+   * - Invisible overlay for easy line selection
+   * - Start Year filtering
+   * - Top N speaker selection
+   * 
    * @returns {void}
    */
   function renderSpeakerChart() {
@@ -738,7 +754,7 @@
           
           document.getElementById('modal-label').textContent = `${d.name} - ${talks.length} Talks (${selectedStartYear}–${dataMaxYear})`;
           document.getElementById('modal-list').innerHTML = html;
-          // Guard against missing jQuery/Bootstrap
+          // Bootstrap Modal invocation
           if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
             $('#shared-modal').modal('show');
           }
@@ -870,7 +886,7 @@
     });
 
     modalBody.appendChild(listGroup);
-    // Guard against missing jQuery/Bootstrap
+    // Bootstrap Modal invocation
     if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
       $('#edgeModal').modal('show');
     }
@@ -907,7 +923,7 @@
       modalBody.appendChild(listGroup);
     }
 
-    // Guard against missing jQuery/Bootstrap
+    // Bootstrap Modal invocation
     if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
       $('#edgeModal').modal('show');
     }
