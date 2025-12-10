@@ -14,3 +14,7 @@ vendor/
 .DS_Store
 Thumbs.db
 Old_files/
+
+# Python Virtual Environment
+.venv/
+__pycache__/
