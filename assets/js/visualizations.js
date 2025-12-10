@@ -69,6 +69,28 @@
   // UTILITY FUNCTIONS
   // ============================================
   
+  /**
+   * Debounce: delays function execution until after wait ms have elapsed
+   * since the last invocation. Essential for resize/scroll handlers.
+   * @param {Function} func - Function to debounce
+   * @param {number} wait - Delay in milliseconds
+   * @returns {Function} Debounced function
+   */
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  /**
+   * Returns an interpolated heatmap color from orange to dark red.
+   * @param {number} value - Current value
+   * @param {number} min - Minimum value in range
+   * @param {number} max - Maximum value in range
+   * @returns {string} RGB color string
+   */
   function getHeatmapColor(value, min, max) {
     const diff = max - min <= 0 ? 1 : max - min;
     const ratio = (value - min) / diff;
@@ -124,6 +146,12 @@
   // NETWORK GRAPH
   // ============================================
   
+  /**
+   * Renders the topic co-occurrence network graph using vis.js.
+   * Topics are connected if they appear together in the same talk.
+   * Uses Barnes-Hut simulation for force-directed layout.
+   * @returns {void}
+   */
   function renderGraph() {
     const container = document.getElementById('network-container');
     if (!container) return;
@@ -157,14 +185,22 @@
     const connectedIndices = new Set();
     const edgeMetaData = {};
 
+    // Pre-compute Sets for O(1) lookup (optimization: O(N²×T) → O(N²+T))
+    const invertedSets = {};
+    topWords.forEach(w => {
+      invertedSets[w] = new Set(invertedIndex[w] || []);
+    });
+
     for (let i = 0; i < topN; i++) {
       for (let j = i + 1; j < topN; j++) {
         const wordA = topWords[i];
         const wordB = topWords[j];
-        const talksWithA = invertedIndex[wordA] || [];
-        const talksWithB = invertedIndex[wordB] || [];
+        const setA = invertedSets[wordA];
+        const setB = invertedSets[wordB];
         
-        const sharedTalkIndices = talksWithA.filter(id => talksWithB.includes(id));
+        // O(min(|A|,|B|)) intersection using smaller set
+        const [smaller, larger] = setA.size <= setB.size ? [setA, setB] : [setB, setA];
+        const sharedTalkIndices = [...smaller].filter(id => larger.has(id));
         const sharedCount = sharedTalkIndices.length;
 
         if (sharedCount >= minConn) {
@@ -248,6 +284,13 @@
   // STREAMGRAPH
   // ============================================
   
+  /**
+   * Renders the topic evolution streamgraph using D3.js.
+   * Shows how research topics have evolved over time.
+   * Uses d3.stackOffsetSilhouette (wiggle minimization) for standard view,
+   * or d3.stackOffsetNone for cumulative view.
+   * @returns {void}
+   */
   function renderStreamgraph() {
     if (typeof d3 === 'undefined') {
       console.warn('D3.js not loaded.');
@@ -462,6 +505,12 @@
   // SPEAKER LEADERBOARD (Evolution Chart)
   // ============================================
 
+  /**
+   * Renders the speaker talk evolution chart using D3.js.
+   * Shows cumulative talk counts per speaker over time.
+   * Includes collision detection for label placement.
+   * @returns {void}
+   */
   function renderSpeakerChart() {
     if (typeof d3 === 'undefined') return;
 
@@ -657,7 +706,10 @@
           
           document.getElementById('modal-label').textContent = `${d.name} - ${talks.length} Talks (${selectedStartYear}–${dataMaxYear})`;
           document.getElementById('modal-list').innerHTML = html;
-          $('#shared-modal').modal('show');
+          // Guard against missing jQuery/Bootstrap
+          if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+            $('#shared-modal').modal('show');
+          }
         });
 
       // 5. Label Collision Detection
@@ -786,7 +838,10 @@
     });
 
     modalBody.appendChild(listGroup);
-    $('#edgeModal').modal('show');
+    // Guard against missing jQuery/Bootstrap
+    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+      $('#edgeModal').modal('show');
+    }
   }
 
   // Expose for use by word cloud onclick
@@ -820,7 +875,10 @@
       modalBody.appendChild(listGroup);
     }
 
-    $('#edgeModal').modal('show');
+    // Guard against missing jQuery/Bootstrap
+    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+      $('#edgeModal').modal('show');
+    }
   };
 
   // ============================================
@@ -860,10 +918,15 @@
     renderSpeakerChart();
   });
 
-  window.addEventListener('resize', () => {
+  // Debounced resize handler to prevent excessive redraws
+  const debouncedResize = debounce(() => {
     try { 
       renderStreamgraph(); 
       renderSpeakerChart();
-    } catch(e) {}
-  });
+    } catch(e) {
+      console.warn('Resize render error:', e);
+    }
+  }, 150);
+
+  window.addEventListener('resize', debouncedResize);
 })();

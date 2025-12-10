@@ -16,28 +16,45 @@
     const particles = new Float32Array(N_PARTICLES * 2); // x, y interleaved
     const speeds = new Float32Array(N_PARTICLES); // speed for breathing effect
     
-    // Initialize Particles along the Banana distribution
+    /**
+     * Initializes particles along a "banana" (curved) distribution.
+     * 
+     * MATHEMATICAL BACKGROUND:
+     * 
+     * 1. IRWIN-HALL DISTRIBUTION (Approximate Gaussian):
+     *    The sum of n uniform random variables U(0,1) approximates a Gaussian.
+     *    Here we use n=4: Y = (U1 + U2 + U3 + U4 - 2) * 1.5
+     *    Mean = 0, Std ≈ 1.5 * sqrt(4/12) ≈ 0.87
+     *    
+     * 2. BANANA (ROSENBROCK) CURVE:
+     *    The classic "banana" shape follows: x = -c * y²
+     *    With c=0.6, this creates a parabola opening leftward.
+     *    Gaussian noise (σ=0.2) is added for thickness.
+     *    
+     * 3. 2D ROTATION MATRIX (applied in animate()):
+     *    [x']   [cos(θ)  -sin(θ)] [x]
+     *    [y'] = [sin(θ)   cos(θ)] [y]
+     *    
+     * Reference: https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution
+     */
     function initParticles() {
         for (let i = 0; i < N_PARTICLES; i++) {
-            // Generate standard banana: x = -0.5*y^2 + noise
-            // We want it centered.
+            // Irwin-Hall n=4: sum of 4 uniforms ≈ Gaussian (Central Limit Theorem)
+            // Subtract 2 to center at 0, scale by 1.5 for desired spread
+            let y = (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 1.5;
             
-            // Vertical spread (Y)
-            let y = (Math.random() + Math.random() + Math.random() + Math.random() - 2) * 1.5; // Approx normal
-            
-            // Thickness noise
+            // Thickness noise: triangular distribution (sum of 2 uniforms - 1)
             let noise = (Math.random() + Math.random() - 1) * 0.2;
             
-            // Equation x = -c * y^2
+            // Banana curve: x = -0.6 * y² (parabola opening left)
             let x = -0.6 * (y * y) + noise;
             
-            // Shift x to center usage
-            // The vertex is at 0, curve goes left. Center of mass is roughly -0.6.
+            // Translate to shift center of mass (vertex at origin, COM ≈ -0.6)
             x += 0.5;
             
             particles[i * 2] = x;
             particles[i * 2 + 1] = y;
-            speeds[i] = 0.002 + Math.random() * 0.003; // Random breathing speed
+            speeds[i] = 0.002 + Math.random() * 0.003;
         }
     }
     
