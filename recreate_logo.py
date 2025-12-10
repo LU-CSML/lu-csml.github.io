@@ -11,6 +11,7 @@ y = N(0, 1.2)
 """
 
 import argparse
+import os
 import sys
 from typing import Tuple
 
@@ -59,6 +60,10 @@ def save_logo(output_path: str, dpi: int = 300) -> None:
     """
     np.random.seed(42)
     x, y = generate_banana_data()
+    
+    output_dir = os.path.dirname(output_path)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
 
     # Create figure without frame
     plt.figure(figsize=(8, 8))

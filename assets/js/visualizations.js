@@ -41,12 +41,26 @@
     return;
   }
 
+  /**
+   * Robustly parses a date string or object into a Date object.
+   * 
+   * @param {string|Date} dateInput - The date to parse
+   * @returns {Date|null} Valid Date object or null if invalid
+   */
+  function parseDate(dateInput) {
+    if (!dateInput) return null;
+    const d = new Date(dateInput);
+    if (isNaN(d.getTime())) return null;
+    return d;
+  }
+
   const today = new Date();
   const rawTalks = (DATA.talks || []).filter(t => {
-      if (!t.date) return false;
-      const talkDate = new Date(t.date);
+      const talkDate = parseDate(t.date);
+      if (!talkDate) return false;
       return talkDate < today; 
   });
+
   const stopWords = new Set(
     (DATA.stopwords?.english || []).concat(DATA.stopwords?.academic || [])
   );
@@ -72,6 +86,9 @@
     });
     
     talk.cleanWords = cleanWords;
+    
+    // Store parsed date for reuse
+    talk.parsedDate = parseDate(talk.date);
   });
 
   // Create sorted word list
@@ -353,9 +370,9 @@
       const allYears = new Set();
 
       rawTalks.forEach(t => {
-        if (!t.date || t.date.length < 4) return;
-        const yStr = t.date.substring(0, 4);
-        const yInt = parseInt(yStr);
+        if (!t.parsedDate) return;
+        const yStr = t.parsedDate.getFullYear().toString();
+        const yInt = t.parsedDate.getFullYear();
         
         // Date validation with warning for data debugging
         if (isNaN(yInt) || yInt < 2000 || yInt > 2030) {
@@ -474,15 +491,20 @@
         .call(d3.axisBottom(x).ticks(Math.min(years.length, 12)));
 
       // Labels
+      // Label logic
       const isDarkMode = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
       const labelColor = isDarkMode ? '#fff' : '#333';
       const shadowColor = isDarkMode ? '0 0 4px #000' : '0 0 3px #fff';
 
-      const labelPositions = [];
-      series.forEach(d => {
+      /**
+       * Calculates the optimal position for a stream label.
+       * Finds the thickest point in the stream and computes orientation.
+       */
+      function calculateStreamLabelPosition(d, x, y, seriesLength) {
         let maxDiff = 0, bestPoint = null, bestIdx = -1;
 
-        for (let i = 2; i < d.length - 2; i++) {
+        // Skip edges to avoid awkward placements
+        for (let i = 2; i < seriesLength - 2; i++) {
           const diff = d[i][1] - d[i][0];
           if (diff > maxDiff) {
             maxDiff = diff;
@@ -492,27 +514,34 @@
         }
 
         const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
-        const fontSize = Math.min(16, Math.max(10, streamHeight * 0.3));
-
-        if (bestPoint && streamHeight > 12) {
-          const px = x(bestPoint.data.year);
-          const py = y((bestPoint[0] + bestPoint[1]) / 2);
-
-          let angle = 0;
-          if (bestIdx >= 2 && bestIdx < d.length - 2) {
-            const prev = d[bestIdx - 2];
-            const next = d[bestIdx + 2];
-            const p1 = { x: x(prev.data.year), y: y((prev[0] + prev[1]) / 2) };
-            const p2 = { x: x(next.data.year), y: y((next[0] + next[1]) / 2) };
-            angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
-            angle = Math.max(-30, Math.min(30, angle));
-          }
-
-          labelPositions.push({ key: d.key, x: px, y: py, fontSize, angle, visible: true });
-        } else {
-          labelPositions.push({ visible: false });
+        
+        // Visibility threshold: Stream must be thick enough
+        if (!bestPoint || streamHeight <= 12) {
+            return { visible: false };
         }
-      });
+
+        const fontSize = Math.min(16, Math.max(10, streamHeight * 0.3));
+        const px = x(bestPoint.data.year);
+        const py = y((bestPoint[0] + bestPoint[1]) / 2);
+
+        let angle = 0;
+        if (bestIdx >= 2 && bestIdx < seriesLength - 2) {
+          const prev = d[bestIdx - 2];
+          const next = d[bestIdx + 2];
+          const p1 = { x: x(prev.data.year), y: y((prev[0] + prev[1]) / 2) };
+          const p2 = { x: x(next.data.year), y: y((next[0] + next[1]) / 2) };
+          angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+          angle = Math.max(-30, Math.min(30, angle));
+        }
+
+        return { 
+            visible: true,
+            x: px, 
+            y: py, 
+            fontSize, 
+            angle 
+        };
+      }
 
       svg.selectAll('.stream-label')
         .data(series)
@@ -524,17 +553,17 @@
         .style('text-shadow', shadowColor)
         .style('font-weight', '600')
         .style('font-family', 'sans-serif')
-        .each(function(d, i) {
-          const pos = labelPositions[i];
-          if (pos?.visible) {
-            d3.select(this)
-              .attr('transform', `translate(${pos.x},${pos.y}) rotate(${pos.angle})`)
-              .style('font-size', pos.fontSize + 'px')
-              .text(d.key)
-              .attr('opacity', 1);
-          } else {
-            d3.select(this).text('').attr('opacity', 0);
-          }
+        .each(function(d) {
+           const pos = calculateStreamLabelPosition(d, x, y, d.length);
+           if (pos.visible) {
+             d3.select(this)
+               .attr('transform', `translate(${pos.x},${pos.y}) rotate(${pos.angle})`)
+               .style('font-size', pos.fontSize + 'px')
+               .text(d.key)
+               .attr('opacity', 1);
+           } else {
+             d3.select(this).text('').attr('opacity', 0);
+           }
         });
 
     } catch (e) {
@@ -576,8 +605,8 @@
 
       // First pass to get full year range for slider logic
       rawTalks.forEach(t => {
-        if (!t.date || t.date.length < 4) return;
-        const y = parseInt(t.date.substring(0, 4));
+        if (!t.parsedDate) return;
+        const y = t.parsedDate.getFullYear();
         if (!isNaN(y) && y >= 2000 && y <= 2030) allYears.add(y);
       });
 
@@ -609,8 +638,8 @@
       const speakerTalks = {}; // Store actual talks for modal
 
       rawTalks.forEach(t => {
-        if (!t.date || t.date.length < 4 || !t.speaker) return;
-        const y = parseInt(t.date.substring(0, 4));
+        if (!t.parsedDate || !t.speaker) return;
+        const y = t.parsedDate.getFullYear();
         if (isNaN(y) || y < selectedStartYear || y > 2030) return; // Filter by Start Year
 
         let name = t.speaker.split('(')[0].trim();

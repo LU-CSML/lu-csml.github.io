@@ -15,13 +15,16 @@ from typing import Any, Dict, List, Set, Tuple, Optional
 import yaml
 from wordcloud import WordCloud
 
-# Path configuration
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+from matplotlib import font_manager
+from pathlib import Path
 
-DEFAULT_DATA_FILE = os.path.join(PROJECT_ROOT, '_data', 'talks.yml')
-DEFAULT_STOPWORDS_FILE = os.path.join(PROJECT_ROOT, '_data', 'stopwords.yml')
-DEFAULT_OUTPUT_FILE = os.path.join(PROJECT_ROOT, '_includes', 'wordcloud.svg')
+# Path configuration
+SCRIPT_DIR = Path(__file__).parent.absolute()
+PROJECT_ROOT = SCRIPT_DIR.parent
+
+DEFAULT_DATA_FILE = PROJECT_ROOT / '_data' / 'talks.yml'
+DEFAULT_STOPWORDS_FILE = PROJECT_ROOT / '_data' / 'stopwords.yml'
+DEFAULT_OUTPUT_FILE = PROJECT_ROOT / '_includes' / 'wordcloud.svg'
 
 # Visualization Constants
 WIDTH = 800
@@ -31,9 +34,9 @@ COLOR_GREY_DARK = "#333333"
 COLOR_GREY_LIGHT = "#555555"
 
 
-def load_stopwords(stopwords_file: str) -> Set[str]:
+def load_stopwords(stopwords_file: Path) -> Set[str]:
     """Load stopwords from YAML configuration."""
-    if not os.path.exists(stopwords_file):
+    if not stopwords_file.exists():
         return set()
 
     with open(stopwords_file, 'r', encoding='utf-8') as f:
@@ -45,9 +48,9 @@ def load_stopwords(stopwords_file: str) -> Set[str]:
     return stopwords
 
 
-def load_talks(data_file: str) -> List[Dict[str, Any]]:
+def load_talks(data_file: Path) -> List[Dict[str, Any]]:
     """Load talk data from YAML."""
-    if not os.path.exists(data_file):
+    if not data_file.exists():
         raise FileNotFoundError(f"Data file not found: {data_file}")
 
     with open(data_file, 'r', encoding='utf-8') as f:
@@ -117,9 +120,9 @@ def sanitize_svg(svg_content: str) -> str:
 
 
 def generate_svg(
-    data_file: str, 
-    stopwords_file: str, 
-    output_file: str,
+    data_file: Path, 
+    stopwords_file: Path, 
+    output_file: Path,
     font_path: Optional[str] = None
 ) -> None:
     """Main generation logic."""
@@ -132,16 +135,14 @@ def generate_svg(
     
     # Resolve font path if not provided
     if font_path is None:
-        candidates = [
-            r'C:\Windows\Fonts\arial.ttf',
-            '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
-            '/usr/share/fonts/liberation-sans/LiberationSans-Regular.ttf',
-            '/System/Library/Fonts/Helvetica.ttc',
-        ]
-        for c in candidates:
-            if os.path.exists(c):
-                font_path = c
-                break
+        # Robust cross-platform font discovery using matplotlib
+        try:
+            # Try to find a sans-serif font
+            font_path = font_manager.findfont(font_manager.FontProperties(family='sans-serif'))
+            print(f"Using detected font: {font_path}")
+        except Exception as e:
+            print(f"Warning: Font detection failed ({e}). WordCloud will use its default.", file=sys.stderr)
+            font_path = None
     
     wc = WordCloud(
         width=WIDTH, 
@@ -226,7 +227,7 @@ def generate_svg(
             f'width="100%" viewBox="0 0 {WIDTH} {HEIGHT}"'
         )
 
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(svg_content)
     
@@ -244,9 +245,9 @@ def main() -> None:
     
     try:
         generate_svg(
-            data_file=args.data,
-            stopwords_file=args.stopwords,
-            output_file=args.output,
+            data_file=Path(args.data),
+            stopwords_file=Path(args.stopwords),
+            output_file=Path(args.output),
             font_path=args.font
         )
     except Exception as e:
