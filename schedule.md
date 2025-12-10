@@ -39,7 +39,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
     <a class="nav-link {% if has_upcoming %}active{% endif %}" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="{{ has_upcoming }}">Upcoming Talks</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link {% unless has_upcoming %}active{% endunless %}" id="past-tab" data-toggle="tab" href="#past" role="tab" aria-controls="past" aria-selected="{{ has_upcoming == false }}">Past Talks (This Term)</a>
+    <a class="nav-link {% unless has_upcoming %}active{% endunless %}" id="past-tab" data-toggle="tab" href="#past" role="tab" aria-controls="past" aria-selected="{% unless has_upcoming %}true{% else %}false{% endunless %}">Past Talks (This Term)</a>
   </li>
 </ul>
 
