@@ -41,9 +41,21 @@ description: Explore our speaker leaderboard featuring researchers who have pres
 </style>
 
 <h1>Past Speakers</h1>
+{% assign now_ts = site.time | date: "%s" | plus: 0 %}
+
+{% capture past_speakers_str %}
+{% for talk in site.data.talks %}
+{% assign talk_ts = talk.date | date: "%s" | plus: 0 %}
+{% if talk_ts < now_ts %}
+{{ talk.speaker }}|
+{% endif %}
+{% endfor %}
+{% endcapture %}
+{% assign past_speaker_count = past_speakers_str | split: "|" | uniq | size %}
+
 <div class="row mb-4 align-items-center">
   <div class="col-md-6">
-    <p class="mb-0">There are {{ site.data.talks | map: "speaker" | uniq | size }} speakers recorded in our database.</p>
+    <p class="mb-0">There are {{ past_speaker_count }} speakers recorded in our database.</p>
   </div>
   <div class="col-md-6">
     <input type="text" id="speaker-search" class="form-control" placeholder="Search speakers..." aria-label="Search speakers by name">
@@ -53,12 +65,26 @@ description: Explore our speaker leaderboard featuring researchers who have pres
 <div id="speakers-list">
   {% assign speakers = site.data.talks | group_by: "speaker" %}
   {% for speaker in speakers %}
-    {% assign parent_loop_index = forloop.index %}
-    {% assign should_collapse = false %}
-    {% if speaker.items.size >= 3 %}
-      {% assign should_collapse = true %}
-    {% endif %}
-    <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ speaker.items | size }}" data-speaker-name="{{ speaker.name }}">
+    
+    {% assign past_count = 0 %}
+    {% capture speaker_past_items %}
+      {% for talk in speaker.items %}
+        {% assign t_ts = talk.date | date: "%s" | plus: 0 %}
+        {% if t_ts < now_ts %}
+          {{ forloop.index0 }},
+          {% assign past_count = past_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% assign past_indices = speaker_past_items | split: "," %}
+
+    {% if past_count > 0 %}
+      {% assign parent_loop_index = forloop.index %}
+      {% assign should_collapse = false %}
+      {% if past_count >= 3 %}
+        {% assign should_collapse = true %}
+      {% endif %}
+    <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ past_count }}" data-speaker-name="{{ speaker.name }}">
       <div class="card-header d-flex justify-content-between align-items-center speaker-header">
         <h3 class="m-0" style="font-size: 1.5rem;">
           {{ speaker.name }}
@@ -66,10 +92,12 @@ description: Explore our speaker leaderboard featuring researchers who have pres
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </h3>
-        <span class="badge badge-secondary count-badge" style="font-size: 1rem;">{{ speaker.items | size }} talk{% if speaker.items.size > 1 %}s{% endif %}</span>
+        <span class="badge badge-secondary count-badge" style="font-size: 1rem;">{{ past_count }} talk{% if past_count > 1 %}s{% endif %}</span>
       </div>
       <ul class="list-group list-group-flush talks-list">
         {% for talk in speaker.items %}
+          {% assign t_ts = talk.date | date: "%s" | plus: 0 %}
+          {% if t_ts < now_ts %}
           <li class="list-group-item">
             <div class="d-flex justify-content-between align-items-center">
               <div class="mr-3">
@@ -79,7 +107,7 @@ description: Explore our speaker leaderboard featuring researchers who have pres
                 {% if talk.slides %}
                   <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
                 {% endif %}
-                
+
                 {% comment %} Handle single link vs multiple links {% endcomment %}
                 {% if talk.links %}
                   {% for link in talk.links %}
@@ -115,9 +143,11 @@ description: Explore our speaker leaderboard featuring researchers who have pres
               </div>
             {% endif %}
           </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
 
 {% endfor %}
 
