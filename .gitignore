@@ -18,3 +18,4 @@ Old_files/
 # Python Virtual Environment
 .venv/
 __pycache__/
+.agent/
