@@ -194,14 +194,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
 
     <div class="table-responsive">
       <table class="talk-table">
-        <thead>
-          <tr>
-            <th class="talk-date-col">Date</th>
-            <th class="talk-speaker-col">Speaker</th>
-            <th class="talk-title-col">Title</th>
-            <th class="talk-links-col">Links</th>
-          </tr>
-        </thead>
+        {% include talk_table_header.html %}
         <tbody>
           {% for talk in sorted_talks %}
             {% assign talk_year = talk.date | date: "%Y" %}
