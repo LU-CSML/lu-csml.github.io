@@ -1,6 +1,6 @@
 {% comment %} Reusable talk row component for schedule tables. Usage: {% include
 talk_row.html talk=talk %} {% endcomment %}
-<tr>
+<tr class="talk-row">
   <td class="talk-date-col">{{ include.talk.date | date: "%-d %b %Y" }}</td>
   <td class="talk-speaker-col">
     {{ include.talk.speaker }} {% if include.talk.affiliation %}
@@ -10,10 +10,12 @@ talk_row.html talk=talk %} {% endcomment %}
   <td class="talk-title-col">
     <em>{{ include.talk.title }}</em>
     {% if include.talk.abstract %}
-    <details class="abstract-toggle">
-      <summary><span class="arrow">&#9654;</span> Abstract</summary>
-      <div class="abstract-content">{{ include.talk.abstract }}</div>
-    </details>
+    <button
+      class="abstract-toggle-btn"
+      onclick="this.closest('tr').nextElementSibling.classList.toggle('abstract-row-hidden')"
+    >
+      <span class="arrow">&#9654;</span> Abstract
+    </button>
     {% endif %}
   </td>
   <td class="talk-links-col">
@@ -54,3 +56,10 @@ talk_row.html talk=talk %} {% endcomment %}
     {% endif %} {% endif %}
   </td>
 </tr>
+{% if include.talk.abstract %}
+<tr class="abstract-row abstract-row-hidden">
+  <td colspan="4" class="abstract-content-cell">
+    <div class="abstract-content">{{ include.talk.abstract }}</div>
+  </td>
+</tr>
+{% endif %}

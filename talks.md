@@ -93,11 +93,18 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
 
       rows.forEach(function(row) {
         if (row.classList.contains('year-header')) return;
+        // Skip abstract rows - they follow their parent talk row
+        if (row.classList.contains('abstract-row')) return;
 
         var text = row.textContent.toLowerCase();
         
+        // Find the next sibling abstract row if it exists
+        var nextRow = row.nextElementSibling;
+        var abstractRow = (nextRow && nextRow.classList.contains('abstract-row')) ? nextRow : null;
+        
         if (text.includes(lowerQuery)) {
           row.style.display = '';
+          if (abstractRow) abstractRow.style.display = '';
           visibleCount++;
           
           // Track this year as having visible talks
@@ -105,6 +112,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
           if (yearAttr) visibleYears.add(yearAttr);
         } else {
           row.style.display = 'none';
+          if (abstractRow) abstractRow.style.display = 'none';
         }
       });
       
@@ -203,7 +211,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
                 <td colspan="4"><a href="#{{ current_year }}">{{ current_year }}</a></td>
               </tr>
             {% endif %}
-            <tr data-year="{{ talk_year }}">
+            <tr data-year="{{ talk_year }}" class="talk-row">
               <td class="talk-date-col">{{ talk.date | date: "%-d %b" }}</td>
               <td class="talk-speaker-col">
                 {{ talk.speaker }}
@@ -214,14 +222,9 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
               <td class="talk-title-col">
                 <em>{{ talk.title }}</em>
                 {% if talk.abstract %}
-                  <details class="abstract-toggle">
-                    <summary>
-                      <span class="arrow">&#9654;</span> Abstract
-                    </summary>
-                    <div class="abstract-content">
-                      {{ talk.abstract }}
-                    </div>
-                  </details>
+                <button class="abstract-toggle-btn" onclick="this.closest('tr').nextElementSibling.classList.toggle('abstract-row-hidden')">
+                  <span class="arrow">&#9654;</span> Abstract
+                </button>
                 {% endif %}
               </td>
               <td class="talk-links-col">
@@ -248,6 +251,13 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
               {% endif %}
             </td>
             </tr>
+            {% if talk.abstract %}
+            <tr class="abstract-row abstract-row-hidden" data-year="{{ talk_year }}">
+              <td colspan="4" class="abstract-content-cell">
+                <div class="abstract-content">{{ talk.abstract }}</div>
+              </td>
+            </tr>
+            {% endif %}
           {% endfor %}
         </tbody>
       </table>

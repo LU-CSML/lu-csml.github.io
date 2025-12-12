@@ -182,40 +182,55 @@
         color: var(--secondary-text);
       }
 
-      /* Abstract toggle */
-      .abstract-toggle {
-        display: inline;
-      }
-      .abstract-toggle summary {
-        display: inline;
+      /* Abstract toggle button */
+      .abstract-toggle-btn {
+        display: inline-block;
+        background: none;
+        border: none;
         cursor: pointer;
         color: var(--link-color);
         font-size: 0.85em;
         margin-left: 0.5em;
-        list-style: none;
-        white-space: nowrap;
+        padding: 0;
+        font-family: inherit;
+        transition: color 0.2s ease;
       }
-      .abstract-toggle summary::-webkit-details-marker {
-        display: none;
+      .abstract-toggle-btn:hover {
+        color: var(--link-hover-color);
       }
-      .abstract-toggle .arrow {
+      .abstract-toggle-btn .arrow {
         display: inline-block;
         font-size: 0.7em;
         transition: transform 0.2s ease;
       }
-      .abstract-toggle[open] .arrow {
+      .abstract-toggle-btn .arrow.arrow-open {
         transform: rotate(90deg);
+      }
+      
+      /* Abstract row (separate full-width row) */
+      .abstract-row {
+        background: transparent !important;
+      }
+      .abstract-row:hover td {
+        background: transparent !important;
+      }
+      .abstract-row-hidden {
+        display: none;
+      }
+      .abstract-content-cell {
+        padding: 0 0.5rem 1rem 0.5rem !important;
+        border-bottom: 1px solid var(--border-color);
       }
       .abstract-content {
         display: block;
-        margin-top: 0.5em;
         font-size: 0.95em;
         color: var(--text-color);
         line-height: 1.5;
         background: var(--abstract-bg);
-        padding: 0.8em;
-        border-radius: 4px;
+        padding: 1em;
+        border-radius: 6px;
         border-left: 3px solid var(--link-color);
+        box-shadow: 0 2px 8px var(--shadow-color);
       }
 
       .zhadow {
@@ -308,6 +323,27 @@
             border: none;
             box-shadow: none;
         }
+        
+        /* Abstract row on mobile - integrate into card */
+        .abstract-row {
+          margin-bottom: 0 !important;
+          margin-top: -1rem !important;
+          padding: 0 1rem 1rem 1rem !important;
+          border: none !important;
+          border-radius: 0 0 8px 8px !important;
+          box-shadow: none !important;
+        }
+        .abstract-row td {
+          padding: 0 !important;
+        }
+        .talk-row {
+          margin-bottom: 0 !important;
+          border-radius: 8px 8px 0 0 !important;
+        }
+        .talk-row:has(+ .abstract-row-hidden) {
+          margin-bottom: 1.5rem !important;
+          border-radius: 8px !important;
+        }
       }
     </style>
   </head>
@@ -384,6 +420,17 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 toggleButton.textContent = '🌙';
+            }
+        });
+        
+        // Abstract toggle arrow rotation
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.abstract-toggle-btn');
+            if (btn) {
+                const arrow = btn.querySelector('.arrow');
+                if (arrow) {
+                    arrow.classList.toggle('arrow-open');
+                }
             }
         });
     </script>
