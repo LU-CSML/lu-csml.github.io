@@ -136,7 +136,6 @@ def generate_svg(
     # Resolve font path if not provided
     if font_path is None:
         # Robust cross-platform font discovery using matplotlib
-        # Try multiple font families to avoid parsing issues with hyphenated names
         font_families = ['Arial', 'Helvetica', 'DejaVu Sans', 'Liberation Sans']
         for family in font_families:
             try:
