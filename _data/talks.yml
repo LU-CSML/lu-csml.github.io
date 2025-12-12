@@ -134,6 +134,9 @@
   speaker: Zheyang Shen
   affiliation: Newcastle University
   title: A Computable Measure of Suboptimality for Entropy-Regularised Variational Objectives
+  slides: pdf/2025-12-11.pdf
+  link: https://arxiv.org/abs/2509.10393
+  link_text: arXiv
   abstract: "Several emerging post-Bayesian methods target a probability distribution for which an entropy-regularised variational objective is minimised. This increased flexibility introduces a computational challenge, as one loses access to an explicit unnormalised density for the target. To mitigate this difficulty, we introduce a novel measure of suboptimality called 'gradient discrepancy', and in particular a 'kernel' gradient discrepancy (KGD) that can be explicitly computed. In the standard Bayesian context, KGD coincides with the kernel Stein discrepancy (KSD), and we obtain a novel characterisation of KSD as measuring the size of a variational gradient. Outside this familiar setting, KGD enables novel sampling algorithms to be developed and compared, even when unnormalised densities cannot be obtained. To illustrate this point several novel algorithms are proposed and studied, including a natural generalisation of Stein variational gradient descent, with applications to mean-field neural networks and predictively oriented posteriors presented. On the theoretical side, our principal contribution is to establish sufficient conditions for desirable properties of KGD, such as continuity and convergence control."
 
 - date: 2025-12-04

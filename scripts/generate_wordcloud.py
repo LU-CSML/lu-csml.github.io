@@ -136,12 +136,20 @@ def generate_svg(
     # Resolve font path if not provided
     if font_path is None:
         # Robust cross-platform font discovery using matplotlib
-        try:
-            # Try to find a sans-serif font
-            font_path = font_manager.findfont(font_manager.FontProperties(family='sans-serif'))
-            print(f"Using detected font: {font_path}")
-        except Exception as e:
-            print(f"Warning: Font detection failed ({e}). WordCloud will use its default.", file=sys.stderr)
+        # Try multiple font families to avoid parsing issues with hyphenated names
+        font_families = ['Arial', 'Helvetica', 'DejaVu Sans', 'Liberation Sans']
+        for family in font_families:
+            try:
+                font_path = font_manager.findfont(font_manager.FontProperties(family=family))
+                # Check if we got a real font (not the fallback)
+                if font_path and 'DejaVuSans' not in font_path or family == 'DejaVu Sans':
+                    print(f"Using detected font: {font_path}")
+                    break
+            except Exception:
+                continue
+        else:
+            # If no specific font found, let WordCloud use its default
+            print("Using WordCloud's default font.", file=sys.stderr)
             font_path = None
     
     wc = WordCloud(
