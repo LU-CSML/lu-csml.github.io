@@ -211,53 +211,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
                 <td colspan="4"><a href="#{{ current_year }}">{{ current_year }}</a></td>
               </tr>
             {% endif %}
-            <tr data-year="{{ talk_year }}" class="talk-row">
-              <td class="talk-date-col">{{ talk.date | date: "%-d %b" }}</td>
-              <td class="talk-speaker-col">
-                {{ talk.speaker }}
-                {% if talk.affiliation %}
-                  <span class="talk-affiliation">{{ talk.affiliation }}</span>
-                {% endif %}
-              </td>
-              <td class="talk-title-col">
-                <em>{{ talk.title }}</em>
-                {% if talk.abstract %}
-                <button class="abstract-toggle-btn" onclick="this.closest('tr').nextElementSibling.classList.toggle('abstract-row-hidden')">
-                  <span class="arrow">&#9654;</span> Abstract
-                </button>
-                {% endif %}
-              </td>
-              <td class="talk-links-col">
-              {% if talk.slides %}
-                <a href="{{ talk.slides }}" class="badge badge-warning text-dark border border-warning" target="_blank">Slides</a>
-              {% endif %}
-
-              {% if talk.links %}
-                {% for link in talk.links %}
-                  {% assign link_text_down = link.text | downcase %}
-                  {% if link_text_down contains 'arxiv' %}
-                     <a href="{{ link.url }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
-                  {% else %}
-                     <a href="{{ link.url }}" class="badge badge-info" target="_blank">{{ link.text | default: "Link" }}</a>
-                  {% endif %}
-                {% endfor %}
-              {% elsif talk.link %}
-                  {% assign link_text_down = talk.link_text | downcase %}
-                  {% if link_text_down contains 'arxiv' %}
-                     <a href="{{ talk.link }}" class="badge badge-light border" style="background-color: #f8f9fa;" target="_blank">{% include icon-arxiv.svg %}</a>
-                  {% else %}
-                     <a href="{{ talk.link }}" class="badge badge-info" target="_blank">{{ talk.link_text | default: "Link" }}</a>
-                  {% endif %}
-              {% endif %}
-            </td>
-            </tr>
-            {% if talk.abstract %}
-            <tr class="abstract-row abstract-row-hidden" data-year="{{ talk_year }}">
-              <td colspan="4" class="abstract-content-cell">
-                <div class="abstract-content">{{ talk.abstract }}</div>
-              </td>
-            </tr>
-            {% endif %}
+            {% include talk_row.html talk=talk year=talk_year %}
           {% endfor %}
         </tbody>
       </table>

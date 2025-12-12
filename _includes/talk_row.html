@@ -1,6 +1,18 @@
 {% comment %} Reusable talk row component for schedule tables. Usage: {% include
-talk_row.html talk=talk %} {% endcomment %}
-<tr class="talk-row">
+talk_row.html talk=talk %} or {% include talk_row.html talk=talk year=talk_year
+%} The optional year parameter adds data-year attributes for filtering. {%
+endcomment %}
+<tr
+  class="talk-row"
+  {%
+  if
+  include.year
+  %}
+  data-year="{{ include.year }}"
+  {%
+  endif
+  %}
+>
   <td class="talk-date-col">{{ include.talk.date | date: "%-d %b %Y" }}</td>
   <td class="talk-speaker-col">
     {{ include.talk.speaker }} {% if include.talk.affiliation %}
@@ -57,7 +69,17 @@ talk_row.html talk=talk %} {% endcomment %}
   </td>
 </tr>
 {% if include.talk.abstract %}
-<tr class="abstract-row abstract-row-hidden">
+<tr
+  class="abstract-row abstract-row-hidden"
+  {%
+  if
+  include.year
+  %}
+  data-year="{{ include.year }}"
+  {%
+  endif
+  %}
+>
   <td colspan="4" class="abstract-content-cell">
     <div class="abstract-content">{{ include.talk.abstract }}</div>
   </td>
