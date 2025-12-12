@@ -41,7 +41,9 @@ You can include an abstract directly. **Note**: If your abstract contains colons
 ## Site Sections
 
 - **Schedule** (`/schedule`): Shows upcoming talks and "Recent Past Talks" (from the current academic year only).
-- **Past Talks** (`/talks`): The full archive of all past talks from previous years. Future talks do not appear here.
+- **Past Talks** (`/talks`): The full archive of all past talks from previous years.
+- **Speakers** (`/speakers`): A list of all speakers and their talks.
+- **Our Research** (`/visualizations`): Interactive visualizations of group research topics and collaborations.
 
 ## Adding Slides
 
@@ -97,11 +99,19 @@ Just push to the `main` branch - GitHub Pages will automatically rebuild the sit
 ```
 ├── _data/
 │   └── talks.yml          # All talk data lives here
+├── _includes/             # Reusable HTML snippets (headers, rows, etc)
 ├── _layouts/
 │   └── default.html       # Base HTML template
-├── index.md               # Homepage (shows recent 10 talks)
-├── talks.md               # Full archive (past talks by year)
-├── post/                  # Abstract pages
+├── _plugins/              # Jekyll plugins (e.g. smart_wordcloud.rb)
+├── assets/
+│   ├── img/               # Images and logos
+│   └── js/                # Custom JavaScript
 ├── pdf/                   # Slides PDFs
-└── css/                   # Stylesheets
+├── scripts/
+│   └── generate_wordcloud.py # Word cloud generation script
+├── index.md               # Homepage (shows recent 10 talks)
+├── schedule.md            # Schedule page
+├── speakers.md            # Speakers list page
+├── talks.md               # Full archive (past talks by year)
+└── visualizations.md      # Research visualization page
 ```
