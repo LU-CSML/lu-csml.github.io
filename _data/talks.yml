@@ -10,18 +10,19 @@
 
 
 # Recommend Omar to LAI if no open slots
-# Paula can take 25th
-# Alexander could do 18th June
+# Paula can take my date perhaps or ask .....
+
 # Move Chris/Tiffany to 11th and confirm 
-# Move Matti to 4th once Chris answers
+
 - date: 2026-06-25
-  speaker:
-  affiliation:
+  speaker: Chris Sherlock
+  affiliation: Lancaster University
   title:
   abstract:
 
+# Alexander could do 18th June
 - date: 2026-06-18
-  speaker:
+  speaker: 
   affiliation:
   title:
   abstract:
@@ -31,7 +32,7 @@
   affiliation: University of Glasgow
   title:
   abstract:
-
+# Move Matti to 4th once Chris answers
 - date: 2026-06-04
   speaker:
   affiliation: 
