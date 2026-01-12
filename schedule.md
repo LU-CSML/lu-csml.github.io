@@ -131,14 +131,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
                 <h3 class="mt-4 term-header">{{ current_term }}</h3>
                 <div class="table-responsive term-table-container">
                 <table class="talk-table">
-                  <thead>
-                    <tr>
-                      <th class="talk-date-col">Date</th>
-                      <th class="talk-speaker-col">Speaker</th>
-                      <th class="talk-title-col">Title</th>
-                      <th class="talk-links-col">Links</th>
-                    </tr>
-                  </thead>
+                  {% include talk_table_header.html %}
                   <tbody>
                 {% assign previous_term = current_term %}
               {% endif %}
@@ -156,14 +149,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="michaelmas" role="tabpanel" aria-labelledby="michaelmas-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_asc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
@@ -184,14 +170,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="lent" role="tabpanel" aria-labelledby="lent-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_asc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
@@ -212,14 +191,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="summer" role="tabpanel" aria-labelledby="summer-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_asc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
@@ -328,14 +300,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
                 <h3 class="mt-4 term-header">{{ current_term }}</h3>
                 <div class="table-responsive term-table-container">
                 <table class="talk-table">
-                  <thead>
-                    <tr>
-                      <th class="talk-date-col">Date</th>
-                      <th class="talk-speaker-col">Speaker</th>
-                      <th class="talk-title-col">Title</th>
-                      <th class="talk-links-col">Links</th>
-                    </tr>
-                  </thead>
+                  {% include talk_table_header.html %}
                   <tbody>
                 {% assign previous_term = current_term %}
               {% endif %}
@@ -353,14 +318,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="past-summer" role="tabpanel" aria-labelledby="past-summer-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_desc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
@@ -381,14 +339,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="past-lent" role="tabpanel" aria-labelledby="past-lent-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_desc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
@@ -409,14 +360,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
           <div class="tab-pane fade" id="past-michaelmas" role="tabpanel" aria-labelledby="past-michaelmas-tab">
             <div class="table-responsive">
               <table class="talk-table">
-                <thead>
-                  <tr>
-                    <th class="talk-date-col">Date</th>
-                    <th class="talk-speaker-col">Speaker</th>
-                    <th class="talk-title-col">Title</th>
-                    <th class="talk-links-col">Links</th>
-                  </tr>
-                </thead>
+                {% include talk_table_header.html %}
                 <tbody>
                   {% for talk in talks_desc %}
                     {% assign talk_date = talk.date | date: "%Y-%m-%d" %}

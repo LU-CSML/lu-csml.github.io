@@ -182,40 +182,55 @@
         color: var(--secondary-text);
       }
 
-      /* Abstract toggle */
-      .abstract-toggle {
-        display: inline;
-      }
-      .abstract-toggle summary {
-        display: inline;
+      /* Abstract toggle button */
+      .abstract-toggle-btn {
+        display: inline-block;
+        background: none;
+        border: none;
         cursor: pointer;
         color: var(--link-color);
         font-size: 0.85em;
         margin-left: 0.5em;
-        list-style: none;
-        white-space: nowrap;
+        padding: 0;
+        font-family: inherit;
+        transition: color 0.2s ease;
       }
-      .abstract-toggle summary::-webkit-details-marker {
-        display: none;
+      .abstract-toggle-btn:hover {
+        color: var(--link-hover-color);
       }
-      .abstract-toggle .arrow {
+      .abstract-toggle-btn .arrow {
         display: inline-block;
         font-size: 0.7em;
         transition: transform 0.2s ease;
       }
-      .abstract-toggle[open] .arrow {
+      .abstract-toggle-btn .arrow.arrow-open {
         transform: rotate(90deg);
+      }
+      
+      /* Abstract row (separate full-width row) */
+      .abstract-row {
+        background: transparent !important;
+      }
+      .abstract-row:hover td {
+        background: transparent !important;
+      }
+      .abstract-row-hidden {
+        display: none;
+      }
+      .abstract-content-cell {
+        padding: 0 0.5rem 1rem 0.5rem !important;
+        border-bottom: 1px solid var(--border-color);
       }
       .abstract-content {
         display: block;
-        margin-top: 0.5em;
         font-size: 0.95em;
         color: var(--text-color);
         line-height: 1.5;
         background: var(--abstract-bg);
-        padding: 0.8em;
-        border-radius: 4px;
+        padding: 1em;
+        border-radius: 6px;
         border-left: 3px solid var(--link-color);
+        box-shadow: 0 2px 8px var(--shadow-color);
       }
 
       .zhadow {
@@ -241,6 +256,95 @@
       .theme-toggle:focus {
         outline: none;
       }
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        /* Stack table columns */
+        table, thead, tbody, th, td, tr {
+          display: block;
+        }
+        
+        /* Hide table headers (but not display:none for accessibility if possible, usually safe here) */
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+        
+        tr {
+          margin-bottom: 1.5rem;
+          background: #fff;
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          box-shadow: 0 2px 4px var(--shadow-color);
+          padding: 1rem;
+        }
+
+        td {
+          border: none;
+          position: relative;
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+        }
+        
+        /* Specific column adjustments */
+        .talk-date-col {
+          width: 100%;
+          font-size: 0.9rem;
+          color: var(--secondary-text);
+          font-weight: 600;
+          margin-bottom: 0.2rem;
+        }
+        
+        .talk-speaker-col {
+          width: 100%;
+          font-size: 1.2rem;
+          color: var(--link-color);
+          margin-bottom: 0.2rem;
+        }
+        
+        .talk-title-col {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+        
+        .talk-links-col {
+          width: 100%;
+          text-align: left;
+          margin-top: 0.5rem;
+        }
+        
+        .year-header td {
+            background: transparent;
+            font-size: 1.5rem;
+            padding-left: 0;
+            margin-bottom: 0.5rem;
+            border: none;
+            box-shadow: none;
+        }
+        
+        /* Abstract row on mobile - integrate into card */
+        .abstract-row {
+          margin-bottom: 0 !important;
+          margin-top: -1rem !important;
+          padding: 0 1rem 1rem 1rem !important;
+          border: none !important;
+          border-radius: 0 0 8px 8px !important;
+          box-shadow: none !important;
+        }
+        .abstract-row td {
+          padding: 0 !important;
+        }
+        .talk-row {
+          margin-bottom: 0 !important;
+          border-radius: 8px 8px 0 0 !important;
+        }
+        .talk-row:has(+ .abstract-row-hidden) {
+          margin-bottom: 1.5rem !important;
+          border-radius: 8px !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -251,7 +355,8 @@
           Reading Group
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-color); margin-right: 5px;">MENU</span>
+          <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(0, 0, 0, 0.5)\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto align-items-center">
@@ -315,6 +420,17 @@
                 htmlElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 toggleButton.textContent = '🌙';
+            }
+        });
+        
+        // Abstract toggle arrow rotation
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.abstract-toggle-btn');
+            if (btn) {
+                const arrow = btn.querySelector('.arrow');
+                if (arrow) {
+                    arrow.classList.toggle('arrow-open');
+                }
             }
         });
     </script>

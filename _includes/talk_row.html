@@ -1,6 +1,18 @@
 {% comment %} Reusable talk row component for schedule tables. Usage: {% include
-talk_row.html talk=talk %} {% endcomment %}
-<tr>
+talk_row.html talk=talk %} or {% include talk_row.html talk=talk year=talk_year
+%} The optional year parameter adds data-year attributes for filtering. {%
+endcomment %}
+<tr
+  class="talk-row"
+  {%
+  if
+  include.year
+  %}
+  data-year="{{ include.year }}"
+  {%
+  endif
+  %}
+>
   <td class="talk-date-col">{{ include.talk.date | date: "%-d %b %Y" }}</td>
   <td class="talk-speaker-col">
     {{ include.talk.speaker }} {% if include.talk.affiliation %}
@@ -10,47 +22,32 @@ talk_row.html talk=talk %} {% endcomment %}
   <td class="talk-title-col">
     <em>{{ include.talk.title }}</em>
     {% if include.talk.abstract %}
-    <details class="abstract-toggle">
-      <summary><span class="arrow">&#9654;</span> Abstract</summary>
-      <div class="abstract-content">{{ include.talk.abstract }}</div>
-    </details>
+    <button
+      class="abstract-toggle-btn"
+      onclick="this.closest('tr').nextElementSibling.classList.toggle('abstract-row-hidden')"
+    >
+      <span class="arrow">&#9654;</span> Abstract
+    </button>
     {% endif %}
   </td>
   <td class="talk-links-col">
-    {% if include.talk.slides %}
-    <a
-      href="{{ include.talk.slides }}"
-      class="badge badge-warning text-dark border border-warning"
-      target="_blank"
-      >Slides</a
-    >
-    {% endif %} {% if include.talk.links %} {% for link in include.talk.links %}
-    {% assign link_text_down = link.text | downcase %} {% if link_text_down
-    contains 'arxiv' %}
-    <a
-      href="{{ link.url }}"
-      class="badge badge-light border"
-      style="background-color: #f8f9fa"
-      target="_blank"
-      >{% include icon-arxiv.svg %}</a
-    >
-    {% else %}
-    <a href="{{ link.url }}" class="badge badge-info" target="_blank"
-      >{{ link.text | default: "Link" }}</a
-    >
-    {% endif %} {% endfor %} {% elsif include.talk.link %} {% assign
-    link_text_down = include.talk.link_text | downcase %} {% if link_text_down
-    contains 'arxiv' %}
-    <a
-      href="{{ include.talk.link }}"
-      class="badge badge-light text-dark border"
-      target="_blank"
-      >{% include icon-arxiv.svg %} arXiv</a
-    >
-    {% else %}
-    <a href="{{ include.talk.link }}" class="badge badge-info" target="_blank"
-      >{{ include.talk.link_text | default: "Link" }}</a
-    >
-    {% endif %} {% endif %}
+    {% include talk_links.html talk=include.talk %}
   </td>
 </tr>
+{% if include.talk.abstract %}
+<tr
+  class="abstract-row abstract-row-hidden"
+  {%
+  if
+  include.year
+  %}
+  data-year="{{ include.year }}"
+  {%
+  endif
+  %}
+>
+  <td colspan="4" class="abstract-content-cell">
+    <div class="abstract-content">{{ include.talk.abstract }}</div>
+  </td>
+</tr>
+{% endif %}

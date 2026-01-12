@@ -60,6 +60,24 @@ How has our research focus changed over time? This streamgraph shows the evoluti
 </div>
 <div id="stream-container" class="mb-5" style="width: 100%; height: 400px; border: 1px solid #eee; border-radius: 8px;"></div>
 
+---
+
+## 4. Speaker Leaderboard
+
+See who has given the most talks over the years.
+
+<div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
+  <div class="d-flex align-items-center">
+    <label for="speakerCountRange" class="mb-0 mr-2 text-muted" style="font-size: 0.9em;">Top Speakers: <span id="speakerCountVal">10</span></label>
+    <input type="range" class="custom-range mr-3" id="speakerCountRange" min="5" max="25" value="10" style="width: 80px;" aria-label="Select number of speakers">
+    
+    <label for="speakerStartYear" class="mb-0 mr-2 text-muted" style="font-size: 0.9em;">Start Year: <span id="speakerStartYearVal">2006</span></label>
+    <input type="range" class="custom-range mr-3" id="speakerStartYear" min="2006" max="2025" value="2006" style="width: 100px;" aria-label="Select start year">
+
+  </div>
+</div>
+<div id="speaker-container" class="mb-5" style="width: 100%; height: 500px; border: 1px solid #eee; border-radius: 8px;"></div>
+
 <!-- Modal for Shared Talks -->
 
 <div class="modal fade" id="edgeModal" tabindex="-1" role="dialog" aria-labelledby="edgeModalLabel" aria-hidden="true">
@@ -72,6 +90,26 @@ How has our research focus changed over time? This streamgraph shows the evoluti
         </button>
       </div>
       <div class="modal-body" id="edgeModalBody">
+        <!-- Content injected via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Speaker Talks -->
+<div class="modal fade" id="shared-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-label">Speaker Talks</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-list">
         <!-- Content injected via JS -->
       </div>
       <div class="modal-footer">

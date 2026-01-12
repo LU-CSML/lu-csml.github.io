@@ -11,6 +11,26 @@
   'use strict';
 
   // ============================================
+  // CONFIGURATION CONSTANTS
+  // ============================================
+  
+  /** Chart dimensions and margins */
+  const CHART_HEIGHT = {
+    STREAM: 400,
+    SPEAKER: 500,
+    NETWORK: 600
+  };
+  
+  /** Minimum word frequency to include in visualizations */
+  const MIN_WORD_FREQUENCY = 2;
+  
+  /** Date validation bounds for talks */
+  const YEAR_BOUNDS = { MIN: 2000, MAX: 2030 };
+  
+  /** Debounce delay for resize events (ms) */
+  const RESIZE_DEBOUNCE_MS = 150;
+
+  // ============================================
   // DATA INITIALIZATION
   // ============================================
   
@@ -21,7 +41,26 @@
     return;
   }
 
-  const rawTalks = DATA.talks;
+  /**
+   * Robustly parses a date string or object into a Date object.
+   * 
+   * @param {string|Date} dateInput - The date to parse
+   * @returns {Date|null} Valid Date object or null if invalid
+   */
+  function parseDate(dateInput) {
+    if (!dateInput) return null;
+    const d = new Date(dateInput);
+    if (isNaN(d.getTime())) return null;
+    return d;
+  }
+
+  const today = new Date();
+  const rawTalks = (DATA.talks || []).filter(t => {
+      const talkDate = parseDate(t.date);
+      if (!talkDate) return false;
+      return talkDate < today; 
+  });
+
   const stopWords = new Set(
     (DATA.stopwords?.english || []).concat(DATA.stopwords?.academic || [])
   );
@@ -47,6 +86,9 @@
     });
     
     talk.cleanWords = cleanWords;
+    
+    // Store parsed date for reuse
+    talk.parsedDate = parseDate(talk.date);
   });
 
   // Create sorted word list
@@ -64,6 +106,29 @@
   // UTILITY FUNCTIONS
   // ============================================
   
+  /**
+   * Debounce execution of a function.
+   * Useful for resize and scroll events to prevent performance degradation.
+   * 
+   * @param {Function} func - The function to debounce
+   * @param {number} wait - Delay in milliseconds
+   * @returns {Function} A new debounced function
+   */
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  /**
+   * Returns an interpolated heatmap color from orange to dark red.
+   * @param {number} value - Current value
+   * @param {number} min - Minimum value in range
+   * @param {number} max - Maximum value in range
+   * @returns {string} RGB color string
+   */
   function getHeatmapColor(value, min, max) {
     const diff = max - min <= 0 ? 1 : max - min;
     const ratio = (value - min) / diff;
@@ -79,6 +144,12 @@
   // WORD CLOUD (Fallback only)
   // ============================================
   
+  /**
+   * Renders the Word Cloud visualization using wordcloud2.js.
+   * Serves as a fallback if the server-side SVG is unavailable.
+   * 
+   * @returns {void}
+   */
   function renderWordCloud() {
     const canvas = document.getElementById('word_cloud');
     if (!canvas) return;
@@ -119,6 +190,14 @@
   // NETWORK GRAPH
   // ============================================
   
+
+  /**
+   * Renders the Topic Co-occurrence Network Graph using Vis.js.
+   * Nodes represent topics; edges represent co-occurrences in talks.
+   * Uses Barnes-Hut force-directed physics for layout.
+   * 
+   * @returns {void}
+   */
   function renderGraph() {
     const container = document.getElementById('network-container');
     if (!container) return;
@@ -147,21 +226,27 @@
       });
     });
 
-    // Generate edges
-    // Complexity: O(N² × intersection_size) where N = topN nodes
-    // At 100 nodes this is ~5000 iterations - acceptable for browser
+    // Generate edges based on co-occurrence
     const edges = [];
     const connectedIndices = new Set();
     const edgeMetaData = {};
+
+    // Optimization: Using Sets for faster intersection checks
+    const invertedSets = {};
+    topWords.forEach(w => {
+      invertedSets[w] = new Set(invertedIndex[w] || []);
+    });
 
     for (let i = 0; i < topN; i++) {
       for (let j = i + 1; j < topN; j++) {
         const wordA = topWords[i];
         const wordB = topWords[j];
-        const talksWithA = invertedIndex[wordA] || [];
-        const talksWithB = invertedIndex[wordB] || [];
+        const setA = invertedSets[wordA];
+        const setB = invertedSets[wordB];
         
-        const sharedTalkIndices = talksWithA.filter(id => talksWithB.includes(id));
+        // O(min(|A|,|B|)) intersection using smaller set
+        const [smaller, larger] = setA.size <= setB.size ? [setA, setB] : [setB, setA];
+        const sharedTalkIndices = [...smaller].filter(id => larger.has(id));
         const sharedCount = sharedTalkIndices.length;
 
         if (sharedCount >= minConn) {
@@ -210,12 +295,21 @@
         scaling: { min: 1, max: 6 },
         smooth: { type: 'continuous', roundness: 0.5 }
       },
+      /**
+       * Barnes-Hut Simulation Configuration.
+       * 
+       * Settings:
+       * - gravitationalConstant: -3000 (Repulsion strength)
+       * - centralGravity: 0.3 (Centering force)
+       * - springLength: 100 (Equilibrium length)
+       * - springConstant: 0.05 (Stiffness)
+       */
       physics: {
         stabilization: { enabled: true, iterations: 1000, fit: true },
         barnesHut: { gravitationalConstant: -3000, centralGravity: 0.3, springLength: 100, springConstant: 0.05 },
         solver: 'barnesHut'
       },
-      interaction: { hover: true, zoomView: true, selectConnectedEdges: false }
+      interaction: { hover: true, zoomView: false, selectConnectedEdges: false }
     };
 
     if (network !== null) {
@@ -245,6 +339,17 @@
   // STREAMGRAPH
   // ============================================
   
+  /**
+   * Renders the Topic Evolution Streamgraph using D3.js.
+   * Visualizes the changing frequency of top topics over the dataset's timespan.
+   * 
+   * Features:
+   * - Interactive tooltips
+   * - Click-to-filter functionality
+   * - Responsive resizing
+   * 
+   * @returns {void}
+   */
   function renderStreamgraph() {
     if (typeof d3 === 'undefined') {
       console.warn('D3.js not loaded.');
@@ -257,7 +362,7 @@
     try {
       container.innerHTML = '';
       const width = container.offsetWidth;
-      const height = 400;
+      const height = CHART_HEIGHT.STREAM;
       const margin = { top: 20, right: 60, bottom: 30, left: 40 };
 
       // Group by year
@@ -265,9 +370,9 @@
       const allYears = new Set();
 
       rawTalks.forEach(t => {
-        if (!t.date || t.date.length < 4) return;
-        const yStr = t.date.substring(0, 4);
-        const yInt = parseInt(yStr);
+        if (!t.parsedDate) return;
+        const yStr = t.parsedDate.getFullYear().toString();
+        const yInt = t.parsedDate.getFullYear();
         
         // Date validation with warning for data debugging
         if (isNaN(yInt) || yInt < 2000 || yInt > 2030) {
@@ -386,15 +491,20 @@
         .call(d3.axisBottom(x).ticks(Math.min(years.length, 12)));
 
       // Labels
+      // Label logic
       const isDarkMode = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
       const labelColor = isDarkMode ? '#fff' : '#333';
       const shadowColor = isDarkMode ? '0 0 4px #000' : '0 0 3px #fff';
 
-      const labelPositions = [];
-      series.forEach(d => {
+      /**
+       * Calculates the optimal position for a stream label.
+       * Finds the thickest point in the stream and computes orientation.
+       */
+      function calculateStreamLabelPosition(d, x, y, seriesLength) {
         let maxDiff = 0, bestPoint = null, bestIdx = -1;
 
-        for (let i = 2; i < d.length - 2; i++) {
+        // Skip edges to avoid awkward placements
+        for (let i = 2; i < seriesLength - 2; i++) {
           const diff = d[i][1] - d[i][0];
           if (diff > maxDiff) {
             maxDiff = diff;
@@ -404,27 +514,34 @@
         }
 
         const streamHeight = bestPoint ? Math.abs(y(bestPoint[0]) - y(bestPoint[1])) : 0;
-        const fontSize = Math.min(16, Math.max(10, streamHeight * 0.3));
-
-        if (bestPoint && streamHeight > 12) {
-          const px = x(bestPoint.data.year);
-          const py = y((bestPoint[0] + bestPoint[1]) / 2);
-
-          let angle = 0;
-          if (bestIdx >= 2 && bestIdx < d.length - 2) {
-            const prev = d[bestIdx - 2];
-            const next = d[bestIdx + 2];
-            const p1 = { x: x(prev.data.year), y: y((prev[0] + prev[1]) / 2) };
-            const p2 = { x: x(next.data.year), y: y((next[0] + next[1]) / 2) };
-            angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
-            angle = Math.max(-30, Math.min(30, angle));
-          }
-
-          labelPositions.push({ key: d.key, x: px, y: py, fontSize, angle, visible: true });
-        } else {
-          labelPositions.push({ visible: false });
+        
+        // Visibility threshold: Stream must be thick enough
+        if (!bestPoint || streamHeight <= 12) {
+            return { visible: false };
         }
-      });
+
+        const fontSize = Math.min(16, Math.max(10, streamHeight * 0.3));
+        const px = x(bestPoint.data.year);
+        const py = y((bestPoint[0] + bestPoint[1]) / 2);
+
+        let angle = 0;
+        if (bestIdx >= 2 && bestIdx < seriesLength - 2) {
+          const prev = d[bestIdx - 2];
+          const next = d[bestIdx + 2];
+          const p1 = { x: x(prev.data.year), y: y((prev[0] + prev[1]) / 2) };
+          const p2 = { x: x(next.data.year), y: y((next[0] + next[1]) / 2) };
+          angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+          angle = Math.max(-30, Math.min(30, angle));
+        }
+
+        return { 
+            visible: true,
+            x: px, 
+            y: py, 
+            fontSize, 
+            angle 
+        };
+      }
 
       svg.selectAll('.stream-label')
         .data(series)
@@ -436,22 +553,339 @@
         .style('text-shadow', shadowColor)
         .style('font-weight', '600')
         .style('font-family', 'sans-serif')
-        .each(function(d, i) {
-          const pos = labelPositions[i];
-          if (pos?.visible) {
-            d3.select(this)
-              .attr('transform', `translate(${pos.x},${pos.y}) rotate(${pos.angle})`)
-              .style('font-size', pos.fontSize + 'px')
-              .text(d.key)
-              .attr('opacity', 1);
-          } else {
-            d3.select(this).text('').attr('opacity', 0);
-          }
+        .each(function(d) {
+           const pos = calculateStreamLabelPosition(d, x, y, d.length);
+           if (pos.visible) {
+             d3.select(this)
+               .attr('transform', `translate(${pos.x},${pos.y}) rotate(${pos.angle})`)
+               .style('font-size', pos.fontSize + 'px')
+               .text(d.key)
+               .attr('opacity', 1);
+           } else {
+             d3.select(this).text('').attr('opacity', 0);
+           }
         });
 
     } catch (e) {
       console.error(e);
       container.innerHTML = '<p class="text-danger p-3">Error rendering streamgraph.</p>';
+    }
+  }
+
+  // ============================================
+  // SPEAKER LEADERBOARD (Evolution Chart)
+  // ============================================
+
+
+  /**
+   * Renders the Speaker Leaderboard (Evolution Chart) using D3.js.
+   * Displays cumulative talk counts per speaker over time with collision-detected labels.
+   * 
+   * Features:
+   * - Invisible overlay for easy line selection
+   * - Start Year filtering
+   * - Top N speaker selection
+   * 
+   * @returns {void}
+   */
+  function renderSpeakerChart() {
+    if (typeof d3 === 'undefined') return;
+
+    const container = document.getElementById('speaker-container');
+    if (!container) return;
+
+    try {
+      container.innerHTML = '';
+      const width = container.offsetWidth;
+      const height = CHART_HEIGHT.SPEAKER;
+      const margin = { top: 20, right: 150, bottom: 40, left: 50 };
+
+      // 1. Process Data & Date Filter
+      const allYears = new Set();
+
+      // First pass to get full year range for slider logic
+      rawTalks.forEach(t => {
+        if (!t.parsedDate) return;
+        const y = t.parsedDate.getFullYear();
+        if (!isNaN(y) && y >= 2000 && y <= 2030) allYears.add(y);
+      });
+
+      if (allYears.size === 0) {
+        container.innerHTML = '<p class="text-center text-muted p-5">Not enough data.</p>';
+        return;
+      }
+
+      const sortedYears = Array.from(allYears).sort((a, b) => a - b);
+      const dataMinYear = sortedYears[0];
+      const dataMaxYear = sortedYears[sortedYears.length - 1];
+
+      // Update Slider Range if needed (once)
+      const startYearInput = document.getElementById('speakerStartYear');
+      if (startYearInput && !startYearInput.dataset.initialized) {
+        startYearInput.min = dataMinYear;
+        startYearInput.max = dataMaxYear;
+        startYearInput.value = Math.max(dataMinYear, parseInt(startYearInput.value) || dataMinYear);
+        const valSpan = document.getElementById('speakerStartYearVal');
+        if (valSpan) valSpan.innerText = startYearInput.value;
+        startYearInput.dataset.initialized = "true";
+      }
+
+      const selectedStartYear = parseInt(startYearInput?.value || dataMinYear);
+
+      // Aggregate (with Start Year filter)
+      const speakerYearMap = {}; 
+      const speakerTotalMap = {}; 
+      const speakerTalks = {}; // Store actual talks for modal
+
+      rawTalks.forEach(t => {
+        if (!t.parsedDate || !t.speaker) return;
+        const y = t.parsedDate.getFullYear();
+        if (isNaN(y) || y < selectedStartYear || y > 2030) return; // Filter by Start Year
+
+        let name = t.speaker.split('(')[0].trim();
+        if (name.length < 2) return;
+
+        if (!speakerYearMap[name]) speakerYearMap[name] = {};
+        if (!speakerTalks[name]) speakerTalks[name] = [];
+        
+        speakerYearMap[name][y] = (speakerYearMap[name][y] || 0) + 1;
+        speakerTotalMap[name] = (speakerTotalMap[name] || 0) + 1;
+        speakerTalks[name].push(t);
+      });
+
+      // 2. Select Top N Speakers
+      const topCount = parseInt(document.getElementById('speakerCountRange')?.value || 10);
+      const topSpeakers = Object.keys(speakerTotalMap)
+        .map(s => [s, speakerTotalMap[s]])
+        .sort((a, b) => b[1] - a[1]) 
+        .slice(0, topCount)
+        .map(item => item[0]);
+
+      if (topSpeakers.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted p-5">No talks found in this period.</p>';
+        return;
+      }
+
+      // 3. Transform Data
+      const seriesData = topSpeakers.map(speaker => {
+        const values = [];
+        let runningTotal = 0;
+        
+        for (let y = selectedStartYear; y <= dataMaxYear; y++) {
+          const annualCount = speakerYearMap[speaker][y] || 0;
+          runningTotal += annualCount;
+          
+          values.push({
+            year: new Date(y, 0, 1),
+            value: runningTotal,
+            annual: annualCount
+          });
+        }
+        return { name: speaker, values: values, talks: speakerTalks[speaker] || [] };
+      });
+
+      // 4. Draw
+      const svg = d3.select('#speaker-container')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+      const x = d3.scaleTime()
+        .domain([new Date(selectedStartYear, 0, 1), new Date(dataMaxYear, 0, 1)])
+        .range([margin.left, width - margin.right]);
+
+      const maxY = d3.max(seriesData, s => d3.max(s.values, d => d.value)) || 10;
+      const y = d3.scaleLinear()
+        .domain([0, maxY])
+        .nice()
+        .range([height - margin.bottom, margin.top]);
+
+      const color = d3.scaleOrdinal(d3.schemeCategory10).domain(topSpeakers);
+
+      const line = d3.line()
+        .x(d => x(d.year))
+        .y(d => y(d.value))
+        .curve(d3.curveLinear);
+
+      // Axes
+      svg.append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(Math.min(dataMaxYear - selectedStartYear + 1, 10)));
+
+      svg.append("g")
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y));
+
+      // Create tooltip for lines
+      const lineTooltip = d3.select("body").append("div")
+        .attr("class", "d3-tooltip speaker-line-tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background", "rgba(0,0,0,0.85)")
+        .style("color", "#fff")
+        .style("padding", "8px 12px")
+        .style("border-radius", "4px")
+        .style("font-size", "13px")
+        .style("pointer-events", "none")
+        .style("z-index", 1000);
+
+      // Draw visible lines (thinner, for visual)
+      svg.selectAll(".line")
+        .data(seriesData)
+        .join("path")
+        .attr("class", "line")
+        .attr("fill", "none")
+        .attr("stroke", d => color(d.name))
+        .attr("stroke-width", 3)
+        .attr("d", d => line(d.values))
+        .style("opacity", 0.8)
+        .style("pointer-events", "none"); // Disable events on visible line
+
+      // Draw invisible overlay lines (thicker, for interaction)
+      svg.selectAll(".line-overlay")
+        .data(seriesData)
+        .join("path")
+        .attr("class", "line-overlay")
+        .attr("fill", "none")
+        .attr("stroke", "transparent")
+        .attr("stroke-width", 15) // Much wider for easier clicking
+        .attr("d", d => line(d.values))
+        .style("cursor", "pointer")
+        .on("mouseover", function(event, d) {
+            // Highlight the actual line
+            svg.selectAll(".line")
+              .filter(ld => ld.name === d.name)
+              .attr("stroke-width", 5);
+            
+            lineTooltip.style("visibility", "visible")
+              .html(`<strong>${d.name}</strong><br>${d.talks.length} talks (${selectedStartYear}–${dataMaxYear})<br><em>Click for details</em>`);
+        })
+        .on("mousemove", (event) => {
+            lineTooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 15) + "px");
+        })
+        .on("mouseout", function(event, d) {
+            svg.selectAll(".line")
+              .filter(ld => ld.name === d.name)
+              .attr("stroke-width", 3);
+            lineTooltip.style("visibility", "hidden");
+        })
+        .on("click", function(event, d) {
+          // Show talks for this speaker in a modal
+          const talks = d.talks;
+          let html = '<div class="list-group">';
+          talks.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+          talks.forEach(t => {
+            html += `<div class="list-group-item">
+              <strong>${t.date || 'Unknown'}</strong>: ${t.title || '<em>Untitled</em>'}
+            </div>`;
+          });
+          html += '</div>';
+          
+          document.getElementById('modal-label').textContent = `${d.name} - ${talks.length} Talks (${selectedStartYear}–${dataMaxYear})`;
+          document.getElementById('modal-list').innerHTML = html;
+          // Bootstrap Modal invocation
+          if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+            $('#shared-modal').modal('show');
+          }
+        });
+
+      // 5. Label Collision Detection
+      const labels = seriesData.map(d => {
+        const lastVal = d.values[d.values.length - 1].value;
+        return {
+          name: d.name,
+          value: lastVal,
+          targetY: y(lastVal),
+          y: y(lastVal),
+          height: 14
+        };
+      });
+
+      // Relax positions
+      for (let i = 0; i < 50; i++) {
+        labels.sort((a, b) => a.y - b.y);
+        for (let j = 0; j < labels.length - 1; j++) {
+          const a = labels[j];
+          const b = labels[j + 1];
+          const dy = b.y - a.y;
+          if (dy < a.height) {
+            const overlap = a.height - dy;
+            a.y -= overlap / 2;
+            b.y += overlap / 2;
+          }
+        }
+      }
+
+      // Draw Labels
+      svg.selectAll(".label")
+        .data(labels)
+        .join("text")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "12px")
+        .attr("x", width - margin.right + 5)
+        .attr("y", d => d.y)
+        .attr("fill", d => color(d.name))
+        .attr("alignment-baseline", "middle")
+        .text(d => `${d.name} (${d.value})`);
+      
+      // Connecting lines for displaced labels
+      svg.selectAll(".label-link")
+        .data(labels.filter(d => Math.abs(d.y - d.targetY) > 2))
+        .join("line")
+        .attr("x1", width - margin.right)
+        .attr("y1", d => d.targetY)
+        .attr("x2", width - margin.right + 3)
+        .attr("y2", d => d.y)
+        .attr("stroke", d => color(d.name))
+        .attr("stroke-width", 1)
+        .style("opacity", 0.5);
+
+      // Tooltip for points
+      const tooltip = d3.select("body").append("div")
+        .attr("class", "d3-tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background", "rgba(0,0,0,0.8)")
+        .style("color", "#fff")
+        .style("padding", "5px 10px")
+        .style("border-radius", "4px")
+        .style("font-size", "12px")
+        .style("pointer-events", "none")
+        .style("z-index", 1000);
+
+      const allPoints = [];
+      seriesData.forEach(s => {
+        s.values.forEach(v => {
+            allPoints.push({ ...v, name: s.name });
+        });
+      });
+
+      svg.selectAll("circle")
+        .data(allPoints)
+        .join("circle")
+        .attr("cx", d => x(d.year))
+        .attr("cy", d => y(d.value))
+        .attr("r", 4)
+        .attr("fill", d => color(d.name))
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1)
+        .style("opacity", 0)
+        .on("mouseover", function(event, d) {
+            d3.select(this).style("opacity", 1).attr("r", 6);
+            tooltip.style("visibility", "visible")
+                   .html(`<strong>${d.name}</strong><br>Year: ${d.year.getFullYear()}<br>Total: ${d.value}`);
+        })
+        .on("mousemove", (event) => {
+            tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+        })
+        .on("mouseout", function() {
+            d3.select(this).style("opacity", 0).attr("r", 4);
+            tooltip.style("visibility", "hidden");
+        });
+
+    } catch (e) {
+      console.error(e);
+      container.innerHTML = '<p class="text-danger p-3">Error rendering speaker chart.</p>';
     }
   }
 
@@ -481,7 +915,10 @@
     });
 
     modalBody.appendChild(listGroup);
-    $('#edgeModal').modal('show');
+    // Bootstrap Modal invocation
+    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+      $('#edgeModal').modal('show');
+    }
   }
 
   // Expose for use by word cloud onclick
@@ -515,7 +952,10 @@
       modalBody.appendChild(listGroup);
     }
 
-    $('#edgeModal').modal('show');
+    // Bootstrap Modal invocation
+    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+      $('#edgeModal').modal('show');
+    }
   };
 
   // ============================================
@@ -525,6 +965,7 @@
   renderWordCloud();
   renderGraph();
   renderStreamgraph();
+  renderSpeakerChart();
 
   // Event listeners
   document.getElementById('nodeRange')?.addEventListener('input', renderGraph);
@@ -541,8 +982,28 @@
     renderStreamgraph();
   });
 
-  window.addEventListener('resize', () => {
-    try { renderStreamgraph(); } catch(e) {}
+  // Speaker Chart Events
+  document.getElementById('speakerCountRange')?.addEventListener('input', function() {
+    const val = document.getElementById('speakerCountVal');
+    if (val) val.innerText = this.value;
+    renderSpeakerChart();
   });
 
+  document.getElementById('speakerStartYear')?.addEventListener('input', function() {
+    const val = document.getElementById('speakerStartYearVal');
+    if (val) val.innerText = this.value;
+    renderSpeakerChart();
+  });
+
+  // Debounced resize handler to prevent excessive redraws
+  const debouncedResize = debounce(() => {
+    try { 
+      renderStreamgraph(); 
+      renderSpeakerChart();
+    } catch(e) {
+      console.warn('Resize render error:', e);
+    }
+  }, 150);
+
+  window.addEventListener('resize', debouncedResize);
 })();
