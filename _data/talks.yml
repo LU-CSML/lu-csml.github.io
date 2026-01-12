@@ -9,9 +9,33 @@
 # 2026
 
 # External Speakers
-# Alexander Heinlein: Wrote to ask if he want sonline
+# Alexander Heinlein: Wrote to ask if he want sonline. 19 march switch with me
+# Omar Rivasplata
 # Paula coredero
-- date: 2026-06-04
+
+# - date: 2026-06-25
+#   speaker: e.g. Omar Rivasplata
+#   affiliation: University of Glasgow
+#   title:
+#   abstract:
+
+# - date: 2026-06-18
+#   speaker: e.g. Paula Coredero
+#   affiliation: University of Glasgow
+#   title:
+#   abstract:
+
+# - date: 2026-06-11
+#   speaker: e.g. Omar Rivasplata
+#   affiliation: University of Glasgow
+#   title:
+#   abstract:
+# Puala can take 25th
+# I can take 18th
+# MOve puala to 11th
+# MOve matti to 4th
+
+- date: 2026-06-11
   speaker: Tiffany Vlaar
   affiliation: University of Glasgow
   title:
