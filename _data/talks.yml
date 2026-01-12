@@ -8,37 +8,33 @@
 #     link_text: arXiv/NeurIPS/etc (optional)
 # 2026
 
-# External Speakers
-# Alexander Heinlein: Wrote to ask if he want sonline. 19 march switch with me
-# Omar Rivasplata
-# Paula coredero
 
-# - date: 2026-06-25
-#   speaker: e.g. Omar Rivasplata
-#   affiliation: University of Glasgow
-#   title:
-#   abstract:
-
-# - date: 2026-06-18
-#   speaker: e.g. Paula Coredero
-#   affiliation: University of Glasgow
-#   title:
-#   abstract:
-
-# - date: 2026-06-11
-#   speaker: e.g. Omar Rivasplata
-#   affiliation: University of Glasgow
-#   title:
-#   abstract:
 # Recommend Omar to LAI if no open slots
-# Puala can take 25th
-# I can take 18th swapping with Alexander
-# MOve Tiffany to 11th and confirm 
-# MOve matti to 4th once CHris answers
+# Paula can take 25th
+# Alexander could do 18th June
+# Move Chris/Tiffany to 11th and confirm 
+# Move Matti to 4th once Chris answers
+- date: 2026-06-25
+  speaker:
+  affiliation:
+  title:
+  abstract:
+
+- date: 2026-06-18
+  speaker:
+  affiliation:
+  title:
+  abstract:
 
 - date: 2026-06-11
   speaker: Tiffany Vlaar
   affiliation: University of Glasgow
+  title:
+  abstract:
+
+- date: 2026-06-04
+  speaker:
+  affiliation: 
   title:
   abstract:
 
@@ -83,8 +79,8 @@
   abstract:
 
 - date: 2026-03-19
-  speaker: Liam Llamazares-Elias
-  affiliation: University of Lancaster
+  speaker: 
+  affiliation: 
   title:
   abstract:
 
@@ -126,10 +122,10 @@
   slides:
 
 - date: 2026-02-05
-  speaker: Chris Sherlock
-  affiliation: University of Lancaster
-  title: 
-  abstract: 
+  speaker: Andre Menezes
+  affiliation: University of Maynooth
+  title: Bayesian nonparametric models for zero-inflated count-compositional data using ensembles of regression trees.
+  abstract: Count-compositional data arise in many different fields, including high-throughput microbiome sequencing and palynology experiments, where a common, important goal is to understand how covariates relate to the observed compositions. Existing methods often fail to simultaneously address key challenges inherent in such data, namely: overdispersion, an excess of zeros, cross-sample heterogeneity, and nonlinear covariate effects. In this talk, we first present novel probabilistic portrayals of two multivariate models designed to handle zero-inflation in count-compositional data. Then, to address the above concerns, we propose novel Bayesian nonparametric models based on ensembles of regression trees. Specifically, we leverage the recently introduced zero-and-N-inflated multinomial distribution and assign independent nonparametric Bayesian additive regression tree (BART) priors to both the compositional and structural zero probability components of our model, to flexibly capture covariate effects. We further extend this by adding latent random effects to capture overdispersion and more general dependence structures among the categories. We develop an efficient inferential algorithm combining recent data augmentation schemes with established BART sampling routines. We evaluate our proposed models in simulation studies and illustrate their applicability with two case studies in microbiome and palaeoclimate modelling.
   slides:
 
 - date: 2026-01-29
