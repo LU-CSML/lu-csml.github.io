@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{{ page.title | default: site.title }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML is a weekly seminar series on Computational Statistics, Machine Learning, and related fields.{% endif %}">
+    <meta name="keywords" content="computational statistics, machine learning, Bayesian inference, MCMC, Lancaster University, statistics seminar">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page.title | default: site.title }}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML weekly seminar series on Computational Statistics and Machine Learning{% endif %}">
+    <meta property="og:site_name" content="Lancaster University CSML">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ page.title | default: site.title }}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}Lancaster University CSML weekly seminar series{% endif %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/img/logo.png' | relative_url }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      :root {
+        --bg-color: #fdfdfd;
+        --text-color: #444444;
+        --heading-color: #333333;
+        --secondary-text: #666666;
+        --link-color: #b5121b;
+        --link-hover-color: #255c99;
+        --navbar-bg: #ffffff;
+        --navbar-link-color: #444444;
+        --border-color: #f0f0f0;
+        --th-border-color: #dddddd;
+        --tr-hover-bg: #f9f9f9;
+        --header-bg: #f8f9fa;
+        --abstract-bg: #f9f9f9;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --heading-color: #f0f0f0;
+        --secondary-text: #aaaaaa;
+        --link-color: #ff8a80;
+        --link-hover-color: #90caf9;
+        --navbar-bg: #1e1e1e;
+        --navbar-link-color: #e0e0e0;
+        --border-color: #333333;
+        --th-border-color: #444444;
+        --tr-hover-bg: #2c2c2c;
+        --header-bg: #262626;
+        --abstract-bg: #1e1e1e;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+      h1,
+      h2,
+      h3 {
+        color: var(--heading-color);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      h1 {
+        font-size: 2.75rem;
+        padding-top: 0.4em;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 1.75rem;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 0.3em;
+        margin-top: 1.5em;
+        color: var(--heading-color);
+        top: 0;
+      }
+      em {
+        color: var(--heading-color);
+        font-style: italic;
+      }
+      a {
+        color: var(--link-color);
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+      a:hover {
+        color: var(--link-hover-color);
+        text-decoration: none;
+      }
+      .navbar {
+        background-color: var(--navbar-bg);
+        transition: background-color 0.3s;
+      }
+      .navbar a {
+        color: var(--navbar-link-color);
+        font-weight: 500;
+      }
+      .navbar a:hover {
+        color: var(--link-color);
+      }
+      
+      /* Table Styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+      th {
+        text-align: left;
+        font-weight: 600;
+        color: var(--secondary-text);
+        border-bottom: 2px solid var(--th-border-color);
+        padding: 0.75rem 0.5rem;
+      }
+      td {
+        padding: 0.75rem 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: top;
+      }
+      tr:hover td {
+        background-color: var(--tr-hover-bg);
+      }
+      .talk-date-col {
+        width: 12%;
+        white-space: nowrap;
+        color: var(--secondary-text);
+        font-variant-numeric: tabular-nums;
+      }
+      .talk-speaker-col {
+        width: 20%;
+        font-weight: 600;
+      }
+      .talk-title-col {
+        width: 48%;
+      }
+      .talk-links-col {
+        width: 20%;
+        text-align: right;
+      }
+      .year-header td {
+        font-weight: bold;
+        background-color: var(--header-bg);
+        padding: 0.5rem;
+      }
+      .year-header a {
+        color: var(--link-color);
+        text-decoration: none;
+        font-size: 1.25rem;
+      }
+      .year-header a:hover {
+        text-decoration: underline;
+      }
+      .talk-affiliation {
+        display: block;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: var(--secondary-text);
+      }
+
+      /* Abstract toggle */
+      .abstract-toggle {
+        display: inline;
+      }
+      .abstract-toggle summary {
+        display: inline;
+        cursor: pointer;
+        color: var(--link-color);
+        font-size: 0.85em;
+        margin-left: 0.5em;
+        list-style: none;
+        white-space: nowrap;
+      }
+      .abstract-toggle summary::-webkit-details-marker {
+        display: none;
+      }
+      .abstract-toggle .arrow {
+        display: inline-block;
+        font-size: 0.7em;
+        transition: transform 0.2s ease;
+      }
+      .abstract-toggle[open] .arrow {
+        transform: rotate(90deg);
+      }
+      .abstract-content {
+        display: block;
+        margin-top: 0.5em;
+        font-size: 0.95em;
+        color: var(--text-color);
+        line-height: 1.5;
+        background: var(--abstract-bg);
+        padding: 0.8em;
+        border-radius: 4px;
+        border-left: 3px solid var(--link-color);
+      }
+
+      .zhadow {
+        box-shadow: 0 4px 6px -1px var(--shadow-color),
+          0 2px 4px -1px var(--shadow-color);
+      }
+
+      /* Toggle Button */
+      .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        color: var(--navbar-link-color);
+        transition: color 0.3s;
+      }
+      .theme-toggle:hover {
+        color: var(--link-color);
+        transform: scale(1.1);
+      }
+      .theme-toggle:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg zhadow sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{ '/' | relative_url }}" style="font-weight: 700; color: var(--link-color);">
+          <img src="{{ '/assets/img/logo.png' | relative_url }}" width="30" height="30" class="d-inline-block align-top mr-2" alt="CSML Logo">
+          Reading Group
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto align-items-center">
+             <li class="nav-item">
+              <a class="nav-link" href="{{ '/schedule' | relative_url }}">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/talks' | relative_url }}"
+                >Past Talks</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/speakers' | relative_url }}">Speakers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ '/visualizations' | relative_url }}">Our Research</a>
+            </li>
+            <li class="nav-item">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    ☀️
+                </button>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container mt-4">{{ content }}</main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved user preference, if any, on load of the website
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+        if (currentTheme) {
+            htmlElement.setAttribute('data-theme', currentTheme);
+
+            if (currentTheme === 'dark') {
+                toggleButton.textContent = '🌙';
+            }
+        } else {
+             // System preference check
+             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                 htmlElement.setAttribute('data-theme', 'dark');
+                 toggleButton.textContent = '🌙';
+             }
+        }
+
+        toggleButton.addEventListener('click', function() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                htmlElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleButton.textContent = '☀️';
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleButton.textContent = '🌙';
+            }
+        });
+    </script>
+  </body>
+</html>

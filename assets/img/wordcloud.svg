@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 800 400" height="400">
+<style>text{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;}</style>
+<text transform="translate(140,211)" font-size="208" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('MCMC')">MCMC</text>
+<text transform="translate(4,340)" font-size="165" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Bayesian')">Bayesian</text>
+<text transform="translate(2,47)" font-size="60" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('sampling')">sampling</text>
+<text transform="translate(720,232) rotate(-90)" font-size="54" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('sampler')">sampler</text>
+<text transform="translate(288,397)" font-size="52" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Markov chain')">Markov chain</text>
+<text transform="translate(331,56)" font-size="50" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Particle')">Particle</text>
+<text transform="translate(174,248)" font-size="45" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('variational')">variational</text>
+<text transform="translate(785,217) rotate(-90)" font-size="45" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('gradient')">gradient</text>
+<text transform="translate(4,378)" font-size="34" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Likelihood')">Likelihood</text>
+<text transform="translate(8,99)" font-size="31" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Markov')">Markov</text>
+<text transform="translate(568,244)" font-size="22" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('chain monte_carlo')">chain monte_carlo</text>
+<text transform="translate(555,165)" font-size="21" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('processes')">processes</text>
+<text transform="translate(38,147)" font-size="21" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('network')">network</text>
+<text transform="translate(558,133)" font-size="21" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('estimation')">estimation</text>
+<text transform="translate(17,178)" font-size="21" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('posterior')">posterior</text>
+<text transform="translate(642,359)" font-size="20" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('convergence')">convergence</text>
+<text transform="translate(548,18)" font-size="20" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Optimal')">Optimal</text>
+<text transform="translate(16,116)" font-size="20" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Variable')">Variable</text>
+<text transform="translate(414,361)" font-size="20" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('diffusion')">diffusion</text>
+<text transform="translate(69,396)" font-size="20" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Gaussian Processes')">Gaussian Processes</text>
+<text transform="translate(600,180)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('target')">target</text>
+<text transform="translate(6,214)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('distribution')">distribution</text>
+<text transform="translate(312,17)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('introduce')">introduce</text>
+<text transform="translate(568,104)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Langevin')">Langevin</text>
+<text transform="translate(671,388)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('stochastic')">stochastic</text>
+<text transform="translate(595,37)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('linear')">linear</text>
+<text transform="translate(569,52)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Metropolis')">Metropolis</text>
+<text transform="translate(738,123) rotate(-90)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Approximate')">Approximate</text>
+<text transform="translate(336,316)" font-size="19" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('regression')">regression</text>
+<text transform="translate(261,352)" font-size="13" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('target distribution')">target distribution</text>
+<text transform="translate(89,156)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('measure')">measure</text>
+<text transform="translate(89,227)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('simulation')">simulation</text>
+<text transform="translate(329,123)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Dynamic')">Dynamic</text>
+<text transform="translate(2,156)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Learning')">Learning</text>
+<text transform="translate(303,146)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('approximation')">approximation</text>
+<text transform="translate(60,196)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Statistical')">Statistical</text>
+<text transform="translate(686,373)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('ABC')">ABC</text>
+<text transform="translate(323,97)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('generative')">generative</text>
+<text transform="translate(12,59)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Modelling')">Modelling</text>
+<text transform="translate(218,11)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('selection')">selection</text>
+<text transform="translate(34,319)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('exact')">exact</text>
+<text transform="translate(419,13)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('State Space')">State Space</text>
+<text transform="translate(553,148)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Metropolis Hastings')">Metropolis Hastings</text>
+<text transform="translate(4,125)" font-size="12" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('pseudo marginal')">pseudo marginal</text>
+<text transform="translate(520,199) rotate(-90)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('discrepancy')">discrepancy</text>
+<text transform="translate(472,236)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('standard')">standard</text>
+<text transform="translate(324,189)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('kernel')">kernel</text>
+<text transform="translate(461,286)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('mean')">mean</text>
+<text transform="translate(651,191)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('field')">field</text>
+<text transform="translate(561,221)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('multimodal')">multimodal</text>
+<text transform="translate(647,16)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('space')">space</text>
+<text transform="translate(110,298) rotate(-90)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('efficiency')">efficiency</text>
+<text transform="translate(29,70)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Discrete')">Discrete</text>
+<text transform="translate(792,325) rotate(-90)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Sequential')">Sequential</text>
+<text transform="translate(120,57)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('practical')">practical</text>
+<text transform="translate(324,161)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Importance')">Importance</text>
+<text transform="translate(533,349)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('application')">application</text>
+<text transform="translate(740,396)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Scalable')">Scalable</text>
+<text transform="translate(20,12)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Part')">Part</text>
+<text transform="translate(485,313)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Deep')">Deep</text>
+<text transform="translate(495,244)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Asymptotic')">Asymptotic</text>
+<text transform="translate(793,134) rotate(-90)" font-size="11" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Gaussian process')">Gaussian process</text>
+<text transform="translate(12,347)" font-size="9" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('Sequential monte_carlo')">Sequential monte_carlo</text>
+<text transform="translate(561,283)" font-size="9" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Bayesian computation')">Bayesian computation</text>
+<text transform="translate(53,12)" font-size="9" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('random walk')">random walk</text>
+<text transform="translate(318,107)" font-size="9" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('walk Metropolis')">walk Metropolis</text>
+<text transform="translate(636,74)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('explicit')">explicit</text>
+<text transform="translate(347,177)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('KGD')">KGD</text>
+<text transform="translate(15,395)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Stein')">Stein</text>
+<text transform="translate(2,135)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('neural')">neural</text>
+<text transform="translate(158,218)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('theoretical')">theoretical</text>
+<text transform="translate(32,247)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('changed')">changed</text>
+<text transform="translate(546,364)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('monte_carlo')">monte_carlo</text>
+<text transform="translate(504,74)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('process')">process</text>
+<text transform="translate(559,263)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('geometric')">geometric</text>
+<text transform="translate(371,218)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('theorem')">theorem</text>
+<text transform="translate(274,333)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Gibbs')">Gibbs</text>
+<text transform="translate(646,198)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('epidemic')">epidemic</text>
+<text transform="translate(574,251)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('system')">system</text>
+<text transform="translate(633,114)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('intractable')">intractable</text>
+<text transform="translate(491,301)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('become')">become</text>
+<text transform="translate(322,359)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Perspective')">Perspective</text>
+<text transform="translate(506,89)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('GP')">GP</text>
+<text transform="translate(460,216)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Free')">Free</text>
+<text transform="translate(183,65)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('parallel')">parallel</text>
+<text transform="translate(721,225)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Scheme')">Scheme</text>
+<text transform="translate(590,87)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('fast')">fast</text>
+<text transform="translate(118,236)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('random')">random</text>
+<text transform="translate(139,352)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('bounds')">bounds</text>
+<text transform="translate(104,69)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('filtering')">filtering</text>
+<text transform="translate(305,295) rotate(-90)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Manifold')">Manifold</text>
+<text transform="translate(451,276)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('robustness')">robustness</text>
+<text transform="translate(445,85)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('Kac')">Kac</text>
+<text transform="translate(558,294)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('Adjusted')">Adjusted</text>
+<text transform="translate(351,130)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('distance')">distance</text>
+<text transform="translate(71,78)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#b5121b" class="wc-word wc-red" onclick="parent.showWordModal('representation')">representation</text>
+<text transform="translate(671,65)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('VI')">VI</text>
+<text transform="translate(493,224)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('transfer')">transfer</text>
+<text transform="translate(699,20)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#555555" class="wc-word wc-grey" onclick="parent.showWordModal('tree')">tree</text>
+<text transform="translate(210,353) rotate(-90)" font-size="8" style="cursor: pointer; pointer-events: all; fill:#333333" class="wc-word wc-grey" onclick="parent.showWordModal('reaction network')">reaction network</text>
+
+    <style>
+        :root {
+            --wc-red: #b5121b;
+            --wc-grey: #333333;
+            --wc-hover-shadow: rgba(181, 18, 27, 0.4);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --wc-red: #ff8a80;
+                --wc-grey: #e0e0e0;
+                --wc-hover-shadow: rgba(255, 138, 128, 0.4);
+            }
+        }
+        
+        .dark-theme {
+            --wc-red: #ff8a80;
+            --wc-grey: #e0e0e0;
+            --wc-hover-shadow: rgba(255, 138, 128, 0.4);
+        }
+        
+        .wc-word {
+            transition: all 0.2s ease;
+            cursor: pointer !important;
+            font-family: 'Outfit', sans-serif;
+            opacity: 0.9;
+        }
+
+        .wc-red { fill: var(--wc-red); }
+        .wc-grey { fill: var(--wc-grey); }
+
+        .wc-word:hover {
+            opacity: 1;
+            /* Subtle shadow, no movement */
+            filter: drop-shadow(0px 2px 4px var(--wc-hover-shadow));
+            text-decoration: underline; 
+            /* No scaling to prevent jitter */
+        }
+    </style>
+    
+    <script>
+    <![CDATA[
+        function updateTheme() {
+            try {
+                if (window.parent && window.parent.document) {
+                    const theme = window.parent.document.documentElement.getAttribute('data-theme');
+                    if (theme === 'dark') {
+                        document.documentElement.classList.add('dark-theme');
+                    } else {
+                        document.documentElement.classList.remove('dark-theme');
+                    }
+                }
+            } catch(e) {}
+        }
+        updateTheme();
+        setInterval(updateTheme, 1000);
+    ]]>
+    </script>
+    </svg>
