@@ -13,7 +13,8 @@ description: Lancaster University CSML weekly seminar series. Explore our schedu
 
 [Lancaster University](https://www.lancaster.ac.uk) CSML is a weekly seminar organized by the Lancaster [Computational Statistics section](https://www.lancaster.ac.uk/maths/research/statistics/bayesian-and-computational-statistics/) to discuss research from all areas of Computational Statistics, Machine Learning, and related fields. We provide a platform for our members to share their research and ideas, and we host talks by invited external speakers.
 
-**We meet at 15:00 - 16:00 GMT on Thursdays** at the <a href="https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354" target="_blank">Postgraduate Statistics Centre (PSC), Lecture Theatre</a>.
+**We meet at 15:00 - 16:00 GMT on Thursdays** at the <a href="https://link.mazemap.com/oVhqnNX7" target="_blank">Postgraduate Statistics Centre (PSC), Room A53</a>
+<!-- <a href="https://use.mazemap.com/#v=1&center=-2.784180,54.008594&zoom=18&campusid=341&zlevel=1&sharepoitype=poi&sharepoi=1002612354" target="_blank">Postgraduate Statistics Centre (PSC), Lecture Theatre</a>. -->
 
 {% assign current_year = "now" | date: "%Y" | plus: 0 %}
 {% assign current_month = "now" | date: "%m" | plus: 0 %}

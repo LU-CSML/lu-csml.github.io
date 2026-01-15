@@ -124,10 +124,12 @@
 
 - date: 2026-02-05
   speaker: Andre Menezes
-  affiliation: University of Maynooth
+  affiliation: Maynooth University
   title: Bayesian nonparametric models for zero-inflated count-compositional data using ensembles of regression trees.
   abstract: "Count-compositional data arise in many different fields, including high-throughput microbiome sequencing and palynology experiments, where a common, important goal is to understand how covariates relate to the observed compositions. Existing methods often fail to simultaneously address key challenges inherent in such data, namely: overdispersion, an excess of zeros, cross-sample heterogeneity, and nonlinear covariate effects. In this talk, we first present novel probabilistic portrayals of two multivariate models designed to handle zero-inflation in count-compositional data. Then, to address the above concerns, we propose novel Bayesian nonparametric models based on ensembles of regression trees. Specifically, we leverage the recently introduced zero-and-N-inflated multinomial distribution and assign independent nonparametric Bayesian additive regression tree (BART) priors to both the compositional and structural zero probability components of our model, to flexibly capture covariate effects. We further extend this by adding latent random effects to capture overdispersion and more general dependence structures among the categories. We develop an efficient inferential algorithm combining recent data augmentation schemes with established BART sampling routines. We evaluate our proposed models in simulation studies and illustrate their applicability with two case studies in microbiome and palaeoclimate modelling."
   slides:
+  link: https://arxiv.org/abs/2601.08067
+  link_text: arXiv
 
 - date: 2026-01-29
   speaker: William Laplante
@@ -136,6 +138,8 @@
   abstract: Doubly intractable problems occur when both the likelihood and the posterior are available only in unnormalised form, with computationally intractable normalisation constants. Bayesian inference then typically requires direct approximation of the posterior through specialised and typically expensive MCMC methods. In this paper, we provide a computationally efficient alternative in the form of a novel generalised Bayesian posterior that allows for conjugate inference within the class of exponential family models for discrete data. We derive theoretical guarantees to characterise the asymptotic behaviour of the generalised posterior, supporting its use for inference. The method is evaluated on a range of challenging intractable exponential family models, including the Conway-Maxwell-Poisson graphical model of multivariate count data, autoregressive discrete time series models, and Markov random fields such as the Ising and Potts models. The computational gains are significant; in our experiments, the method is between 10 and 6000 times faster than state-of-the-art Bayesian computational methods.
   link: https://arxiv.org/abs/2511.23275
   link_text: arXiv
+  slides:
+    
 
 - date: 2026-01-22
   speaker: Yuga Iguchi
@@ -151,6 +155,7 @@
   abstract: We propose function-space versions of autoencoders—machine-learning methods for dimension reduction and generative modelling—in both their deterministic (FAE) and variational (FVAE) forms. Formulating autoencoder objectives in function space enables training and evaluation with data discretised at arbitrary resolutions, leading to new applications such as inpainting, superresolution, and generative modelling. We discuss the technical challenges of formulating autoencoders in infinite dimension. A key issue is that FVAE's variational inference is often ill defined, unlike in finite dimensions, limiting its applicability. We then explore specific problem classes where FVAE remains useful. We contrast this with the FAE objective, which remains well defined in many situations where FVAE fails, making it a robust and versatile alternative. We demonstrate both methods on scientific data sets, including Navier--Stokes fluid flow simulations. This is joint work with Justin Bunker and Mark Girolami (Cambridge), Andrew M. Stuart (Caltech) and T. J. Sullivan (Warwick).
   link: https://arxiv.org/abs/2408.01362
   link_text: arXiv
+  slides: pdf/2026-01-15.pdf
 # 2025
 - date: 2025-12-11
   speaker: Zheyang Shen
