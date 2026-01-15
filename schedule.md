@@ -117,7 +117,7 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
               {% assign m = talk.date | date: "%m" | plus: 0 %}
               {% if m >= 8 and m <= 12 %}
                 {% assign current_term = "Michaelmas Term" %}
-              {% elsif m >= 1 and m <= 4 %}
+              {% elsif m >= 1 and m <= 3 %}
                 {% assign current_term = "Lent Term" %}
               {% else %}
                 {% assign current_term = "Summer Term" %}
