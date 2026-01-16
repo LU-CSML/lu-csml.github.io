@@ -1,0 +1,44 @@
+{% comment %}
+  Calculates which terms have talks and sets flag variables.
+  
+  Inputs:
+    - talks: The list of talks
+    - filter_type: "upcoming" or "past"
+    - current_date: Current date for upcoming filter
+    - academic_year_start: Start of academic year for past filter
+  
+  Outputs (sets these variables):
+    - has_michaelmas: true if Michaelmas Term has talks
+    - has_lent: true if Lent Term has talks
+    - has_summer: true if Summer Term has talks
+{% endcomment %}
+
+{% assign has_michaelmas = false %}
+{% assign has_lent = false %}
+{% assign has_summer = false %}
+
+{% for talk in include.talks %}
+  {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+  
+  {% assign include_talk = false %}
+  {% if include.filter_type == "upcoming" %}
+    {% if talk_date >= include.current_date %}
+      {% assign include_talk = true %}
+    {% endif %}
+  {% elsif include.filter_type == "past" %}
+    {% if talk_date >= include.academic_year_start and talk_date < include.current_date %}
+      {% assign include_talk = true %}
+    {% endif %}
+  {% endif %}
+  
+  {% if include_talk %}
+    {% include term_logic.html date=talk.date %}
+    {% if current_term_name == "Michaelmas Term" %}
+      {% assign has_michaelmas = true %}
+    {% elsif current_term_name == "Lent Term" %}
+      {% assign has_lent = true %}
+    {% else %}
+      {% assign has_summer = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}

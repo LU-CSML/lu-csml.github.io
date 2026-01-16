@@ -1,0 +1,50 @@
+{% comment %}
+  Renders a grouped table of talks organized by term with headers.
+  
+  Inputs:
+    - talks: The list of talks (ascending or descending)
+    - filter_type: "upcoming" or "past"
+    - current_date: Current date for upcoming filter
+    - academic_year_start: Start of academic year for past filter
+{% endcomment %}
+
+{% assign previous_term = "" %}
+
+{% for talk in include.talks %}
+  {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+  
+  {% assign include_talk = false %}
+  {% if include.filter_type == "upcoming" %}
+    {% if talk_date >= include.current_date %}
+      {% assign include_talk = true %}
+    {% endif %}
+  {% elsif include.filter_type == "past" %}
+    {% if talk_date >= include.academic_year_start and talk_date < include.current_date %}
+      {% assign include_talk = true %}
+    {% endif %}
+  {% endif %}
+  
+  {% if include_talk %}
+    {% include term_logic.html date=talk.date %}
+    {% assign current_term = current_term_name %}
+
+    {% if current_term != previous_term %}
+      {% if previous_term != "" %}
+        </tbody></table></div>
+      {% endif %}
+
+      <h3 class="mt-4 term-header">{{ current_term }}</h3>
+      <div class="table-responsive term-table-container">
+      <table class="talk-table">
+        {% include talk_table_header.html %}
+        <tbody>
+      {% assign previous_term = current_term %}
+    {% endif %}
+
+    {% include talk_row.html talk=talk %}
+  {% endif %}
+{% endfor %}
+
+{% if previous_term != "" %}
+  </tbody></table></div>
+{% endif %}

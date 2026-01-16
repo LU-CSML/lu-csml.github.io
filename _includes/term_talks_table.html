@@ -1,0 +1,42 @@
+{% comment %}
+  Reusable component to render a filtered table of talks by term.
+  
+  Inputs:
+    - talks: The list of talks (ascending or descending)
+    - term: Which term to filter for ("Michaelmas Term", "Lent Term", "Summer Term", or "all")
+    - filter_type: "upcoming" or "past"
+    - current_date: Current date for upcoming filter
+    - academic_year_start: Start of academic year for past filter
+{% endcomment %}
+
+<div class="table-responsive">
+  <table class="talk-table">
+    {% include talk_table_header.html %}
+    <tbody>
+      {% for talk in include.talks %}
+        {% assign talk_date = talk.date | date: "%Y-%m-%d" %}
+        
+        {% comment %} Apply date filter {% endcomment %}
+        {% assign show_talk = false %}
+        {% if include.filter_type == "upcoming" %}
+          {% if talk_date >= include.current_date %}
+            {% assign show_talk = true %}
+          {% endif %}
+        {% elsif include.filter_type == "past" %}
+          {% if talk_date >= include.academic_year_start and talk_date < include.current_date %}
+            {% assign show_talk = true %}
+          {% endif %}
+        {% endif %}
+        
+        {% if show_talk %}
+          {% include term_logic.html date=talk.date %}
+          
+          {% comment %} Apply term filter {% endcomment %}
+          {% if include.term == "all" or current_term_name == include.term %}
+            {% include talk_row.html talk=talk %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

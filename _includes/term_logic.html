@@ -1,0 +1,8 @@
+{% assign m = include.date | date: "%m" | plus: 0 %}
+{% if m >= 8 and m <= 12 %}
+  {% assign current_term_name = "Michaelmas Term" %}
+{% elsif m >= 1 and m <= 3 %}
+  {% assign current_term_name = "Lent Term" %}
+{% else %}
+  {% assign current_term_name = "Summer Term" %}
+{% endif %}
