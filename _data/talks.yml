@@ -22,8 +22,8 @@
 
 # Alexander could do 18th June
 - date: 2026-06-18
-  speaker: 
-  affiliation:
+  speaker: Alexander Heinlein
+  affiliation: Delft University of Technology
   title:
   abstract:
 
@@ -32,7 +32,7 @@
   affiliation: University of Glasgow
   title:
   abstract:
-# Move Matti to 4th once Chris answers
+
 - date: 2026-06-05
   speaker: Matti Vihola
   affiliation: University of Jyväskylä
