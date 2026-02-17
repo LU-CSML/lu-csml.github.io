@@ -66,12 +66,10 @@
   abstract:
 
 - date: 2026-04-30
-  speaker: Masha Naslidnyk
-  affiliation: University College London
-  title: Kernel Quantile Embeddings and Associated Probability Metrics
-  abstract: Embedding probability distributions into reproducing kernel Hilbert spaces (RKHS) has enabled powerful non-parametric methods such as the maximum mean discrepancy (MMD), a statistical distance with strong theoretical and computational properties. At its core, the MMD relies on kernel mean embeddings (KMEs) to represent distributions as mean functions in RKHS . However, it remains unclear if the mean function is the only meaningful RKHS representation. Inspired by generalised quantiles, we introduce the notion of kernel quantile embeddings (KQEs), along with a consistent estimator. We then use KQEs to construct a family of distances that (i) are probability metrics under weaker kernel conditions than MMD ;(ii) recover a kernelised form of the sliced Wasserstein distance; and(iii) can be efficiently estimated with near-linear cost. Through hypothesis testing, we show that these distances offer a competitive alternative to MMD and its fast approximations. Our findings demonstrate the value of representing distributions in Hilbert space beyond simple mean functions, paving the way for new avenues of research.
-  link: https://arxiv.org/abs/2505.20433
-  link_text: arXiv
+  speaker: Liam Llamazares-Elias
+  affiliation: Lancaster University
+  title:
+  abstract:
 
 - date: 2026-04-23
   speaker: Rui Zhang
@@ -80,10 +78,12 @@
   abstract:
 
 - date: 2026-03-19
-  speaker: Liam Llamazares-Elias
-  affiliation: Lancaster University
-  title:
-  abstract:
+  speaker: Masha Naslidnyk
+  affiliation: University College London
+  title: Kernel Quantile Embeddings and Associated Probability Metrics
+  abstract: Embedding probability distributions into reproducing kernel Hilbert spaces (RKHS) has enabled powerful non-parametric methods such as the maximum mean discrepancy (MMD), a statistical distance with strong theoretical and computational properties. At its core, the MMD relies on kernel mean embeddings (KMEs) to represent distributions as mean functions in RKHS . However, it remains unclear if the mean function is the only meaningful RKHS representation. Inspired by generalised quantiles, we introduce the notion of kernel quantile embeddings (KQEs), along with a consistent estimator. We then use KQEs to construct a family of distances that (i) are probability metrics under weaker kernel conditions than MMD ;(ii) recover a kernelised form of the sliced Wasserstein distance; and(iii) can be efficiently estimated with near-linear cost. Through hypothesis testing, we show that these distances offer a competitive alternative to MMD and its fast approximations. Our findings demonstrate the value of representing distributions in Hilbert space beyond simple mean functions, paving the way for new avenues of research.
+  link: https://arxiv.org/abs/2505.20433
+  link_text: arXiv
 
 - date: 2026-03-12
   speaker: Chen Qi
@@ -94,8 +94,10 @@
 - date: 2026-03-05
   speaker: Paul Fearnhead
   affiliation: Lancaster University
-  title:
-  abstract:
+  title:  Feynman-Kac Correctors in Diffusions: In-painting
+  abstract: "The talk will discuss the paper “Feynman-Kac Correctors in Diffusions: Annealing, Guidance and Product of Experts” by Skreta et al. In particular I will look at the relationship of their approach to sampling from reward-tilted targets to that of SMC methods for in-painting."
+  link: https://arxiv.org/abs/2503.02819
+  link_text: arXiv
 
 - date: 2026-02-26
   speaker: Jonas Latz
