@@ -94,7 +94,7 @@
 - date: 2026-03-05
   speaker: Paul Fearnhead
   affiliation: Lancaster University
-  title:  Feynman-Kac Correctors in Diffusions: In-painting
+  title:  "Feynman-Kac Correctors in Diffusions: In-painting"
   abstract: "The talk will discuss the paper “Feynman-Kac Correctors in Diffusions: Annealing, Guidance and Product of Experts” by Skreta et al. In particular I will look at the relationship of their approach to sampling from reward-tilted targets to that of SMC methods for in-painting."
   link: https://arxiv.org/abs/2503.02819
   link_text: arXiv
