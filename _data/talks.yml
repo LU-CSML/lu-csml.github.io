@@ -113,9 +113,10 @@
 - date: 2026-02-19
   speaker: Chris Sherlock
   affiliation: Lancaster University
-  title: 
-  abstract: 
-  slides:
+  title: "Robust, partially alive particle Metropolis-Hastings via the Frankenfilter"
+  abstract: "When a hidden Markov model permits the conditional likelihood of an observation given the hidden process to be zero, all particle simulations from one observation time to the next could produce zeros. If so, the filtering distribution cannot be estimated and the estimated parameter likelihood is zero. The alive particle filter addresses this by simulating a random number of particles for each inter-observation interval, stopping after a target number of non-zero conditional likelihoods. For outlying observations or poor parameter values, a non-zero result can be extremely unlikely, and computational costs prohibitive. We introduce the Frankenfilter, a principled, partially alive particle filter that targets a user-defined amount of success whilst fixing lower and upper bounds on the number of simulations. The Frankenfilter produces unbiased estimators of the likelihood, suitable for pseudo-marginal Metropolis--Hastings (PMMH). We demonstrate that PMMH with the Frankenfilter is more robust to outliers and mis-specified initial parameter values than PMMH using standard particle filters, and is typically at least 2-3 times more efficient. We also provide advice for choosing the amount of success. In the case of n exact observations, this is particularly simple: target n successes."
+  link: https://www.arxiv.org/abs/2601.23173
+  link_text: arXiv
 
 - date: 2026-02-12
   speaker: 
