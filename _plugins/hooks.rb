@@ -6,8 +6,12 @@ Jekyll::Hooks.register :site, :after_init do |site|
   python_executable = "python"
   if File.exist?(".venv/bin/python")
     python_executable = ".venv/bin/python"
-  elsif system("python3 --version", :out => File::NULL)
+  elsif File.exist?(".venv/Scripts/python.exe")
+    python_executable = ".venv/Scripts/python.exe"
+  elsif system("python3 --version", :out => File::NULL, :err => File::NULL)
     python_executable = "python3"
+  elsif system("py --version", :out => File::NULL, :err => File::NULL)
+    python_executable = "py"
   end
 
   if system("#{python_executable} scripts/generate_wordcloud.py")

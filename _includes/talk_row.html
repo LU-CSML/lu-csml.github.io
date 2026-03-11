@@ -12,7 +12,7 @@ talk_row.html talk=talk %} {% endcomment %}
     {% if include.talk.abstract %}
     <details class="abstract-toggle">
       <summary><span class="arrow">&#9654;</span> Abstract</summary>
-      <div class="abstract-content">{{ include.talk.abstract }}</div>
+      <div class="abstract-content">{{ include.talk.abstract | newline_to_br }}</div>
     </details>
     {% endif %}
   </td>

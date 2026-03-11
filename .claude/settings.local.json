@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && bundle exec jekyll build 2>&1 | tail -20)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && bundle exec jekyll build 2>&1 | head -30)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && bundle exec jekyll build 2>&1 | grep -E \"\\(error|Error|done|Done|Built|built|warning|Warning\\)\" | head -20)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && bundle exec jekyll build 2>&1 | grep -E \"\\(error|Error|SyntaxError|done|Done|Built|built\\)\" | head -20)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && python3 -c \"import yaml; print\\(yaml.safe_load\\(open\\('_data/talks.yml'\\)\\)\\)\" 2>&1 | head -50)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && python3 scripts/generate_wordcloud.py 2>&1)",
+      "Bash(python --version 2>&1; python3 --version 2>&1; where python 2>&1)",
+      "Bash(ls /c/Python*)",
+      "Read(//c/Users/liaml/AppData/Local/Programs/Python/**)",
+      "Read(//c/Users/liaml/AppData/Local/Microsoft/WindowsApps/**)",
+      "Bash(/c/Python313/python.exe --version 2>&1 && /c/Python313/python.exe -c \"import wordcloud; print\\('wordcloud ok'\\)\" 2>&1)",
+      "Bash(PYTHON=\"/c/Users/liaml/AppData/Local/Programs/Python/Python313/python.exe\"\n\"$PYTHON\" --version && \"$PYTHON\" -c \"import wordcloud; print\\('wordcloud ok'\\)\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && ruby -e \"puts system\\('python --version', :out => File::NULL, :err => File::NULL\\); puts system\\('python3 --version', :out => File::NULL, :err => File::NULL\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && ruby -e \"\npython_executable = 'python'\nif File.exist?\\('.venv/bin/python'\\)\n  python_executable = '.venv/bin/python'\nelsif system\\('python3 --version', :out => File::NULL, :err => File::NULL\\)\n  python_executable = 'python3'\nend\nputs \\\\\"Selected: #{python_executable}\\\\\"\nresult = system\\(\\\\\"#{python_executable} --version\\\\\"\\)\nputs \\\\\"Result: #{result}\\\\\"\n\")",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && ruby -e \"result = system\\('python --version'\\); puts result.inspect\")",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && ruby -e \"\ncandidates = [\n  'C:/Users/liaml/AppData/Local/Programs/Python/Python313/python.exe',\n  'C:/Python313/python.exe',\n  'python',\n  'python3'\n]\ncandidates.each do |p|\n  result = system\\(p, '--version', :out => File::NULL, :err => File::NULL\\)\n  puts \\\\\"#{p}: #{result.inspect}\\\\\"\nend\n\")",
+      "Bash(cd \"C:\\\\Users\\\\liaml\\\\Documents\\\\GitHub\\\\Research\\\\lu-csml.github.io\" && bundle exec jekyll build 2>&1 | grep -E \"\\\\[WordCloud\\\\]\")"
+    ]
+  }
+}
