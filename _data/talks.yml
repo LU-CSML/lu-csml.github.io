@@ -88,8 +88,21 @@
 - date: 2026-03-12
   speaker: Chen Qi
   affiliation: Aalto University
-  title:
-  abstract:
+  title: "Theoretical understanding of generalization and memorization in generative models"
+  abstract: |
+    Generative models are able to create new and diverse samples, yet the mechanisms that let them generalize rather than memorize remain unclear. This talk presents recent theoretical insights into how autoencoders, adversarial models, and diffusion models learn structure from data while controlling model capacity and preventing overfitting. By drawing on ideas from information theory, statistical learning, and training dynamics, the talk offers a clear picture of why these models can generalize effectively and why some of them show a strong natural resistance to memorization.
+
+    The talk is mainly based on my previous work [3] and will cover introduction to other closely related works [1, 2, 4].
+  links:
+    - url: https://proceedings.neurips.cc/paper_files/paper/2019/file/eae27d77ca20db309e056e3d2dcd7d69-Paper.pdf
+      text: Paper [1]
+    - url: https://proceedings.neurips.cc/paper_files/paper/2023/file/b29500824d22ee9bbd25e4cd97c49b55-Paper-Conference.pdf
+      text: Paper [2]
+    - url: https://proceedings.iclr.cc/paper_files/paper/2025/file/b2a90197a509b33478761c3aabc88904-Paper-Conference.pdf
+      text: Paper [3]
+    - url: https://arxiv.org/abs/2505.17638
+      text: Paper [4]
+
 
 - date: 2026-03-05
   speaker: Paul Fearnhead

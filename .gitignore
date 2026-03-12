@@ -15,6 +15,9 @@ vendor/
 Thumbs.db
 Old_files/
 
+# Claude local settings
+.claude/
+
 # Python Virtual Environment
 .venv/
 __pycache__/

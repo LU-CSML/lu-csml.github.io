@@ -8,6 +8,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
     ".venv/Scripts/python.exe",  # Windows venv
     ".venv/bin/python",          # Unix venv
     "python3",                   # System python3
+    "py",                        # Windows Python launcher
     "python"                     # Fallback
   ]
   
