@@ -74,8 +74,8 @@
 - date: 2026-04-23
   speaker: Rui Zhang
   affiliation: Lancaster University
-  title:
-  abstract:
+  title: "Why Should We Care About Wasserstein Gradient Flows?"
+  abstract: "Wasserstein gradient flow (WGF) has emerged as a useful tool in computational statistics and machine learning from both a theoretical and a methodological point of view. From the theoretical side, WGF helps to interpret the bias of unadjusted Langevin, as well as establish new convergence bounds. From the methodological side, WGF formulation fosters novel sampling algorithms such as Stein variational gradient descent. In addition, the WGF formulation allows us to sample from posteriors that are unattainable via classical methods like MCMC, such as the post-Bayesian predictively-oriented posteriors. In this talk, we will survey some of these developments, especially those that are more relevant to BayesComp methodologies, and (hopefully) keep the mathematics approachable."
 
 - date: 2026-03-19
   speaker: Masha Naslidnyk
