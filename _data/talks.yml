@@ -40,7 +40,7 @@
   abstract: "The conditional backward sampling particle filter (CBPF; also known as the particle Gibbs with ancestor sampling, PGAS) is a powerful Markov chain Monte Carlo sampler for general state space hidden Markov model smoothing. It was proposed as an improvement over the conditional particle filter, which is known to have an O(T^2) computational time complexity under a general 'strong mixing' assumption of the model, where T is the time horizon. We provide the first proof that the CBPF admits an O(T log T) computational complexity under strong mixing, complementing strong empirical evidence of the superiority of the CBPF in practice. In particular, the CBPF's mixing time is upper bounded by O(log T), for any sufficiently large number of particles N that depends only on the mixing constants and not T. We show that an O(log T) mixing time is optimal. The proof involves the analysis of a novel coupling of two CBPFs, which involves a maximal coupling of two particle systems at each time instant. The coupling is implementable, and thus can also be used to construct unbiased, finite variance, estimates of functionals which have arbitrary dependence on the latent state's path, with a total expected cost of O(Tlog T).
 
 The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and Anthony Lee."
-  url: https://academic.oup.com/jrsssb/advance-article/doi/10.1093/jrsssb/qkaf078/8381358
+  link: https://academic.oup.com/jrsssb/advance-article/doi/10.1093/jrsssb/qkaf078/8381358
   link_text: JRSSB
 
 
@@ -81,6 +81,7 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   affiliation: Lancaster University
   title: "Why Should We Care About Wasserstein Gradient Flows?"
   abstract: "Wasserstein gradient flow (WGF) has emerged as a useful tool in computational statistics and machine learning from both a theoretical and a methodological point of view. From the theoretical side, WGF helps to interpret the bias of unadjusted Langevin, as well as establish new convergence bounds. From the methodological side, WGF formulation fosters novel sampling algorithms such as Stein variational gradient descent. In addition, the WGF formulation allows us to sample from posteriors that are unattainable via classical methods like MCMC, such as the post-Bayesian predictively-oriented posteriors. In this talk, we will survey some of these developments, especially those that are more relevant to BayesComp methodologies, and (hopefully) keep the mathematics approachable."
+  slides: pdf/2026-04-23.pdf
 
 - date: 2026-03-19
   speaker: Masha Naslidnyk
