@@ -47,7 +47,7 @@ endcomment %}
   %}
 >
   <td colspan="4" class="abstract-content-cell">
-    <div class="abstract-content">{{ include.talk.abstract }}</div>
+    <div class="abstract-content">{{ include.talk.abstract | markdownify }}</div>
   </td>
 </tr>
 {% endif %}
