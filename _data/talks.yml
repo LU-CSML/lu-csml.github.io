@@ -75,6 +75,7 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   affiliation: Lancaster University
   title: "Non-stationary Gaussian fields and Penalized Complexity Priors"
   abstract: "Gaussian random fields (GFs) are fundamental tools in spatial modeling and can be represented flexibly and efficiently as solutions to stochastic partial differential equations (SPDEs). The SPDEs depend on specific parameters, which govern various field behaviors and can be estimated using Bayesian inference. Informative priors are essential to ensure meaningful posterior covariance structures. This study builds on [previous work](https://arxiv.org/pdf/2409.02331) by constructing penalized complexity (PC) priors for a smooth, invertible parameterization of the correlation range, diffusion matrix, and variance of a non-stationary GF. The formulated prior is weakly informative, effectively penalizing complexity by pushing the model towards stationarity while allowing for enough flexibility to capture non-stationary behavior. The model is applied to model precipitation in Spain, particulate matter in California, and electoral data in France with promising results."
+  slides: pdf/2026-04-30.pdf
 
 - date: 2026-04-23
   speaker: Rui Zhang
