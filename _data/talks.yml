@@ -61,8 +61,10 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
 - date: 2026-05-14
   speaker: Chris Nemeth
   affiliation: Lancaster University
-  title:
-  abstract:
+  title: Hypergraph Generation via Structured Stochastic Diffusion
+  abstract: "Hypergraphs model higher-order interactions, but realistic hypergraph generation remains difficult because incidence, hyperedge-size heterogeneity, and overlap structure are not faithfully captured by pairwise reductions. We propose HEDGE, a generative model defined directly on relaxed incidence matrices via a structured stochastic diffusion. The forward process combines a hypergraph-specific two-sided heat operator with an Ornstein--Uhlenbeck component, preserving structure-aware noising near the data while yielding an explicit Gaussian terminal law. Conditional on an observed hypergraph, this forward process is linear-Gaussian, so conditional means, covariances, scores, and reverse-drift targets are available in closed form. We therefore learn a permutation-equivariant state-only reverse-drift field in incidence space by regressing onto exact conditional targets, and generate samples by simulating a learned reverse-time SDE from the Gaussian base law. We establish exactness in the ideal state-only setting together with finite-horizon stability guarantees, and empirically show improved hypergraph generation quality relative to strong baselines."
+  link: https://arxiv.org/abs/2605.05024
+  link_text: arXiv
 
 - date: 2026-04-30
   speaker: Liam Llamazares-Elias
