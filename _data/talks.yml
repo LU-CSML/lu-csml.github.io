@@ -12,10 +12,10 @@
 # Recommend Omar to LAI if no open slots
 # Paula can take my date perhaps or ask .....
 
-# Move Chris/Tiffany to 11th and confirm 
+# Move Chris/Tiffany to 11th and confirm
 
 - date: 2026-06-25
-  speaker: Matthias Sachs
+  speaker: Tiffany Vlaar
   affiliation: Lancaster University
   title:
   abstract:
@@ -27,11 +27,6 @@
   title:
   abstract:
 
-- date: 2026-06-11
-  speaker: Tiffany Vlaar
-  affiliation: University of Glasgow
-  title:
-  abstract:
 
 - date: 2026-06-05
   speaker: Matti Vihola
@@ -42,6 +37,12 @@
 The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and Anthony Lee."
   link: https://academic.oup.com/jrsssb/advance-article/doi/10.1093/jrsssb/qkaf078/8381358
   link_text: JRSSB
+
+  - date: 2026-06-04
+  speaker: Tamas Papp
+  affiliation: National University of Singapore
+  title: r
+  abstract:
 
 
 - date: 2026-05-28
@@ -135,10 +136,10 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   link_text: arXiv
 
 - date: 2026-02-12
-  speaker: 
-  affiliation: 
+  speaker:
+  affiliation:
   title: Informal session
-  abstract: 
+  abstract:
   slides:
 
 - date: 2026-02-05
@@ -158,7 +159,7 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   link: https://arxiv.org/abs/2511.23275
   link_text: arXiv
   slides:
-    
+
 
 - date: 2026-01-22
   speaker: Yuga Iguchi
