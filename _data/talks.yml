@@ -38,7 +38,7 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   link: https://academic.oup.com/jrsssb/advance-article/doi/10.1093/jrsssb/qkaf078/8381358
   link_text: JRSSB
 
-  - date: 2026-06-04
+- date: 2026-06-04
   speaker: Tamas Papp
   affiliation: National University of Singapore
   title: r
@@ -466,9 +466,9 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   speaker: Lorenzo Rimella
   title: "Localised filtering algorithm: the BPF and the Graph Filter"
   links:
-    -url: https://arxiv.org/pdf/1301.6585.pdf
+    - url: https://arxiv.org/pdf/1301.6585.pdf
     text: arXiv
-    -url: https://www.jmlr.org/papers/volume23/19-267/19-267.pdf
+    - url: https://www.jmlr.org/papers/volume23/19-267/19-267.pdf
     text: JMLR
 
 - date: 2023-05-11
@@ -505,9 +505,9 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   speaker: Estevao Batista Do Prado
   title: Bayesian additive regression trees (BART)
   links:
-     -url: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1998.10473750
+     - url: https://www.tandfonline.com/doi/pdf/10.1080/01621459.1998.10473750
      text: JASA
-     -url: https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-1/BART-Bayesian-additive-regression-trees/10.1214/09-AOAS285.full
+     - url: https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-1/BART-Bayesian-additive-regression-trees/10.1214/09-AOAS285.full
      text: Ann. Appl. Stat.
 
 - date: 2023-01-19
@@ -857,9 +857,9 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   speaker: Paul Fearnhead
   title: "Discussion of “The Bouncy Particle Sampler: A Non-Reversible Rejection-Free Markov Chain Monte Carlo Method”"
   links:
-    -url: http://arxiv.org/pdf/1509.03808.pdf
+    - url: http://arxiv.org/pdf/1509.03808.pdf
     text: arXiv
-    -url: http://arxiv.org/abs/1510.02451
+    - url: http://arxiv.org/abs/1510.02451
     text: arXiv
 
 - date: 2015-10-15
