@@ -41,8 +41,23 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
 - date: 2026-06-04
   speaker: Tamas Papp
   affiliation: National University of Singapore
-  title:
-  abstract:
+  title: Efficiency and tuning of unbiased MCMC
+  abstract: "The recently proposed unbiased MCMC methodology of Jacob et al. [1] eliminates the burn-in bias of standard MCMC, simplifying downstream inference and allowing more effective use of parallel computing resources. Although the method has received continued attention since its release [e.g. 2,3], key questions remain under-studied:
+  
+  How does the efficiency of unbiased MCMC compare to that of standard MCMC?
+  How should one tune unbiased MCMC for optimal performance?
+  
+  In this talk, I will discuss our ongoing work tackling these related questions. For the former, we provide sharp non-asymptotic bounds that demonstrate that unbiased MCMC is as efficient as standard MCMC, while additionally being unbiased. For the latter, we provide principled yet generic tuning guidelines that achieve near-optimal efficiency, and that increase the efficiency by up to 10^6× (!!) compared to prior tuning. Our work demonstrates that unbiased MCMC can, and is, a competitive alternative to standard MCMC.
+  
+  This talk is based on joint work with Sam Power (University of Bristol)."
+
+  links:
+  - url: https://arxiv.org/abs/1708.03625
+    text: Paper [1]
+  - url: https://arxiv.org/abs/2206.05691
+    text: Paper [2]
+  - url: https://arxiv.org/abs/2406.06851
+    text: Paper [3]
 
 
 - date: 2026-05-28
