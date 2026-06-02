@@ -22,3 +22,4 @@ Old_files/
 .venv/
 __pycache__/
 .agent/
+jekyll-serve-*.log
