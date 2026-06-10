@@ -24,8 +24,8 @@
 - date: 2026-06-18
   speaker: Alexander Heinlein
   affiliation: Delft University of Technology
-  title:
-  abstract:
+  title: Surrogate Models for Complex Physical Systems
+  abstract: 'Many problems in science and engineering require the repeated simulation of complex physical systems. Applications such as uncertainty quantification, optimization, parameter estimation, and related many-query tasks can therefore become computationally prohibitive when relying solely on high-fidelity numerical simulations. Machine-learning surrogate models are designed to approximate such simulations at a significantly reduced computational cost while enabling the integration of observational and experimental data. In this talk, we discuss surrogate modeling approaches based on convolutional and graph neural networks, as well as operator-learning methods that approximate mappings between function spaces. Particular emphasis is placed on applications involving complex geometries, multiscale phenomena, high-dimensional parametrizations, and limited training data. We further discuss how physical knowledge can be incorporated into these models and combined with data, with applications in fluid dynamics, geoscience, Earth system modeling, and biomedical simulations.'
 
 
 - date: 2026-06-05
