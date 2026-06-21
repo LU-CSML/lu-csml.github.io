@@ -17,8 +17,8 @@
 - date: 2026-06-25
   speaker: Tiffany Vlaar
   affiliation: University of Glasgow
-  title:
-  abstract:
+  title: Dissecting Deep Neural Networks
+  abstract: First, I will discuss the role played by individual layers and substructures of deep neural networks. Layer-wise sensitivity to the choice of initialisation and optimiser hyperparameter settings varies. I will show that training neural network layers differently can lead to enhanced generalisation performance and/or reduced computational cost, as well as affect resulting adversarial robustness. I will then consider the role of data and how image annotator variability in real-world ecological datasets affects the performance of deep learning models.
 
 # Alexander could do 18th June
 - date: 2026-06-18
@@ -43,12 +43,12 @@ The talk is based on joint work with Joona Karjalainen, Sumeetpal S. Singh and A
   affiliation: National University of Singapore
   title: Efficiency and tuning of unbiased MCMC
   abstract: "The recently proposed unbiased MCMC methodology of Jacob et al. [1] eliminates the burn-in bias of standard MCMC, simplifying downstream inference and allowing more effective use of parallel computing resources. Although the method has received continued attention since its release [e.g. 2,3], key questions remain under-studied:
-  
+
   How does the efficiency of unbiased MCMC compare to that of standard MCMC?
   How should one tune unbiased MCMC for optimal performance?
-  
+
   In this talk, I will discuss our ongoing work tackling these related questions. For the former, we provide sharp non-asymptotic bounds that demonstrate that unbiased MCMC is as efficient as standard MCMC, while additionally being unbiased. For the latter, we provide principled yet generic tuning guidelines that achieve near-optimal efficiency, and that increase the efficiency by up to 10^6× (!!) compared to prior tuning. Our work demonstrates that unbiased MCMC is a competitive alternative to standard MCMC.
-  
+
   This talk is based on joint work with Sam Power (University of Bristol)."
 
   links:
