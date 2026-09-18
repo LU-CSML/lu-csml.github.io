@@ -27,7 +27,7 @@ description: Lancaster University CSML weekly seminar series. Explore our schedu
 
 ### Join Us!
 
-We regularly host lunches with external speakers. This is an excellent opportunity for informal discussion in a relaxed setting. To join the group for lunch or schedule a brief meeting with a visiting speaker, please contact the organizer [Liam Llamazares](https://liamllamazareselias.com). All are welcome!
+We regularly host lunches with external speakers. This is an excellent opportunity for informal discussion in a relaxed setting. To join the group for lunch or schedule a brief meeting with a visiting speaker, please contact one of the organizers [Yuga Iguchi](https://www.yugaiguchi.com/) or [Liam Llamazares](https://liamllamazareselias.com). All are welcome!
 
 Check out our [interactive visualizations](/visualizations) to explore our research and contribute a session to grow our research and join our community. We are happy to receive speaker suggestions and contributions.
 
