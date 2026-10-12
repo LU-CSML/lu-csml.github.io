@@ -1,6 +1,7 @@
 require "jekyll"
 require "tmpdir"
 require "fileutils"
+require "json"
 require_relative "../_plugins/hooks"
 
 # Temporary fixtures have no virtual environment; use the project's interpreter.
@@ -42,9 +43,12 @@ class WordCloudHookTest
       # Generation must use the configured source, not the working directory.
       Dir.chdir(Dir.tmpdir) { site.process }
       assert_includes File.read(output), "alphawave"
+      index_path = File.join(source, "_data", "wordcloud.json")
+      assert_equal [0], JSON.parse(File.read(index_path))["terms"].first["talks"]
       File.write(data, "- title: alphawave\n- title: betawave\n")
       site.process
       assert_includes File.read(File.join(source, "_site", "index.html")), "betawave"
+      assert_equal 2, JSON.parse(File.read(index_path))["terms"].size
       modified = File.mtime(output)
       site.process
       assert_equal modified, File.mtime(output)

@@ -97,7 +97,7 @@ bundle exec jekyll serve
 
 The site will be available at **http://localhost:4000**.
 
-The server will auto-rebuild when you make changes. Editing `_data/talks.yml`, `_data/stopwords.yml`, or the generator refreshes the word cloud before rendering. Unrelated edits reuse the existing map, and unchanged SVG content is not rewritten. Press `Ctrl+C` to stop.
+The server will auto-rebuild when you make changes. Editing `_data/talks.yml`, `_data/stopwords.yml`, or the generator refreshes the word cloud and its `_data/wordcloud.json` lookup index before rendering. The SVG and topic results share the same word normalization. Unrelated edits reuse the existing map, and unchanged SVG content is not rewritten. Press `Ctrl+C` to stop.
 
 ## Deployment
 

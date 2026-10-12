@@ -255,3 +255,11 @@ academic:
   - well
   - within
   - work
+
+  # General words that do not identify a research topic.
+  - non
+  - introduce
+  - theoretical
+  - standard
+  - optimal
+  - mean

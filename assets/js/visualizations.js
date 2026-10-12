@@ -921,42 +921,81 @@
     }
   }
 
-  // Expose for use by word cloud onclick
-  window.showWordModal = function(word) {
+  // The generator exports the exact word-to-talk mapping used by the SVG.
+  const cloudIndex = DATA.wordcloud || { terms: [], aliases: {} };
+  const cloudTerms = new Map(cloudIndex.terms.map(term => [term.key, term]));
+
+  function topicKey(word) {
+    const key = word.toLowerCase().replace(/ /g, '_');
+    return cloudIndex.aliases[key] || key;
+  }
+
+  function topicTalks(word) {
+    const key = topicKey(word);
+    const term = cloudTerms.get(key);
+    const matches = term ? term.talks.map(index => DATA.talks[index]).filter(Boolean)
+      : allTalks.filter(talk => talk.cleanWords.has(key));
+    return matches.slice().sort((a, b) => b.date.localeCompare(a.date));
+  }
+
+  function appendTopicTalks(container, talks, className) {
+    container.replaceChildren();
+    talks.forEach(talk => {
+      const link = document.createElement('a');
+      link.className = className;
+      link.href = talk.parsedDate >= today ? scheduleUrl : `${talksUrl}?q=${encodeURIComponent(talk.title)}`;
+      const date = document.createElement('time');
+      date.dateTime = talk.date;
+      date.textContent = talk.date;
+      const speaker = document.createElement('strong');
+      speaker.textContent = talk.speaker;
+      const title = document.createElement('span');
+      title.textContent = talk.title || '';
+      link.append(date, speaker, title);
+      container.appendChild(link);
+    });
+    if (!talks.length) {
+      const empty = document.createElement('p');
+      empty.className = 'text-muted';
+      empty.textContent = 'No talks found for this topic.';
+      container.appendChild(empty);
+    }
+  }
+
+  // SVG words and shortcut buttons use the side panel; other charts keep their modal.
+  window.showWordModal = function(word, fromCloud = false) {
+    const matches = topicTalks(word);
+    const key = topicKey(word);
+    if (fromCloud && document.getElementById('selected-topic-talks')) {
+      document.getElementById('selected-topic').textContent = word.replace(/_/g, ' ');
+      document.getElementById('selected-topic-count').textContent = `${matches.length} related ${matches.length === 1 ? 'talk' : 'talks'}`;
+      appendTopicTalks(document.getElementById('selected-topic-talks'), matches, 'topic-talk');
+      document.querySelectorAll('#topic-shortcuts button, #wordcloud-container [data-topic]').forEach(button => {
+        button.setAttribute('aria-pressed', button.dataset.topic === key);
+      });
+      return;
+    }
     const modalTitle = document.getElementById('edgeModalLabel');
     const modalBody = document.getElementById('edgeModalBody');
     if (!modalTitle || !modalBody) return;
-
-    modalTitle.innerText = `Talks featuring "${word}"`;
-    modalBody.innerHTML = '';
-
-    const listGroup = document.createElement('div');
-    listGroup.className = 'list-group';
-
-    let count = 0;
-    allTalks.forEach(talk => {
-      const lookup = word.toLowerCase().replace(/ /g, '_');
-      if (talk.cleanWords.has(lookup)) {
-        count++;
-        const a = document.createElement('a');
-        a.href = talk.parsedDate >= today ? scheduleUrl : `${talksUrl}?q=${encodeURIComponent(talk.title)}`;
-        a.className = 'list-group-item list-group-item-action';
-        a.innerHTML = `<strong>${talk.date}</strong> (${talk.speaker})<br/>${talk.title}`;
-        listGroup.appendChild(a);
-      }
-    });
-
-    if (count === 0) {
-      modalBody.innerHTML = '<p class="text-muted">No talks found for this topic.</p>';
-    } else {
-      modalBody.appendChild(listGroup);
-    }
-
-    // Bootstrap Modal invocation
-    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
-      $('#edgeModal').modal('show');
-    }
+    modalTitle.textContent = `Talks featuring "${word.replace(/_/g, ' ')}"`;
+    appendTopicTalks(modalBody, matches, 'list-group-item list-group-item-action topic-talk');
+    if (typeof $ !== 'undefined' && $.fn && $.fn.modal) $('#edgeModal').modal('show');
   };
+
+  const shortcuts = document.getElementById('topic-shortcuts');
+  if (shortcuts) {
+    cloudIndex.terms.slice(0, 5).forEach(term => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.topic = term.key;
+      button.textContent = term.word.replace(/_/g, ' ');
+      button.addEventListener('click', () => window.showWordModal(term.word, true));
+      shortcuts.appendChild(button);
+    });
+    const initial = cloudTerms.get('bayesian') || cloudIndex.terms[0];
+    if (initial) window.showWordModal(initial.word, true);
+  }
 
   // ============================================
   // INITIALIZATION

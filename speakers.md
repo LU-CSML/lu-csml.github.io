@@ -12,7 +12,7 @@ description: Explore our speaker leaderboard featuring researchers who have pres
   }
   
   .speaker-header:hover {
-    background-color: #f8f9fa !important;
+    background-color: var(--tr-hover-bg) !important;
   }
   
   .chevron-icon {
@@ -24,6 +24,16 @@ description: Explore our speaker leaderboard featuring researchers who have pres
     vertical-align: middle;
   }
   
+  .count-badge {
+    background: var(--header-bg);
+    color: var(--secondary-text);
+    border: 1px solid var(--th-border-color);
+    font-size: 0.85rem !important;
+    font-weight: 500;
+    padding: 0.4em 0.65em;
+  }
+  .speaker-item.zhadow { box-shadow: none; }
+
   .speaker-item.collapsed .chevron-icon {
     transform: rotate(-90deg);
   }
@@ -85,7 +95,7 @@ description: Explore our speaker leaderboard featuring researchers who have pres
         {% assign should_collapse = true %}
       {% endif %}
     <div class="speaker-item card mb-4 zhadow{% if should_collapse %} collapsed{% endif %}" data-count="{{ past_count }}" data-speaker-name="{{ speaker.name }}">
-      <div class="card-header d-flex justify-content-between align-items-center speaker-header">
+      <div class="card-header d-flex justify-content-between align-items-center speaker-header" role="button" tabindex="0" aria-expanded="{% if should_collapse %}false{% else %}true{% endif %}">
         <h3 class="m-0" style="font-size: 1.5rem;">
           {{ speaker.name }}
           <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -144,92 +154,15 @@ description: Explore our speaker leaderboard featuring researchers who have pres
       return countB - countA; 
     });
     
-    // Helper function to interpolate between two colors
-    function interpolateColor(color1, color2, factor) {
-      var result = color1.slice();
-      for (var i = 0; i < 3; i++) {
-        result[i] = Math.round(result[i] + factor * (color2[i] - result[i]));
-      }
-      return result;
-    }
-    
-    function rgbToHex(r, g, b) {
-      return '#' + [r, g, b].map(function(x) {
-        var hex = x.toString(16);
-        return hex.length === 1 ? '0' + hex : hex;
-      }).join('');
-    }
-    
-    // Find talk count ranges for gradient calculation
-    var talkCounts = items.map(function(item) {
-      return parseInt(item.getAttribute('data-count'));
-    });
-    var maxCount = Math.max.apply(null, talkCounts);
-    var minCount = Math.min.apply(null, talkCounts);
-    
-    // Append sorted items and apply leaderboard colors with tie handling and gradient
-    var currentRank = 0;
-    var previousCount = -1;
-    
-    items.forEach(function(item, index) {
+    // Append speakers in descending talk-count order.
+    items.forEach(function(item) {
       list.appendChild(item);
       
       var count = parseInt(item.getAttribute('data-count'));
       
-      // Handle ties: if same count as previous, keep same rank
-      if (count !== previousCount) {
-        currentRank = index + 1;
-      }
-      previousCount = count;
-      
       var badge = item.querySelector('.count-badge');
       
-      // Define medal colors
-      var gold = [255, 215, 0];      // #FFD700
-      var silver = [192, 192, 192];  // #C0C0C0
-      var bronze = [205, 127, 50];   // #CD7F32
-      var paleGray = [235, 235, 235]; // Very light gray for 1 talk
-      
-      var bgColor, textColor, titleText;
-      
-      if (currentRank === 1) {
-        bgColor = rgbToHex.apply(null, gold);
-        textColor = '#000';
-        titleText = count === previousCount && index > 0 ? "Tied for Most Talks (Gold)" : "Most Talks (Gold)";
-      } else if (currentRank === 2) {
-        bgColor = rgbToHex.apply(null, silver);
-        textColor = '#000';
-        titleText = "2nd Most Talks (Silver)";
-      } else if (currentRank === 3) {
-        bgColor = rgbToHex.apply(null, bronze);
-        textColor = '#fff';
-        titleText = "3rd Most Talks (Bronze)";
-      } else {
-        // Gradient based on talk count, not rank
-        // Get the talk count for rank 3 (bronze threshold)
-        // Guard against fewer than 3 speakers
-        var bronzeCount = items.length >= 3 
-          ? parseInt(items[2].getAttribute('data-count')) 
-          : count;
-        
-        // Create gradient from bronze count down to 1 talk
-        // If count equals bronzeCount, use bronze color
-        // If count equals 1, use paleGray
-        var gradientRange = Math.max(1, bronzeCount - minCount);
-        var gradientPosition = (bronzeCount - count) / gradientRange;
-        
-        var interpolated = interpolateColor(bronze, paleGray, gradientPosition);
-        bgColor = rgbToHex.apply(null, interpolated);
-        
-        // Determine text color based on brightness
-        var brightness = (interpolated[0] * 299 + interpolated[1] * 587 + interpolated[2] * 114) / 1000;
-        textColor = brightness > 155 ? '#000' : '#fff';
-        titleText = count + " talk" + (count > 1 ? "s" : "");
-      }
-      
-      badge.style.backgroundColor = bgColor;
-      badge.style.color = textColor;
-      badge.title = titleText;
+      badge.title = count + (count === 1 ? " talk" : " talks");
     });
 
     // Toggle speaker card collapse on header click
@@ -239,13 +172,21 @@ description: Explore our speaker leaderboard featuring researchers who have pres
         var speakerCard = header.closest('.speaker-item');
         if (speakerCard) {
           speakerCard.classList.toggle('collapsed');
+          header.setAttribute('aria-expanded', !speakerCard.classList.contains('collapsed'));
         }
+      }
+    });
+
+    list.addEventListener('keydown', function(e) {
+      if (e.target.classList.contains('speaker-header') && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        e.target.click();
       }
     });
 
     // Search Functionality
     var searchInput = document.getElementById('speaker-search');
-    searchInput.addEventListener('keyup', function() {
+    searchInput.addEventListener('input', function() {
       var filter = searchInput.value.toLowerCase();
       var countVisible = 0;
       

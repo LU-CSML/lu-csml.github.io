@@ -198,30 +198,30 @@ Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} a
         var input = document.getElementById(inputId);
         if (!input) return;
 
-        input.addEventListener('keyup', function() {
+        input.addEventListener('input', function() {
             var searchTerm = this.value.toLowerCase();
             
             // Scope rows to the specific container to avoid cross-filtering
             var container = document.querySelector(containerSelector);
             if (!container) return;
             
-            var rows = container.querySelectorAll('.talk-table tbody tr');
+            var rows = container.querySelectorAll('.talk-table tbody tr.talk-row');
             
             // Filter rows
             rows.forEach(function(row) {
-                var text = row.textContent.toLowerCase();
-                if(text.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                var nextRow = row.nextElementSibling;
+                var abstract = nextRow && nextRow.classList.contains('abstract-row') ? nextRow : null;
+                var text = (row.textContent + (abstract ? abstract.textContent : '')).toLowerCase();
+                var visible = text.includes(searchTerm);
+                row.style.display = visible ? '' : 'none';
+                if (abstract) abstract.style.display = visible ? '' : 'none';
             });
 
             // Optional: Handle Headers (specifically for 'All Terms' view in Upcoming/Past)
             if (headerSelector) {
                 var headerContainers = document.querySelectorAll(headerSelector);
                 headerContainers.forEach(function(tableContainer) {
-                    var visibleRows = tableContainer.querySelectorAll('tbody tr:not([style*="display: none"])').length;
+                    var visibleRows = tableContainer.querySelectorAll('tbody tr.talk-row:not([style*="display: none"])').length;
                     var header = tableContainer.previousElementSibling;
                     
                     if (visibleRows > 0) {

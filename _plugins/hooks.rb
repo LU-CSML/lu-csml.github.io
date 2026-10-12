@@ -11,7 +11,8 @@ module CSMLWordCloud
     end
     fingerprint = digest.hexdigest
     output = File.join(source, "_includes", "wordcloud.svg")
-    return if site.instance_variable_get(:@wordcloud_fingerprint) == fingerprint && File.exist?(output)
+    index = File.join(source, "_data", "wordcloud.json")
+    return if site.instance_variable_get(:@wordcloud_fingerprint) == fingerprint && File.exist?(output) && File.exist?(index)
 
     configured_python = ENV["WORDCLOUD_PYTHON"]
     candidates = if configured_python && !configured_python.empty?
@@ -30,7 +31,7 @@ module CSMLWordCloud
     Jekyll.logger.info "WordCloud:", "Generating SVG from talk data..."
     stdout, stderr, status = Open3.capture3(python, File.join(source, "scripts", "generate_wordcloud.py"),
       "--data", File.join(source, "_data", "talks.yml"),
-      "--stopwords", File.join(source, "_data", "stopwords.yml"), "--output", output)
+      "--stopwords", File.join(source, "_data", "stopwords.yml"), "--output", output, "--index", index)
     unless status.success?
       raise Jekyll::Errors::FatalException, "Word cloud generation failed:\n#{stdout}#{stderr}"
     end

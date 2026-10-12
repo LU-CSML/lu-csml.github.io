@@ -1,9 +1,14 @@
 ---
 layout: default
-title: Data Visualization
+title: Our research - CSML
+description: Explore CSML research topics and the talks behind them.
 ---
 
-Explore the research landscape of the Computational Statistics and Machine Learning (CSML) group.
+# Our research
+
+Explore the topics, methods, and speakers in the CSML seminar archive.
+
+<link rel="stylesheet" href="{{ '/assets/css/research.css' | relative_url }}">
 
 ---
 
@@ -11,9 +16,19 @@ Explore the research landscape of the Computational Statistics and Machine Learn
 
 Most frequent terms from all past and future talk abstracts. **Click a word** to see all related talks.
 
-<!-- SVG regenerated from talk data by the Jekyll build hook. -->
-<div id="wordcloud-container" class="mb-5" style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); padding: 1rem; text-align: center;">
-  {% include wordcloud.svg %}
+<!-- SVG and its topic index are generated together before rendering. -->
+<div class="topic-browser mb-5">
+  <section class="topic-cloud-card">
+    <div id="wordcloud-container">{% include wordcloud.svg %}</div>
+    <p class="topic-hint">Select a word to explore the talks behind it.</p>
+    <div id="topic-shortcuts" class="topic-shortcuts" aria-label="Popular topics"></div>
+  </section>
+  <aside class="topic-results-card" aria-labelledby="selected-topic">
+    <span class="topic-eyebrow">Selected topic</span>
+    <h3 id="selected-topic">Choose a topic</h3>
+    <p id="selected-topic-count" class="topic-hint" role="status" aria-live="polite"></p>
+    <div id="selected-topic-talks"></div>
+  </aside>
 </div>
 
 ---
@@ -141,6 +156,7 @@ See who has given the most talks over the years.
       english: {{ site.data.stopwords.english | jsonify }},
       academic: {{ site.data.stopwords.academic | jsonify }}
     },
+    wordcloud: {{ site.data.wordcloud | jsonify }},
     talksUrl: "{{ '/talks' | relative_url }}",
     scheduleUrl: "{{ '/schedule' | relative_url }}"
   };

@@ -253,8 +253,16 @@
         color: var(--link-color);
         transform: scale(1.1);
       }
-      .theme-toggle:focus {
-        outline: none;
+      :is(a, button, input, select, [tabindex]):focus-visible {
+        outline: 3px solid var(--link-color) !important;
+        outline-offset: 4px;
+      }
+      .theme-toggle:focus-visible {
+        border-radius: 4px;
+      }
+      .nav-pills .nav-link.active {
+        background-color: var(--link-color);
+        color: var(--bg-color);
       }
       /* Mobile Responsive Styles */
       @media (max-width: 768px) {

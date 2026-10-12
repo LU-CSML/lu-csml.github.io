@@ -12,6 +12,7 @@ exclude:
   - .venv-wordcloud
   - vendor
   - tests
+  - scripts/__pycache__
 
 # Plugins
 plugins:

@@ -101,6 +101,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
         // Find the next sibling abstract row if it exists
         var nextRow = row.nextElementSibling;
         var abstractRow = (nextRow && nextRow.classList.contains('abstract-row')) ? nextRow : null;
+        if (abstractRow) text += ' ' + abstractRow.textContent.toLowerCase();
         
         if (text.includes(lowerQuery)) {
           row.style.display = '';
@@ -148,7 +149,7 @@ description: Browse our archive of past CSML seminar talks from 2007 to present.
     }
 
     // 2. Listen for Input
-    searchInput.addEventListener('keyup', function() {
+    searchInput.addEventListener('input', function() {
       filterTalks(searchInput.value);
     });
   });

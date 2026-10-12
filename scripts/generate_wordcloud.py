@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Set, Tuple, Optional
 
 import yaml
 from wordcloud import WordCloud
+from wordcloud.tokenization import process_tokens
 
 from matplotlib import font_manager
 from pathlib import Path
@@ -24,6 +25,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 DEFAULT_DATA_FILE = PROJECT_ROOT / '_data' / 'talks.yml'
 DEFAULT_STOPWORDS_FILE = PROJECT_ROOT / '_data' / 'stopwords.yml'
 DEFAULT_OUTPUT_FILE = PROJECT_ROOT / '_includes' / 'wordcloud.svg'
+DEFAULT_INDEX_FILE = PROJECT_ROOT / '_data' / 'wordcloud.json'
 
 # Visualization Constants
 WIDTH = 800
@@ -67,7 +69,7 @@ def process_text(talks: List[Dict[str, Any]]) -> str:
     
     for talk in talks:
         # Combine title and abstract
-        content = f"{talk.get('title', '')} {talk.get('abstract', '')}"
+        content = f"{talk.get('title') or ''} {talk.get('abstract') or ''}"
         
         # Token normalization
         content = re.sub(r'monte\s+carlo', 'monte_carlo', content, flags=re.IGNORECASE)
@@ -95,7 +97,8 @@ def generate_svg(
     data_file: Path, 
     stopwords_file: Path, 
     output_file: Path,
-    font_path: Optional[str] = None
+    font_path: Optional[str] = None,
+    index_file: Optional[Path] = None
 ) -> None:
     """Main generation logic."""
     stopwords = load_stopwords(stopwords_file)
@@ -118,14 +121,30 @@ def generate_svg(
         color_func=color_func,
         font_path=font_path,
         regexp=r"\w[\w']+",
-        max_words=150,
-        margin=12,
-        min_font_size=12,
+        max_words=38,
+        max_font_size=106,
+        margin=16,
+        min_font_size=14,
+        prefer_horizontal=1,
+        relative_scaling=0.25,
+        normalize_plurals=False,
         random_state=42,
         collocations=False
     )
     
-    wc.generate(text)
+    # Use the same normalization for the cloud and every word-to-talk lookup.
+    raw_counts = wc.process_text(text)
+    words = [word for word, count in raw_counts.items() for _ in range(count)]
+    counts, standard_forms = process_tokens(words, normalize_plurals=True)
+    terms = {word.lower(): {"word": word, "key": word.lower(), "mentions": count, "talks": []}
+             for word, count in counts.items()}
+    for index, talk in enumerate(talks):
+        keys = {standard_forms[word.lower()].lower() for word in wc.process_text(process_text([talk]))}
+        for key in keys:
+            terms[key]["talks"].append(index)
+    topic_index = {"terms": sorted(terms.values(), key=lambda term: -term["mentions"]),
+                   "aliases": {word: canonical.lower() for word, canonical in standard_forms.items()}}
+    wc.generate_from_frequencies(counts)
     raw_svg = wc.to_svg(embed_font=True)
     
     # Edit the XML tree so namespaces, attributes, and click handlers are escaped once.
@@ -133,6 +152,7 @@ def generate_svg(
     ET.register_namespace("", namespace)
     root = ET.fromstring(raw_svg)
     root.set("width", "100%")
+    root.set("height", "auto")
     root.set("viewBox", f"0 0 {WIDTH} {HEIGHT}")
 
     # Inject CSS styles for interactivity
@@ -174,7 +194,14 @@ def generate_svg(
         # Class-based colors allow theme changes; retain other inline styles.
         style = re.sub(r"(?:^|;)\s*fill:[^;]*(?:;|$)", ";", style)
         node.set("style", style.strip(";") + ";cursor: pointer; pointer-events: all;")
-        node.set("onclick", f"showWordModal({json.dumps(node.text or '', ensure_ascii=False)})")
+        word = node.text or ''
+        node.set("onclick", f"showWordModal({json.dumps(word, ensure_ascii=False)}, true)")
+        node.set("data-topic", word.lower())
+        node.set("tabindex", "0")
+        node.set("role", "button")
+        node.set("aria-label", f"Show talks about {word.replace('_', ' ')}")
+        node.set("onkeydown", f"if(event.key==='Enter'||event.key===' '){{event.preventDefault();showWordModal({json.dumps(word, ensure_ascii=False)}, true)}}")
+        node.text = word.replace('_', ' ')
 
     svg_content = ET.tostring(root, encoding="unicode")
     # Validate the final result, including styles and handlers.
@@ -183,7 +210,12 @@ def generate_svg(
     if not output_file.exists() or output_file.read_text(encoding="utf-8") != svg_content:
         output_file.write_text(svg_content, encoding="utf-8")
 
-    print(f"Generated wordcloud at {output_file}")
+    index_file = index_file or output_file.with_suffix(".json")
+    index_file.parent.mkdir(parents=True, exist_ok=True)
+    index_content = json.dumps(topic_index, ensure_ascii=False, indent=2) + "\n"
+    if not index_file.exists() or index_file.read_text(encoding="utf-8") != index_content:
+        index_file.write_text(index_content, encoding="utf-8")
+    print(f"Generated wordcloud at {output_file} and topic index at {index_file}")
 
 
 def main() -> None:
@@ -191,6 +223,7 @@ def main() -> None:
     parser.add_argument('--data', '-d', default=DEFAULT_DATA_FILE, help='Path to talks.yml')
     parser.add_argument('--stopwords', '-s', default=DEFAULT_STOPWORDS_FILE, help='Path to stopwords.yml')
     parser.add_argument('--output', '-o', default=DEFAULT_OUTPUT_FILE, help='Output path for SVG')
+    parser.add_argument('--index', default=DEFAULT_INDEX_FILE, help='Output path for word-to-talk index')
     parser.add_argument('--font', '-f', default=None, help='Custom font path')
     
     args = parser.parse_args()
@@ -200,7 +233,8 @@ def main() -> None:
             data_file=Path(args.data),
             stopwords_file=Path(args.stopwords),
             output_file=Path(args.output),
-            font_path=args.font
+            font_path=args.font,
+            index_file=Path(args.index)
         )
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
