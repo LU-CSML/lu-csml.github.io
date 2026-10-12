@@ -5,8 +5,7 @@ Generates an SVG word cloud from talk data for the CSML Jekyll site.
 """
 
 import argparse
-import os
-import random
+import json
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -89,34 +88,7 @@ def color_func(
 ) -> str:
     """Custom color function determining word color."""
     pallet = [COLOR_RED, COLOR_RED, COLOR_GREY_DARK, COLOR_GREY_DARK, COLOR_GREY_LIGHT]
-    return random.choice(pallet)
-
-
-def sanitize_svg(svg_content: str) -> str:
-    """
-    Parse and re-serialize SVG to ensure it is valid and header-free.
-    This ensures safe inline embedding.
-    """
-    try:
-        # Register namespaces to prevent 'ns0' prefixes if possible, 
-        # though WordCloud usually produces simple SVG.
-        ET.register_namespace("", "http://www.w3.org/2000/svg")
-        
-        root = ET.fromstring(svg_content)
-        
-        # Ensure correct namespace if missing (sometimes happens with fragments)
-        if 'xmlns' not in root.attrib:
-            root.attrib['xmlns'] = "http://www.w3.org/2000/svg"
-            
-        # Serialize without XML declaration
-        clean_svg = ET.tostring(root, encoding='unicode', method='xml')
-        return clean_svg
-    except ET.ParseError as e:
-        print(f"Warning: SVG parsing failed ({e}). Falling back to raw regex stripping.", file=sys.stderr)
-        # Fallback to simple stripping if strictly necessary
-        s = re.sub(r'<\?xml.*?>', '', svg_content)
-        s = re.sub(r'<!DOCTYPE.*?>', '', s)
-        return s
+    return random_state.choice(pallet)
 
 
 def generate_svg(
@@ -133,24 +105,10 @@ def generate_svg(
     if not text.strip():
         raise ValueError("No text found in talks data.")
     
-    # Resolve font path if not provided
+    # Matplotlib ships this font on all supported platforms.
     if font_path is None:
-        # Robust cross-platform font discovery using matplotlib
-        font_families = ['Arial', 'Helvetica', 'DejaVu Sans', 'Liberation Sans']
-        for family in font_families:
-            try:
-                font_path = font_manager.findfont(font_manager.FontProperties(family=family))
-                # Check if we got a real font (not the fallback)
-                if font_path and 'DejaVuSans' not in font_path or family == 'DejaVu Sans':
-                    print(f"Using detected font: {font_path}")
-                    break
-            except Exception:
-                continue
-        else:
-            # If no specific font found, let WordCloud use its default
-            print("Using WordCloud's default font.", file=sys.stderr)
-            font_path = None
-    
+        font_path = font_manager.findfont(font_manager.FontProperties(family="DejaVu Sans"), fallback_to_default=False)
+
     wc = WordCloud(
         width=WIDTH, 
         height=HEIGHT, 
@@ -163,15 +121,20 @@ def generate_svg(
         max_words=150,
         margin=12,
         min_font_size=12,
-        collocations=False  
+        random_state=42,
+        collocations=False
     )
     
     wc.generate(text)
-    raw_svg = wc.to_svg()
+    raw_svg = wc.to_svg(embed_font=True)
     
-    # Robust Sanitization using XML parser
-    svg_content = sanitize_svg(raw_svg)
-    
+    # Edit the XML tree so namespaces, attributes, and click handlers are escaped once.
+    namespace = "http://www.w3.org/2000/svg"
+    ET.register_namespace("", namespace)
+    root = ET.fromstring(raw_svg)
+    root.set("width", "100%")
+    root.set("viewBox", f"0 0 {WIDTH} {HEIGHT}")
+
     # Inject CSS styles for interactivity
     style_block = """
     <style>
@@ -190,7 +153,6 @@ def generate_svg(
         .wc-word {
             transition: all 0.2s ease;
             cursor: pointer !important;
-            font-family: 'Outfit', sans-serif;
             opacity: 0.9;
         }
 
@@ -204,40 +166,23 @@ def generate_svg(
     </style>
     """
     
-    # Insert Style block before closing tag
-    if '</svg>' in svg_content:
-        svg_content = svg_content.replace('</svg>', f'{style_block}</svg>')
-    else:
-        svg_content += style_block
+    root.append(ET.fromstring(style_block))
+    for node in root.findall(f"{{{namespace}}}text"):
+        style = node.get("style", "")
+        css_class = "wc-word wc-red" if COLOR_RED in style else "wc-word wc-grey"
+        node.set("class", css_class)
+        # Class-based colors allow theme changes; retain other inline styles.
+        style = re.sub(r"(?:^|;)\s*fill:[^;]*(?:;|$)", ";", style)
+        node.set("style", style.strip(";") + ";cursor: pointer; pointer-events: all;")
+        node.set("onclick", f"showWordModal({json.dumps(node.text or '', ensure_ascii=False)})")
 
-    # Post-process for interactivity (add onclick)
-    # Using regex here because we are injecting non-standard JS attributes 
-    # and classes that might be tedious to build via ElementTree for every node.
-    def replacer(match: re.Match) -> str:
-        attrs = match.group(1)
-        content = match.group(2)
-        safe_word = content.replace("'", "\\'")
-        
-        css_class = "wc-word wc-red" if COLOR_RED in attrs else "wc-word wc-grey"
-        attrs = re.sub(r'fill:[^;]+;', '', attrs) # Remove hardcoded fill
-        
-        return (f'<text {attrs} class="{css_class}" '
-                f'style="cursor: pointer; pointer-events: all;" '
-                f'onclick="showWordModal(\'{safe_word}\')">{content}</text>')
-
-    svg_content = re.sub(r'<text ([^>]+)>([^<]+)</text>', replacer, svg_content)
-    
-    # Ensure viewBox for responsiveness
-    if 'viewBox' not in svg_content:
-        svg_content = svg_content.replace(
-            f'width="{WIDTH}"', 
-            f'width="100%" viewBox="0 0 {WIDTH} {HEIGHT}"'
-        )
-
+    svg_content = ET.tostring(root, encoding="unicode")
+    # Validate the final result, including styles and handlers.
+    ET.fromstring(svg_content)
     output_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(svg_content)
-    
+    if not output_file.exists() or output_file.read_text(encoding="utf-8") != svg_content:
+        output_file.write_text(svg_content, encoding="utf-8")
+
     print(f"Generated wordcloud at {output_file}")
 
 

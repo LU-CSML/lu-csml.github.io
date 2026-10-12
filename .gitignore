@@ -20,6 +20,7 @@ Old_files/
 
 # Python Virtual Environment
 .venv/
+.venv-wordcloud/
 __pycache__/
 .agent/
 jekyll-serve-*.log

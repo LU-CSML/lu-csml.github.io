@@ -6,8 +6,6 @@ The site is built with [Jekyll](https://jekyllrb.com/) and hosted on GitHub Page
 
 ## Adding a New Talk
 
-## Adding a New Talk
-
 All talks are stored in `_data/talks.yml`. To add a new talk, add an entry at the top of the file:
 
 ```yaml
@@ -18,6 +16,8 @@ All talks are stored in `_data/talks.yml`. To add a new talk, add an entry at th
 ```
 
 ### Optional Fields
+
+Omit the title and abstract until they are supplied; missing titles appear blank in the schedule. An optional `format` field (for example, `format: Online`) appears beneath the title when the format has been confirmed.
 
 You can include an abstract directly. **Note**: If your abstract contains colons (`:`), wrap the entire abstract in double quotes `"` to avoid errors.
 
@@ -66,15 +66,24 @@ Or simply paste an external URL if hosted elsewhere.
 
 3. **Python Environment** (for Word Cloud generation)
 
-   The site uses a Python script to generate the word cloud. You need to set up a virtual environment:
+   The site generates the word cloud during each Jekyll build. Set up Python dependencies before starting the server. On Linux or macOS:
 
    ```bash
    # Create virtual environment
    python3 -m venv .venv
 
    # Install dependencies
-   .venv/bin/pip install wordcloud pyyaml
+   .venv/bin/python -m pip install -r scripts/requirements.txt
    ```
+
+   On Windows (PowerShell):
+
+   ```powershell
+   py -m venv .venv
+   .venv\Scripts\python.exe -m pip install -r scripts/requirements.txt
+   ```
+
+   Jekyll checks that a Python executable can import the required packages before using it. To choose another environment, set `WORDCLOUD_PYTHON` to its Python executable (`export WORDCLOUD_PYTHON=/path/to/python` on Linux/macOS, or `$env:WORDCLOUD_PYTHON = "C:\path\to\python.exe"` in PowerShell). If no working Python is available, the build stops with setup instructions instead of publishing a stale map.
 
 ### Running Locally
 
@@ -88,11 +97,11 @@ bundle exec jekyll serve
 
 The site will be available at **http://localhost:4000**.
 
-The server will auto-rebuild when you make changes. Press `Ctrl+C` to stop.
+The server will auto-rebuild when you make changes. Editing `_data/talks.yml`, `_data/stopwords.yml`, or the generator refreshes the word cloud before rendering. Unrelated edits reuse the existing map, and unchanged SVG content is not rewritten. Press `Ctrl+C` to stop.
 
 ## Deployment
 
-Just push to the `main` branch - GitHub Pages will automatically rebuild the site.
+Just push to the `master` branch - GitHub Pages will automatically rebuild the site.
 
 ## Structure
 

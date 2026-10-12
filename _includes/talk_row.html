@@ -21,6 +21,9 @@ endcomment %}
   </td>
   <td class="talk-title-col">
     <em>{{ include.talk.title }}</em>
+    {% if include.talk.format %}
+    <span class="d-block small">{{ include.talk.format }}</span>
+    {% endif %}
     {% if include.talk.abstract %}
     <button
       class="abstract-toggle-btn"

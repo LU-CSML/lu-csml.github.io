@@ -55,21 +55,19 @@
   }
 
   const today = new Date();
-  const rawTalks = (DATA.talks || []).filter(t => {
-      const talkDate = parseDate(t.date);
-      if (!talkDate) return false;
-      return talkDate < today; 
-  });
+  const allTalks = (DATA.talks || []).filter(t => parseDate(t.date));
+  const rawTalks = allTalks.filter(t => parseDate(t.date) < today);
 
   const stopWords = new Set(
     (DATA.stopwords?.english || []).concat(DATA.stopwords?.academic || [])
   );
   const talksUrl = DATA.talksUrl || '/talks';
+  const scheduleUrl = DATA.scheduleUrl || '/schedule';
 
   // Build frequency map and clean words
   const frequencyMap = {};
   
-  rawTalks.forEach(function(talk) {
+  allTalks.forEach(function(talk) {
     // Parse words from title + abstract
     const text = ((talk.title || '') + ' ' + (talk.abstract || ''))
       .toLowerCase()
@@ -81,7 +79,9 @@
     words.forEach(function(w) {
       if (!stopWords.has(w) && w.length > 3 && !/^\d+$/.test(w)) {
         cleanWords.add(w);
-        frequencyMap[w] = (frequencyMap[w] || 0) + 1;
+        if (parseDate(talk.date) < today) {
+          frequencyMap[w] = (frequencyMap[w] || 0) + 1;
+        }
       }
     });
     
@@ -934,12 +934,12 @@
     listGroup.className = 'list-group';
 
     let count = 0;
-    rawTalks.forEach(talk => {
+    allTalks.forEach(talk => {
       const lookup = word.toLowerCase().replace(/ /g, '_');
       if (talk.cleanWords.has(lookup)) {
         count++;
         const a = document.createElement('a');
-        a.href = `${talksUrl}?q=${encodeURIComponent(talk.title)}`;
+        a.href = talk.parsedDate >= today ? scheduleUrl : `${talksUrl}?q=${encodeURIComponent(talk.title)}`;
         a.className = 'list-group-item list-group-item-action';
         a.innerHTML = `<strong>${talk.date}</strong> (${talk.speaker})<br/>${talk.title}`;
         listGroup.appendChild(a);

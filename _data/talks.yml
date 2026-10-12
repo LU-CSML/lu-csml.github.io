@@ -8,6 +8,50 @@
 #     link_text: arXiv/NeurIPS/etc (optional)
 # 2026
 
+# Michaelmas term
+# 10 December: no speaker supplied.
+- date: 2026-12-03
+  speaker: Paula Cordero Encinar
+  affiliation: Imperial College London
+
+- date: 2026-11-26
+  speaker: Gabriel Stoltz
+  affiliation: CERMICS, École des Ponts & Inria Paris
+  title: "Nonequilibrium stochastic dynamics: Error estimates and variance reduction"
+  abstract: |
+    Equilibrium properties in statistical physics are obtained by computing averages with respect to Boltzmann-Gibbs measures, sampled in practice using ergodic dynamics such as the Langevin dynamics. Some quantities however cannot be computed by simply sampling the Boltzmann-Gibbs measure, in particular transport coefficients, which relate the current of some physical quantity of interest with the forcing needed to induce it. For instance, a temperature difference induces an energy current, the proportionality factor between these two quantities being the thermal conductivity. From an abstract point of view, transport coefficients can also be considered as some form of sensitivity analysis with respect to an added forcing to the baseline dynamics.
+
+    There are various numerical techniques to estimate transport coefficients, which all suffer from large errors, in particular large statistical errors. I will review the most popular methods, namely the Green–Kubo approach where the transport coefficient is rewritten as some time-integrated correlation function, and the approach based on longtime averages of the stochastic dynamics perturbed by an external driving (so-called nonequilibrium molecular dynamics). I will make precise in each case the various sources of errors, in particular the bias related to the time discretization of the underlying continuous dynamics, and the variance of the associated Monte Carlo estimators. I will also briefly present some recent alternative techniques to estimate transport coefficients.
+  link: https://arxiv.org/abs/2211.10717
+  link_text: arXiv
+
+- date: 2026-11-19
+  speaker: Gavin Kerrigan
+  # Affiliation supplied by the organiser; Oxford profiles differ. Confirmation pending.
+  affiliation: King's College London
+
+- date: 2026-11-12
+  speaker: Matthias Sachs
+  affiliation: Lancaster University
+
+- date: 2026-11-05
+  speaker: Alexandra Borkowski
+  affiliation: King's College London
+
+- date: 2026-10-29
+  speaker: Mher Safaryan
+  affiliation: Lancaster University
+
+- date: 2026-10-22
+  speaker: Shreya Sinha Roy
+  affiliation: Lancaster University
+
+- date: 2026-10-15
+  speaker: Jixiang Qing
+  affiliation: Lancaster University
+  title: Multi-stage Bayesian optimisation under unknown stopping constraints
+  abstract: Many real-world black-box processes involve sequential decision-making under stage-wise constraints, where violating an unknown constraint can terminate the entire run. Learning to make optimal decisions in such settings with limited evaluations is therefore an important challenge. In this talk, I will present our multi-stage Bayesian optimisation framework for tackling this problem. I will show how the problem can be formulated as a Markov decision process and approached through dynamic programming, leading to theoretical guarantees on both cumulative failures and regret. Finally, I will demonstrate the empirical performance of our approach on synthetic benchmarks and application-driven optimisation problems.
+
 
 # Recommend Omar to LAI if no open slots
 # Paula can take my date perhaps or ask .....

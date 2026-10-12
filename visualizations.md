@@ -11,7 +11,7 @@ Explore the research landscape of the Computational Statistics and Machine Learn
 
 Most frequent terms from all past and future talk abstracts. **Click a word** to see all related talks.
 
-<!-- Smart Word Cloud: Uses pre-generated SVG if available, falls back to JS -->
+<!-- SVG regenerated from talk data by the Jekyll build hook. -->
 <div id="wordcloud-container" class="mb-5" style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); padding: 1rem; text-align: center;">
   {% include wordcloud.svg %}
 </div>
@@ -141,7 +141,8 @@ See who has given the most talks over the years.
       english: {{ site.data.stopwords.english | jsonify }},
       academic: {{ site.data.stopwords.academic | jsonify }}
     },
-    talksUrl: "{{ '/talks' | relative_url }}"
+    talksUrl: "{{ '/talks' | relative_url }}",
+    scheduleUrl: "{{ '/schedule' | relative_url }}"
   };
 </script>
 

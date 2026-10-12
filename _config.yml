@@ -6,6 +6,13 @@ url: "https://lu-csml.github.io"
 # Build settings
 markdown: kramdown
 
+# Keep development environments and tests out of the site and file watcher.
+exclude:
+  - .venv
+  - .venv-wordcloud
+  - vendor
+  - tests
+
 # Plugins
 plugins:
   - jekyll-sitemap

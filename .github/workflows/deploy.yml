@@ -37,12 +37,10 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install wordcloud matplotlib pyyaml
+          python -m pip install -r scripts/requirements.txt
 
-      - name: Generate Word Cloud SVG
-        run: |
-          python scripts/generate_wordcloud.py
-          echo "✓ Word cloud generated"
+      - name: Check word cloud SVG
+        run: python -m unittest discover -s tests -p 'test_*.py'
 
       # Ruby/Jekyll setup
       - name: Setup Ruby
@@ -50,6 +48,9 @@ jobs:
         with:
           ruby-version: "3.2"
           bundler-cache: true
+
+      - name: Check word cloud rebuilds
+        run: bundle exec ruby tests/test_wordcloud_hook.rb
 
       - name: Setup Pages
         id: pages
