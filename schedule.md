@@ -15,6 +15,8 @@ description: View the upcoming schedule for Lancaster University CSML seminar se
 
 Here is the schedule for the {{ academic_year }}/{{ next_year | slice: 2, 2 }} academic year.
 
+**Venue:** <a href="{{ site.seminar.venue_url }}" target="_blank">{{ site.seminar.venue }}</a>.
+
 <!-- Sort talks -->
 
 {% assign talks_asc = site.data.talks | sort: "date" %}

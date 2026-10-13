@@ -3,6 +3,11 @@ description: Lancaster University Computational Statistics and Machine Learning 
 baseurl: ""
 url: "https://lu-csml.github.io"
 
+# Seminar venue, shared by the home and schedule pages.
+seminar:
+  venue: Charles Carter, A02
+  venue_url: "https://www.google.com/maps/search/?api=1&query=54.007329,-2.785412"
+
 # Build settings
 markdown: kramdown
 
