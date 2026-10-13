@@ -8,7 +8,7 @@ seminar:
   day: Thursdays
   time: "15:00–16:00 UK local time"
   venue: Charles Carter, A02
-  venue_url: "https://www.google.com/maps/search/?api=1&query=54.007329,-2.785412"
+  venue_url: "https://use.mazemap.com/#v=1&config=lancaster&campusid=341&zlevel=1&center=-2.785419,54.007349&zoom=18&search=charle%20carter%20A02&sharepoitype=identifier&sharepoi=31439"
 
 # Build settings
 markdown: kramdown
