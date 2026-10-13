@@ -5,6 +5,8 @@ url: "https://lu-csml.github.io"
 
 # Seminar venue, shared by the home and schedule pages.
 seminar:
+  day: Thursdays
+  time: "15:00–16:00 UK local time"
   venue: Charles Carter, A02
   venue_url: "https://www.google.com/maps/search/?api=1&query=54.007329,-2.785412"
 
