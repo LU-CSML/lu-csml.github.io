@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,7 +19,8 @@ class WordCloudTests(unittest.TestCase):
             data, stopwords, output = (folder / name for name in ('talks.yml', 'stopwords.yml', 'cloud.svg'))
             data.write_text('- title: "Bayesian researcher\'s models"\n- speaker: No title yet\n', encoding='utf-8')
             stopwords.write_text('{}', encoding='utf-8')
-            generator.generate_svg(data, stopwords, output)
+            with patch('fontTools.ttLib.tables._h_e_a_d.timestampNow', return_value=3400000000):
+                generator.generate_svg(data, stopwords, output)
             original = output.read_bytes()
             modified = output.stat().st_mtime_ns
             original_index = output.with_suffix('.json').read_bytes()
@@ -35,7 +37,8 @@ class WordCloudTests(unittest.TestCase):
                 self.assertEqual(node.get('tabindex'), '0')
                 self.assertNotIn('this.click()', node.get('onkeydown'))
                 self.assertIn('showWordModal(', node.get('onkeydown'))
-            generator.generate_svg(data, stopwords, output)
+            with patch('fontTools.ttLib.tables._h_e_a_d.timestampNow', return_value=3500000000):
+                generator.generate_svg(data, stopwords, output)
             self.assertEqual(output.read_bytes(), original)
             self.assertEqual(output.stat().st_mtime_ns, modified)
             self.assertEqual(output.with_suffix('.json').read_bytes(), original_index)

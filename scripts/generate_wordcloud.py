@@ -5,6 +5,8 @@ Generates an SVG word cloud from talk data for the CSML Jekyll site.
 """
 
 import argparse
+import base64
+import io
 import json
 import re
 import sys
@@ -14,6 +16,8 @@ from typing import Any, Dict, List, Set, Tuple, Optional
 import yaml
 from wordcloud import WordCloud
 from wordcloud.tokenization import process_tokens
+from fontTools import subset
+from fontTools.ttLib import TTFont
 
 from matplotlib import font_manager
 from pathlib import Path
@@ -145,7 +149,7 @@ def generate_svg(
     topic_index = {"terms": sorted(terms.values(), key=lambda term: -term["mentions"]),
                    "aliases": {word: canonical.lower() for word, canonical in standard_forms.items()}}
     wc.generate_from_frequencies(counts)
-    raw_svg = wc.to_svg(embed_font=True)
+    raw_svg = wc.to_svg(embed_font=False)
     
     # Edit the XML tree so namespaces, attributes, and click handlers are escaped once.
     namespace = "http://www.w3.org/2000/svg"
@@ -154,6 +158,25 @@ def generate_svg(
     root.set("width", "100%")
     root.set("height", "auto")
     root.set("viewBox", f"0 0 {WIDTH} {HEIGHT}")
+
+    # WordCloud's embedding helper rebuilds the font with the current timestamp.
+    # Preserve the source font's metadata so identical input stays byte-identical.
+    options = subset.Options(hinting=False, desubroutinize=True, ignore_missing_glyphs=True)
+    with TTFont(font_path, recalcTimestamp=False) as font:
+        subsetter = subset.Subsetter(options)
+        characters = sorted({character for item in wc.layout_ for character in item[0][0]})
+        subsetter.populate(text=''.join(characters))
+        subsetter.subset(font)
+        font.recalcTimestamp = False
+        font.flavor = 'woff'
+        buffer = io.BytesIO()
+        font.save(buffer)
+    encoded_font = base64.b64encode(buffer.getvalue()).decode('ascii')
+    global_style = root.find(f"{{{namespace}}}style").text
+    font_properties = re.search(r'text\{([^}]+)\}', global_style).group(1)
+    font_style = ET.Element(f"{{{namespace}}}style")
+    font_style.text = '@font-face{' + font_properties + 'src:url("data:application/font-woff;base64,' + encoded_font + '")format("woff");}'
+    root.insert(0, font_style)
 
     # Inject CSS styles for interactivity
     style_block = """
