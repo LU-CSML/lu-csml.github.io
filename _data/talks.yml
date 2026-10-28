@@ -36,6 +36,8 @@
 - date: 2026-11-05
   speaker: Alexandra Borkowski
   affiliation: King's College London
+  title: Acceleration in Underdamped Langevin Dynamics via Fenchel Games
+  abstract: 'In this talk, we formulate sampling as a two-player game and identify Underdamped Langevin Dynamics as coupled strategies of the players. This perspective builds on similar constructions for accelerated gradient flows in ℝᵈ. A cost function involving fictitious competitors enables us to control the KL divergence between the positional marginal and the target distribution π, which is assumed to be log-concave or strongly log-concave. In this way, we obtain accelerated convergence rates compared to those of the corresponding Overdamped Langevin Dynamics.'
 
 - date: 2026-10-29
   speaker: Mher Safaryan
