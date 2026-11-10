@@ -87,6 +87,16 @@ Or simply paste an external URL if hosted elsewhere.
 
 ### Running Locally
 
+Start the site and open **http://localhost:4000** in your browser with one command:
+
+```bash
+./serve
+```
+
+This launcher uses the installed Ruby directly, installs the Bundler version from `Gemfile.lock` if needed, and installs missing gems into `vendor/bundle`. After a Ruby update, it installs gems for the new Ruby automatically. Complete the Python setup above before the first run. The browser opens once the site is ready; press `Ctrl+C` to stop. Use `NO_OPEN=1 ./serve` to skip opening the browser. Ruby, RubyGems, and `curl` must be installed.
+
+To run Jekyll directly:
+
 ```bash
 # Install dependencies (first time only)
 bundle install

@@ -1,52 +1,11 @@
 {
   "terms": [
     {
-      "word": "MCMC",
-      "key": "mcmc",
-      "mentions": 57,
-      "talks": [
-        11,
-        12,
-        16,
-        20,
-        24,
-        28,
-        29,
-        47,
-        51,
-        63,
-        64,
-        86,
-        91,
-        94,
-        97,
-        104,
-        105,
-        114,
-        123,
-        134,
-        135,
-        136,
-        138,
-        139,
-        141,
-        145,
-        148,
-        149,
-        154,
-        156,
-        158,
-        168,
-        191,
-        201,
-        205
-      ]
-    },
-    {
       "word": "Bayesian",
       "key": "bayesian",
-      "mentions": 56,
+      "mentions": 57,
       "talks": [
+        6,
         7,
         12,
         13,
@@ -90,11 +49,54 @@
       ]
     },
     {
+      "word": "MCMC",
+      "key": "mcmc",
+      "mentions": 57,
+      "talks": [
+        11,
+        12,
+        16,
+        20,
+        24,
+        28,
+        29,
+        47,
+        51,
+        63,
+        64,
+        86,
+        91,
+        94,
+        97,
+        104,
+        105,
+        114,
+        123,
+        134,
+        135,
+        136,
+        138,
+        139,
+        141,
+        145,
+        148,
+        149,
+        154,
+        156,
+        158,
+        168,
+        191,
+        201,
+        205
+      ]
+    },
+    {
       "word": "sampling",
       "key": "sampling",
-      "mentions": 33,
+      "mentions": 34,
       "talks": [
         1,
+        4,
         10,
         12,
         16,
@@ -200,9 +202,10 @@
     {
       "word": "monte_carlo",
       "key": "monte_carlo",
-      "mentions": 25,
+      "mentions": 26,
       "talks": [
         1,
+        6,
         10,
         28,
         29,
@@ -231,8 +234,9 @@
     {
       "word": "distribution",
       "key": "distribution",
-      "mentions": 25,
+      "mentions": 26,
       "talks": [
+        4,
         12,
         17,
         21,
@@ -247,6 +251,41 @@
         137,
         145,
         149
+      ]
+    },
+    {
+      "word": "posterior",
+      "key": "posterior",
+      "mentions": 25,
+      "talks": [
+        6,
+        12,
+        15,
+        16,
+        24,
+        27,
+        92,
+        123,
+        132,
+        148,
+        149
+      ]
+    },
+    {
+      "word": "target",
+      "key": "target",
+      "mentions": 24,
+      "talks": [
+        4,
+        14,
+        19,
+        21,
+        25,
+        27,
+        134,
+        137,
+        145,
+        169
       ]
     },
     {
@@ -269,36 +308,82 @@
       ]
     },
     {
-      "word": "target",
-      "key": "target",
-      "mentions": 23,
+      "word": "gradient",
+      "key": "gradient",
+      "mentions": 21,
       "talks": [
-        14,
-        19,
-        21,
-        25,
+        4,
+        5,
+        6,
+        16,
         27,
+        36,
+        91,
+        113,
         134,
         137,
         145,
-        169
+        199
       ]
     },
     {
-      "word": "posterior",
-      "key": "posterior",
-      "mentions": 22,
+      "word": "learning",
+      "key": "learning",
+      "mentions": 21,
       "talks": [
-        12,
-        15,
+        6,
+        7,
+        8,
+        9,
         16,
-        24,
-        27,
-        92,
-        123,
-        132,
-        148,
-        149
+        18,
+        20,
+        26,
+        30,
+        31,
+        36,
+        45,
+        147
+      ]
+    },
+    {
+      "word": "dynamic",
+      "key": "dynamic",
+      "mentions": 20,
+      "talks": [
+        1,
+        4,
+        5,
+        7,
+        9,
+        18,
+        29,
+        30,
+        121,
+        175
+      ]
+    },
+    {
+      "word": "space",
+      "key": "space",
+      "mentions": 20,
+      "talks": [
+        6,
+        9,
+        10,
+        14,
+        17,
+        26,
+        28,
+        29,
+        30,
+        44,
+        53,
+        62,
+        81,
+        131,
+        133,
+        173
       ]
     },
     {
@@ -328,25 +413,24 @@
       ]
     },
     {
-      "word": "space",
-      "key": "space",
+      "word": "likelihood",
+      "key": "likelihood",
       "mentions": 19,
       "talks": [
-        9,
-        10,
-        14,
-        17,
-        26,
-        28,
+        6,
+        12,
+        21,
+        24,
         29,
-        30,
-        44,
+        38,
+        46,
         53,
-        62,
-        81,
+        65,
         131,
-        133,
-        173
+        146,
+        172,
+        173,
+        193
       ]
     },
     {
@@ -369,22 +453,24 @@
       ]
     },
     {
-      "word": "learning",
-      "key": "learning",
+      "word": "diffusion",
+      "key": "diffusion",
       "mentions": 18,
       "talks": [
-        7,
-        8,
-        9,
-        16,
+        2,
+        14,
+        15,
         18,
-        20,
-        26,
-        30,
-        31,
-        36,
-        45,
-        147
+        19,
+        25,
+        28,
+        29,
+        47,
+        73,
+        90,
+        187,
+        193,
+        194
       ]
     },
     {
@@ -411,23 +497,26 @@
       ]
     },
     {
-      "word": "likelihood",
-      "key": "likelihood",
+      "word": "sampler",
+      "key": "sampler",
       "mentions": 18,
       "talks": [
-        12,
-        21,
-        24,
+        6,
+        10,
         29,
-        38,
-        46,
-        53,
-        65,
-        131,
-        146,
-        172,
-        173,
-        193
+        43,
+        58,
+        98,
+        104,
+        105,
+        110,
+        116,
+        124,
+        130,
+        137,
+        145,
+        157,
+        161
       ]
     },
     {
@@ -466,60 +555,53 @@
       ]
     },
     {
-      "word": "sampler",
-      "key": "sampler",
-      "mentions": 17,
+      "word": "computational",
+      "key": "computational",
+      "mentions": 15,
       "talks": [
-        10,
-        29,
-        43,
-        58,
-        98,
-        104,
-        105,
-        110,
-        116,
-        124,
-        130,
-        137,
-        145,
-        157,
-        161
-      ]
-    },
-    {
-      "word": "dynamic",
-      "key": "dynamic",
-      "mentions": 16,
-      "talks": [
-        1,
-        7,
+        5,
+        8,
         9,
-        18,
+        10,
+        16,
+        17,
+        21,
+        24,
+        27,
         29,
         30,
-        121,
-        175
+        185
       ]
     },
     {
-      "word": "diffusion",
-      "key": "diffusion",
-      "mentions": 16,
+      "word": "optimisation",
+      "key": "optimisation",
+      "mentions": 15,
       "talks": [
+        5,
+        7,
+        13,
+        20,
+        140,
+        164,
+        171
+      ]
+    },
+    {
+      "word": "process",
+      "key": "process",
+      "mentions": 15,
+      "talks": [
+        6,
+        7,
+        12,
         14,
-        15,
-        18,
-        19,
-        25,
+        21,
         28,
-        29,
-        47,
-        73,
-        90,
-        187,
-        193,
-        194
+        30,
+        55,
+        133,
+        162
       ]
     },
     {
@@ -539,53 +621,40 @@
       ]
     },
     {
-      "word": "gradient",
-      "key": "gradient",
-      "mentions": 15,
-      "talks": [
-        16,
-        27,
-        36,
-        91,
-        113,
-        134,
-        137,
-        145,
-        199
-      ]
-    },
-    {
-      "word": "process",
-      "key": "process",
+      "word": "generative",
+      "key": "generative",
       "mentions": 14,
       "talks": [
-        7,
+        2,
+        6,
         12,
         14,
-        21,
-        28,
-        30,
-        55,
-        133,
-        162
+        18,
+        26,
+        47,
+        73,
+        127,
+        128,
+        131
       ]
     },
     {
-      "word": "computational",
-      "key": "computational",
+      "word": "estimation",
+      "key": "estimation",
       "mentions": 14,
       "talks": [
-        8,
+        5,
         9,
-        10,
-        16,
-        17,
-        21,
-        24,
-        27,
-        29,
-        30,
-        185
+        12,
+        56,
+        75,
+        87,
+        101,
+        113,
+        133,
+        144,
+        172,
+        173
       ]
     },
     {
@@ -640,16 +709,52 @@
       ]
     },
     {
-      "word": "optimisation",
-      "key": "optimisation",
+      "word": "field",
+      "key": "field",
       "mentions": 13,
       "talks": [
-        7,
+        2,
         13,
+        14,
+        15,
+        23,
+        24,
+        27,
+        40,
+        147,
+        183
+      ]
+    },
+    {
+      "word": "Deep",
+      "key": "deep",
+      "mentions": 13,
+      "talks": [
+        6,
+        8,
         20,
-        140,
-        164,
-        171
+        127,
+        128,
+        147
+      ]
+    },
+    {
+      "word": "sequential",
+      "key": "sequential",
+      "mentions": 13,
+      "talks": [
+        6,
+        7,
+        30,
+        43,
+        112,
+        119,
+        144,
+        166,
+        181,
+        186,
+        194,
+        198
       ]
     },
     {
@@ -673,33 +778,33 @@
       ]
     },
     {
-      "word": "Deep",
-      "key": "deep",
+      "word": "Langevin",
+      "key": "langevin",
       "mentions": 12,
       "talks": [
-        8,
-        20,
-        127,
-        128,
-        147
+        1,
+        4,
+        16,
+        28,
+        106,
+        134,
+        152,
+        167,
+        177,
+        189
       ]
     },
     {
-      "word": "estimation",
-      "key": "estimation",
+      "word": "training",
+      "key": "training",
       "mentions": 12,
       "talks": [
+        5,
+        8,
         9,
-        12,
-        56,
-        75,
-        87,
-        101,
-        113,
-        133,
-        144,
-        172,
-        173
+        18,
+        20,
+        26
       ]
     },
     {
@@ -718,35 +823,18 @@
       ]
     },
     {
-      "word": "generative",
-      "key": "generative",
+      "word": "kernel",
+      "key": "kernel",
       "mentions": 12,
       "talks": [
-        12,
-        14,
-        18,
-        26,
-        47,
-        73,
-        127,
-        128,
-        131
-      ]
-    },
-    {
-      "word": "field",
-      "key": "field",
-      "mentions": 12,
-      "talks": [
-        13,
-        14,
-        15,
-        23,
-        24,
+        6,
+        17,
+        20,
         27,
-        40,
-        147,
-        183
+        109,
+        126,
+        129,
+        131
       ]
     },
     {
@@ -759,21 +847,36 @@
       ]
     },
     {
-      "word": "Sequential",
-      "key": "sequential",
+      "word": "high",
+      "key": "high",
       "mentions": 11,
       "talks": [
-        7,
-        30,
-        43,
-        112,
-        119,
-        144,
-        166,
-        181,
-        186,
-        194,
-        198
+        2,
+        6,
+        9,
+        23,
+        29,
+        44,
+        78,
+        86,
+        180
+      ]
+    },
+    {
+      "word": "convergence",
+      "key": "convergence",
+      "mentions": 11,
+      "talks": [
+        4,
+        5,
+        16,
+        27,
+        28,
+        88,
+        115,
+        117,
+        148,
+        151
       ]
     },
     {
@@ -789,20 +892,6 @@
         25,
         40,
         133
-      ]
-    },
-    {
-      "word": "kernel",
-      "key": "kernel",
-      "mentions": 11,
-      "talks": [
-        17,
-        20,
-        27,
-        109,
-        126,
-        129,
-        131
       ]
     },
     {
@@ -836,6 +925,70 @@
       ]
     },
     {
+      "word": "cost",
+      "key": "cost",
+      "mentions": 10,
+      "talks": [
+        4,
+        5,
+        8,
+        9,
+        10,
+        17,
+        21,
+        30,
+        185
+      ]
+    },
+    {
+      "word": "marginal",
+      "key": "marginal",
+      "mentions": 10,
+      "talks": [
+        4,
+        21,
+        49,
+        94,
+        145,
+        154,
+        164,
+        171,
+        172,
+        191
+      ]
+    },
+    {
+      "word": "efficient",
+      "key": "efficient",
+      "mentions": 10,
+      "talks": [
+        5,
+        6,
+        11,
+        20,
+        21,
+        23,
+        24,
+        131,
+        145,
+        155
+      ]
+    },
+    {
+      "word": "parameter",
+      "key": "parameter",
+      "mentions": 10,
+      "talks": [
+        6,
+        9,
+        15,
+        21,
+        101,
+        173,
+        190
+      ]
+    },
+    {
       "word": "unbiased",
       "key": "unbiased",
       "mentions": 10,
@@ -856,19 +1009,45 @@
       ]
     },
     {
-      "word": "Langevin",
-      "key": "langevin",
+      "word": "alternative",
+      "key": "alternative",
       "mentions": 9,
       "talks": [
         1,
-        16,
-        28,
+        5,
+        6,
+        11,
+        17,
+        24,
+        26,
         106,
-        134,
-        152,
-        167,
-        177,
-        189
+        132
+      ]
+    },
+    {
+      "word": "application",
+      "key": "application",
+      "mentions": 9,
+      "talks": [
+        6,
+        7,
+        13,
+        53,
+        94,
+        131,
+        149,
+        177
+      ]
+    },
+    {
+      "word": "intractable",
+      "key": "intractable",
+      "mentions": 9,
+      "talks": [
+        6,
+        24,
+        29,
+        131
       ]
     },
     {
@@ -901,6 +1080,18 @@
       ]
     },
     {
+      "word": "system",
+      "key": "system",
+      "mentions": 9,
+      "talks": [
+        6,
+        9,
+        10,
+        29,
+        45
+      ]
+    },
+    {
       "word": "efficiency",
       "key": "efficiency",
       "mentions": 9,
@@ -930,21 +1121,6 @@
       ]
     },
     {
-      "word": "convergence",
-      "key": "convergence",
-      "mentions": 9,
-      "talks": [
-        16,
-        27,
-        28,
-        88,
-        115,
-        117,
-        148,
-        151
-      ]
-    },
-    {
       "word": "pseudo",
       "key": "pseudo",
       "mentions": 9,
@@ -955,22 +1131,6 @@
         145,
         154,
         171,
-        191
-      ]
-    },
-    {
-      "word": "marginal",
-      "key": "marginal",
-      "mentions": 9,
-      "talks": [
-        21,
-        49,
-        94,
-        145,
-        154,
-        164,
-        171,
-        172,
         191
       ]
     },
@@ -1031,26 +1191,50 @@
       ]
     },
     {
+      "word": "robust",
+      "key": "robust",
+      "mentions": 8,
+      "talks": [
+        2,
+        21,
+        26,
+        55,
+        75,
+        106
+      ]
+    },
+    {
+      "word": "dimensional",
+      "key": "dimensional",
+      "mentions": 8,
+      "talks": [
+        2,
+        6,
+        9,
+        29,
+        44,
+        78,
+        180
+      ]
+    },
+    {
+      "word": "scale",
+      "key": "scale",
+      "mentions": 8,
+      "talks": [
+        2,
+        20,
+        30,
+        134
+      ]
+    },
+    {
       "word": "stage",
       "key": "stage",
       "mentions": 8,
       "talks": [
         7,
         25
-      ]
-    },
-    {
-      "word": "application",
-      "key": "application",
-      "mentions": 8,
-      "talks": [
-        7,
-        13,
-        53,
-        94,
-        131,
-        149,
-        177
       ]
     },
     {
@@ -1064,58 +1248,6 @@
         35,
         57,
         121
-      ]
-    },
-    {
-      "word": "cost",
-      "key": "cost",
-      "mentions": 8,
-      "talks": [
-        8,
-        9,
-        10,
-        17,
-        21,
-        30,
-        185
-      ]
-    },
-    {
-      "word": "parameter",
-      "key": "parameter",
-      "mentions": 8,
-      "talks": [
-        9,
-        15,
-        21,
-        101,
-        173,
-        190
-      ]
-    },
-    {
-      "word": "high",
-      "key": "high",
-      "mentions": 8,
-      "talks": [
-        9,
-        23,
-        29,
-        44,
-        78,
-        86,
-        180
-      ]
-    },
-    {
-      "word": "system",
-      "key": "system",
-      "mentions": 8,
-      "talks": [
-        9,
-        10,
-        29,
-        45
       ]
     },
     {
@@ -1141,21 +1273,6 @@
         148,
         163,
         204
-      ]
-    },
-    {
-      "word": "efficient",
-      "key": "efficient",
-      "mentions": 8,
-      "talks": [
-        11,
-        20,
-        21,
-        23,
-        24,
-        131,
-        145,
-        155
       ]
     },
     {
@@ -1219,16 +1336,6 @@
       ]
     },
     {
-      "word": "intractable",
-      "key": "intractable",
-      "mentions": 8,
-      "talks": [
-        24,
-        29,
-        131
-      ]
-    },
-    {
       "word": "multimodal",
       "key": "multimodal",
       "mentions": 8,
@@ -1276,29 +1383,46 @@
       ]
     },
     {
-      "word": "alternative",
-      "key": "alternative",
+      "word": "experimental",
+      "key": "experimental",
       "mentions": 7,
       "talks": [
-        1,
-        11,
-        17,
-        24,
-        26,
-        106,
-        132
+        2,
+        5,
+        9
       ]
     },
     {
-      "word": "training",
-      "key": "training",
+      "word": "design",
+      "key": "design",
       "mentions": 7,
       "talks": [
+        2
+      ]
+    },
+    {
+      "word": "performance",
+      "key": "performance",
+      "mentions": 7,
+      "talks": [
+        2,
+        6,
+        7,
         8,
-        9,
-        18,
-        20,
-        26
+        11
+      ]
+    },
+    {
+      "word": "estimator",
+      "key": "estimator",
+      "mentions": 7,
+      "talks": [
+        1,
+        5,
+        17,
+        21,
+        131,
+        154
       ]
     },
     {
@@ -1365,16 +1489,6 @@
       ]
     },
     {
-      "word": "scale",
-      "key": "scale",
-      "mentions": 7,
-      "talks": [
-        20,
-        30,
-        134
-      ]
-    },
-    {
       "word": "observation",
       "key": "observation",
       "mentions": 7,
@@ -1420,6 +1534,16 @@
       ]
     },
     {
+      "word": "error",
+      "key": "error",
+      "mentions": 6,
+      "talks": [
+        1,
+        5,
+        70
+      ]
+    },
+    {
       "word": "estimate",
       "key": "estimate",
       "mentions": 6,
@@ -1428,6 +1552,87 @@
         10,
         12,
         74
+      ]
+    },
+    {
+      "word": "perspective",
+      "key": "perspective",
+      "mentions": 6,
+      "talks": [
+        4,
+        5,
+        30,
+        62
+      ]
+    },
+    {
+      "word": "quantization",
+      "key": "quantization",
+      "mentions": 6,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "typically",
+      "key": "typically",
+      "mentions": 6,
+      "talks": [
+        5,
+        21,
+        24,
+        29,
+        137
+      ]
+    },
+    {
+      "word": "including",
+      "key": "including",
+      "mentions": 6,
+      "talks": [
+        5,
+        23,
+        24,
+        26,
+        27,
+        148
+      ]
+    },
+    {
+      "word": "tuning",
+      "key": "tuning",
+      "mentions": 6,
+      "talks": [
+        5,
+        11,
+        49,
+        134
+      ]
+    },
+    {
+      "word": "scalable",
+      "key": "scalable",
+      "mentions": 6,
+      "talks": [
+        6,
+        97,
+        99,
+        133,
+        137,
+        152
+      ]
+    },
+    {
+      "word": "practical",
+      "key": "practical",
+      "mentions": 6,
+      "talks": [
+        6,
+        37,
+        134,
+        136,
+        144,
+        148
       ]
     },
     {
@@ -1499,6 +1704,19 @@
         112,
         161,
         173
+      ]
+    },
+    {
+      "word": "condition",
+      "key": "condition",
+      "mentions": 6,
+      "talks": [
+        6,
+        12,
+        17,
+        27,
+        28,
+        148
       ]
     },
     {
@@ -1590,18 +1808,6 @@
       ]
     },
     {
-      "word": "robust",
-      "key": "robust",
-      "mentions": 6,
-      "talks": [
-        21,
-        26,
-        55,
-        75,
-        106
-      ]
-    },
-    {
       "word": "Part",
       "key": "part",
       "mentions": 6,
@@ -1640,12 +1846,14 @@
       ]
     },
     {
-      "word": "error",
-      "key": "error",
+      "word": "current",
+      "key": "current",
       "mentions": 5,
       "talks": [
         1,
-        70
+        2,
+        137,
+        165
       ]
     },
     {
@@ -1692,6 +1900,97 @@
       ]
     },
     {
+      "word": "produce",
+      "key": "produce",
+      "mentions": 5,
+      "talks": [
+        2,
+        21,
+        132
+      ]
+    },
+    {
+      "word": "guarantees",
+      "key": "guarantees",
+      "mentions": 5,
+      "talks": [
+        2,
+        7,
+        14,
+        24,
+        48
+      ]
+    },
+    {
+      "word": "log",
+      "key": "log",
+      "mentions": 5,
+      "talks": [
+        4,
+        10
+      ]
+    },
+    {
+      "word": "multi",
+      "key": "multi",
+      "mentions": 5,
+      "talks": [
+        5,
+        6,
+        7,
+        20
+      ]
+    },
+    {
+      "word": "objective",
+      "key": "objective",
+      "mentions": 5,
+      "talks": [
+        5,
+        26,
+        27
+      ]
+    },
+    {
+      "word": "prequential",
+      "key": "prequential",
+      "mentions": 5,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "class",
+      "key": "class",
+      "mentions": 5,
+      "talks": [
+        6,
+        24,
+        30,
+        131,
+        145
+      ]
+    },
+    {
+      "word": "complex",
+      "key": "complex",
+      "mentions": 5,
+      "talks": [
+        6,
+        9
+      ]
+    },
+    {
+      "word": "constraint",
+      "key": "constraint",
+      "mentions": 5,
+      "talks": [
+        5,
+        7,
+        13
+      ]
+    },
+    {
       "word": "robustness",
       "key": "robustness",
       "mentions": 5,
@@ -1723,18 +2022,6 @@
       ]
     },
     {
-      "word": "dimensional",
-      "key": "dimensional",
-      "mentions": 5,
-      "talks": [
-        9,
-        29,
-        44,
-        78,
-        180
-      ]
-    },
-    {
       "word": "CBPF",
       "key": "cbpf",
       "mentions": 5,
@@ -1751,16 +2038,6 @@
         23,
         113,
         133
-      ]
-    },
-    {
-      "word": "tuning",
-      "key": "tuning",
-      "mentions": 5,
-      "talks": [
-        11,
-        49,
-        134
       ]
     },
     {
@@ -1781,18 +2058,6 @@
       "talks": [
         12,
         92
-      ]
-    },
-    {
-      "word": "condition",
-      "key": "condition",
-      "mentions": 5,
-      "talks": [
-        12,
-        17,
-        27,
-        28,
-        148
       ]
     },
     {
@@ -1865,6 +2130,17 @@
       ]
     },
     {
+      "word": "flow",
+      "key": "flow",
+      "mentions": 5,
+      "talks": [
+        4,
+        16,
+        26,
+        68
+      ]
+    },
+    {
       "word": "Stein",
       "key": "stein",
       "mentions": 5,
@@ -1905,18 +2181,6 @@
       ]
     },
     {
-      "word": "estimator",
-      "key": "estimator",
-      "mentions": 5,
-      "talks": [
-        1,
-        17,
-        21,
-        131,
-        154
-      ]
-    },
-    {
       "word": "fast",
       "key": "fast",
       "mentions": 5,
@@ -1941,17 +2205,6 @@
       ]
     },
     {
-      "word": "typically",
-      "key": "typically",
-      "mentions": 5,
-      "talks": [
-        21,
-        24,
-        29,
-        137
-      ]
-    },
-    {
       "word": "count",
       "key": "count",
       "mentions": 5,
@@ -1959,18 +2212,6 @@
         23,
         24,
         75
-      ]
-    },
-    {
-      "word": "including",
-      "key": "including",
-      "mentions": 5,
-      "talks": [
-        23,
-        24,
-        26,
-        27,
-        148
       ]
     },
     {
@@ -1993,15 +2234,15 @@
       ]
     },
     {
-      "word": "practical",
-      "key": "practical",
+      "word": "enable",
+      "key": "enable",
       "mentions": 5,
       "talks": [
-        37,
-        134,
-        136,
-        144,
-        148
+        4,
+        5,
+        26,
+        27,
+        30
       ]
     },
     {
@@ -2014,18 +2255,6 @@
         99,
         158,
         194
-      ]
-    },
-    {
-      "word": "Scalable",
-      "key": "scalable",
-      "mentions": 5,
-      "talks": [
-        97,
-        99,
-        133,
-        137,
-        152
       ]
     },
     {
@@ -2064,6 +2293,16 @@
       ]
     },
     {
+      "word": "effect",
+      "key": "effect",
+      "mentions": 5,
+      "talks": [
+        5,
+        23,
+        146
+      ]
+    },
+    {
       "word": "reduction",
       "key": "reduction",
       "mentions": 4,
@@ -2083,16 +2322,6 @@
         11,
         51,
         107
-      ]
-    },
-    {
-      "word": "current",
-      "key": "current",
-      "mentions": 4,
-      "talks": [
-        1,
-        137,
-        165
       ]
     },
     {
@@ -2127,6 +2356,193 @@
       ]
     },
     {
+      "word": "approaches",
+      "key": "approaches",
+      "mentions": 4,
+      "talks": [
+        2,
+        9,
+        28,
+        137
+      ]
+    },
+    {
+      "word": "game",
+      "key": "game",
+      "mentions": 4,
+      "talks": [
+        2,
+        4
+      ]
+    },
+    {
+      "word": "theory",
+      "key": "theory",
+      "mentions": 4,
+      "talks": [
+        2,
+        6,
+        18,
+        120
+      ]
+    },
+    {
+      "word": "useful",
+      "key": "useful",
+      "mentions": 4,
+      "talks": [
+        2,
+        16,
+        26,
+        148
+      ]
+    },
+    {
+      "word": "control",
+      "key": "control",
+      "mentions": 4,
+      "talks": [
+        4,
+        27,
+        113,
+        146
+      ]
+    },
+    {
+      "word": "divergence",
+      "key": "divergence",
+      "mentions": 4,
+      "talks": [
+        4,
+        60,
+        132
+      ]
+    },
+    {
+      "word": "compared",
+      "key": "compared",
+      "mentions": 4,
+      "talks": [
+        4,
+        5,
+        11,
+        27
+      ]
+    },
+    {
+      "word": "low",
+      "key": "low",
+      "mentions": 4,
+      "talks": [
+        5,
+        75
+      ]
+    },
+    {
+      "word": "reduced",
+      "key": "reduced",
+      "mentions": 4,
+      "talks": [
+        5,
+        8,
+        9,
+        20
+      ]
+    },
+    {
+      "word": "challenging",
+      "key": "challenging",
+      "mentions": 4,
+      "talks": [
+        5,
+        6,
+        24,
+        137
+      ]
+    },
+    {
+      "word": "particularly",
+      "key": "particularly",
+      "mentions": 4,
+      "talks": [
+        5,
+        12,
+        21,
+        29
+      ]
+    },
+    {
+      "word": "formulation",
+      "key": "formulation",
+      "mentions": 4,
+      "talks": [
+        5,
+        16,
+        25
+      ]
+    },
+    {
+      "word": "loss",
+      "key": "loss",
+      "mentions": 4,
+      "talks": [
+        5,
+        6,
+        87
+      ]
+    },
+    {
+      "word": "result",
+      "key": "result",
+      "mentions": 4,
+      "talks": [
+        5,
+        20,
+        21,
+        29
+      ]
+    },
+    {
+      "word": "task",
+      "key": "task",
+      "mentions": 4,
+      "talks": [
+        6,
+        9
+      ]
+    },
+    {
+      "word": "Online",
+      "key": "online",
+      "mentions": 4,
+      "talks": [
+        6,
+        62,
+        174,
+        181
+      ]
+    },
+    {
+      "word": "predictive",
+      "key": "predictive",
+      "mentions": 4,
+      "talks": [
+        6,
+        12
+      ]
+    },
+    {
+      "word": "SMC",
+      "key": "smc",
+      "mentions": 4,
+      "talks": [
+        6,
+        19,
+        42,
+        78
+      ]
+    },
+    {
       "word": "involve",
       "key": "involve",
       "mentions": 4,
@@ -2134,26 +2550,6 @@
         7,
         10,
         148
-      ]
-    },
-    {
-      "word": "constraint",
-      "key": "constraint",
-      "mentions": 4,
-      "talks": [
-        7,
-        13
-      ]
-    },
-    {
-      "word": "guarantees",
-      "key": "guarantees",
-      "mentions": 4,
-      "talks": [
-        7,
-        14,
-        24,
-        48
       ]
     },
     {
@@ -2168,22 +2564,23 @@
       ]
     },
     {
-      "word": "performance",
-      "key": "performance",
-      "mentions": 4,
-      "talks": [
-        7,
-        8,
-        11
-      ]
-    },
-    {
       "word": "surrogate",
       "key": "surrogate",
       "mentions": 4,
       "talks": [
         9,
         149
+      ]
+    },
+    {
+      "word": "require",
+      "key": "require",
+      "mentions": 4,
+      "talks": [
+        2,
+        9,
+        20,
+        24
       ]
     },
     {
@@ -2355,16 +2752,6 @@
       ]
     },
     {
-      "word": "flow",
-      "key": "flow",
-      "mentions": 4,
-      "talks": [
-        16,
-        26,
-        68
-      ]
-    },
-    {
       "word": "WGF",
       "key": "wgf",
       "mentions": 4,
@@ -2454,15 +2841,6 @@
       ]
     },
     {
-      "word": "produce",
-      "key": "produce",
-      "mentions": 4,
-      "talks": [
-        21,
-        132
-      ]
-    },
-    {
       "word": "compositional",
       "key": "compositional",
       "mentions": 4,
@@ -2487,17 +2865,6 @@
         24,
         55,
         199
-      ]
-    },
-    {
-      "word": "class",
-      "key": "class",
-      "mentions": 4,
-      "talks": [
-        24,
-        30,
-        131,
-        145
       ]
     },
     {
@@ -2534,15 +2901,6 @@
       "mentions": 4,
       "talks": [
         26
-      ]
-    },
-    {
-      "word": "objective",
-      "key": "objective",
-      "mentions": 4,
-      "talks": [
-        26,
-        27
       ]
     },
     {
@@ -2590,15 +2948,6 @@
         63,
         93,
         95
-      ]
-    },
-    {
-      "word": "Perspective",
-      "key": "perspective",
-      "mentions": 4,
-      "talks": [
-        30,
-        62
       ]
     },
     {
@@ -2692,15 +3041,6 @@
       ]
     },
     {
-      "word": "effect",
-      "key": "effect",
-      "mentions": 4,
-      "talks": [
-        23,
-        146
-      ]
-    },
-    {
       "word": "averages",
       "key": "averages",
       "mentions": 3,
@@ -2716,6 +3056,16 @@
       "talks": [
         1,
         134
+      ]
+    },
+    {
+      "word": "practice",
+      "key": "practice",
+      "mentions": 3,
+      "talks": [
+        1,
+        2,
+        10
       ]
     },
     {
@@ -2797,12 +3147,290 @@
       ]
     },
     {
-      "word": "multi",
-      "key": "multi",
+      "word": "principled",
+      "key": "principled",
       "mentions": 3,
       "talks": [
+        2,
+        11,
+        21
+      ]
+    },
+    {
+      "word": "way",
+      "key": "way",
+      "mentions": 3,
+      "talks": [
+        2,
+        4,
+        17
+      ]
+    },
+    {
+      "word": "expensive",
+      "key": "expensive",
+      "mentions": 3,
+      "talks": [
+        2,
+        24,
+        149
+      ]
+    },
+    {
+      "word": "probabilistic",
+      "key": "probabilistic",
+      "mentions": 3,
+      "talks": [
+        2,
+        23,
+        147
+      ]
+    },
+    {
+      "word": "even",
+      "key": "even",
+      "mentions": 3,
+      "talks": [
+        2,
+        27,
+        145
+      ]
+    },
+    {
+      "word": "misspecification",
+      "key": "misspecification",
+      "mentions": 3,
+      "talks": [
+        2,
+        146
+      ]
+    },
+    {
+      "word": "address",
+      "key": "address",
+      "mentions": 3,
+      "talks": [
+        2,
+        23
+      ]
+    },
+    {
+      "word": "enabling",
+      "key": "enabling",
+      "mentions": 3,
+      "talks": [
+        2,
+        6,
+        9
+      ]
+    },
+    {
+      "word": "construct",
+      "key": "construct",
+      "mentions": 3,
+      "talks": [
+        2,
+        10,
+        17
+      ]
+    },
+    {
+      "word": "making",
+      "key": "making",
+      "mentions": 3,
+      "talks": [
+        2,
         7,
-        20
+        26
+      ]
+    },
+    {
+      "word": "beyond",
+      "key": "beyond",
+      "mentions": 3,
+      "talks": [
+        2,
+        17,
+        176
+      ]
+    },
+    {
+      "word": "information",
+      "key": "information",
+      "mentions": 3,
+      "talks": [
+        2,
+        18,
+        140
+      ]
+    },
+    {
+      "word": "Underdamped",
+      "key": "underdamped",
+      "mentions": 3,
+      "talks": [
+        4,
+        106
+      ]
+    },
+    {
+      "word": "accelerated",
+      "key": "accelerated",
+      "mentions": 3,
+      "talks": [
+        4,
+        12
+      ]
+    },
+    {
+      "word": "involving",
+      "key": "involving",
+      "mentions": 3,
+      "talks": [
+        4,
+        9,
+        131
+      ]
+    },
+    {
+      "word": "aware",
+      "key": "aware",
+      "mentions": 3,
+      "talks": [
+        5,
+        14
+      ]
+    },
+    {
+      "word": "bit",
+      "key": "bit",
+      "mentions": 3,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "competitive",
+      "key": "competitive",
+      "mentions": 3,
+      "talks": [
+        5,
+        11,
+        17
+      ]
+    },
+    {
+      "word": "introduces",
+      "key": "introduces",
+      "mentions": 3,
+      "talks": [
+        5,
+        27,
+        137
+      ]
+    },
+    {
+      "word": "pre",
+      "key": "pre",
+      "mentions": 3,
+      "talks": [
+        5,
+        13,
+        82
+      ]
+    },
+    {
+      "word": "assimilation",
+      "key": "assimilation",
+      "mentions": 3,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "forecasting",
+      "key": "forecasting",
+      "mentions": 3,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "DGFMs",
+      "key": "dgfms",
+      "mentions": 3,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "outside",
+      "key": "outside",
+      "mentions": 3,
+      "talks": [
+        6,
+        27,
+        146
+      ]
+    },
+    {
+      "word": "prove",
+      "key": "prove",
+      "mentions": 3,
+      "talks": [
+        6,
+        28,
+        132
+      ]
+    },
+    {
+      "word": "series",
+      "key": "series",
+      "mentions": 3,
+      "talks": [
+        6,
+        24,
+        202
+      ]
+    },
+    {
+      "word": "real",
+      "key": "real",
+      "mentions": 3,
+      "talks": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "word": "world",
+      "key": "world",
+      "mentions": 3,
+      "talks": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "word": "Dynamical",
+      "key": "dynamical",
+      "mentions": 3,
+      "talks": [
+        6,
+        25,
+        45
+      ]
+    },
+    {
+      "word": "context",
+      "key": "context",
+      "mentions": 3,
+      "talks": [
+        6,
+        27,
+        28
       ]
     },
     {
@@ -2882,16 +3510,6 @@
       ]
     },
     {
-      "word": "reduced",
-      "key": "reduced",
-      "mentions": 3,
-      "talks": [
-        8,
-        9,
-        20
-      ]
-    },
-    {
       "word": "resulting",
       "key": "resulting",
       "mentions": 3,
@@ -2899,24 +3517,6 @@
         8,
         12,
         20
-      ]
-    },
-    {
-      "word": "complex",
-      "key": "complex",
-      "mentions": 3,
-      "talks": [
-        9
-      ]
-    },
-    {
-      "word": "require",
-      "key": "require",
-      "mentions": 3,
-      "talks": [
-        9,
-        20,
-        24
       ]
     },
     {
@@ -2935,16 +3535,6 @@
       "talks": [
         9,
         23,
-        137
-      ]
-    },
-    {
-      "word": "approaches",
-      "key": "approaches",
-      "mentions": 3,
-      "talks": [
-        9,
-        28,
         137
       ]
     },
@@ -2974,14 +3564,6 @@
       "talks": [
         10,
         148
-      ]
-    },
-    {
-      "word": "log",
-      "key": "log",
-      "mentions": 3,
-      "talks": [
-        10
       ]
     },
     {
@@ -3070,16 +3652,6 @@
       "mentions": 3,
       "talks": [
         12
-      ]
-    },
-    {
-      "word": "particularly",
-      "key": "particularly",
-      "mentions": 3,
-      "talks": [
-        12,
-        21,
-        29
       ]
     },
     {
@@ -3225,16 +3797,6 @@
       ]
     },
     {
-      "word": "useful",
-      "key": "useful",
-      "mentions": 3,
-      "talks": [
-        16,
-        26,
-        148
-      ]
-    },
-    {
       "word": "tool",
       "key": "tool",
       "mentions": 3,
@@ -3251,15 +3813,6 @@
       "talks": [
         16,
         27
-      ]
-    },
-    {
-      "word": "formulation",
-      "key": "formulation",
-      "mentions": 3,
-      "talks": [
-        16,
-        25
       ]
     },
     {
@@ -3298,6 +3851,16 @@
       ]
     },
     {
+      "word": "offer",
+      "key": "offer",
+      "mentions": 3,
+      "talks": [
+        2,
+        17,
+        18
+      ]
+    },
+    {
       "word": "value",
       "key": "value",
       "mentions": 3,
@@ -3313,16 +3876,6 @@
       "talks": [
         19,
         146
-      ]
-    },
-    {
-      "word": "SMC",
-      "key": "smc",
-      "mentions": 3,
-      "talks": [
-        19,
-        42,
-        78
       ]
     },
     {
@@ -3361,16 +3914,6 @@
       "talks": [
         20,
         23,
-        29
-      ]
-    },
-    {
-      "word": "result",
-      "key": "result",
-      "mentions": 3,
-      "talks": [
-        20,
-        21,
         29
       ]
     },
@@ -3514,16 +4057,6 @@
       ]
     },
     {
-      "word": "control",
-      "key": "control",
-      "mentions": 3,
-      "talks": [
-        27,
-        113,
-        146
-      ]
-    },
-    {
       "word": "speed",
       "key": "speed",
       "mentions": 3,
@@ -3579,16 +4112,6 @@
       ]
     },
     {
-      "word": "enable",
-      "key": "enable",
-      "mentions": 3,
-      "talks": [
-        26,
-        27,
-        30
-      ]
-    },
-    {
       "word": "PDMP",
       "key": "pdmp",
       "mentions": 3,
@@ -3626,25 +4149,6 @@
         51,
         157,
         197
-      ]
-    },
-    {
-      "word": "divergence",
-      "key": "divergence",
-      "mentions": 3,
-      "talks": [
-        60,
-        132
-      ]
-    },
-    {
-      "word": "Online",
-      "key": "online",
-      "mentions": 3,
-      "talks": [
-        62,
-        174,
-        181
       ]
     },
     {
@@ -3903,15 +4407,6 @@
       ]
     },
     {
-      "word": "practice",
-      "key": "practice",
-      "mentions": 2,
-      "talks": [
-        1,
-        10
-      ]
-    },
-    {
       "word": "ergodic",
       "key": "ergodic",
       "mentions": 2,
@@ -4053,38 +4548,338 @@
       ]
     },
     {
+      "word": "OED",
+      "key": "oed",
+      "mentions": 2,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "relies",
+      "key": "relies",
+      "mentions": 2,
+      "talks": [
+        2,
+        17
+      ]
+    },
+    {
+      "word": "presents",
+      "key": "presents",
+      "mentions": 2,
+      "talks": [
+        2,
+        18
+      ]
+    },
+    {
+      "word": "image",
+      "key": "image",
+      "mentions": 2,
+      "talks": [
+        2,
+        8
+      ]
+    },
+    {
+      "word": "policies",
+      "key": "policies",
+      "mentions": 2,
+      "talks": [
+        2,
+        6
+      ]
+    },
+    {
+      "word": "downstream",
+      "key": "downstream",
+      "mentions": 2,
+      "talks": [
+        2,
+        11
+      ]
+    },
+    {
+      "word": "Together",
+      "key": "together",
+      "mentions": 2,
+      "talks": [
+        2,
+        14
+      ]
+    },
+    {
+      "word": "player",
+      "key": "player",
+      "mentions": 2,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "strategies",
+      "key": "strategies",
+      "mentions": 2,
+      "talks": [
+        4,
+        172
+      ]
+    },
+    {
+      "word": "builds",
+      "key": "builds",
+      "mentions": 2,
+      "talks": [
+        4,
+        15
+      ]
+    },
+    {
+      "word": "assumed",
+      "key": "assumed",
+      "mentions": 2,
+      "talks": [
+        4,
+        6
+      ]
+    },
+    {
+      "word": "concave",
+      "key": "concave",
+      "mentions": 2,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "obtain",
+      "key": "obtain",
+      "mentions": 2,
+      "talks": [
+        4,
+        27
+      ]
+    },
+    {
+      "word": "QAT",
+      "key": "qat",
+      "mentions": 2,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "full",
+      "key": "full",
+      "mentions": 2,
+      "talks": [
+        5,
+        12
+      ]
+    },
+    {
+      "word": "central",
+      "key": "central",
+      "mentions": 2,
+      "talks": [
+        5,
+        28
+      ]
+    },
+    {
+      "word": "difficulty",
+      "key": "difficulty",
+      "mentions": 2,
+      "talks": [
+        5,
+        27
+      ]
+    },
+    {
+      "word": "lies",
+      "key": "lies",
+      "mentions": 2,
+      "talks": [
+        5,
+        6
+      ]
+    },
+    {
+      "word": "mismatch",
+      "key": "mismatch",
+      "mentions": 2,
+      "talks": [
+        5,
+        134
+      ]
+    },
+    {
+      "word": "differentiable",
+      "key": "differentiable",
+      "mentions": 2,
+      "talks": [
+        5,
+        125
+      ]
+    },
+    {
+      "word": "implementation",
+      "key": "implementation",
+      "mentions": 2,
+      "talks": [
+        5,
+        133
+      ]
+    },
+    {
+      "word": "fundamental",
+      "key": "fundamental",
+      "mentions": 2,
+      "talks": [
+        6,
+        15
+      ]
+    },
+    {
+      "word": "upon",
+      "key": "upon",
+      "mentions": 2,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "prediction",
+      "key": "prediction",
+      "mentions": 2,
+      "talks": [
+        6,
+        199
+      ]
+    },
+    {
+      "word": "reinforcement",
+      "key": "reinforcement",
+      "mentions": 2,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "due",
+      "key": "due",
+      "mentions": 2,
+      "talks": [
+        6,
+        12
+      ]
+    },
+    {
+      "word": "methodologies",
+      "key": "methodologies",
+      "mentions": 2,
+      "talks": [
+        6,
+        16
+      ]
+    },
+    {
+      "word": "naturally",
+      "key": "naturally",
+      "mentions": 2,
+      "talks": [
+        6,
+        12
+      ]
+    },
+    {
+      "word": "dependent",
+      "key": "dependent",
+      "mentions": 2,
+      "talks": [
+        6,
+        28
+      ]
+    },
+    {
+      "word": "Since",
+      "key": "since",
+      "mentions": 2,
+      "talks": [
+        6,
+        11
+      ]
+    },
+    {
+      "word": "notion",
+      "key": "notion",
+      "mentions": 2,
+      "talks": [
+        6,
+        17
+      ]
+    },
+    {
+      "word": "parallelizable",
+      "key": "parallelizable",
+      "mentions": 2,
+      "talks": [
+        6,
+        12
+      ]
+    },
+    {
+      "word": "synthetic",
+      "key": "synthetic",
+      "mentions": 2,
+      "talks": [
+        6,
+        7
+      ]
+    },
+    {
+      "word": "dataset",
+      "key": "dataset",
+      "mentions": 2,
+      "talks": [
+        6,
+        8
+      ]
+    },
+    {
+      "word": "policy",
+      "key": "policy",
+      "mentions": 2,
+      "talks": [
+        6,
+        159
+      ]
+    },
+    {
+      "word": "achieve",
+      "key": "achieve",
+      "mentions": 2,
+      "talks": [
+        6,
+        11
+      ]
+    },
+    {
+      "word": "reward",
+      "key": "reward",
+      "mentions": 2,
+      "talks": [
+        6,
+        19
+      ]
+    },
+    {
       "word": "unknown",
       "key": "unknown",
       "mentions": 2,
       "talks": [
         7
-      ]
-    },
-    {
-      "word": "real",
-      "key": "real",
-      "mentions": 2,
-      "talks": [
-        7,
-        8
-      ]
-    },
-    {
-      "word": "world",
-      "key": "world",
-      "mentions": 2,
-      "talks": [
-        7,
-        8
-      ]
-    },
-    {
-      "word": "making",
-      "key": "making",
-      "mentions": 2,
-      "talks": [
-        7,
-        26
       ]
     },
     {
@@ -4150,6 +4945,15 @@
       ]
     },
     {
+      "word": "optimiser",
+      "key": "optimiser",
+      "mentions": 2,
+      "talks": [
+        5,
+        8
+      ]
+    },
+    {
       "word": "lead",
       "key": "lead",
       "mentions": 2,
@@ -4200,15 +5004,6 @@
       "talks": [
         9,
         21
-      ]
-    },
-    {
-      "word": "involving",
-      "key": "involving",
-      "mentions": 2,
-      "talks": [
-        9,
-        131
       ]
     },
     {
@@ -4289,15 +5084,6 @@
       "talks": [
         10,
         24
-      ]
-    },
-    {
-      "word": "construct",
-      "key": "construct",
-      "mentions": 2,
-      "talks": [
-        10,
-        17
       ]
     },
     {
@@ -4390,15 +5176,6 @@
       ]
     },
     {
-      "word": "principled",
-      "key": "principled",
-      "mentions": 2,
-      "talks": [
-        11,
-        21
-      ]
-    },
-    {
       "word": "yet",
       "key": "yet",
       "mentions": 2,
@@ -4414,24 +5191,6 @@
       "talks": [
         11,
         149
-      ]
-    },
-    {
-      "word": "compared",
-      "key": "compared",
-      "mentions": 2,
-      "talks": [
-        11,
-        27
-      ]
-    },
-    {
-      "word": "competitive",
-      "key": "competitive",
-      "mentions": 2,
-      "talks": [
-        11,
-        17
       ]
     },
     {
@@ -4467,14 +5226,6 @@
       "talks": [
         12,
         144
-      ]
-    },
-    {
-      "word": "predictive",
-      "key": "predictive",
-      "mentions": 2,
-      "talks": [
-        12
       ]
     },
     {
@@ -4518,15 +5269,6 @@
       "mentions": 2,
       "talks": [
         13
-      ]
-    },
-    {
-      "word": "pre",
-      "key": "pre",
-      "mentions": 2,
-      "talks": [
-        13,
-        82
       ]
     },
     {
@@ -4855,24 +5597,6 @@
       ]
     },
     {
-      "word": "offer",
-      "key": "offer",
-      "mentions": 2,
-      "talks": [
-        17,
-        18
-      ]
-    },
-    {
-      "word": "beyond",
-      "key": "beyond",
-      "mentions": 2,
-      "talks": [
-        17,
-        176
-      ]
-    },
-    {
       "word": "research",
       "key": "research",
       "mentions": 2,
@@ -4904,24 +5628,6 @@
       "talks": [
         18,
         29
-      ]
-    },
-    {
-      "word": "information",
-      "key": "information",
-      "mentions": 2,
-      "talks": [
-        18,
-        140
-      ]
-    },
-    {
-      "word": "theory",
-      "key": "theory",
-      "mentions": 2,
-      "talks": [
-        18,
-        120
       ]
     },
     {
@@ -5168,28 +5874,11 @@
       ]
     },
     {
-      "word": "address",
-      "key": "address",
-      "mentions": 2,
-      "talks": [
-        23
-      ]
-    },
-    {
       "word": "overdispersion",
       "key": "overdispersion",
       "mentions": 2,
       "talks": [
         23
-      ]
-    },
-    {
-      "word": "probabilistic",
-      "key": "probabilistic",
-      "mentions": 2,
-      "talks": [
-        23,
-        147
       ]
     },
     {
@@ -5272,15 +5961,6 @@
       ]
     },
     {
-      "word": "expensive",
-      "key": "expensive",
-      "mentions": 2,
-      "talks": [
-        24,
-        149
-      ]
-    },
-    {
       "word": "exponential",
       "key": "exponential",
       "mentions": 2,
@@ -5307,39 +5987,12 @@
       ]
     },
     {
-      "word": "challenging",
-      "key": "challenging",
-      "mentions": 2,
-      "talks": [
-        24,
-        137
-      ]
-    },
-    {
       "word": "Poisson",
       "key": "poisson",
       "mentions": 2,
       "talks": [
         24,
         29
-      ]
-    },
-    {
-      "word": "series",
-      "key": "series",
-      "mentions": 2,
-      "talks": [
-        24,
-        202
-      ]
-    },
-    {
-      "word": "Dynamical",
-      "key": "dynamical",
-      "mentions": 2,
-      "talks": [
-        25,
-        45
       ]
     },
     {
@@ -5446,15 +6099,6 @@
       ]
     },
     {
-      "word": "introduces",
-      "key": "introduces",
-      "mentions": 2,
-      "talks": [
-        27,
-        137
-      ]
-    },
-    {
       "word": "density",
       "key": "density",
       "mentions": 2,
@@ -5473,24 +6117,6 @@
       ]
     },
     {
-      "word": "context",
-      "key": "context",
-      "mentions": 2,
-      "talks": [
-        27,
-        28
-      ]
-    },
-    {
-      "word": "Outside",
-      "key": "outside",
-      "mentions": 2,
-      "talks": [
-        27,
-        146
-      ]
-    },
-    {
       "word": "developed",
       "key": "developed",
       "mentions": 2,
@@ -5500,30 +6126,12 @@
       ]
     },
     {
-      "word": "even",
-      "key": "even",
-      "mentions": 2,
-      "talks": [
-        27,
-        145
-      ]
-    },
-    {
       "word": "densities",
       "key": "densities",
       "mentions": 2,
       "talks": [
         27,
         163
-      ]
-    },
-    {
-      "word": "prove",
-      "key": "prove",
-      "mentions": 2,
-      "talks": [
-        28,
-        132
       ]
     },
     {
@@ -6132,6 +6740,15 @@
       ]
     },
     {
+      "word": "rate",
+      "key": "rate",
+      "mentions": 2,
+      "talks": [
+        4,
+        192
+      ]
+    },
+    {
       "word": "Equilibrium",
       "key": "equilibrium",
       "mentions": 1,
@@ -6332,6 +6949,742 @@
       ]
     },
     {
+      "word": "decide",
+      "key": "decide",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "collect",
+      "key": "collect",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "slow",
+      "key": "slow",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "acquire",
+      "key": "acquire",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "guide",
+      "key": "guide",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "acquisition",
+      "key": "acquisition",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "almost",
+      "key": "almost",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "always",
+      "key": "always",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "misspecified",
+      "key": "misspecified",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "uninformative",
+      "key": "uninformative",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "misleading",
+      "key": "misleading",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "arising",
+      "key": "arising",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "Second",
+      "key": "second",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "draw",
+      "key": "draw",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "minimax",
+      "key": "minimax",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "formal",
+      "key": "formal",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "suggest",
+      "key": "suggest",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "modern",
+      "key": "modern",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "moving",
+      "key": "moving",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "theoretic",
+      "key": "theoretic",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "standards",
+      "key": "standards",
+      "mentions": 1,
+      "talks": [
+        2
+      ]
+    },
+    {
+      "word": "Acceleration",
+      "key": "acceleration",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "Fenchel",
+      "key": "fenchel",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "formulate",
+      "key": "formulate",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "identify",
+      "key": "identify",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "coupled",
+      "key": "coupled",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "similar",
+      "key": "similar",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "constructions",
+      "key": "constructions",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "ℝᵈ",
+      "key": "ℝᵈ",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "fictitious",
+      "key": "fictitious",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "competitors",
+      "key": "competitors",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "KL",
+      "key": "kl",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "positional",
+      "key": "positional",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "strongly",
+      "key": "strongly",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "corresponding",
+      "key": "corresponding",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "Overdamped",
+      "key": "overdamped",
+      "mentions": 1,
+      "talks": [
+        4
+      ]
+    },
+    {
+      "word": "memory",
+      "key": "memory",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "achieving",
+      "key": "achieving",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "accuracy",
+      "key": "accuracy",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "precision",
+      "key": "precision",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "widths",
+      "key": "widths",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "operations",
+      "key": "operations",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "handled",
+      "key": "handled",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "straight",
+      "key": "straight",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "STE",
+      "key": "ste",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "fully",
+      "key": "fully",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "account",
+      "key": "account",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "revisit",
+      "key": "revisit",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "balances",
+      "key": "balances",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "minimisation",
+      "key": "minimisation",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "adherence",
+      "key": "adherence",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "viewpoint",
+      "key": "viewpoint",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "motivates",
+      "key": "motivates",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "incorporate",
+      "key": "incorporate",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "foundations",
+      "key": "foundations",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "Pareto",
+      "key": "pareto",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "optimality",
+      "key": "optimality",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "alongside",
+      "key": "alongside",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "fine",
+      "key": "fine",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "language",
+      "key": "language",
+      "mentions": 1,
+      "talks": [
+        5
+      ]
+    },
+    {
+      "word": "updating",
+      "key": "updating",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "observing",
+      "key": "observing",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "ranging",
+      "key": "ranging",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "weather",
+      "key": "weather",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "shown",
+      "key": "shown",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "excellent",
+      "key": "excellent",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "areas",
+      "key": "areas",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "assimilating",
+      "key": "assimilating",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "limitation",
+      "key": "limitation",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "restricts",
+      "key": "restricts",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "overcome",
+      "key": "overcome",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "suited",
+      "key": "suited",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "temporally",
+      "key": "temporally",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "true",
+      "key": "true",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "generating",
+      "key": "generating",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "adopt",
+      "key": "adopt",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "consistency",
+      "key": "consistency",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "mild",
+      "key": "mild",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "minimizer",
+      "key": "minimizer",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "concentrate",
+      "key": "concentrate",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "around",
+      "key": "around",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "employ",
+      "key": "employ",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "easily",
+      "key": "easily",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "wastefree",
+      "key": "wastefree",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "preconditioned",
+      "key": "preconditioned",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "exploration",
+      "key": "exploration",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "validate",
+      "key": "validate",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "meteorological",
+      "key": "meteorological",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "highlighting",
+      "key": "highlighting",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "utility",
+      "key": "utility",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "rapid",
+      "key": "rapid",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
+      "word": "identification",
+      "key": "identification",
+      "mentions": 1,
+      "talks": [
+        6
+      ]
+    },
+    {
       "word": "black",
       "key": "black",
       "mentions": 1,
@@ -6428,14 +7781,6 @@
       ]
     },
     {
-      "word": "synthetic",
-      "key": "synthetic",
-      "mentions": 1,
-      "talks": [
-        7
-      ]
-    },
-    {
       "word": "Dissecting",
       "key": "dissecting",
       "mentions": 1,
@@ -6462,14 +7807,6 @@
     {
       "word": "initialisation",
       "key": "initialisation",
-      "mentions": 1,
-      "talks": [
-        8
-      ]
-    },
-    {
-      "word": "optimiser",
-      "key": "optimiser",
       "mentions": 1,
       "talks": [
         8
@@ -6508,14 +7845,6 @@
       ]
     },
     {
-      "word": "image",
-      "key": "image",
-      "mentions": 1,
-      "talks": [
-        8
-      ]
-    },
-    {
       "word": "annotator",
       "key": "annotator",
       "mentions": 1,
@@ -6534,14 +7863,6 @@
     {
       "word": "ecological",
       "key": "ecological",
-      "mentions": 1,
-      "talks": [
-        8
-      ]
-    },
-    {
-      "word": "datasets",
-      "key": "datasets",
       "mentions": 1,
       "talks": [
         8
@@ -6580,14 +7901,6 @@
       ]
     },
     {
-      "word": "tasks",
-      "key": "tasks",
-      "mentions": 1,
-      "talks": [
-        9
-      ]
-    },
-    {
       "word": "relying",
       "key": "relying",
       "mentions": 1,
@@ -6620,14 +7933,6 @@
       ]
     },
     {
-      "word": "enabling",
-      "key": "enabling",
-      "mentions": 1,
-      "talks": [
-        9
-      ]
-    },
-    {
       "word": "integration",
       "key": "integration",
       "mentions": 1,
@@ -6638,14 +7943,6 @@
     {
       "word": "observational",
       "key": "observational",
-      "mentions": 1,
-      "talks": [
-        9
-      ]
-    },
-    {
-      "word": "experimental",
-      "key": "experimental",
       "mentions": 1,
       "talks": [
         9
@@ -6956,14 +8253,6 @@
       ]
     },
     {
-      "word": "downstream",
-      "key": "downstream",
-      "mentions": 1,
-      "talks": [
-        11
-      ]
-    },
-    {
       "word": "resources",
       "key": "resources",
       "mentions": 1,
@@ -6998,14 +8287,6 @@
     {
       "word": "attention",
       "key": "attention",
-      "mentions": 1,
-      "talks": [
-        11
-      ]
-    },
-    {
-      "word": "since",
-      "key": "since",
       "mentions": 1,
       "talks": [
         11
@@ -7054,14 +8335,6 @@
     {
       "word": "guidelines",
       "key": "guidelines",
-      "mentions": 1,
-      "talks": [
-        11
-      ]
-    },
-    {
-      "word": "achieve",
-      "key": "achieve",
       "mentions": 1,
       "talks": [
         11
@@ -7148,14 +8421,6 @@
       ]
     },
     {
-      "word": "full",
-      "key": "full",
-      "mentions": 1,
-      "talks": [
-        12
-      ]
-    },
-    {
       "word": "term",
       "key": "term",
       "mentions": 1,
@@ -7180,22 +8445,6 @@
       ]
     },
     {
-      "word": "parallelizable",
-      "key": "parallelizable",
-      "mentions": 1,
-      "talks": [
-        12
-      ]
-    },
-    {
-      "word": "accelerated",
-      "key": "accelerated",
-      "mentions": 1,
-      "talks": [
-        12
-      ]
-    },
-    {
       "word": "Furthermore",
       "key": "furthermore",
       "mentions": 1,
@@ -7206,14 +8455,6 @@
     {
       "word": "monotonicity",
       "key": "monotonicity",
-      "mentions": 1,
-      "talks": [
-        12
-      ]
-    },
-    {
-      "word": "naturally",
-      "key": "naturally",
       "mentions": 1,
       "talks": [
         12
@@ -7238,14 +8479,6 @@
     {
       "word": "rearrangement",
       "key": "rearrangement",
-      "mentions": 1,
-      "talks": [
-        12
-      ]
-    },
-    {
-      "word": "due",
-      "key": "due",
       "mentions": 1,
       "talks": [
         12
@@ -7524,14 +8757,6 @@
       ]
     },
     {
-      "word": "aware",
-      "key": "aware",
-      "mentions": 1,
-      "talks": [
-        14
-      ]
-    },
-    {
       "word": "noising",
       "key": "noising",
       "mentions": 1,
@@ -7628,14 +8853,6 @@
       ]
     },
     {
-      "word": "together",
-      "key": "together",
-      "mentions": 1,
-      "talks": [
-        14
-      ]
-    },
-    {
       "word": "stability",
       "key": "stability",
       "mentions": 1,
@@ -7665,14 +8882,6 @@
       "mentions": 1,
       "talks": [
         14
-      ]
-    },
-    {
-      "word": "fundamental",
-      "key": "fundamental",
-      "mentions": 1,
-      "talks": [
-        15
       ]
     },
     {
@@ -7710,14 +8919,6 @@
     {
       "word": "ensure",
       "key": "ensure",
-      "mentions": 1,
-      "talks": [
-        15
-      ]
-    },
-    {
-      "word": "builds",
-      "key": "builds",
       "mentions": 1,
       "talks": [
         15
@@ -7980,14 +9181,6 @@
       ]
     },
     {
-      "word": "methodologies",
-      "key": "methodologies",
-      "mentions": 1,
-      "talks": [
-        16
-      ]
-    },
-    {
       "word": "hopefully",
       "key": "hopefully",
       "mentions": 1,
@@ -8028,24 +9221,8 @@
       ]
     },
     {
-      "word": "relies",
-      "key": "relies",
-      "mentions": 1,
-      "talks": [
-        17
-      ]
-    },
-    {
       "word": "KMEs",
       "key": "kmes",
-      "mentions": 1,
-      "talks": [
-        17
-      ]
-    },
-    {
-      "word": "notion",
-      "key": "notion",
       "mentions": 1,
       "talks": [
         17
@@ -8148,14 +9325,6 @@
       ]
     },
     {
-      "word": "way",
-      "key": "way",
-      "mentions": 1,
-      "talks": [
-        17
-      ]
-    },
-    {
       "word": "avenues",
       "key": "avenues",
       "mentions": 1,
@@ -8206,14 +9375,6 @@
     {
       "word": "memorize",
       "key": "memorize",
-      "mentions": 1,
-      "talks": [
-        18
-      ]
-    },
-    {
-      "word": "presents",
-      "key": "presents",
       "mentions": 1,
       "talks": [
         18
@@ -8366,14 +9527,6 @@
     {
       "word": "look",
       "key": "look",
-      "mentions": 1,
-      "talks": [
-        19
-      ]
-    },
-    {
-      "word": "reward",
-      "key": "reward",
       "mentions": 1,
       "talks": [
         19
@@ -9548,14 +10701,6 @@
       ]
     },
     {
-      "word": "difficulty",
-      "key": "difficulty",
-      "mentions": 1,
-      "talks": [
-        27
-      ]
-    },
-    {
       "word": "discrepancy'",
       "key": "discrepancy'",
       "mentions": 1,
@@ -9574,14 +10719,6 @@
     {
       "word": "coincides",
       "key": "coincides",
-      "mentions": 1,
-      "talks": [
-        27
-      ]
-    },
-    {
-      "word": "obtain",
-      "key": "obtain",
       "mentions": 1,
       "talks": [
         27
@@ -9684,14 +10821,6 @@
       ]
     },
     {
-      "word": "dependent",
-      "key": "dependent",
-      "mentions": 1,
-      "talks": [
-        28
-      ]
-    },
-    {
       "word": "literature",
       "key": "literature",
       "mentions": 1,
@@ -9758,14 +10887,6 @@
     {
       "word": "uniform",
       "key": "uniform",
-      "mentions": 1,
-      "talks": [
-        28
-      ]
-    },
-    {
-      "word": "central",
-      "key": "central",
       "mentions": 1,
       "talks": [
         28
@@ -10620,14 +11741,6 @@
       ]
     },
     {
-      "word": "low",
-      "key": "low",
-      "mentions": 1,
-      "talks": [
-        75
-      ]
-    },
-    {
       "word": "BPF",
       "key": "bpf",
       "mentions": 1,
@@ -10681,14 +11794,6 @@
       "mentions": 1,
       "talks": [
         85
-      ]
-    },
-    {
-      "word": "loss",
-      "key": "loss",
-      "mentions": 1,
-      "talks": [
-        87
       ]
     },
     {
@@ -10793,14 +11898,6 @@
       "mentions": 1,
       "talks": [
         102
-      ]
-    },
-    {
-      "word": "Underdamped",
-      "key": "underdamped",
-      "mentions": 1,
-      "talks": [
-        106
       ]
     },
     {
@@ -11020,14 +12117,6 @@
       ]
     },
     {
-      "word": "Differentiable",
-      "key": "differentiable",
-      "mentions": 1,
-      "talks": [
-        125
-      ]
-    },
-    {
       "word": "Regularized",
       "key": "regularized",
       "mentions": 1,
@@ -11212,14 +12301,6 @@
       ]
     },
     {
-      "word": "implementation",
-      "key": "implementation",
-      "mentions": 1,
-      "talks": [
-        133
-      ]
-    },
-    {
       "word": "course",
       "key": "course",
       "mentions": 1,
@@ -11310,14 +12391,6 @@
     {
       "word": "degree",
       "key": "degree",
-      "mentions": 1,
-      "talks": [
-        134
-      ]
-    },
-    {
-      "word": "mismatch",
-      "key": "mismatch",
       "mentions": 1,
       "talks": [
         134
@@ -11724,14 +12797,6 @@
       ]
     },
     {
-      "word": "misspecification",
-      "key": "misspecification",
-      "mentions": 1,
-      "talks": [
-        146
-      ]
-    },
-    {
       "word": "diversification",
       "key": "diversification",
       "mentions": 1,
@@ -12076,14 +13141,6 @@
       ]
     },
     {
-      "word": "Policy",
-      "key": "policy",
-      "mentions": 1,
-      "talks": [
-        159
-      ]
-    },
-    {
       "word": "STAN",
       "key": "stan",
       "mentions": 1,
@@ -12220,14 +13277,6 @@
       ]
     },
     {
-      "word": "strategies",
-      "key": "strategies",
-      "mentions": 1,
-      "talks": [
-        172
-      ]
-    },
-    {
       "word": "Thompson",
       "key": "thompson",
       "mentions": 1,
@@ -12356,14 +13405,6 @@
       ]
     },
     {
-      "word": "rate",
-      "key": "rate",
-      "mentions": 1,
-      "talks": [
-        192
-      ]
-    },
-    {
       "word": "rule",
       "key": "rule",
       "mentions": 1,
@@ -12406,14 +13447,6 @@
     {
       "word": "squares",
       "key": "squares",
-      "mentions": 1,
-      "talks": [
-        199
-      ]
-    },
-    {
-      "word": "prediction",
-      "key": "prediction",
       "mentions": 1,
       "talks": [
         199
@@ -12547,28 +13580,244 @@
     "briefly": "briefly",
     "recent": "recent",
     "alternative": "alternative",
-    "multi": "multi",
-    "stage": "stage",
-    "bayesian": "bayesian",
+    "robust": "robust",
+    "experimental": "experimental",
+    "design": "design",
+    "diffusion": "diffusion",
+    "oed": "oed",
+    "principled": "principled",
+    "way": "way",
+    "decide": "decide",
+    "collect": "collect",
+    "expensive": "expensive",
+    "slow": "slow",
+    "acquire": "acquire",
+    "relies": "relies",
+    "probabilistic": "probabilistic",
+    "guide": "guide",
+    "acquisition": "acquisition",
+    "almost": "almost",
+    "always": "always",
+    "misspecified": "misspecified",
+    "produce": "produce",
+    "uninformative": "uninformative",
+    "even": "even",
+    "misleading": "misleading",
+    "presents": "presents",
+    "approaches": "approaches",
+    "misspecification": "misspecification",
+    "generative": "generative",
+    "address": "address",
+    "arising": "arising",
+    "high": "high",
+    "dimensional": "dimensional",
+    "enabling": "enabling",
+    "image": "image",
+    "scale": "scale",
+    "second": "second",
+    "draw": "draw",
+    "game": "game",
+    "theory": "theory",
+    "construct": "construct",
+    "minimax": "minimax",
+    "policies": "policies",
+    "formal": "formal",
+    "guarantees": "guarantees",
+    "downstream": "downstream",
+    "performance": "performance",
+    "together": "together",
+    "suggest": "suggest",
+    "making": "making",
+    "useful": "useful",
+    "modern": "modern",
+    "moving": "moving",
+    "beyond": "beyond",
+    "information": "information",
+    "theoretic": "theoretic",
+    "standards": "standards",
+    "field": "field",
+    "acceleration": "acceleration",
+    "underdamped": "underdamped",
+    "fenchel": "fenchel",
+    "formulate": "formulate",
+    "player": "player",
+    "identify": "identify",
+    "coupled": "coupled",
+    "strategies": "strategies",
+    "perspective": "perspective",
+    "builds": "builds",
+    "similar": "similar",
+    "constructions": "constructions",
+    "accelerated": "accelerated",
+    "gradient": "gradient",
+    "ℝᵈ": "ℝᵈ",
+    "cost": "cost",
+    "involving": "involving",
+    "fictitious": "fictitious",
+    "competitors": "competitors",
+    "control": "control",
+    "kl": "kl",
+    "divergence": "divergence",
+    "positional": "positional",
+    "marginal": "marginal",
+    "target": "target",
+    "distribution": "distribution",
+    "assumed": "assumed",
+    "log": "log",
+    "concave": "concave",
+    "strongly": "strongly",
+    "obtain": "obtain",
+    "convergence": "convergence",
+    "compared": "compared",
+    "corresponding": "corresponding",
+    "overdamped": "overdamped",
+    "estimation": "estimation",
+    "quantization": "quantization",
+    "aware": "aware",
+    "training": "training",
+    "qat": "qat",
+    "low": "low",
+    "bit": "bit",
+    "reduced": "reduced",
+    "memory": "memory",
+    "computational": "computational",
+    "achieving": "achieving",
+    "competitive": "competitive",
+    "accuracy": "accuracy",
+    "full": "full",
+    "precision": "precision",
+    "challenging": "challenging",
+    "particularly": "particularly",
+    "widths": "widths",
+    "central": "central",
+    "difficulty": "difficulty",
+    "lies": "lies",
+    "mismatch": "mismatch",
+    "introduces": "introduces",
+    "differentiable": "differentiable",
+    "operations": "operations",
+    "typically": "typically",
+    "handled": "handled",
+    "straight": "straight",
+    "estimator": "estimator",
+    "ste": "ste",
+    "fully": "fully",
+    "account": "account",
     "optimisation": "optimisation",
-    "unknown": "unknown",
-    "stopping": "stopping",
+    "revisit": "revisit",
+    "multi": "multi",
+    "objective": "objective",
+    "formulation": "formulation",
+    "balances": "balances",
+    "loss": "loss",
+    "minimisation": "minimisation",
+    "adherence": "adherence",
+    "viewpoint": "viewpoint",
+    "motivates": "motivates",
+    "incorporate": "incorporate",
+    "foundations": "foundations",
+    "including": "including",
+    "pareto": "pareto",
+    "optimality": "optimality",
+    "result": "result",
+    "efficient": "efficient",
+    "implementation": "implementation",
+    "alongside": "alongside",
+    "fine": "fine",
+    "tuning": "tuning",
+    "pre": "pre",
+    "language": "language",
+    "prequential": "prequential",
+    "application": "application",
+    "assimilation": "assimilation",
+    "fundamental": "fundamental",
+    "task": "task",
+    "updating": "updating",
+    "forecasting": "forecasting",
+    "upon": "upon",
+    "observing": "observing",
+    "ranging": "ranging",
+    "weather": "weather",
+    "prediction": "prediction",
+    "online": "online",
+    "reinforcement": "reinforcement",
+    "learning": "learning",
+    "deep": "deep",
+    "dgfms": "dgfms",
+    "shown": "shown",
+    "excellent": "excellent",
+    "areas": "areas",
+    "assimilating": "assimilating",
+    "due": "due",
+    "intractable": "intractable",
+    "likelihood": "likelihood",
+    "limitation": "limitation",
+    "restricts": "restricts",
+    "bayesian": "bayesian",
+    "methodologies": "methodologies",
+    "overcome": "overcome",
+    "predictive": "predictive",
+    "sequential": "sequential",
+    "naturally": "naturally",
+    "suited": "suited",
+    "temporally": "temporally",
+    "dependent": "dependent",
+    "since": "since",
+    "true": "true",
+    "generating": "generating",
+    "process": "process",
+    "outside": "outside",
+    "class": "class",
+    "adopt": "adopt",
+    "notion": "notion",
+    "consistency": "consistency",
+    "prove": "prove",
+    "mild": "mild",
+    "minimizer": "minimizer",
+    "posterior": "posterior",
+    "concentrate": "concentrate",
+    "around": "around",
+    "scalable": "scalable",
+    "employ": "employ",
+    "easily": "easily",
+    "parallelizable": "parallelizable",
+    "wastefree": "wastefree",
+    "smc": "smc",
+    "preconditioned": "preconditioned",
+    "exploration": "exploration",
+    "parameter": "parameter",
+    "validate": "validate",
+    "synthetic": "synthetic",
+    "series": "series",
     "real": "real",
     "world": "world",
+    "meteorological": "meteorological",
+    "dataset": "dataset",
+    "highlighting": "highlighting",
+    "practical": "practical",
+    "utility": "utility",
+    "complex": "complex",
+    "dynamical": "dynamical",
+    "policy": "policy",
+    "context": "context",
+    "achieve": "achieve",
+    "rapid": "rapid",
+    "identification": "identification",
+    "reward": "reward",
+    "stage": "stage",
+    "unknown": "unknown",
+    "stopping": "stopping",
     "black": "black",
     "box": "box",
     "processes": "processes",
     "involve": "involve",
-    "sequential": "sequential",
     "decision": "decision",
-    "making": "making",
     "wise": "wise",
     "violating": "violating",
     "constraint": "constraint",
     "terminate": "terminate",
     "entire": "entire",
     "run": "run",
-    "learning": "learning",
     "limited": "limited",
     "therefore": "therefore",
     "important": "important",
@@ -12576,24 +13825,18 @@
     "tackling": "tackling",
     "formulated": "formulated",
     "markov": "markov",
-    "process": "process",
     "approached": "approached",
     "dynamic": "dynamic",
     "programming": "programming",
     "leading": "leading",
-    "guarantees": "guarantees",
     "cumulative": "cumulative",
     "failures": "failures",
     "regret": "regret",
     "finally": "finally",
     "empirical": "empirical",
-    "performance": "performance",
-    "synthetic": "synthetic",
-    "application": "application",
     "driven": "driven",
     "problems": "problems",
     "dissecting": "dissecting",
-    "deep": "deep",
     "neural": "neural",
     "role": "role",
     "played": "played",
@@ -12605,26 +13848,19 @@
     "optimiser": "optimiser",
     "hyperparameter": "hyperparameter",
     "varies": "varies",
-    "training": "training",
     "network": "network",
     "differently": "differently",
     "lead": "lead",
     "enhanced": "enhanced",
     "generalisation": "generalisation",
-    "reduced": "reduced",
-    "computational": "computational",
-    "cost": "cost",
     "affect": "affect",
     "resulting": "resulting",
     "adversarial": "adversarial",
     "robustness": "robustness",
-    "image": "image",
     "annotator": "annotator",
     "variability": "variability",
     "ecological": "ecological",
-    "datasets": "datasets",
     "surrogate": "surrogate",
-    "complex": "complex",
     "science": "science",
     "engineering": "engineering",
     "require": "require",
@@ -12633,38 +13869,29 @@
     "uncertainty": "uncertainty",
     "quantification": "quantification",
     "optimization": "optimization",
-    "parameter": "parameter",
-    "estimation": "estimation",
     "query": "query",
-    "tasks": "tasks",
     "become": "become",
     "computationally": "computationally",
     "prohibitive": "prohibitive",
     "relying": "relying",
     "solely": "solely",
-    "high": "high",
     "fidelity": "fidelity",
     "machine": "machine",
     "designed": "designed",
     "approximate": "approximate",
     "significantly": "significantly",
-    "enabling": "enabling",
     "integration": "integration",
     "observational": "observational",
-    "experimental": "experimental",
     "modeling": "modeling",
-    "approaches": "approaches",
     "convolutional": "convolutional",
     "graph": "graph",
     "operator": "operator",
     "mappings": "mappings",
     "emphasis": "emphasis",
     "placed": "placed",
-    "involving": "involving",
     "geometries": "geometries",
     "multiscale": "multiscale",
     "phenomena": "phenomena",
-    "dimensional": "dimensional",
     "parametrizations": "parametrizations",
     "knowledge": "knowledge",
     "incorporated": "incorporated",
@@ -12697,7 +13924,6 @@
     "horizon": "horizon",
     "proof": "proof",
     "admits": "admits",
-    "log": "log",
     "complementing": "complementing",
     "evidence": "evidence",
     "superiority": "superiority",
@@ -12710,7 +13936,6 @@
     "instant": "instant",
     "implementable": "implementable",
     "thus": "thus",
-    "construct": "construct",
     "unbiased": "unbiased",
     "finite": "finite",
     "arbitrary": "arbitrary",
@@ -12728,7 +13953,6 @@
     "anthony": "anthony",
     "lee": "lee",
     "efficiency": "efficiency",
-    "tuning": "tuning",
     "mcmc": "mcmc",
     "recently": "recently",
     "methodology": "methodology",
@@ -12738,7 +13962,6 @@
     "eliminates": "eliminates",
     "burn": "burn",
     "simplifying": "simplifying",
-    "downstream": "downstream",
     "allowing": "allowing",
     "effective": "effective",
     "parallel": "parallel",
@@ -12747,7 +13970,6 @@
     "received": "received",
     "continued": "continued",
     "attention": "attention",
-    "since": "since",
     "release": "release",
     "key": "key",
     "questions": "questions",
@@ -12760,20 +13982,15 @@
     "sharp": "sharp",
     "asymptotic": "asymptotic",
     "bounds": "bounds",
-    "efficient": "efficient",
     "additionally": "additionally",
     "latter": "latter",
-    "principled": "principled",
     "yet": "yet",
     "generic": "generic",
     "guidelines": "guidelines",
-    "achieve": "achieve",
     "near": "near",
     "increase": "increase",
-    "compared": "compared",
     "prior": "prior",
     "demonstrates": "demonstrates",
-    "competitive": "competitive",
     "sam": "sam",
     "power": "power",
     "bristol": "bristol",
@@ -12781,18 +13998,15 @@
     "martingale": "martingale",
     "nonparametric": "nonparametric",
     "regression": "regression",
-    "posterior": "posterior",
     "mp": "mp",
     "core": "core",
     "idea": "idea",
     "equivalent": "equivalent",
-    "predictive": "predictive",
     "imputation": "imputation",
     "allows": "allows",
     "break": "break",
     "free": "free",
     "stringent": "stringent",
-    "likelihood": "likelihood",
     "specification": "specification",
     "recursive": "recursive",
     "smooth": "smooth",
@@ -12800,40 +14014,30 @@
     "condition": "condition",
     "entirely": "entirely",
     "sufficient": "sufficient",
-    "full": "full",
     "term": "term",
-    "distribution": "distribution",
     "qmp": "qmp",
     "implicit": "implicit",
-    "generative": "generative",
     "expedient": "expedient",
-    "parallelizable": "parallelizable",
     "computation": "computation",
     "scheme": "scheme",
-    "accelerated": "accelerated",
     "approximation": "approximation",
     "gaussian": "gaussian",
     "furthermore": "furthermore",
     "issue": "issue",
     "monotonicity": "monotonicity",
-    "naturally": "naturally",
     "alleviated": "alleviated",
     "increasing": "increasing",
     "rearrangement": "rearrangement",
-    "due": "due",
     "connections": "connections",
     "bootstrap": "bootstrap",
-    "particularly": "particularly",
     "tractable": "tractable",
     "comprehensive": "comprehensive",
     "constrained": "constrained",
-    "field": "field",
     "valued": "valued",
     "fusion": "fusion",
     "reactors": "reactors",
     "uses": "uses",
     "pde": "pde",
-    "pre": "pre",
     "compute": "compute",
     "feasible": "feasible",
     "subset": "subset",
@@ -12854,7 +14058,6 @@
     "hypergraph": "hypergraph",
     "generation": "generation",
     "structured": "structured",
-    "diffusion": "diffusion",
     "higher": "higher",
     "order": "order",
     "interactions": "interactions",
@@ -12882,7 +14085,6 @@
     "uhlenbeck": "uhlenbeck",
     "component": "component",
     "preserving": "preserving",
-    "aware": "aware",
     "noising": "noising",
     "yielding": "yielding",
     "explicit": "explicit",
@@ -12911,7 +14113,6 @@
     "exactness": "exactness",
     "ideal": "ideal",
     "setting": "setting",
-    "together": "together",
     "stability": "stability",
     "empirically": "empirically",
     "improved": "improved",
@@ -12920,7 +14121,6 @@
     "stationary": "stationary",
     "penalized": "penalized",
     "random": "random",
-    "fundamental": "fundamental",
     "spatial": "spatial",
     "represented": "represented",
     "flexibly": "flexibly",
@@ -12936,7 +14136,6 @@
     "ensure": "ensure",
     "meaningful": "meaningful",
     "covariance": "covariance",
-    "builds": "builds",
     "previous": "previous",
     "https": "https",
     "arxiv": "arxiv",
@@ -12969,19 +14168,15 @@
     "promising": "promising",
     "care": "care",
     "wasserstein": "wasserstein",
-    "gradient": "gradient",
     "flow": "flow",
     "wgf": "wgf",
     "emerged": "emerged",
-    "useful": "useful",
     "tool": "tool",
     "methodological": "methodological",
     "side": "side",
     "helps": "helps",
     "interpret": "interpret",
     "unadjusted": "unadjusted",
-    "convergence": "convergence",
-    "formulation": "formulation",
     "fosters": "fosters",
     "stein": "stein",
     "variational": "variational",
@@ -12999,7 +14194,6 @@
     "especially": "especially",
     "relevant": "relevant",
     "bayescomp": "bayescomp",
-    "methodologies": "methodologies",
     "hopefully": "hopefully",
     "keep": "keep",
     "mathematics": "mathematics",
@@ -13016,18 +14210,15 @@
     "discrepancy": "discrepancy",
     "mmd": "mmd",
     "distance": "distance",
-    "relies": "relies",
     "kmes": "kmes",
     "represent": "represent",
     "unclear": "unclear",
     "representation": "representation",
     "inspired": "inspired",
     "generalised": "generalised",
-    "notion": "notion",
     "kqes": "kqes",
     "along": "along",
     "consistent": "consistent",
-    "estimator": "estimator",
     "family": "family",
     "weaker": "weaker",
     "ii": "ii",
@@ -13042,10 +14233,8 @@
     "findings": "findings",
     "value": "value",
     "representing": "representing",
-    "beyond": "beyond",
     "simple": "simple",
     "paving": "paving",
-    "way": "way",
     "avenues": "avenues",
     "research": "research",
     "understanding": "understanding",
@@ -13058,15 +14247,12 @@
     "generalize": "generalize",
     "rather": "rather",
     "memorize": "memorize",
-    "presents": "presents",
     "insights": "insights",
     "controlling": "controlling",
     "capacity": "capacity",
     "preventing": "preventing",
     "overfitting": "overfitting",
     "drawing": "drawing",
-    "information": "information",
-    "theory": "theory",
     "clear": "clear",
     "picture": "picture",
     "natural": "natural",
@@ -13086,9 +14272,7 @@
     "skreta": "skreta",
     "look": "look",
     "relationship": "relationship",
-    "reward": "reward",
     "tilted": "tilted",
-    "smc": "smc",
     "sparse": "sparse",
     "gained": "gained",
     "popularity": "popularity",
@@ -13098,7 +14282,6 @@
     "contains": "contains",
     "features": "features",
     "isotropic": "isotropic",
-    "scale": "scale",
     "performed": "performed",
     "inducing": "inducing",
     "gp": "gp",
@@ -13127,7 +14310,6 @@
     "variationally": "variationally",
     "accurately": "accurately",
     "train": "train",
-    "result": "result",
     "highly": "highly",
     "accurate": "accurate",
     "test": "test",
@@ -13136,7 +14318,6 @@
     "teckentrup": "teckentrup",
     "simon": "simon",
     "urbainczyk": "urbainczyk",
-    "robust": "robust",
     "partially": "partially",
     "alive": "alive",
     "metropolis": "metropolis",
@@ -13146,12 +14327,10 @@
     "observation": "observation",
     "zero": "zero",
     "next": "next",
-    "produce": "produce",
     "filtering": "filtering",
     "addresses": "addresses",
     "inter": "inter",
     "interval": "interval",
-    "target": "target",
     "outlying": "outlying",
     "poor": "poor",
     "extremely": "extremely",
@@ -13162,13 +14341,11 @@
     "lower": "lower",
     "suitable": "suitable",
     "pseudo": "pseudo",
-    "marginal": "marginal",
     "pmmh": "pmmh",
     "outliers": "outliers",
     "mis": "mis",
     "specified": "specified",
     "initial": "initial",
-    "typically": "typically",
     "least": "least",
     "times": "times",
     "advice": "advice",
@@ -13180,7 +14357,6 @@
     "count": "count",
     "compositional": "compositional",
     "arise": "arise",
-    "including": "including",
     "throughput": "throughput",
     "microbiome": "microbiome",
     "sequencing": "sequencing",
@@ -13192,14 +14368,12 @@
     "compositions": "compositions",
     "existing": "existing",
     "fail": "fail",
-    "address": "address",
     "inherent": "inherent",
     "overdispersion": "overdispersion",
     "excess": "excess",
     "cross": "cross",
     "nonlinear": "nonlinear",
     "covariate": "covariate",
-    "probabilistic": "probabilistic",
     "portrayals": "portrayals",
     "multivariate": "multivariate",
     "handle": "handle",
@@ -13231,34 +14405,28 @@
     "conjugate": "conjugate",
     "discrete": "discrete",
     "doubly": "doubly",
-    "intractable": "intractable",
     "occur": "occur",
     "unnormalised": "unnormalised",
     "normalisation": "normalisation",
     "direct": "direct",
     "specialised": "specialised",
-    "expensive": "expensive",
-    "class": "class",
     "exponential": "exponential",
     "derive": "derive",
     "characterise": "characterise",
     "behaviour": "behaviour",
     "supporting": "supporting",
     "evaluated": "evaluated",
-    "challenging": "challenging",
     "conway": "conway",
     "maxwell": "maxwell",
     "poisson": "poisson",
     "graphical": "graphical",
     "autoregressive": "autoregressive",
-    "series": "series",
     "ising": "ising",
     "potts": "potts",
     "gains": "gains",
     "significant": "significant",
     "faster": "faster",
     "art": "art",
-    "dynamical": "dynamical",
     "regimes": "regimes",
     "denoising": "denoising",
     "multimodal": "multimodal",
@@ -13317,7 +14485,6 @@
     "explore": "explore",
     "classes": "classes",
     "contrast": "contrast",
-    "objective": "objective",
     "situations": "situations",
     "versatile": "versatile",
     "scientific": "scientific",
@@ -13341,47 +14508,38 @@
     "emerging": "emerging",
     "minimised": "minimised",
     "increased": "increased",
-    "introduces": "introduces",
     "loses": "loses",
     "access": "access",
     "density": "density",
     "mitigate": "mitigate",
-    "difficulty": "difficulty",
     "discrepancy'": "discrepancy'",
     "kernel'": "kernel'",
     "kgd": "kgd",
     "explicitly": "explicitly",
-    "context": "context",
     "coincides": "coincides",
     "ksd": "ksd",
-    "obtain": "obtain",
     "characterisation": "characterisation",
     "measuring": "measuring",
-    "outside": "outside",
     "familiar": "familiar",
     "developed": "developed",
-    "even": "even",
     "densities": "densities",
     "presented": "presented",
     "principal": "principal",
     "contribution": "contribution",
     "desirable": "desirable",
     "continuity": "continuity",
-    "control": "control",
     "changed": "changed",
     "speed": "speed",
     "rare": "rare",
     "event": "event",
     "adjusting": "adjusting",
     "chosen": "chosen",
-    "dependent": "dependent",
     "literature": "literature",
     "piecewise": "piecewise",
     "obtaining": "obtaining",
     "modifications": "modifications",
     "re": "re",
     "discovering": "discovering",
-    "prove": "prove",
     "focusing": "focusing",
     "connecting": "connecting",
     "qualitative": "qualitative",
@@ -13389,7 +14547,6 @@
     "uniform": "uniform",
     "ergodicity": "ergodicity",
     "functional": "functional",
-    "central": "central",
     "limit": "limit",
     "theorem": "theorem",
     "permitting": "permitting",
@@ -13430,7 +14587,6 @@
     "retains": "retains",
     "exchangeability": "exchangeability",
     "adapting": "adapting",
-    "perspective": "perspective",
     "matern": "matern",
     "ubiquitous": "ubiquitous",
     "williams": "williams",
@@ -13466,7 +14622,6 @@
     "fusing": "fusing",
     "boosting": "boosting",
     "supervised": "supervised",
-    "practical": "practical",
     "pdmp": "pdmp",
     "adjustments": "adjustments",
     "adaptive": "adaptive",
@@ -13512,7 +14667,6 @@
     "heterogeneous": "heterogeneous",
     "populations": "populations",
     "alpha": "alpha",
-    "divergence": "divergence",
     "meets": "meets",
     "weighted": "weighted",
     "auto": "auto",
@@ -13520,7 +14674,6 @@
     "accounting": "accounting",
     "shared": "shared",
     "semi": "semi",
-    "online": "online",
     "skill": "skill",
     "rating": "rating",
     "thinning": "thinning",
@@ -13544,7 +14697,6 @@
     "inequality": "inequality",
     "differing": "differing",
     "lifebelt": "lifebelt",
-    "low": "low",
     "localised": "localised",
     "bpf": "bpf",
     "automatic": "automatic",
@@ -13555,7 +14707,6 @@
     "stereographic": "stereographic",
     "pathwise": "pathwise",
     "euclidean": "euclidean",
-    "loss": "loss",
     "isoperimetry": "isoperimetry",
     "spectral": "spectral",
     "profiles": "profiles",
@@ -13569,7 +14720,6 @@
     "classification": "classification",
     "reversible": "reversible",
     "tempering": "tempering",
-    "scalable": "scalable",
     "continuously": "continuously",
     "tempered": "tempered",
     "selection": "selection",
@@ -13582,7 +14732,6 @@
     "kick": "kick",
     "teleportation": "teleportation",
     "adjusted": "adjusted",
-    "underdamped": "underdamped",
     "hamiltonian": "hamiltonian",
     "monte": "monte",
     "carlo": "carlo",
@@ -13617,7 +14766,6 @@
     "statistic": "statistic",
     "old": "old",
     "metric": "metric",
-    "differentiable": "differentiable",
     "regularized": "regularized",
     "vaes": "vaes",
     "gans": "gans",
@@ -13653,7 +14801,6 @@
     "pseudotime": "pseudotime",
     "branching": "branching",
     "cell": "cell",
-    "implementation": "implementation",
     "gplvm": "gplvm",
     "course": "course",
     "additional": "additional",
@@ -13669,7 +14816,6 @@
     "induced": "induced",
     "exponentially": "exponentially",
     "degree": "degree",
-    "mismatch": "mismatch",
     "walk": "walk",
     "rwm": "rwm",
     "decay": "decay",
@@ -13741,7 +14887,6 @@
     "exchange": "exchange",
     "frequent": "frequent",
     "source": "source",
-    "misspecification": "misspecification",
     "diversification": "diversification",
     "effect": "effect",
     "reasoning": "reasoning",
@@ -13796,7 +14941,6 @@
     "opportunities": "opportunities",
     "differentially": "differentially",
     "private": "private",
-    "policy": "policy",
     "stan": "stan",
     "discussion": "discussion",
     "bouncy": "bouncy",
@@ -13815,7 +14959,6 @@
     "homotopy": "homotopy",
     "tracking": "tracking",
     "speeding": "speeding",
-    "strategies": "strategies",
     "thompson": "thompson",
     "switching": "switching",
     "detection": "detection",
@@ -13847,7 +14990,6 @@
     "rue": "rue",
     "fault": "fault",
     "squares": "squares",
-    "prediction": "prediction",
     "perfect": "perfect",
     "arma": "arma",
     "sums": "sums",
@@ -13862,23 +15004,40 @@
     "errors": "error",
     "sources": "source",
     "estimators": "estimator",
+    "games": "game",
+    "offers": "offer",
+    "designs": "design",
+    "requires": "require",
+    "players": "player",
+    "flows": "flow",
+    "enables": "enable",
+    "rates": "rate",
+    "costs": "cost",
+    "effects": "effect",
     "constraints": "constraint",
+    "optimisers": "optimiser",
+    "posteriors": "posterior",
+    "tasks": "task",
+    "conditions": "condition",
+    "parameters": "parameter",
+    "samplers": "sampler",
+    "kernels": "kernel",
+    "spaces": "space",
+    "systems": "system",
     "decisions": "decision",
     "settings": "setting",
     "evaluations": "evaluation",
     "benchmarks": "benchmark",
     "networks": "network",
     "layers": "layer",
+    "datasets": "dataset",
     "affects": "affect",
-    "systems": "system",
     "simulations": "simulation",
-    "spaces": "space",
     "particles": "particle",
     "depends": "depend",
     "involves": "involve",
     "cbpfs": "cbpf",
     "functionals": "functional",
-    "posteriors": "posterior",
     "arises": "arise",
     "ideas": "idea",
     "hypergraphs": "hypergraph",
@@ -13895,20 +15054,16 @@
     "tools": "tool",
     "equations": "equation",
     "spdes": "spde",
-    "parameters": "parameter",
     "behaviors": "behavior",
     "structures": "structure",
-    "flows": "flow",
     "embeddings": "embedding",
     "metrics": "metric",
     "distributions": "distribution",
     "quantiles": "quantile",
     "distances": "distance",
-    "conditions": "condition",
     "approximations": "approximation",
     "mechanisms": "mechanism",
     "autoencoders": "autoencoder",
-    "offers": "offer",
     "diffusions": "diffusion",
     "gps": "gp",
     "tends": "tend",
@@ -13916,17 +15071,14 @@
     "likelihoods": "likelihood",
     "observations": "observation",
     "values": "value",
-    "costs": "cost",
     "produces": "produce",
     "filters": "filter",
     "ensembles": "ensemble",
     "trees": "tree",
     "covariates": "covariate",
     "challenges": "challenge",
-    "effects": "effect",
     "components": "component",
     "schemes": "scheme",
-    "requires": "require",
     "chains": "chain",
     "formulations": "formulation",
     "sdes": "sde",
@@ -13937,7 +15089,6 @@
     "versions": "version",
     "forms": "form",
     "objectives": "objective",
-    "enables": "enable",
     "dimensions": "dimension",
     "fails": "fail",
     "suffers": "suffer",
@@ -13948,7 +15099,6 @@
     "explores": "explore",
     "graphs": "graph",
     "sizes": "size",
-    "samplers": "sampler",
     "domains": "domain",
     "estimations": "estimation",
     "asymptotics": "asymptotic",
@@ -13957,7 +15107,6 @@
     "nonparametrics": "nonparametric",
     "gaps": "gap",
     "epidemics": "epidemic",
-    "kernels": "kernel",
     "divergences": "divergence",
     "cells": "cell",
     "decays": "decay",

@@ -26,8 +26,10 @@
   link_text: arXiv
 
 - date: 2026-11-19
-  speaker: Gavin Kerrigan
+  speaker: Gavin Kerrigan (Online)
   affiliation: University of Oxford
+  title: Robust Experimental Design, Diffusion, and Games
+  abstract: 'Optimal experimental design (OED) offers a principled way to decide what data to collect when data is expensive or slow to acquire. But OED is model-based: it relies on a probabilistic model to guide acquisition, and in practice that model is almost always misspecified, which can produce uninformative or even misleading data. This talk presents two approaches to experimental design under misspecification. First, we use generative diffusion models to address misspecification arising from high dimensional designs, enabling experimental design at image scale for the first time. Second, we draw on game theory to construct minimax-robust design policies with formal guarantees on downstream performance. Together, these results suggest that making experimental design useful for modern applications requires moving beyond the information-theoretic methods that are the current standards in the field.'
 
 - date: 2026-11-12
   speaker: Matthias Sachs

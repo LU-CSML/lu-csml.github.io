@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+
+if [[ ${1:-} == --help ]]; then
+  echo 'Usage: ./serve'
+  echo 'Starts http://localhost:4000 and opens your browser. Set NO_OPEN=1 to skip opening it.'
+  exit 0
+fi
+if (( $# > 0 )); then
+  echo 'Usage: ./serve (no arguments)' >&2
+  exit 2
+fi
+
+# Use the current Ruby directly, so old gem executable shebangs cannot break us.
+bundler_version=$(ruby -e 'puts File.read("Gemfile.lock")[/BUNDLED WITH\s+(\S+)/, 1] || abort("Gemfile.lock has no Bundler version")')
+if ! ruby -r rubygems -e 'gem "bundler", ARGV.fetch(0)' "$bundler_version" 2>/dev/null; then
+  ruby -S gem install --user-install bundler --version "$bundler_version" --no-document
+fi
+bundle_current() {
+  ruby -r rubygems -e 'version = ARGV.shift; gem "bundler", version; load Gem.bin_path("bundler", "bundle", version)' "$bundler_version" "$@"
+}
+
+# Native gems must be installed again when Ruby's binary interface changes.
+bundle_current config set --local path vendor/bundle
+if ! bundle_current check >/dev/null 2>&1; then
+  bundle_current install
+fi
+
+bundle_current exec jekyll serve &
+server_pid=$!
+opener_pid=
+cleanup() {
+  [[ -z "$opener_pid" ]] || kill "$opener_pid" 2>/dev/null || true
+  kill "$server_pid" 2>/dev/null || true
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+if [[ ${NO_OPEN:-0} != 1 ]]; then
+  (
+    for ((attempt = 0; attempt < 120; attempt++)); do
+      kill -0 "$server_pid" 2>/dev/null || exit 0
+      if curl --silent --fail --output /dev/null http://localhost:4000; then
+        if command -v xdg-open >/dev/null; then
+          xdg-open http://localhost:4000 >/dev/null 2>&1 || true
+        elif command -v open >/dev/null; then
+          open http://localhost:4000
+        fi
+        exit 0
+      fi
+      sleep 0.5
+    done
+  ) &
+  opener_pid=$!
+fi
+wait "$server_pid"
