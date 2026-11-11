@@ -34,6 +34,8 @@
 - date: 2026-11-12
   speaker: Matthias Sachs
   affiliation: Lancaster University
+  title: 'Matrix-free solutions of high-dimensional Ornstein–Uhlenbeck processes'
+  abstract: 'Symmetric splitting integrators for Langevin-type dynamics, such as BAOAB, require the repeated solution of an Ornstein–Uhlenbeck (OU) process determined by the friction and noise coefficients of the equation. In realistic heat-bath models, the friction matrix is typically large, sparse and configuration-dependent. In such settings, the cost of standard solvers for the OU step scales as $O(d^3)$, where $d$ is the dimension of the system. In this talk I will introduce a family of matrix-free solvers that avoid this cubic scaling and sample the OU step at a cost of $O(d)$ for sparse and $O(d^2)$ for dense friction matrices.'
 
 - date: 2026-11-05
   speaker: Alexandra Borkowski
